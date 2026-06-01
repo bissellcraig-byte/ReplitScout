@@ -1,0 +1,214 @@
+/*
+	Scout Content Studio — motion layer
+	Self-contained, additive animation/interaction polish.
+	All timing/easing/distance lives in the tokens below so it is easy to tune.
+	Reveal styles only apply once motion.js adds .motion-ready to <html>,
+	so content stays fully visible if JS is disabled or motion is reduced.
+*/
+
+:root {
+	--motion-duration: 720ms;
+	--motion-duration-fast: 360ms;
+	--motion-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+	--motion-distance: 24px;
+	--motion-stagger: 90ms;
+	--motion-lift: 6px;
+}
+
+/* Interior pages: main copy should render immediately (no scroll-reveal delay). */
+html.motion-ready body.page-services .wrapper.style5 .inner,
+html.motion-ready body.page-services .wrapper.style5 .inner.reveal {
+	opacity: 1 !important;
+	transform: none !important;
+	transition: none !important;
+}
+
+/* ---------- Scroll reveal ---------- */
+html.motion-ready .reveal {
+	opacity: 0;
+	transform: translateY(var(--motion-distance));
+	transition: opacity var(--motion-duration) var(--motion-ease),
+		transform var(--motion-duration) var(--motion-ease);
+}
+
+html.motion-ready .reveal.reveal-left {
+	transform: translateX(calc(var(--motion-distance) * -1));
+}
+
+html.motion-ready .reveal.reveal-right {
+	transform: translateX(var(--motion-distance));
+}
+
+html.motion-ready .reveal.reveal-fade {
+	transform: none;
+}
+
+html.motion-ready .reveal.is-revealed {
+	opacity: 1;
+	transform: none;
+}
+
+/* ---------- Staggered children ---------- */
+html.motion-ready .stagger > * {
+	opacity: 0;
+	transform: translateY(var(--motion-distance));
+	transition: opacity var(--motion-duration) var(--motion-ease),
+		transform var(--motion-duration) var(--motion-ease);
+}
+
+html.motion-ready .stagger.is-revealed > * {
+	opacity: 1;
+	transform: none;
+}
+
+html.motion-ready .stagger.is-revealed > *:nth-child(1) { transition-delay: calc(var(--motion-stagger) * 0); }
+html.motion-ready .stagger.is-revealed > *:nth-child(2) { transition-delay: calc(var(--motion-stagger) * 1); }
+html.motion-ready .stagger.is-revealed > *:nth-child(3) { transition-delay: calc(var(--motion-stagger) * 2); }
+html.motion-ready .stagger.is-revealed > *:nth-child(4) { transition-delay: calc(var(--motion-stagger) * 3); }
+html.motion-ready .stagger.is-revealed > *:nth-child(5) { transition-delay: calc(var(--motion-stagger) * 4); }
+html.motion-ready .stagger.is-revealed > *:nth-child(6) { transition-delay: calc(var(--motion-stagger) * 5); }
+html.motion-ready .stagger.is-revealed > *:nth-child(7) { transition-delay: calc(var(--motion-stagger) * 6); }
+html.motion-ready .stagger.is-revealed > *:nth-child(8) { transition-delay: calc(var(--motion-stagger) * 7); }
+
+/* Safety: once flagged complete, never keep anything hidden */
+html.motion-ready .motion-done.reveal,
+html.motion-ready .motion-done.stagger > * {
+	opacity: 1 !important;
+	transform: none !important;
+}
+
+/* ---------- Hero entrance ----------
+   Note: the template already animates .banner-headline (#banner h2) via
+   body.is-preload, so it is intentionally excluded here to avoid conflict. */
+html.motion-ready .banner-brand,
+html.motion-ready .banner-divider-wide,
+html.motion-ready .banner-subtext,
+html.motion-ready #banner .actions.special,
+html.motion-ready .banner-scroll {
+	animation: motionHeroIn var(--motion-duration) var(--motion-ease) both;
+}
+
+html.motion-ready .banner-brand { animation-delay: 80ms; }
+html.motion-ready .banner-divider-wide { animation-delay: 200ms; }
+html.motion-ready .banner-subtext { animation-delay: 440ms; }
+html.motion-ready #banner .actions.special { animation-delay: 560ms; }
+html.motion-ready .banner-scroll { animation-delay: 700ms; }
+
+@keyframes motionHeroIn {
+	from { opacity: 0; transform: translateY(18px); }
+	to { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- Card / block hover polish ---------- */
+#three .features li {
+	transition: transform var(--motion-duration-fast) var(--motion-ease),
+		background-color var(--motion-duration-fast) var(--motion-ease);
+}
+
+@media screen and (min-width: 737px) {
+	#three .features li:hover {
+		transform: translateY(calc(var(--motion-lift) * -1));
+	}
+}
+
+#two .scout-standard-card {
+	transition: box-shadow 0.5s var(--motion-ease),
+		border-color 0.5s var(--motion-ease);
+}
+
+@media screen and (min-width: 981px) {
+	#two .scout-standard-card:hover {
+		box-shadow: 0 34px 80px rgba(0, 0, 0, 0.30);
+		border-color: rgba(143, 184, 176, 0.95);
+	}
+}
+
+/* ---------- Buttons & links ---------- */
+.button,
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+button {
+	transition: background-color 0.25s var(--motion-ease),
+		color 0.25s var(--motion-ease),
+		box-shadow 0.25s var(--motion-ease),
+		transform 0.25s var(--motion-ease);
+}
+
+@media screen and (min-width: 737px) {
+	.button:hover,
+	input[type="submit"]:hover,
+	input[type="reset"]:hover,
+	input[type="button"]:hover,
+	button:hover {
+		transform: translateY(-2px);
+	}
+
+	.button:active,
+	input[type="submit"]:active,
+	input[type="reset"]:active,
+	input[type="button"]:active,
+	button:active {
+		transform: translateY(0);
+	}
+}
+
+/* Nav + menu link transitions */
+#nav a,
+#menu a,
+#footer .footer-nav a,
+#footer .icons a {
+	transition: color 0.3s var(--motion-ease),
+		opacity 0.3s var(--motion-ease),
+		transform 0.3s var(--motion-ease);
+}
+
+@media screen and (min-width: 737px) {
+	#footer .icons a:hover {
+		transform: translateY(-3px);
+	}
+}
+
+/* Hero scroll prompt: gentle arrow nudge on hover */
+#banner .banner-scroll-icon {
+	transition: transform 0.3s var(--motion-ease);
+}
+
+#banner .banner-scroll:hover .banner-scroll-icon {
+	transform: translateY(4px);
+}
+
+/* Interior page images / spotlight links subtle zoom */
+#main .spotlight .image img {
+	transition: transform 0.9s var(--motion-ease);
+}
+
+@media screen and (min-width: 981px) {
+	#main .spotlight:hover .image img {
+		transform: scale(1.04);
+	}
+}
+
+/* ---------- Respect reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+	html.motion-ready .reveal,
+	html.motion-ready .stagger > *,
+	html.motion-ready .banner-brand,
+	html.motion-ready .banner-divider-wide,
+	html.motion-ready .banner-subtext,
+	html.motion-ready #banner .actions.special,
+	html.motion-ready .banner-scroll {
+		opacity: 1 !important;
+		transform: none !important;
+		animation: none !important;
+		transition: none !important;
+	}
+
+	#three .features li:hover,
+	#two .scout-standard-card:hover,
+	#main .spotlight:hover .image img,
+	.button:hover,
+	#footer .icons a:hover {
+		transform: none !important;
+	}
+}
