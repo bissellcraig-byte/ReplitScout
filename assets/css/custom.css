@@ -102,8 +102,8 @@ body.page-services #main > header.svc-hero {
         background-attachment: scroll !important;
         background-image: none !important;
         display: block;
-        min-height: 640px;
-        min-height: max(640px, calc(100vh - 74px));
+        min-height: 512px;
+        min-height: max(512px, calc((100vh - 74px) * 0.8));
         overflow: hidden;
         padding: 0 !important;
         position: relative;
