@@ -231,8 +231,8 @@ body.page-services .wrapper.style5 .inner .service-heading-row .service-price st
 	font-weight: 600;
 	letter-spacing: 0.04em;
 	line-height: 1;
-	height: 2.2em;
-	padding: 0 1em;
+	min-height: 2.2em;
+	padding: 0.35em 1em;
 	text-align: center;
 	text-transform: none;
 	white-space: nowrap;
@@ -242,7 +242,8 @@ body.page-services .wrapper.style5 .inner .service-heading-row .service-price st
 body.page-services .wrapper.style5 .inner .service-heading-row .service-price strong span {
 	display: block;
 	line-height: 1;
-	transform: translateY(0.055em);
+	margin: 0;
+	transform: translateY(2px);
 }
 
 body.page-services .services-faq-panel {
