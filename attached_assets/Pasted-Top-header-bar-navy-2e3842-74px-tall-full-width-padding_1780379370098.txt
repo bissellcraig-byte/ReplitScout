@@ -1,0 +1,21 @@
+Top header bar (navy #2e3842, ~74px tall, full width, padding 0 48px, flex space-between):
+
+Left: "SCOUT" in Playfair Display, weight 500, ~30px, letter-spacing 0.14em, white.
+Right: a "MENU" button — text "MENU" in Jost, 14px, letter-spacing 0.34em, white — next to a hamburger icon (three white horizontal bars, ~30px wide, 2px tall, 5px gap).
+Hero stage (fills the rest of the viewport, min-height ~640px, position: relative, overflow: hidden):
+
+Background: a full-cover background image (use a soft, blurred sky-gradient photo — teal at the edges, warm cream in the center). Apply filter: saturate(0.85) contrast(1.02).
+Scrim overlay (absolute, full, pointer-events: none) to guarantee text contrast — layer two gradients: a subtle top darkening linear-gradient(180deg, rgba(26,34,41,.42), rgba(26,34,41,0) 32%) and a strong bottom-up darkening linear-gradient(360deg, rgba(20,27,33,.86) 4%, rgba(20,27,33,.34) 38%, rgba(20,27,33,0) 64%).
+A thin keyline frame: a 1px border in rgba(255,255,255,0.4), inset 30px from all sides of the stage, with internal padding ~34px 40px. Use flexbox column with justify-content: space-between so its contents pin to top and bottom.
+Inside the frame, top row (flex, space-between, Jost 12px, letter-spacing 0.34em, rgba(255,255,255,.82)):
+
+Left: 01 — SERVICES
+Right: BEHAVIORAL HEALTH
+Inside the frame, bottom block:
+
+Headline in Playfair Display, ~66px, line-height 1.02, white: Built for clearer then a line break, then digital infrastructure. — render the second line in italic (font-style italic, weight 400, rgba(255,255,255,.92)).
+Below it, a divider — a 1px top border in rgba(255,255,255,.28) with ~24px padding-top.
+Footer row under the divider (flex, align-items flex-end, space-between):
+Left: a caption in Jost 300, 17px, line-height 1.55, rgba(255,255,255,.82), max-width ~42ch: Websites, applications, SEO, AI-search optimization, and marketing.
+Right: an outlined button — text BOOK A CONSULTATION → in Jost, 14px, uppercase, letter-spacing 0.16em, white, white-space: nowrap, padding 15px 28px, 1px border rgba(255,255,255,.55). On hover: background rgba(255,255,255,.1) and the arrow slides right ~5px.
+Notes: Keep everything box-sizing: border-box. Make it responsive — on screens under ~768px, stack the footer row (caption above button), reduce the headline to ~40px, and reduce the frame inset to ~16px. Add antialiased font smoothing. The overall feel should be calm, editorial, and premium — generous whitespace, high contrast on text, no rounded corners except none.
