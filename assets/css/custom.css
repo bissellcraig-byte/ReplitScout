@@ -667,10 +667,10 @@ body.page-services #header h1 {
 }
 
 body.page-services #header {
-        background: #233252;
+        background: #2e3842;
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: flex-end;
         height: 74px;
         line-height: normal;
         padding: 0 48px;
@@ -681,9 +681,12 @@ body.page-services #page-wrapper {
 }
 
 body.page-services #header h1 {
-        left: auto;
-        position: static;
-        height: 74px;
+        left: 50%;
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        height: auto;
 }
 
 body.page-services #header nav {
@@ -750,9 +753,9 @@ body.page-services #header h1 .header-scout-logo-link {
 
 body.page-services #header .header-scout-logo-crop {
         display: block;
-        height: 1.6em;
+        height: 2em;
         overflow: hidden;
-        width: 6.1em;
+        width: 7.625em;
 }
 
 body.page-services #header .header-scout-logo {
@@ -760,17 +763,17 @@ body.page-services #header .header-scout-logo {
         height: auto;
         margin: 0;
         max-width: none;
-        width: 6.1em;
+        width: 7.625em;
 }
 
 @media screen and (max-width: 736px) {
         body.page-services #header .header-scout-logo-crop {
-                height: 1.25em;
-                width: 4.6em;
+                height: 1.5625em;
+                width: 5.75em;
         }
 
         body.page-services #header .header-scout-logo {
-                width: 4.6em;
+                width: 5.75em;
         }
 }
 
