@@ -243,7 +243,7 @@ body.page-services .wrapper.style5 .inner .service-heading-row .service-price st
         display: block;
         line-height: 1;
         margin: 0;
-        transform: none;
+        transform: translateY(1px);
 }
 
 body.page-services .services-faq-panel {
