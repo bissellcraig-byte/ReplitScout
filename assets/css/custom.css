@@ -1,9 +1,9 @@
 @font-face {
-	font-family: "Acumin Variable Concept";
-	src: url("../fonts/AcuminVariableConcept.otf") format("opentype");
-	font-weight: 100 900;
-	font-style: normal;
-	font-display: swap;
+        font-family: "Acumin Variable Concept";
+        src: url("../fonts/AcuminVariableConcept.otf") format("opentype");
+        font-weight: 100 900;
+        font-style: normal;
+        font-display: swap;
 }
 
 /* Site-wide typography — titles (not logos) */
@@ -15,15 +15,15 @@ h5,
 h6,
 #header h1,
 #header h1 a {
-	font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif !important;
-	font-style: normal !important;
-	font-weight: 300 !important;
-	letter-spacing: 0.01em !important;
-	text-transform: none !important;
+        font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif !important;
+        font-style: normal !important;
+        font-weight: 300 !important;
+        letter-spacing: 0.01em !important;
+        text-transform: none !important;
 }
 
 #main > header h2 {
-	font-weight: 300 !important;
+        font-weight: 300 !important;
 }
 
 /* Services page: never hide content behind scroll-reveal / motion layer */
@@ -33,11 +33,11 @@ body.page-services #main > header.reveal,
 body.page-services .wrapper.style5,
 body.page-services .wrapper.style5 .inner,
 body.page-services .wrapper.style5 .inner * {
-	opacity: 1 !important;
-	transform: none !important;
-	visibility: visible !important;
-	animation: none !important;
-	transition: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+        visibility: visible !important;
+        animation: none !important;
+        transition: none !important;
 }
 
 /* Services page — body copy +2pt (15→17, 13→15, 12→14, 11→13) */
@@ -49,248 +49,248 @@ body.page-services #footer p,
 body.page-services #footer .footer-nav a,
 body.page-services #footer .copyright li,
 body.page-services #main > header .services-page-subhead {
-	font-size: 17pt;
+        font-size: 17pt;
 }
 
 @media screen and (max-width: 1680px) {
-	body.page-services .wrapper.style5 .inner p,
-	body.page-services .wrapper.style5 .inner li,
-	body.page-services .wrapper.style5 .inner ul,
-	body.page-services .wrapper.style5 .inner ol,
-	body.page-services #footer p,
-	body.page-services #footer .footer-nav a,
-	body.page-services #footer .copyright li,
-	body.page-services #main > header .services-page-subhead {
-		font-size: 15pt;
-	}
+        body.page-services .wrapper.style5 .inner p,
+        body.page-services .wrapper.style5 .inner li,
+        body.page-services .wrapper.style5 .inner ul,
+        body.page-services .wrapper.style5 .inner ol,
+        body.page-services #footer p,
+        body.page-services #footer .footer-nav a,
+        body.page-services #footer .copyright li,
+        body.page-services #main > header .services-page-subhead {
+                font-size: 15pt;
+        }
 }
 
 @media screen and (max-width: 1280px) {
-	body.page-services .wrapper.style5 .inner p,
-	body.page-services .wrapper.style5 .inner li,
-	body.page-services .wrapper.style5 .inner ul,
-	body.page-services .wrapper.style5 .inner ol,
-	body.page-services #footer p,
-	body.page-services #footer .footer-nav a,
-	body.page-services #footer .copyright li,
-	body.page-services #main > header .services-page-subhead {
-		font-size: 14pt;
-	}
+        body.page-services .wrapper.style5 .inner p,
+        body.page-services .wrapper.style5 .inner li,
+        body.page-services .wrapper.style5 .inner ul,
+        body.page-services .wrapper.style5 .inner ol,
+        body.page-services #footer p,
+        body.page-services #footer .footer-nav a,
+        body.page-services #footer .copyright li,
+        body.page-services #main > header .services-page-subhead {
+                font-size: 14pt;
+        }
 }
 
 @media screen and (max-width: 736px) {
-	body.page-services .wrapper.style5 .inner p,
-	body.page-services .wrapper.style5 .inner li,
-	body.page-services .wrapper.style5 .inner ul,
-	body.page-services .wrapper.style5 .inner ol,
-	body.page-services #footer p,
-	body.page-services #footer .footer-nav a,
-	body.page-services #footer .copyright li,
-	body.page-services #main > header .services-page-subhead {
-		font-size: 13pt;
-	}
+        body.page-services .wrapper.style5 .inner p,
+        body.page-services .wrapper.style5 .inner li,
+        body.page-services .wrapper.style5 .inner ul,
+        body.page-services .wrapper.style5 .inner ol,
+        body.page-services #footer p,
+        body.page-services #footer .footer-nav a,
+        body.page-services #footer .copyright li,
+        body.page-services #main > header .services-page-subhead {
+                font-size: 13pt;
+        }
 }
 
 body.page-services #main > header h2 {
-	font-size: 3.6rem !important;
-	line-height: 1.15 !important;
+        font-size: 3.6rem !important;
+        line-height: 1.15 !important;
 }
 
 body.page-services #main > header {
-	background-image: url("../../images/banner.jpg") !important;
-	position: relative;
+        background-image: url("../../images/banner.jpg") !important;
+        position: relative;
 }
 
 body.page-services #main > header::before {
-	background: rgba(0, 0, 0, 0.18);
-	content: "";
-	height: 100%;
-	inset: 0;
-	left: 0;
-	pointer-events: none;
-	position: absolute;
-	top: 0;
-	width: 100%;
-	z-index: 0;
+        background: rgba(0, 0, 0, 0.18);
+        content: "";
+        height: 100%;
+        inset: 0;
+        left: 0;
+        pointer-events: none;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: 0;
 }
 
 body.page-services #main > header h2,
 body.page-services #main > header .services-page-subhead {
-	position: relative;
-	z-index: 1;
+        position: relative;
+        z-index: 1;
 }
 
 @media screen and (max-width: 736px) {
-	body.page-services #main > header h2 {
-		font-size: 2.2rem !important;
-		line-height: 1.2 !important;
-	}
+        body.page-services #main > header h2 {
+                font-size: 2.2rem !important;
+                line-height: 1.2 !important;
+        }
 }
 
 body.page-services #main > header .services-page-subhead {
-	display: flex;
-	font-family: "Acumin Variable Concept", "Open Sans", Helvetica, sans-serif;
-	font-variation-settings: "wght" 400;
-	justify-content: center;
-	line-height: 1.65;
-	margin: 0.85em auto 0;
-	max-width: none;
-	width: 100%;
+        display: flex;
+        font-family: "Acumin Variable Concept", "Open Sans", Helvetica, sans-serif;
+        font-variation-settings: "wght" 400;
+        justify-content: center;
+        line-height: 1.65;
+        margin: 0.85em auto 0;
+        max-width: none;
+        width: 100%;
 }
 
 body.page-services #main > header .services-page-subhead-lines {
-	display: inline-grid;
-	justify-items: stretch;
-	max-width: calc(100vw - 3rem);
-	text-align: center;
-	width: max-content;
+        display: inline-grid;
+        justify-items: stretch;
+        max-width: calc(100vw - 3rem);
+        text-align: center;
+        width: max-content;
 }
 
 body.page-services #main > header .services-page-subhead-line {
-	display: block;
-	letter-spacing: 0.2em;
-	text-align: center;
-	text-transform: uppercase;
-	white-space: nowrap;
-	width: 100%;
+        display: block;
+        letter-spacing: 0.2em;
+        text-align: center;
+        text-transform: uppercase;
+        white-space: nowrap;
+        width: 100%;
 }
 
 @media screen and (max-width: 980px) {
-	body.page-services #main > header .services-page-subhead-line {
-		letter-spacing: 0.16em;
-	}
+        body.page-services #main > header .services-page-subhead-line {
+                letter-spacing: 0.16em;
+        }
 }
 
 @media screen and (max-width: 736px) {
-	body.page-services #main > header .services-page-subhead-line {
-		letter-spacing: 0.12em;
-		white-space: normal;
-	}
+        body.page-services #main > header .services-page-subhead-line {
+                letter-spacing: 0.12em;
+                white-space: normal;
+        }
 }
 
 /* Services page — theme accents (H2 lines, H3 rules, price pills, FAQ panel) */
 body.page-services .wrapper.style5 .inner h1 {
-	border-bottom: 0;
-	display: block;
-	margin-bottom: 1.25em;
-	margin-top: 0;
-	padding-bottom: 0;
+        border-bottom: 0;
+        display: block;
+        margin-bottom: 1.25em;
+        margin-top: 0;
+        padding-bottom: 0;
 }
 
 body.page-services .wrapper.style5 .inner h2 {
-	border-bottom: 0;
-	display: block;
-	margin-bottom: 1.1em;
-	margin-top: 2.25em;
-	padding-bottom: 0;
-	text-decoration: none;
+        border-bottom: 0;
+        display: block;
+        margin-bottom: 1.1em;
+        margin-top: 2.25em;
+        padding-bottom: 0;
+        text-decoration: none;
 }
 
 body.page-services .wrapper.style5 .inner .service-heading-row {
-	display: flex;
-	align-items: center;
-	column-gap: 0.7em;
-	flex-wrap: nowrap;
-	margin-bottom: 0.55em;
-	margin-top: 1.75em;
+        display: flex;
+        align-items: center;
+        column-gap: 0.7em;
+        flex-wrap: nowrap;
+        margin-bottom: 0.55em;
+        margin-top: 1.75em;
 }
 
 body.page-services .wrapper.style5 .inner .service-heading-row h3 {
-	border-left: 3px solid rgba(135, 165, 156, 0.85);
-	display: inline-grid;
-	align-items: center;
-	flex-shrink: 0;
-	line-height: 1;
-	margin: 0;
-	height: 2.2em;
-	padding-left: 0.85em;
-	padding-top: 0;
-	padding-bottom: 0;
-	white-space: nowrap;
+        border-left: 3px solid rgba(135, 165, 156, 0.85);
+        display: inline-grid;
+        align-items: center;
+        flex-shrink: 0;
+        line-height: 1;
+        margin: 0;
+        height: 2.2em;
+        padding-left: 0.85em;
+        padding-top: 0;
+        padding-bottom: 0;
+        white-space: nowrap;
 }
 
 body.page-services .wrapper.style5 .inner .service-heading-row .service-price {
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	margin: 0;
-	height: 2.2em;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        height: 2.2em;
 }
 
 body.page-services .wrapper.style5 .inner .service-heading-row .service-price strong {
-	background: rgba(135, 165, 156, 0.14);
-	border: 1px solid rgba(143, 184, 176, 0.35);
-	border-radius: 999px;
-	color: #2e3842;
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	font-family: "Acumin Variable Concept", "Open Sans", Helvetica, sans-serif;
-	font-size: 0.82em;
-	font-variation-settings: "wght" 600;
-	font-weight: 600;
-	letter-spacing: 0.04em;
-	line-height: 1;
-	min-height: 2.2em;
-	padding: 0.35em 1em;
-	text-align: center;
-	text-transform: none;
-	white-space: nowrap;
-	transform: none;
+        background: rgba(135, 165, 156, 0.14);
+        border: 1px solid rgba(143, 184, 176, 0.35);
+        border-radius: 999px;
+        color: #2e3842;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Acumin Variable Concept", "Open Sans", Helvetica, sans-serif;
+        font-size: 0.82em;
+        font-variation-settings: "wght" 600;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        line-height: 1;
+        min-height: 2.2em;
+        padding: 0.35em 1em;
+        text-align: center;
+        text-transform: none;
+        white-space: nowrap;
+        transform: none;
 }
 
 body.page-services .wrapper.style5 .inner .service-heading-row .service-price strong span {
-	display: block;
-	line-height: 1;
-	margin: 0;
-	transform: translateY(2px);
+        display: block;
+        line-height: 1;
+        margin: 0;
+        transform: none;
 }
 
 body.page-services .services-faq-panel {
-	background: rgba(135, 165, 156, 0.08);
-	border: 1px solid rgba(143, 184, 176, 0.4);
-	border-radius: 16px;
-	margin: 2.5em 0;
-	padding: 2em 2.25em 2.25em;
+        background: rgba(135, 165, 156, 0.08);
+        border: 1px solid rgba(143, 184, 176, 0.4);
+        border-radius: 16px;
+        margin: 2.5em 0;
+        padding: 2em 2.25em 2.25em;
 }
 
 body.page-services .services-faq-panel h2 {
-	border-bottom: 0;
-	margin-top: 0;
-	padding-bottom: 0;
-	text-decoration: none;
+        border-bottom: 0;
+        margin-top: 0;
+        padding-bottom: 0;
+        text-decoration: none;
 }
 
 body.page-services .services-faq-panel h3 {
-	border-left: 0;
-	font-size: 1.05em;
-	margin-top: 1.5em;
-	padding-left: 0;
+        border-left: 0;
+        font-size: 1.05em;
+        margin-top: 1.5em;
+        padding-left: 0;
 }
 
 body.page-services .services-faq-panel h3:first-of-type {
-	margin-top: 1.25em;
+        margin-top: 1.25em;
 }
 
 @media screen and (max-width: 736px) {
-	body.page-services .services-faq-panel {
-		padding: 1.5em 1.25em 1.75em;
-	}
+        body.page-services .services-faq-panel {
+                padding: 1.5em 1.25em 1.75em;
+        }
 
-	body.page-services .wrapper.style5 .inner .service-heading-row {
-		align-items: flex-start;
-		flex-direction: column;
-		gap: 0.45em;
-	}
+        body.page-services .wrapper.style5 .inner .service-heading-row {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 0.45em;
+        }
 
-	body.page-services .wrapper.style5 .inner .service-heading-row h3 {
-		height: auto;
-		white-space: normal;
-	}
+        body.page-services .wrapper.style5 .inner .service-heading-row h3 {
+                height: auto;
+                white-space: normal;
+        }
 
-	body.page-services .wrapper.style5 .inner .service-heading-row .service-price strong {
-		font-size: 0.9em;
-	}
+        body.page-services .wrapper.style5 .inner .service-heading-row .service-price strong {
+                font-size: 0.9em;
+        }
 }
 
 /* Site-wide typography — subtext and UI copy */
@@ -316,64 +316,64 @@ input[type="submit"],
 input[type="reset"],
 input[type="button"],
 .button {
-	font-family: "Acumin Variable Concept", "Open Sans", Helvetica, sans-serif !important;
-	font-variation-settings: "wght" 400;
+        font-family: "Acumin Variable Concept", "Open Sans", Helvetica, sans-serif !important;
+        font-variation-settings: "wght" 400;
 }
 
 code,
 pre,
 kbd,
 samp {
-	font-family: "Courier New", monospace !important;
+        font-family: "Courier New", monospace !important;
 }
 
 .icon:before,
 .icon,
 [class*="fa-"]:before {
-	font-family: "Font Awesome 5 Free", "Font Awesome 5 Brands" !important;
+        font-family: "Font Awesome 5 Free", "Font Awesome 5 Brands" !important;
 }
 
 /* Hero background image */
 body.landing #page-wrapper,
 body.is-mobile.landing #banner,
 body.is-mobile.landing .wrapper.style4 {
-	background-image: url("../../images/banner.jpg") !important;
+        background-image: url("../../images/banner.jpg") !important;
 }
 
 /* Subtle dark overlay on hero — text stays above */
 #banner {
-	position: relative;
+        position: relative;
 }
 
 #banner::before {
-	background: rgba(0, 0, 0, 0.18);
-	content: "";
-	height: 100%;
-	left: 0;
-	pointer-events: none;
-	position: absolute;
-	top: 0;
-	width: 100%;
-	z-index: 0;
+        background: rgba(0, 0, 0, 0.18);
+        content: "";
+        height: 100%;
+        left: 0;
+        pointer-events: none;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: 0;
 }
 
 /* Hero content column */
 #banner > .banner-hero-inner {
-	box-sizing: border-box;
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-	max-width: 640px;
-	padding: 0 1.5rem 3rem;
-	position: relative;
-	text-align: center;
-	width: 100%;
-	z-index: 1;
+        box-sizing: border-box;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 640px;
+        padding: 0 1.5rem 3rem;
+        position: relative;
+        text-align: center;
+        width: 100%;
+        z-index: 1;
 }
 
 #banner h2:before,
 #banner h2:after {
-	display: none !important;
+        display: none !important;
 }
 
 /* Hero: never force all-caps (Spectral template defaults) */
@@ -382,336 +382,336 @@ body.is-mobile.landing .wrapper.style4 {
 #banner .banner-hero-inner a,
 #banner .banner-hero-inner .button,
 #banner .banner-hero-inner .button.primary {
-	font-variant: normal !important;
-	text-transform: none !important;
+        font-variant: normal !important;
+        text-transform: none !important;
 }
 
 /* Logo lockup */
 #banner .banner-brand {
-	display: block;
-	margin: 0 auto;
-	width: fit-content;
-	max-width: min(19.25em, 88vw);
+        display: block;
+        margin: 0 auto;
+        width: fit-content;
+        max-width: min(19.25em, 88vw);
 }
 
 #banner .banner-logo {
-	display: block;
-	height: auto;
-	margin: 0;
-	width: 100%;
+        display: block;
+        height: auto;
+        margin: 0;
+        width: 100%;
 }
 
 #banner .banner-divider-wide {
-	background: rgba(255, 255, 255, 0.5);
-	border: 0;
-	display: block;
-	height: 1px;
-	margin: 40px auto 0;
-	width: 320px;
+        background: rgba(255, 255, 255, 0.5);
+        border: 0;
+        display: block;
+        height: 1px;
+        margin: 40px auto 0;
+        width: 320px;
 }
 
 #banner .banner-headline {
-	border: 0;
-	box-sizing: border-box;
-	color: #ffffff;
-	display: block !important;
-	font-size: 48px;
-	font-weight: 300 !important;
-	letter-spacing: 0 !important;
-	line-height: 1.25;
-	/* Full-bleed so the headline centers on the viewport, not the 640px column */
-	margin: 48px calc(50% - 50vw) 0;
-	max-width: none;
-	padding: 0 1rem !important;
-	text-align: center;
-	width: 100vw;
+        border: 0;
+        box-sizing: border-box;
+        color: #ffffff;
+        display: block !important;
+        font-size: 48px;
+        font-weight: 300 !important;
+        letter-spacing: 0 !important;
+        line-height: 1.25;
+        /* Full-bleed so the headline centers on the viewport, not the 640px column */
+        margin: 48px calc(50% - 50vw) 0;
+        max-width: none;
+        padding: 0 1rem !important;
+        text-align: center;
+        width: 100vw;
 }
 
 #banner .banner-headline-lines {
-	display: block;
-	margin: 0;
-	max-width: none;
-	width: 100%;
+        display: block;
+        margin: 0;
+        max-width: none;
+        width: 100%;
 }
 
 #banner .banner-headline-line {
-	display: block;
-	letter-spacing: 0 !important;
-	margin: 0;
-	text-align: center;
-	white-space: nowrap;
-	width: 100%;
+        display: block;
+        letter-spacing: 0 !important;
+        margin: 0;
+        text-align: center;
+        white-space: nowrap;
+        width: 100%;
 }
 
 #banner .banner-subtext {
-	color: rgba(255, 255, 255, 0.9);
-	font-family: "Acumin Variable Concept", "Open Sans", Helvetica, sans-serif;
-	font-size: 21px;
-	font-variation-settings: "wght" 400;
-	font-weight: 400;
-	letter-spacing: 0 !important;
-	line-height: 1.6;
-	margin: 28px auto 0;
-	max-width: 520px;
-	text-transform: none !important;
+        color: rgba(255, 255, 255, 0.9);
+        font-family: "Acumin Variable Concept", "Open Sans", Helvetica, sans-serif;
+        font-size: 21px;
+        font-variation-settings: "wght" 400;
+        font-weight: 400;
+        letter-spacing: 0 !important;
+        line-height: 1.6;
+        margin: 28px auto 0;
+        max-width: 520px;
+        text-transform: none !important;
 }
 
 #banner .actions.special {
-	display: flex;
-	justify-content: center;
-	margin: 44px 0 0;
-	padding: 0;
-	width: 100%;
+        display: flex;
+        justify-content: center;
+        margin: 44px 0 0;
+        padding: 0;
+        width: 100%;
 }
 
 #banner .actions.special li {
-	margin: 0;
-	padding: 0;
+        margin: 0;
+        padding: 0;
 }
 
 #banner .actions.special .button.primary {
-	align-items: center;
-	border: 1px solid rgba(255, 255, 255, 0.85) !important;
-	border-radius: 12px !important;
-	box-shadow: none !important;
-	color: #ffffff !important;
-	display: inline-flex;
-	font-family: "Acumin Variable Concept", "Open Sans", Helvetica, sans-serif;
-	font-size: 16px;
-	font-variation-settings: "wght" 600;
-	font-weight: 600;
-	justify-content: center;
-	letter-spacing: 0.02em;
-	line-height: 1;
-	padding: 20px 40px 18px;
-	text-align: center;
-	text-transform: none !important;
-	white-space: normal;
+        align-items: center;
+        border: 1px solid rgba(255, 255, 255, 0.85) !important;
+        border-radius: 12px !important;
+        box-shadow: none !important;
+        color: #ffffff !important;
+        display: inline-flex;
+        font-family: "Acumin Variable Concept", "Open Sans", Helvetica, sans-serif;
+        font-size: 16px;
+        font-variation-settings: "wght" 600;
+        font-weight: 600;
+        justify-content: center;
+        letter-spacing: 0.02em;
+        line-height: 1;
+        padding: 20px 40px 18px;
+        text-align: center;
+        text-transform: none !important;
+        white-space: normal;
 }
 
 /* Scroll prompt */
 #banner .banner-scroll {
-	align-items: center;
-	border: none;
-	bottom: auto;
-	display: flex;
-	flex-direction: column;
-	height: auto;
-	justify-content: center;
-	left: auto;
-	margin: 88px auto 0;
-	min-height: 0;
-	outline: 0;
-	padding: 0;
-	padding-left: 0 !important;
-	position: static;
-	text-decoration: none;
-	transform: none !important;
-	width: 100%;
+        align-items: center;
+        border: none;
+        bottom: auto;
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        justify-content: center;
+        left: auto;
+        margin: 88px auto 0;
+        min-height: 0;
+        outline: 0;
+        padding: 0;
+        padding-left: 0 !important;
+        position: static;
+        text-decoration: none;
+        transform: none !important;
+        width: 100%;
 }
 
 #banner .banner-scroll::after {
-	content: none !important;
-	display: none !important;
+        content: none !important;
+        display: none !important;
 }
 
 #banner .banner-scroll-text {
-	color: rgba(255, 255, 255, 0.7);
-	display: block;
-	font-family: "Acumin Variable Concept", "Open Sans", Helvetica, sans-serif;
-	font-size: 16px;
-	font-variation-settings: "wght" 500;
-	font-weight: 500;
-	letter-spacing: 0.06em;
-	line-height: 1;
-	text-align: center;
-	text-transform: none !important;
-	width: 100%;
+        color: rgba(255, 255, 255, 0.7);
+        display: block;
+        font-family: "Acumin Variable Concept", "Open Sans", Helvetica, sans-serif;
+        font-size: 16px;
+        font-variation-settings: "wght" 500;
+        font-weight: 500;
+        letter-spacing: 0.06em;
+        line-height: 1;
+        text-align: center;
+        text-transform: none !important;
+        width: 100%;
 }
 
 #banner .banner-scroll-icon {
-	background-image: url("images/arrow.svg");
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: contain;
-	display: block;
-	flex-shrink: 0;
-	filter: none;
-	height: 1.35em;
-	margin-top: 24px;
-	width: 1.35em;
+        background-image: url("images/arrow.svg");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        display: block;
+        flex-shrink: 0;
+        filter: none;
+        height: 1.35em;
+        margin-top: 24px;
+        width: 1.35em;
 }
 
 body.is-preload #banner .banner-scroll {
-	opacity: 1;
-	transform: none !important;
+        opacity: 1;
+        transform: none !important;
 }
 
 /* Services page — SCOUT-only logo in top bar */
 body.page-services #header h1 {
-	height: 3.2em;
-	opacity: 1 !important;
-	pointer-events: auto !important;
+        height: 3.2em;
+        opacity: 1 !important;
+        pointer-events: auto !important;
 }
 
 body.page-services #header h1 .header-scout-logo-link {
-	align-items: center;
-	background: transparent;
-	border: 0;
-	display: flex;
-	height: 100%;
-	line-height: 0;
-	padding: 0.45em 0;
+        align-items: center;
+        background: transparent;
+        border: 0;
+        display: flex;
+        height: 100%;
+        line-height: 0;
+        padding: 0.45em 0;
 }
 
 body.page-services #header .header-scout-logo-crop {
-	display: block;
-	height: 1.6em;
-	overflow: hidden;
-	width: 6.1em;
+        display: block;
+        height: 1.6em;
+        overflow: hidden;
+        width: 6.1em;
 }
 
 body.page-services #header .header-scout-logo {
-	display: block;
-	height: auto;
-	margin: 0;
-	max-width: none;
-	width: 6.1em;
+        display: block;
+        height: auto;
+        margin: 0;
+        max-width: none;
+        width: 6.1em;
 }
 
 @media screen and (max-width: 736px) {
-	body.page-services #header .header-scout-logo-crop {
-		height: 1.25em;
-		width: 4.6em;
-	}
+        body.page-services #header .header-scout-logo-crop {
+                height: 1.25em;
+                width: 4.6em;
+        }
 
-	body.page-services #header .header-scout-logo {
-		width: 4.6em;
-	}
+        body.page-services #header .header-scout-logo {
+                width: 4.6em;
+        }
 }
 
 /* Hide redundant top-left site title (logo shown in hero) */
 body.landing #header h1 {
-	border: 0;
-	clip: rect(0, 0, 0, 0);
-	height: 1px;
-	margin: -1px;
-	overflow: hidden;
-	padding: 0;
-	position: absolute;
-	white-space: nowrap;
-	width: 1px;
+        border: 0;
+        clip: rect(0, 0, 0, 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        white-space: nowrap;
+        width: 1px;
 }
 
 /* Landing menu — top right */
 body.landing #header {
-	background: transparent;
-	box-sizing: border-box;
-	height: auto;
-	left: 0;
-	line-height: normal;
-	padding-right: 48px;
-	top: 40px;
-	width: 100%;
+        background: transparent;
+        box-sizing: border-box;
+        height: auto;
+        left: 0;
+        line-height: normal;
+        padding-right: 48px;
+        top: 40px;
+        width: 100%;
 }
 
 body.landing #header nav {
-	height: auto;
-	line-height: normal;
-	position: absolute;
-	right: 48px;
-	top: 0;
+        height: auto;
+        line-height: normal;
+        position: absolute;
+        right: 48px;
+        top: 0;
 }
 
 body.landing #header nav > ul > li > a {
-	color: #ffffff;
-	font-family: "Acumin Variable Concept", "Open Sans", Helvetica, sans-serif;
-	font-size: 14px;
-	font-variation-settings: "wght" 500;
-	font-weight: 500;
-	letter-spacing: 0.04em;
-	padding: 0;
-	text-transform: none !important;
+        color: #ffffff;
+        font-family: "Acumin Variable Concept", "Open Sans", Helvetica, sans-serif;
+        font-size: 14px;
+        font-variation-settings: "wght" 500;
+        font-weight: 500;
+        letter-spacing: 0.04em;
+        padding: 0;
+        text-transform: none !important;
 }
 
 body.landing #header nav > ul > li > a.menuToggle {
-	align-items: center;
-	display: inline-flex;
-	gap: 0.65em;
-	height: auto;
-	line-height: 1;
-	outline: 0;
+        align-items: center;
+        display: inline-flex;
+        gap: 0.65em;
+        height: auto;
+        line-height: 1;
+        outline: 0;
 }
 
 body.landing #header nav > ul > li > a.menuToggle span {
-	display: inline !important;
+        display: inline !important;
 }
 
 body.landing #header nav > ul > li > a.menuToggle:after {
-	background-position: center;
-	display: inline-block;
-	filter: none;
-	height: 1.1em;
-	margin: 0;
-	position: static;
-	vertical-align: middle;
-	width: 1.35em;
+        background-position: center;
+        display: inline-block;
+        filter: none;
+        height: 1.1em;
+        margin: 0;
+        position: static;
+        vertical-align: middle;
+        width: 1.35em;
 }
 
 @media screen and (max-width: 640px) {
-	#banner .banner-brand {
-		max-width: min(15.4em, 79.2vw);
-	}
+        #banner .banner-brand {
+                max-width: min(15.4em, 79.2vw);
+        }
 
-	#banner .banner-divider-wide {
-		margin-top: 28px;
-		width: 80%;
-	}
+        #banner .banner-divider-wide {
+                margin-top: 28px;
+                width: 80%;
+        }
 
-	#banner .banner-headline {
-		font-size: 28px;
-		margin-top: 34px;
-	}
+        #banner .banner-headline {
+                font-size: 28px;
+                margin-top: 34px;
+        }
 
-	#banner .banner-headline-lines {
-		max-width: 100%;
-	}
+        #banner .banner-headline-lines {
+                max-width: 100%;
+        }
 
-	#banner .banner-headline-line {
-		white-space: nowrap;
-	}
+        #banner .banner-headline-line {
+                white-space: nowrap;
+        }
 
-	#banner .banner-subtext {
-		font-size: 16px;
-		margin-top: 20px;
-	}
+        #banner .banner-subtext {
+                font-size: 16px;
+                margin-top: 20px;
+        }
 
-	#banner .actions.special {
-		margin-top: 31px;
-	}
+        #banner .actions.special {
+                margin-top: 31px;
+        }
 
-	#banner .actions.special .button.primary {
-		box-sizing: border-box;
-		display: block;
-		font-size: 16px;
-		margin-left: auto;
-		margin-right: auto;
-		max-width: calc(100% - 32px);
-		width: calc(100% - 32px);
-	}
+        #banner .actions.special .button.primary {
+                box-sizing: border-box;
+                display: block;
+                font-size: 16px;
+                margin-left: auto;
+                margin-right: auto;
+                max-width: calc(100% - 32px);
+                width: calc(100% - 32px);
+        }
 
-	#banner .banner-scroll {
-		margin-top: 62px;
-	}
+        #banner .banner-scroll {
+                margin-top: 62px;
+        }
 
-	#banner .banner-scroll-icon {
-		margin-top: 17px;
-	}
+        #banner .banner-scroll-icon {
+                margin-top: 17px;
+        }
 }
 
 /* Brand sage — menu sidebar + primary (Activate) button */
 #menu {
-	background: #87a09c !important;
+        background: #87a09c !important;
 }
 
 input[type="submit"].primary,
@@ -719,9 +719,9 @@ input[type="reset"].primary,
 input[type="button"].primary,
 button.primary,
 .button.primary {
-	background-color: #87a09c !important;
-	box-shadow: none !important;
-	color: #ffffff !important;
+        background-color: #87a09c !important;
+        box-shadow: none !important;
+        color: #ffffff !important;
 }
 
 input[type="submit"].primary:hover,
@@ -729,7 +729,7 @@ input[type="reset"].primary:hover,
 input[type="button"].primary:hover,
 button.primary:hover,
 .button.primary:hover {
-	background-color: #96b0ac !important;
+        background-color: #96b0ac !important;
 }
 
 input[type="submit"].primary:active,
@@ -737,293 +737,293 @@ input[type="reset"].primary:active,
 input[type="button"].primary:active,
 button.primary:active,
 .button.primary:active {
-	background-color: #768a86 !important;
+        background-color: #768a86 !important;
 }
 
 #footer p {
-	font-size: 0.85em;
-	margin: 0.75em auto;
-	max-width: 36em;
-	opacity: 0.9;
+        font-size: 0.85em;
+        margin: 0.75em auto;
+        max-width: 36em;
+        opacity: 0.9;
 }
 
 #footer .footer-nav {
-	list-style: none;
-	margin: 0 0 1.5em;
-	padding: 0;
+        list-style: none;
+        margin: 0 0 1.5em;
+        padding: 0;
 }
 
 #footer .footer-nav li {
-	display: inline-block;
-	margin: 0 0.5em;
+        display: inline-block;
+        margin: 0 0.5em;
 }
 
 #footer .footer-nav a {
-	color: rgba(255, 255, 255, 0.65);
-	font-size: 0.8em;
-	letter-spacing: 0.15em;
-	text-decoration: none;
-	text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.65);
+        font-size: 0.8em;
+        letter-spacing: 0.15em;
+        text-decoration: none;
+        text-transform: uppercase;
 }
 
 #footer .footer-nav a:hover {
-	color: #fff;
+        color: #fff;
 }
 
 /* "Built by a therapist" card — brand sage background */
 #one.wrapper.style1 {
-	background-color: #87a59c !important;
-	background-image: none !important;
-	color: #ffffff !important;
-	padding: 3.5em 0 2.75em !important;
+        background-color: #87a59c !important;
+        background-image: none !important;
+        color: #ffffff !important;
+        padding: 3.5em 0 2.75em !important;
 }
 
 #one.wrapper.style1 > .inner {
-	max-width: 40em;
+        max-width: 40em;
 }
 
 #one.wrapper.style1 header.major {
-	margin-bottom: 0 !important;
+        margin-bottom: 0 !important;
 }
 
 #one.wrapper.style1 header.major p,
 #one.wrapper.style1 header p {
-	color: #ffffff !important;
+        color: #ffffff !important;
 }
 
 #one.wrapper.style1 header.major h2 {
-	border-bottom: solid 1px rgba(255, 255, 255, 0.5) !important;
-	font-size: 2.5rem !important;
-	line-height: 1.2 !important;
+        border-bottom: solid 1px rgba(255, 255, 255, 0.5) !important;
+        font-size: 2.5rem !important;
+        line-height: 1.2 !important;
 }
 
 #three .features li.icon::before {
-	color: #ffffff !important;
+        color: #ffffff !important;
 }
 
 #three.wrapper.style3 {
-	background-color: #87a59c !important;
+        background-color: #87a59c !important;
 }
 
 /* Scout standards — framed alternating cards (section #two only) */
 #two.scout-standards-section.wrapper.style2 {
-	background-color: #252c33 !important;
-	padding: 4.5em 4em 4.25em !important;
+        background-color: #252c33 !important;
+        padding: 4.5em 4em 4.25em !important;
 }
 
 #two.scout-standards-section .scout-standards-inner {
-	margin: 0 auto;
-	max-width: 1320px;
-	width: 100%;
+        margin: 0 auto;
+        max-width: 1320px;
+        width: 100%;
 }
 
 #two.scout-standards-section .scout-standard-card:nth-child(1),
 #two.scout-standards-section .scout-standard-card:nth-child(2),
 #two.scout-standards-section .scout-standard-card:nth-child(3) {
-	background-color: #252c33 !important;
+        background-color: #252c33 !important;
 }
 
 #two.scout-standards-section .scout-standard-card {
-	align-items: stretch !important;
-	background: #252c33 !important;
-	border: 2px solid rgba(143, 184, 176, 0.75);
-	border-radius: 28px;
-	box-shadow: 0 24px 60px rgba(0, 0, 0, 0.18);
-	display: grid !important;
-	flex-direction: unset !important;
-	grid-template-columns: 1fr 1.5fr;
-	margin: 0 0 2em !important;
-	min-height: 380px;
-	overflow: hidden;
+        align-items: stretch !important;
+        background: #252c33 !important;
+        border: 2px solid rgba(143, 184, 176, 0.75);
+        border-radius: 28px;
+        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.18);
+        display: grid !important;
+        flex-direction: unset !important;
+        grid-template-columns: 1fr 1.5fr;
+        margin: 0 0 2em !important;
+        min-height: 380px;
+        overflow: hidden;
 }
 
 #two.scout-standards-section .scout-standard-card:last-child {
-	margin-bottom: 0 !important;
+        margin-bottom: 0 !important;
 }
 
 #two.scout-standards-section .scout-standard-card-reverse {
-	grid-template-columns: 1.5fr 1fr;
+        grid-template-columns: 1.5fr 1fr;
 }
 
 #two.scout-standards-section .scout-standard-card-reverse .scout-standard-image {
-	grid-column: 2;
-	grid-row: 1;
+        grid-column: 2;
+        grid-row: 1;
 }
 
 #two.scout-standards-section .scout-standard-card-reverse .scout-standard-copy {
-	grid-column: 1;
-	grid-row: 1;
+        grid-column: 1;
+        grid-row: 1;
 }
 
 #two.scout-standards-section .scout-standard-image {
-	margin: 0;
-	min-height: 360px;
-	order: unset !important;
-	padding: 0;
-	position: relative;
-	width: 100% !important;
+        margin: 0;
+        min-height: 360px;
+        order: unset !important;
+        padding: 0;
+        position: relative;
+        width: 100% !important;
 }
 
 #two.scout-standards-section .scout-standard-image img {
-	border-radius: 0;
-	display: block;
-	height: 100%;
-	left: -1px;
-	min-height: 100%;
-	object-fit: cover;
-	position: absolute;
-	top: 0;
-	width: calc(100% + 2px);
+        border-radius: 0;
+        display: block;
+        height: 100%;
+        left: -1px;
+        min-height: 100%;
+        object-fit: cover;
+        position: absolute;
+        top: 0;
+        width: calc(100% + 2px);
 }
 
 #two.scout-standards-section .scout-standard-image::after {
-	box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.18);
-	content: "";
-	inset: 0;
-	pointer-events: none;
-	position: absolute;
-	z-index: 1;
+        box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.18);
+        content: "";
+        inset: 0;
+        pointer-events: none;
+        position: absolute;
+        z-index: 1;
 }
 
 #two.scout-standards-section .scout-standard-copy {
-	box-sizing: border-box;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	margin: 0;
-	max-width: none !important;
-	order: unset !important;
-	padding: 4.5em 5em !important;
-	text-align: left !important;
-	width: 100% !important;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: 0;
+        max-width: none !important;
+        order: unset !important;
+        padding: 4.5em 5em !important;
+        text-align: left !important;
+        width: 100% !important;
 }
 
 #two.scout-standards-section .scout-standard-copy h2 {
-	font-size: clamp(2.2rem, 4vw, 4rem) !important;
-	line-height: 1.1 !important;
-	margin: 0 0 1.125em !important;
-	max-width: 850px;
-	text-wrap: balance;
+        font-size: clamp(2.2rem, 4vw, 4rem) !important;
+        line-height: 1.1 !important;
+        margin: 0 0 1.125em !important;
+        max-width: 850px;
+        text-wrap: balance;
 }
 
 #two.scout-standards-section .scout-standard-copy p {
-	color: rgba(255, 255, 255, 0.88);
-	font-family: "Acumin Variable Concept", "Open Sans", Helvetica, sans-serif;
-	font-size: 1.1rem;
-	font-variation-settings: "wght" 400;
-	font-weight: 400;
-	line-height: 1.7;
-	margin: 0;
-	max-width: 760px;
+        color: rgba(255, 255, 255, 0.88);
+        font-family: "Acumin Variable Concept", "Open Sans", Helvetica, sans-serif;
+        font-size: 1.1rem;
+        font-variation-settings: "wght" 400;
+        font-weight: 400;
+        line-height: 1.7;
+        margin: 0;
+        max-width: 760px;
 }
 
 @media screen and (max-width: 980px) {
-	#two.scout-standards-section.wrapper.style2 {
-		padding: 3em 2em 2.75em !important;
-	}
+        #two.scout-standards-section.wrapper.style2 {
+                padding: 3em 2em 2.75em !important;
+        }
 
-	#two.scout-standards-section .scout-standard-card,
-	#two.scout-standards-section .scout-standard-card-reverse {
-		display: block !important;
-		min-height: 0;
-	}
+        #two.scout-standards-section .scout-standard-card,
+        #two.scout-standards-section .scout-standard-card-reverse {
+                display: block !important;
+                min-height: 0;
+        }
 
-	#two.scout-standards-section .scout-standard-image {
-		min-height: 280px;
-	}
+        #two.scout-standards-section .scout-standard-image {
+                min-height: 280px;
+        }
 
-	#two.scout-standards-section .scout-standard-copy {
-		padding: 2.75em 2.25em 2.5em !important;
-		text-align: left !important;
-	}
+        #two.scout-standards-section .scout-standard-copy {
+                padding: 2.75em 2.25em 2.5em !important;
+                text-align: left !important;
+        }
 }
 
 @media screen and (max-width: 736px) {
-	#two.scout-standards-section.wrapper.style2 {
-		padding: 2.5em 1.25em 2.25em !important;
-	}
+        #two.scout-standards-section.wrapper.style2 {
+                padding: 2.5em 1.25em 2.25em !important;
+        }
 
-	#two.scout-standards-section .scout-standard-card {
-		border-radius: 22px;
-	}
+        #two.scout-standards-section .scout-standard-card {
+                border-radius: 22px;
+        }
 
-	#two.scout-standards-section .scout-standard-image {
-		min-height: 260px;
-	}
+        #two.scout-standards-section .scout-standard-image {
+                min-height: 260px;
+        }
 
-	#two.scout-standards-section .scout-standard-copy {
-		padding: 2.25em 1.75em 2em !important;
-	}
+        #two.scout-standards-section .scout-standard-copy {
+                padding: 2.25em 1.75em 2em !important;
+        }
 
-	#two.scout-standards-section .scout-standard-copy p {
-		font-size: 1.05rem;
-	}
+        #two.scout-standards-section .scout-standard-copy p {
+                font-size: 1.05rem;
+        }
 }
 
 /* CTA section — larger heading and intro */
 #cta header h2 {
-	font-size: 2.5rem !important;
-	line-height: 1.2 !important;
+        font-size: 2.5rem !important;
+        line-height: 1.2 !important;
 }
 
 #cta header p {
-	font-size: 1.25rem !important;
-	line-height: 1.6 !important;
+        font-size: 1.25rem !important;
+        line-height: 1.6 !important;
 }
 
 /* CTA layout — give buttons room and center the block with the text */
 #cta .inner {
-	align-items: center;
-	max-width: 52em;
+        align-items: center;
+        max-width: 52em;
 }
 
 #cta .inner header {
-	padding-right: 2.5em;
-	width: 60%;
+        padding-right: 2.5em;
+        width: 60%;
 }
 
 #cta .inner .actions {
-	width: 40%;
+        width: 40%;
 }
 
 /* CTA buttons — readable (no all-caps), rounded, full text visible */
 #cta .inner .actions .button {
-	align-items: center;
-	border-radius: 10px;
-	display: inline-flex;
-	font-family: "Acumin Variable Concept", "Open Sans", Helvetica, sans-serif;
-	font-size: 1em !important;
-	font-weight: 600;
-	height: auto;
-	justify-content: center;
-	letter-spacing: 0 !important;
-	line-height: 1.2;
-	overflow: visible;
-	padding: 1.1em 1.5em;
-	text-overflow: clip;
-	text-transform: none !important;
-	white-space: nowrap;
+        align-items: center;
+        border-radius: 10px;
+        display: inline-flex;
+        font-family: "Acumin Variable Concept", "Open Sans", Helvetica, sans-serif;
+        font-size: 1em !important;
+        font-weight: 600;
+        height: auto;
+        justify-content: center;
+        letter-spacing: 0 !important;
+        line-height: 1.2;
+        overflow: visible;
+        padding: 1.1em 1.5em;
+        text-overflow: clip;
+        text-transform: none !important;
+        white-space: nowrap;
 }
 
 #cta .inner .actions .button.primary {
-	border: 1px solid rgba(255, 255, 255, 0.85) !important;
+        border: 1px solid rgba(255, 255, 255, 0.85) !important;
 }
 
 @media screen and (max-width: 980px) {
-	#cta .inner header,
-	#cta .inner .actions {
-		width: 100%;
-	}
+        #cta .inner header,
+        #cta .inner .actions {
+                width: 100%;
+        }
 }
 
 @media screen and (max-width: 736px) {
-	#cta header h2 {
-		font-size: 1.5rem !important;
-	}
+        #cta header h2 {
+                font-size: 1.5rem !important;
+        }
 
-	#cta header p {
-		font-size: 1.1rem !important;
-	}
+        #cta header p {
+                font-size: 1.1rem !important;
+        }
 }
 
 #three.wrapper.style3,
@@ -1032,82 +1032,82 @@ button.primary:active,
 #three.wrapper.style3 .features li h3,
 #three.wrapper.style3 .features li p,
 #three.wrapper.style3 a {
-	color: #ffffff !important;
+        color: #ffffff !important;
 }
 
 #three.wrapper.style3 .features li h3 {
-	font-size: 2rem !important;
-	line-height: 1.25 !important;
-	margin-bottom: 0.65em !important;
+        font-size: 2rem !important;
+        line-height: 1.25 !important;
+        margin-bottom: 0.65em !important;
 }
 
 #three.wrapper.style3 header.major h2 {
-	border-bottom: solid 1px rgba(255, 255, 255, 0.5) !important;
-	font-size: 2.5rem !important;
-	line-height: 1.2 !important;
+        border-bottom: solid 1px rgba(255, 255, 255, 0.5) !important;
+        font-size: 2.5rem !important;
+        line-height: 1.2 !important;
 }
 
 @media screen and (min-width: 981px) {
-	#three.wrapper.style3 .features li {
-		align-content: center;
-		column-gap: 1.6em;
-		display: grid;
-		grid-template-columns: 2.1em minmax(0, 20em);
-		grid-template-rows: auto auto;
-		justify-content: center;
-		padding: 3em 3em 3em !important;
-		text-align: left;
-	}
+        #three.wrapper.style3 .features li {
+                align-content: center;
+                column-gap: 1.6em;
+                display: grid;
+                grid-template-columns: 2.1em minmax(0, 20em);
+                grid-template-rows: auto auto;
+                justify-content: center;
+                padding: 3em 3em 3em !important;
+                text-align: left;
+        }
 
-	#three.wrapper.style3 .features li.icon::before {
-		align-self: center;
-		font-size: 1.5em;
-		grid-column: 1;
-		grid-row: 1;
-		left: auto;
-		line-height: 1;
-		position: static;
-		top: auto;
-	}
+        #three.wrapper.style3 .features li.icon::before {
+                align-self: center;
+                font-size: 1.5em;
+                grid-column: 1;
+                grid-row: 1;
+                left: auto;
+                line-height: 1;
+                position: static;
+                top: auto;
+        }
 
-	#three.wrapper.style3 .features li h3 {
-		align-self: center;
-		grid-column: 2;
-		grid-row: 1;
-		line-height: 1 !important;
-		margin: 0 !important;
-	}
+        #three.wrapper.style3 .features li h3 {
+                align-self: center;
+                grid-column: 2;
+                grid-row: 1;
+                line-height: 1 !important;
+                margin: 0 !important;
+        }
 
-	#three.wrapper.style3 .features li p {
-		grid-column: 2;
-		grid-row: 2;
-		margin-top: 0.9em !important;
-		text-align: left;
-	}
+        #three.wrapper.style3 .features li p {
+                grid-column: 2;
+                grid-row: 2;
+                margin-top: 0.9em !important;
+                text-align: left;
+        }
 }
 
 @media screen and (max-width: 980px) {
-	#one.wrapper.style1 {
-		padding: 3em 1.5em 2.25em !important;
-	}
+        #one.wrapper.style1 {
+                padding: 3em 1.5em 2.25em !important;
+        }
 }
 
 @media screen and (max-width: 736px) {
-	#one.wrapper.style1 {
-		padding: 2.5em 1.25em 2em !important;
-	}
+        #one.wrapper.style1 {
+                padding: 2.5em 1.25em 2em !important;
+        }
 
-	#one.wrapper.style1 header.major h2 {
-		font-size: 1.5rem !important;
-		line-height: 1.4 !important;
-	}
+        #one.wrapper.style1 header.major h2 {
+                font-size: 1.5rem !important;
+                line-height: 1.4 !important;
+        }
 
-	#three.wrapper.style3 .features li h3 {
-		font-size: 1.25rem !important;
-	}
+        #three.wrapper.style3 .features li h3 {
+                font-size: 1.25rem !important;
+        }
 
-	#three.wrapper.style3 header.major h2 {
-		font-size: 1.5rem !important;
-		line-height: 1.3 !important;
-	}
+        #three.wrapper.style3 header.major h2 {
+                font-size: 1.5rem !important;
+                line-height: 1.3 !important;
+        }
 }
