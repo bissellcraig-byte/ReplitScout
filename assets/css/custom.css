@@ -670,7 +670,7 @@ body.page-services #header {
         background: #2e3842;
         display: flex;
         align-items: center;
-        justify-content: flex-end;
+        justify-content: space-between;
         height: 74px;
         line-height: normal;
         padding: 0 48px;
@@ -681,12 +681,13 @@ body.page-services #page-wrapper {
 }
 
 body.page-services #header h1 {
-        left: 50%;
-        margin: 0;
-        position: absolute;
-        top: 50%;
-        transform: translate(-50%, -50%);
+        align-items: center;
+        display: flex;
         height: auto;
+        left: auto;
+        margin: 0;
+        position: static;
+        transform: none;
 }
 
 body.page-services #header nav {
