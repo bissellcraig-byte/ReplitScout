@@ -1,0 +1,10 @@
+{
+  "name": "scout-content-studio",
+  "version": "1.0.0",
+  "description": "Scout Content Studio static site (Spectral template by HTML5 UP)",
+  "private": true,
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  }
+}
