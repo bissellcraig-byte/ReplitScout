@@ -1299,3 +1299,474 @@ button.primary:active,
                 line-height: 1.3 !important;
         }
 }
+
+/* =========================================================
+   Services page — content below hero (Direction C pairing)
+   Scoped to body.page-services. Header + hero untouched.
+   ========================================================= */
+
+body.page-services .svc-body {
+        background: #f5f2ec;
+        padding: 0 !important;
+}
+
+body.page-services .svc-body,
+body.page-services .svc-body * {
+        box-sizing: border-box;
+}
+
+body.page-services .svc-content {
+        margin: 0 auto;
+        max-width: 1080px;
+        padding: 0 48px;
+        width: 100%;
+}
+
+/* Lead / intro block */
+body.page-services .svc-lead {
+        border-bottom: 1px solid rgba(46, 56, 66, 0.16);
+        padding: 100px 0 70px;
+}
+
+body.page-services .svc-lead__title {
+        color: #2e3842;
+        font-family: "Playfair Display", serif;
+        font-size: clamp(30px, 4vw, 46px);
+        font-weight: 500;
+        letter-spacing: 0;
+        line-height: 1.08;
+        margin: 0 0 0.7em;
+        max-width: 22ch;
+        text-transform: none;
+}
+
+body.page-services .svc-lead p {
+        color: #2e3842;
+        font-family: "Jost", sans-serif;
+        font-size: 24px;
+        font-weight: 300;
+        line-height: 1.55;
+        margin: 0 0 1em;
+        max-width: 32ch;
+}
+
+body.page-services .svc-lead p:last-child {
+        margin-bottom: 0;
+}
+
+/* Section grid */
+body.page-services .svc-section {
+        border-top: 1px solid rgba(46, 56, 66, 0.16);
+        display: grid;
+        gap: 64px;
+        grid-template-columns: 200px minmax(0, 740px);
+        padding: 88px 0;
+}
+
+body.page-services .svc-section:first-of-type {
+        border-top: 0;
+}
+
+body.page-services .svc-section__rail {
+        align-self: start;
+        position: sticky;
+        top: 108px;
+}
+
+body.page-services .svc-kicker {
+        color: #7c8790;
+        display: block;
+        font-family: "Jost", sans-serif;
+        font-size: 12px;
+        font-weight: 500;
+        letter-spacing: 0.28em;
+        line-height: 1.4;
+        text-transform: uppercase;
+}
+
+body.page-services .svc-kicker::after {
+        background: rgba(46, 56, 66, 0.3);
+        content: "";
+        display: block;
+        height: 1px;
+        margin-top: 14px;
+        width: 32px;
+}
+
+body.page-services .svc-section__body {
+        min-width: 0;
+}
+
+body.page-services .svc-section__heading {
+        color: #2e3842;
+        font-family: "Playfair Display", serif;
+        font-size: clamp(28px, 3.4vw, 40px);
+        font-weight: 500;
+        letter-spacing: 0;
+        line-height: 1.08;
+        margin: 0 0 0.6em;
+        text-transform: none;
+}
+
+body.page-services .svc-section__intro {
+        color: #4a555e;
+        font-family: "Jost", sans-serif;
+        font-size: 19px;
+        font-weight: 300;
+        line-height: 1.7;
+        margin: 0 0 1.4em;
+        max-width: 64ch;
+}
+
+/* Body prose */
+body.page-services .svc-prose {
+        color: #4a555e;
+        font-family: "Jost", sans-serif;
+        font-size: 18px;
+        font-weight: 300;
+        line-height: 1.75;
+        margin: 0 0 1.25em;
+        max-width: 64ch;
+}
+
+body.page-services .svc-prose:last-child {
+        margin-bottom: 0;
+}
+
+/* Emphasis line */
+body.page-services .svc-emphasis {
+        color: #2e3842;
+        font-family: "Playfair Display", serif;
+        font-size: 21px;
+        font-style: italic;
+        font-weight: 400;
+        line-height: 1.4;
+        margin: 0.2em 0 0.9em;
+        max-width: 64ch;
+}
+
+/* Service price-list */
+body.page-services .svc-list {
+        list-style: none;
+        margin: 1.5em 0 0;
+        padding: 0;
+}
+
+body.page-services .svc-item {
+        border-top: 1px solid rgba(46, 56, 66, 0.16);
+        padding: 32px 0;
+}
+
+body.page-services .svc-item:first-child {
+        border-top: 0;
+        padding-top: 8px;
+}
+
+body.page-services .svc-item__head {
+        align-items: baseline;
+        display: flex;
+        gap: 20px;
+        justify-content: space-between;
+        margin-bottom: 0.85em;
+}
+
+body.page-services .svc-item__name {
+        color: #2e3842;
+        font-family: "Playfair Display", serif;
+        font-size: 25px;
+        font-weight: 500;
+        letter-spacing: 0;
+        line-height: 1.2;
+        margin: 0;
+        text-transform: none;
+}
+
+body.page-services .svc-price {
+        border: 1px solid rgba(46, 56, 66, 0.3);
+        color: #2e3842;
+        flex-shrink: 0;
+        font-family: "Jost", sans-serif;
+        font-size: 12px;
+        font-weight: 500;
+        letter-spacing: 0.16em;
+        line-height: 1;
+        padding: 7px 13px;
+        text-transform: uppercase;
+        white-space: nowrap;
+}
+
+body.page-services .svc-price--scoped {
+        border-style: dashed;
+        color: #7c8790;
+}
+
+/* Practice-marketing question list */
+body.page-services .svc-questions {
+        list-style: none;
+        margin: 1.2em 0 0;
+        padding: 0;
+}
+
+body.page-services .svc-questions li {
+        border-top: 1px solid rgba(46, 56, 66, 0.16);
+        color: #2e3842;
+        font-family: "Playfair Display", serif;
+        font-size: 19px;
+        font-weight: 400;
+        line-height: 1.4;
+        padding: 14px 0 14px 30px;
+        position: relative;
+}
+
+body.page-services .svc-questions li::before {
+        background: rgba(46, 56, 66, 0.5);
+        content: "";
+        height: 1px;
+        left: 0;
+        position: absolute;
+        top: 26px;
+        width: 14px;
+}
+
+/* FAQ */
+body.page-services .svc-faq {
+        margin-top: 1.2em;
+}
+
+body.page-services .svc-faq__item {
+        border-bottom: 1px solid rgba(46, 56, 66, 0.16);
+}
+
+body.page-services .svc-faq__item:first-child {
+        border-top: 1px solid rgba(46, 56, 66, 0.16);
+}
+
+body.page-services .svc-faq__q {
+        color: #2e3842;
+        cursor: pointer;
+        font-family: "Playfair Display", serif;
+        font-size: 21px;
+        font-weight: 500;
+        line-height: 1.3;
+        list-style: none;
+        padding: 26px 44px 26px 0;
+        position: relative;
+}
+
+body.page-services .svc-faq__q::-webkit-details-marker {
+        display: none;
+}
+
+body.page-services .svc-faq__q::after {
+        color: #7c8790;
+        content: "+";
+        font-family: "Jost", sans-serif;
+        font-size: 24px;
+        font-weight: 300;
+        line-height: 1;
+        position: absolute;
+        right: 4px;
+        top: 50%;
+        transform: translateY(-50%);
+        transition: transform 0.25s ease;
+}
+
+body.page-services .svc-faq__item[open] .svc-faq__q::after {
+        content: "\00d7";
+        transform: translateY(-50%) rotate(0deg);
+}
+
+body.page-services .svc-faq__item .svc-prose {
+        margin: 0 0 26px;
+}
+
+/* Closing CTA band */
+body.page-services .svc-cta {
+        background: #2e3842;
+        margin-top: 0;
+        padding: 0;
+}
+
+body.page-services .svc-cta__frame {
+        border: 1px solid rgba(255, 255, 255, 0.32);
+        margin: 56px auto;
+        max-width: 984px;
+        padding: 72px 64px;
+        width: calc(100% - 96px);
+}
+
+body.page-services .svc-cta__kicker {
+        color: rgba(255, 255, 255, 0.65);
+        display: block;
+        font-family: "Jost", sans-serif;
+        font-size: 12px;
+        font-weight: 500;
+        letter-spacing: 0.28em;
+        margin-bottom: 1.4em;
+        text-transform: uppercase;
+}
+
+body.page-services .svc-cta__heading {
+        color: #ffffff;
+        font-family: "Playfair Display", serif;
+        font-size: clamp(30px, 4vw, 46px);
+        font-weight: 500;
+        letter-spacing: 0;
+        line-height: 1.08;
+        margin: 0 0 0.6em;
+        max-width: 20ch;
+        text-transform: none;
+}
+
+body.page-services .svc-cta__text {
+        color: rgba(255, 255, 255, 0.82);
+        font-family: "Jost", sans-serif;
+        font-size: 18px;
+        font-weight: 300;
+        line-height: 1.7;
+        margin: 0 0 1em;
+        max-width: 60ch;
+}
+
+body.page-services .svc-cta__actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        margin-top: 2.2em;
+}
+
+body.page-services .svc-cta__button {
+        border: 1px solid rgba(255, 255, 255, 0.55);
+        color: #ffffff;
+        display: inline-block;
+        font-family: "Jost", sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: 0.16em;
+        line-height: 1;
+        padding: 16px 28px;
+        text-decoration: none;
+        text-transform: uppercase;
+        transition: background-color 0.25s ease, color 0.25s ease;
+        white-space: nowrap;
+}
+
+body.page-services .svc-cta__button:hover {
+        background: rgba(255, 255, 255, 0.1);
+}
+
+body.page-services .svc-cta__button--primary {
+        background: #f4f1ea;
+        border-color: #f4f1ea;
+        color: #1a2229;
+}
+
+body.page-services .svc-cta__button--primary:hover {
+        background: #ffffff;
+        border-color: #ffffff;
+        color: #1a2229;
+}
+
+/* Responsive */
+@media screen and (max-width: 860px) {
+        body.page-services .svc-content {
+                padding: 0 24px;
+        }
+
+        body.page-services .svc-lead {
+                padding: 64px 0 48px;
+        }
+
+        body.page-services .svc-lead p {
+                font-size: 21px;
+        }
+
+        body.page-services .svc-section {
+                gap: 18px;
+                grid-template-columns: 1fr;
+                padding: 56px 0;
+        }
+
+        body.page-services .svc-section__rail {
+                position: static;
+                top: auto;
+        }
+
+        body.page-services .svc-kicker::after {
+                display: none;
+        }
+
+        body.page-services .svc-item__head {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 12px;
+        }
+
+        body.page-services .svc-cta__frame {
+                margin: 40px auto;
+                padding: 48px 28px;
+                width: calc(100% - 48px);
+        }
+
+        body.page-services .svc-cta__actions {
+                flex-direction: column;
+        }
+
+        body.page-services .svc-cta__button {
+                text-align: center;
+        }
+}
+
+/* Override site-wide !important typography within services content */
+body.page-services .svc-lead__title,
+body.page-services .svc-section__heading,
+body.page-services .svc-emphasis,
+body.page-services .svc-item__name,
+body.page-services .svc-questions li,
+body.page-services .svc-faq__q,
+body.page-services .svc-cta__heading {
+        font-family: "Playfair Display", serif !important;
+        letter-spacing: 0 !important;
+}
+
+body.page-services .svc-lead__title,
+body.page-services .svc-section__heading,
+body.page-services .svc-item__name,
+body.page-services .svc-faq__q,
+body.page-services .svc-cta__heading {
+        font-weight: 500 !important;
+}
+
+body.page-services .svc-questions li {
+        font-weight: 400 !important;
+}
+
+body.page-services .svc-emphasis {
+        font-style: italic !important;
+        font-weight: 400 !important;
+}
+
+body.page-services .svc-lead,
+body.page-services .svc-lead p,
+body.page-services .svc-kicker,
+body.page-services .svc-section__intro,
+body.page-services .svc-prose,
+body.page-services .svc-price,
+body.page-services .svc-cta__kicker,
+body.page-services .svc-cta__text,
+body.page-services .svc-cta__button {
+        font-family: "Jost", sans-serif !important;
+}
+
+body.page-services .svc-kicker,
+body.page-services .svc-price,
+body.page-services .svc-cta__kicker {
+        text-transform: uppercase !important;
+}
+
+body.page-services .svc-body a,
+body.page-services .svc-cta a {
+        border-bottom: 0;
+        text-decoration: none;
+}
+

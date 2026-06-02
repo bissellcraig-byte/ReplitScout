@@ -1,0 +1,118 @@
+give me a prompt to have replit do c
+Here's a copy-paste prompt for Replit's Agent to build Direction C:
+
+Build a premium website hero section (the "Framed Gallery" layout). Use plain HTML + CSS (no framework needed).
+
+Fonts: Load from Google Fonts — Playfair Display (weights 400, 500, plus italic 400/500) for the logo and headline, and Jost (weights 300, 400, 500) for all labels, body text, and buttons.
+
+Colors:
+
+Navy header bar: #2e3842
+Headline ink (for the solid button text): #1a2229
+Cream/off-white: #f4f1ea
+All hero text is white or white at reduced opacity
+Structure:
+
+Top header bar (navy #2e3842, ~74px tall, full width, padding 0 48px, flex space-between):
+
+Left: "SCOUT" in Playfair Display, weight 500, ~30px, letter-spacing 0.14em, white.
+Right: a "MENU" button — text "MENU" in Jost, 14px, letter-spacing 0.34em, white — next to a hamburger icon (three white horizontal bars, ~30px wide, 2px tall, 5px gap).
+Hero stage (fills the rest of the viewport, min-height ~640px, position: relative, overflow: hidden):
+
+Background: a full-cover background image (use a soft, blurred sky-gradient photo — teal at the edges, warm cream in the center). Apply filter: saturate(0.85) contrast(1.02).
+Scrim overlay (absolute, full, pointer-events: none) to guarantee text contrast — layer two gradients: a subtle top darkening linear-gradient(180deg, rgba(26,34,41,.42), rgba(26,34,41,0) 32%) and a strong bottom-up darkening linear-gradient(360deg, rgba(20,27,33,.86) 4%, rgba(20,27,33,.34) 38%, rgba(20,27,33,0) 64%).
+A thin keyline frame: a 1px border in rgba(255,255,255,0.4), inset 30px from all sides of the stage, with internal padding ~34px 40px. Use flexbox column with justify-content: space-between so its contents pin to top and bottom.
+Inside the frame, top row (flex, space-between, Jost 12px, letter-spacing 0.34em, rgba(255,255,255,.82)):
+
+Left: 01 — SERVICES
+Right: BEHAVIORAL HEALTH
+Inside the frame, bottom block:
+
+Headline in Playfair Display, ~66px, line-height 1.02, white: Built for clearer then a line break, then digital infrastructure. — render the second line in italic (font-style italic, weight 400, rgba(255,255,255,.92)).
+Below it, a divider — a 1px top border in rgba(255,255,255,.28) with ~24px padding-top.
+Footer row under the divider (flex, align-items flex-end, space-between):
+Left: a caption in Jost 300, 17px, line-height 1.55, rgba(255,255,255,.82), max-width ~42ch: Websites, applications, SEO, AI-search optimization, and marketing.
+Right: an outlined button — text BOOK A CONSULTATION → in Jost, 14px, uppercase, letter-spacing 0.16em, white, white-space: nowrap, padding 15px 28px, 1px border rgba(255,255,255,.55). On hover: background rgba(255,255,255,.1) and the arrow slides right ~5px.
+Notes: Keep everything box-sizing: border-box. Make it responsive — on screens under ~768px, stack the footer row (caption above button), reduce the headline to ~40px, and reduce the frame inset to ~16px. Add antialiased font smoothing. The overall feel should be calm, editorial, and premium — generous whitespace, high contrast on text, no rounded corners except none.
+
+Tell Replit to drop in your own hero photo, or it can use a placeholder gradient image to start. Want me to also write a shorter version, or include the image file so you can upload it there?
+
+pasted-1780380464412-0.png
+great now further down on the page how can i make this section look more premium and paired well with C . dont change the copy but feel free to add style:
+Pasted text (163 lines)
+I have the full copy. I'll build a complete styled services page that pairs with Direction C — same Playfair/Jost type system, navy + warm-paper palette, the 01 — LABEL index motif from the frame, hairline rules, sharp outlined price tags, and a dark framed CTA that bookends the hero. Copy stays verbatim; I'm only adding structure and style.
+
+Now the page itself with all copy verbatim:
+
+Hero carries over cleanly. Let me check the content sections below.
+
+Scroll isn't registering in the capture. Let me temporarily collapse the hero in the capture step so the content flows to the top.
+
+Section heads and index rail look premium. Let me verify the service price-tags, FAQ, and CTA render well.
+
+The price-list treatment is clean and premium. Now the FAQ and CTA:
+
+FAQ reads beautifully. Now the closing CTA:
+
+✓
+✓ #6
+✓
+✓ #7
+✓
+✓ #8
+The dark framed CTA bookends the hero perfectly. The whole page reads as one cohesive premium system. Marking complete and handing to the verifier.Built the full services page (Scout Services Page.html), styled to pair with Direction C. Copy is verbatim — I only added structure and style. What it carries over from C and what's new:
+
+Shared system (pairs with C)
+
+Playfair Display + Jost, navy + warm-paper palette, sharp corners, hairline rules — and the 01 — LABEL index motif lifted straight from the hero frame.
+The C hero sits at the top, and a dark, keyline-framed CTA ("10 — Get Started") closes the page — bookending the hero so the dark/light rhythm feels intentional.
+The content treatment
+
+Index rail per section — a Playfair number + tracked-caps kicker (Foundations, Visibility, Trust, Systems…) in a sticky left column, content on the right. Strong editorial structure.
+Services as a price-list, not boxed cards — name in Playfair, a sharp outlined price tag (solid border for fixed prices, dashed for "scoped"), hairline dividers between. Reads like a refined studio menu rather than a template.
+FAQ as quiet expand/collapse rows with a thin +/× toggle.
+Replaced the all-caps body and the left-border accent blocks with calm sentence-case Jost and the keyline language.
+It's fully responsive (the index rail collapses to an inline row on mobile). Open the file to scroll the whole thing.
+
+A couple of optional next steps if you want them: real project-example thumbnails for the "See project examples" link, or I can wire the FAQ/CTA buttons to actual destinations. Want me to push any section further?
+
+great give me a prompt to have replit do this (leave the hero and header alone only edit below the hero) but implement all of these changes just leave out the numbering.
+Here's a copy-paste prompt for Replit. It covers everything below the hero, with the numbers removed (kicker labels kept).
+
+Restyle the entire content area BELOW the hero on the Scout services page. Do not touch the header or the hero — leave their markup and styles exactly as they are. Only edit everything from the hero down (the body content, FAQ, and closing CTA). Keep all existing copy verbatim. Plain HTML + CSS.
+
+Fonts (load from Google Fonts if not already): Playfair Display (400, 500, plus italic 400/500) for all headings, service names, and italic accents; Jost (300, 400, 500) for body text, labels, and buttons.
+
+Palette:
+
+Page background: warm paper #f5f2ec
+Heading navy: #2e3842
+Body text: #4a555e
+Muted/labels: #7c8790
+Hairlines: rgba(46,56,66,.16); stronger hairline rgba(46,56,66,.30)
+Button cream: #f4f1ea
+Global: body in Jost weight 300, antialiased. Sharp corners everywhere (no rounded corners). Content lives in a centered column, max-width: 1080px, side padding 48px (24px on mobile).
+
+1. Lead / intro block (the two opening paragraphs right under the hero): set them larger and quieter — Jost 300, ~24px, line-height 1.55, color navy #2e3842, max-width ~32ch, with a hairline bottom border. Generous vertical padding (~100px top, ~70px bottom).
+
+2. Section layout — DO NOT use number labels. Each content section is a 2-column CSS grid: a left rail (~200px) and a content column (max-width 740px), with a ~64px gap and a 1px top hairline separating sections (~88px vertical padding per section).
+
+Left rail = ONLY a small kicker label (no numerals): Jost 500, 12px, letter-spacing 0.28em, uppercase, muted color #7c8790, with a short 32px hairline beneath it. Use these kickers, in order: Foundations, Websites & Copy, Visibility, Trust, Systems, Outcomes, Process, Ethics, Questions. Make the rail position: sticky; top: 108px on desktop.
+Section heading: Playfair Display 500, clamp(28px, 3.4vw, 40px), line-height 1.08, navy.
+Section intro line: Jost, 19px, line-height 1.7, body color.
+3. Body prose (Why it matters, What Scout builds toward, How projects are scoped, How Scout keeps the work responsible): Jost, 18px, line-height 1.75, body color, max-width ~64ch, ~1.25em paragraph spacing. For short emphasis lines like "Scout makes that path clearer," render them in Playfair Display italic, ~21px, navy.
+
+4. Services as an editorial price-list (NOT boxed cards). Within a section, list each service as a row separated by 1px hairlines (~32px padding per row):
+
+A header row with the service name on the left (Playfair Display 500, ~25px, navy) and a price tag on the right, on the same baseline (use flexbox space-between).
+Price tag = small sharp outlined chip: Jost 500, 12px, letter-spacing 0.16em, uppercase, navy text, padding: 7px 13px, border: 1px solid rgba(46,56,66,.30), white-space: nowrap. For non-dollar prices ("Scoped by project", "Scoped monthly", "Scoped after review"), use a dashed border and muted text instead of solid.
+Description paragraphs below: Jost 17px, line-height 1.7, body color.
+Apply this to all priced/scoped items: Website refresh, Starter one-page website, Multipage behavioral health website, Practice marketing and copywriting, SEO and AI-search optimization, Social media setup, Ongoing social media marketing, Proof/trust/testimonials, Intake path mapping, AI administrative workflows, Custom applications and focused tools, Custom projects, Optional maintenance.
+For "Practice marketing and copywriting," after its paragraphs render the lead line "Good copy helps people answer the questions that actually matter." in Playfair italic, then the four questions as a list where each item is Playfair Display ~19px navy, separated by hairline borders, each with a small 14px horizontal dash to its left as a marker.
+5. FAQ — replace any plain list with quiet expand/collapse rows (use <details>/<summary>). Question = Playfair Display 500, ~21px, navy, ~26px vertical padding, hairline border between rows. Add a thin +/× toggle indicator on the right that rotates when open. Open the first item by default.
+
+6. Closing CTA ("Need help choosing the right service?") — make it a full-width dark navy #2e3842 band with a thin keyline frame inset inside it (border: 1px solid rgba(255,255,255,.32), generous padding). Inside: a small uppercase kicker GET STARTED (Jost 12px, letter-spacing 0.28em, white at ~65% opacity — no number), the heading in Playfair Display 500, clamp(30px,4vw,46px), white; the supporting paragraph in Jost, white at ~82%; then two buttons — "Talk through your project" as a solid cream button (#f4f1ea bg, navy text, uppercase Jost 14px, letter-spacing 0.16em, padding 16px 32px) and "See project examples →" as an outlined white button (1px white-at-55% border, transparent, arrow nudges right on hover). This dark block should visually bookend the hero.
+
+7. Responsive: under ~860px, the section grid collapses to a single column and the left-rail kicker becomes a small inline label above the heading; the service header row stacks (name above price); the CTA buttons wrap.
+
+The overall feel: calm, editorial, premium — Playfair headings, Jost body, lots of whitespace, hairline rules, sharp outlined price chips, and a dark framed CTA. No section numbers anywhere.
