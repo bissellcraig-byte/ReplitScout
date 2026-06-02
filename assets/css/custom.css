@@ -197,31 +197,17 @@ body.page-services .wrapper.style5 .inner .service-heading-row {
 
 body.page-services .wrapper.style5 .inner .service-heading-row h3 {
         border-left: 3px solid rgba(135, 165, 156, 0.85);
-        display: inline-grid;
-        align-items: center;
         flex-shrink: 0;
-        line-height: 1;
+        line-height: 1.2;
         margin: 0;
-        height: 2.2em;
         padding-left: 0.85em;
-        padding-top: 0;
-        padding-bottom: 0;
         white-space: nowrap;
 }
 
-body.page-services .wrapper.style5 .inner .service-heading-row .service-price {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0;
-        height: 2.2em;
-}
-
-body.page-services .wrapper.style5 .inner .service-heading-row .service-price strong {
-        background: rgba(135, 165, 156, 0.14);
-        border: 1px solid rgba(143, 184, 176, 0.35);
+body.page-services .wrapper.style5 .inner .service-heading-row .price-tag {
+        background: #233252;
         border-radius: 999px;
-        color: #2e3842;
+        color: #ffffff;
         display: inline-flex;
         align-items: center;
         justify-content: center;
@@ -231,19 +217,10 @@ body.page-services .wrapper.style5 .inner .service-heading-row .service-price st
         font-weight: 600;
         letter-spacing: 0.04em;
         line-height: 1;
-        min-height: 2.2em;
-        padding: 0.35em 1em;
+        padding: 0.5em 1.1em 0.42em;
         text-align: center;
         text-transform: none;
         white-space: nowrap;
-        transform: none;
-}
-
-body.page-services .wrapper.style5 .inner .service-heading-row .service-price strong span {
-        display: block;
-        line-height: 1;
-        margin: 0;
-        transform: translateY(2px);
 }
 
 body.page-services .services-faq-panel {
@@ -284,11 +261,10 @@ body.page-services .services-faq-panel h3:first-of-type {
         }
 
         body.page-services .wrapper.style5 .inner .service-heading-row h3 {
-                height: auto;
                 white-space: normal;
         }
 
-        body.page-services .wrapper.style5 .inner .service-heading-row .service-price strong {
+        body.page-services .wrapper.style5 .inner .service-heading-row .price-tag {
                 font-size: 0.9em;
         }
 }
