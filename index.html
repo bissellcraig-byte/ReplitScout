@@ -12,7 +12,7 @@
         <meta name="description" content="Scout Content Studio helps individual therapists and practice owners build clearer websites, reduce intake friction, and show up more clearly in search and AI-search results." />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500&family=Playfair+Display:ital,wght@0,400;0,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
         <script>(function(){try{var m=window.matchMedia;if(m&&m("(prefers-reduced-motion: reduce)").matches)return;if(!("IntersectionObserver" in window))return;document.documentElement.classList.add("motion-ready");}catch(e){}})();</script>
         <link rel="stylesheet" href="assets/css/main.css" />
         <link rel="stylesheet" href="assets/css/custom.css" />
@@ -42,7 +42,10 @@
                 </nav>
             </header>
 
-            <section id="banner">
+            <section id="banner" class="is-enter">
+                <div class="hero-bg" aria-hidden="true"></div>
+                <div class="hero-grain" aria-hidden="true"></div>
+                <div class="hero-scrim" aria-hidden="true"></div>
                 <div class="inner banner-hero-inner">
                     <div class="banner-brand">
                         <img src="images/Scout%20Logo%20white.png" alt="Scout Content Studio" class="banner-logo" width="1024" height="389" />
@@ -54,15 +57,15 @@
                             <span class="banner-headline-line">for behavioral health practices</span>
                         </span>
                     </h2>
-                    <p class="banner-subtext">Scout Content Studio helps individual therapists and practice owners build clearer websites, reduce intake friction, and show up more clearly in search and AI-search results.</p>
+                    <p class="banner-subtext">Scout Content Studio helps individual therapists and practice owners build clearer websites, reduce intake friction, and show up more clearly in search and AI&#8209;search results.</p>
                     <ul class="actions special">
                         <li><a href="work-with-us.html" class="button primary">Talk through your project</a></li>
                     </ul>
-                    <a href="#one" class="banner-scroll scrolly">
-                        <span class="banner-scroll-text">See how Scout works</span>
-                        <span class="banner-scroll-icon" aria-hidden="true"></span>
-                    </a>
                 </div>
+                <a href="#one" class="banner-scroll scrolly">
+                    <span class="banner-scroll-text">See how Scout works</span>
+                    <span class="banner-scroll-icon" aria-hidden="true"></span>
+                </a>
             </section>
 
             <section id="one" class="wrapper style1 special">
@@ -177,6 +180,7 @@
         <script src="assets/js/util.js"></script>
         <script src="assets/js/main.js"></script>
         <script src="assets/js/motion.js"></script>
+        <script>(function(){var b=document.getElementById("banner");if(!b)return;window.addEventListener("load",function(){window.setTimeout(function(){b.classList.remove("is-enter");},3200);});})();</script>
 
     </body>
 </html>

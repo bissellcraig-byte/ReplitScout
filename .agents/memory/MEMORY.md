@@ -1,0 +1,1 @@
+- [Spectral template hero gotchas](spectral-hero.md) — ::after navy preload curtain hides hero bg; site-wide !important fonts/button need !important to beat; !important blocks keyframe transforms; entrance via is-enter class.

@@ -452,21 +452,53 @@ body.is-mobile.landing .wrapper.style4 {
         background-image: url("../../images/banner.jpg") !important;
 }
 
-/* Subtle dark overlay on hero — text stays above */
+/* Full-bleed hero — layered photo, grain, scrim */
 #banner {
+        align-items: center;
+        background: #2e3842;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        min-height: 100svh;
+        overflow: hidden;
         position: relative;
 }
 
-#banner::before {
-        background: rgba(0, 0, 0, 0.18);
-        content: "";
-        height: 100%;
-        left: 0;
+#banner::before,
+#banner::after {
+        content: none !important;
+}
+
+/* Background photo + slow Ken Burns */
+#banner .hero-bg {
+        background: #2e3842 url("../../images/hero-ocean.jpg") center 42% / cover no-repeat;
+        inset: 0;
+        position: absolute;
+        transform: scale(1.04);
+        transform-origin: 55% 45%;
+        z-index: 0;
+}
+
+/* Film grain — subtle texture */
+#banner .hero-grain {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        inset: -50%;
+        mix-blend-mode: overlay;
+        opacity: 0.06;
         pointer-events: none;
         position: absolute;
-        top: 0;
-        width: 100%;
-        z-index: 0;
+        z-index: 1;
+}
+
+/* Contrast scrim — guarantees text legibility over any photo */
+#banner .hero-scrim {
+        background:
+                radial-gradient(78% 62% at 50% 46%, rgba(40, 52, 60, 0.30) 0%, rgba(40, 52, 60, 0.10) 45%, rgba(40, 52, 60, 0) 72%),
+                linear-gradient(180deg, rgba(40, 52, 60, 0.18) 0%, rgba(40, 52, 60, 0) 22%);
+        inset: 0;
+        pointer-events: none;
+        position: absolute;
+        z-index: 2;
 }
 
 /* Hero content column */
@@ -480,7 +512,7 @@ body.is-mobile.landing .wrapper.style4 {
         position: relative;
         text-align: center;
         width: 100%;
-        z-index: 1;
+        z-index: 4;
 }
 
 #banner h2:before,
@@ -527,15 +559,17 @@ body.is-mobile.landing .wrapper.style4 {
         box-sizing: border-box;
         color: #ffffff;
         display: block !important;
-        font-size: 48px;
-        font-weight: 300 !important;
-        letter-spacing: 0 !important;
-        line-height: 1.25;
+        font-family: "Playfair Display", Georgia, "Times New Roman", serif !important;
+        font-size: clamp(30px, 4.6vw, 46px);
+        font-weight: 500 !important;
+        letter-spacing: 0.005em !important;
+        line-height: 1.16;
         /* Full-bleed so the headline centers on the viewport, not the 640px column */
-        margin: 48px calc(50% - 50vw) 0;
+        margin: 42px calc(50% - 50vw) 0;
         max-width: none;
         padding: 0 1rem !important;
         text-align: center;
+        text-shadow: 0 2px 34px rgba(30, 40, 48, 0.3);
         width: 100vw;
 }
 
@@ -557,15 +591,16 @@ body.is-mobile.landing .wrapper.style4 {
 
 #banner .banner-subtext {
         color: rgba(255, 255, 255, 0.9);
-        font-family: "Acumin Variable Concept", "Open Sans", Helvetica, sans-serif;
-        font-size: 21px;
-        font-variation-settings: "wght" 400;
-        font-weight: 400;
+        font-family: "Jost", "Open Sans", Helvetica, sans-serif !important;
+        font-size: clamp(16px, 2vw, 19px);
+        font-weight: 300 !important;
         letter-spacing: 0 !important;
-        line-height: 1.6;
-        margin: 28px auto 0;
-        max-width: 520px;
+        line-height: 1.62;
+        margin: 26px auto 0;
+        max-width: 50ch;
+        text-shadow: 0 1px 22px rgba(30, 40, 48, 0.34);
         text-transform: none !important;
+        text-wrap: pretty;
 }
 
 #banner .actions.special {
@@ -583,43 +618,53 @@ body.is-mobile.landing .wrapper.style4 {
 
 #banner .actions.special .button.primary {
         align-items: center;
-        border: 1px solid rgba(255, 255, 255, 0.85) !important;
-        border-radius: 12px !important;
+        background-color: #f4f1ea !important;
+        border: 0 !important;
+        border-radius: 0 !important;
         box-shadow: none !important;
-        color: #ffffff !important;
+        color: #26313a !important;
         display: inline-flex;
-        font-family: "Acumin Variable Concept", "Open Sans", Helvetica, sans-serif;
-        font-size: 16px;
-        font-variation-settings: "wght" 600;
-        font-weight: 600;
+        font-family: "Jost", "Open Sans", Helvetica, sans-serif !important;
+        font-size: 15px;
+        font-weight: 500;
         justify-content: center;
-        letter-spacing: 0.02em;
+        letter-spacing: 0.14em;
         line-height: 1;
-        padding: 20px 40px 18px;
+        min-height: 44px;
+        padding: 18px 38px;
         text-align: center;
-        text-transform: none !important;
-        white-space: normal;
+        text-transform: uppercase !important;
+        transition: background-color 0.28s ease, transform 0.28s ease, box-shadow 0.28s ease;
+        white-space: nowrap;
 }
 
-/* Scroll prompt */
+#banner .actions.special .button.primary:hover {
+        background-color: #ffffff !important;
+        box-shadow: 0 16px 40px rgba(20, 30, 38, 0.22);
+        transform: translateY(-2px);
+}
+
+/* Scroll prompt — pinned to the bottom of the hero */
 #banner .banner-scroll {
         align-items: center;
         border: none;
-        bottom: auto;
+        bottom: 34px;
         display: flex;
         flex-direction: column;
         height: auto;
         justify-content: center;
-        left: auto;
-        margin: 88px auto 0;
+        left: 0;
+        margin: 0 auto;
         min-height: 0;
         outline: 0;
         padding: 0;
         padding-left: 0 !important;
-        position: static;
+        position: absolute;
+        right: 0;
         text-decoration: none;
         transform: none !important;
-        width: 100%;
+        width: max-content;
+        z-index: 4;
 }
 
 #banner .banner-scroll::after {
@@ -628,12 +673,11 @@ body.is-mobile.landing .wrapper.style4 {
 }
 
 #banner .banner-scroll-text {
-        color: rgba(255, 255, 255, 0.7);
+        color: rgba(255, 255, 255, 0.85);
         display: block;
-        font-family: "Acumin Variable Concept", "Open Sans", Helvetica, sans-serif;
-        font-size: 16px;
-        font-variation-settings: "wght" 500;
-        font-weight: 500;
+        font-family: "Jost", "Open Sans", Helvetica, sans-serif !important;
+        font-size: 14px;
+        font-weight: 400;
         letter-spacing: 0.06em;
         line-height: 1;
         text-align: center;
@@ -657,6 +701,60 @@ body.is-mobile.landing .wrapper.style4 {
 body.is-preload #banner .banner-scroll {
         opacity: 1;
         transform: none !important;
+}
+
+/* Hero motion — Ken Burns photo zoom + gently bobbing scroll arrow */
+@media (prefers-reduced-motion: no-preference) {
+        #banner .hero-bg {
+                animation: heroKenBurns 26s ease-out both;
+        }
+
+        #banner .banner-scroll-icon {
+                animation: heroBob 2.4s ease-in-out infinite;
+        }
+}
+
+@keyframes heroKenBurns {
+        from { transform: scale(1.12); }
+        to { transform: scale(1); }
+}
+
+@keyframes heroBob {
+        0%, 100% { transform: translateY(0); opacity: 0.7; }
+        50% { transform: translateY(7px); opacity: 1; }
+}
+
+/* Hero entrance — staggered fade-up.
+   Resting state of every element is fully visible; the .is-enter class plays the
+   choreographed rise on load. Wrapped in no-preference so reduced-motion users
+   get the static, fully-visible hero immediately. The template's preload hide of
+   the headline is overridden so it is owned solely by this sequence. */
+body.is-preload #banner .banner-headline {
+        opacity: 1;
+        transform: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+        #banner.is-enter .banner-brand,
+        #banner.is-enter .banner-divider-wide,
+        #banner.is-enter .banner-headline,
+        #banner.is-enter .banner-subtext,
+        #banner.is-enter .actions.special,
+        #banner.is-enter .banner-scroll {
+                animation: heroRise 1s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+        }
+
+        #banner.is-enter .banner-brand { animation-delay: 0.15s; }
+        #banner.is-enter .banner-divider-wide { animation-delay: 0.6s; }
+        #banner.is-enter .banner-headline { animation-delay: 0.8s; }
+        #banner.is-enter .banner-subtext { animation-delay: 1.05s; }
+        #banner.is-enter .actions.special { animation-delay: 1.3s; }
+        #banner.is-enter .banner-scroll { animation-delay: 1.7s; }
+}
+
+@keyframes heroRise {
+        from { opacity: 0; transform: translateY(16px); }
+        to { opacity: 1; transform: translateY(0); }
 }
 
 /* Services page — SCOUT-only logo in top bar */
@@ -894,6 +992,20 @@ body.landing #header nav > ul > li > a.menuToggle:after {
 
         #banner .banner-scroll-icon {
                 margin-top: 17px;
+        }
+}
+
+/* Very narrow phones — let the headline wrap instead of overflowing */
+@media screen and (max-width: 400px) {
+        #banner .banner-headline-line {
+                white-space: normal;
+        }
+}
+
+/* Short viewports — drop the scroll cue so it never crowds the button */
+@media screen and (max-height: 700px) {
+        #banner .banner-scroll {
+                display: none;
         }
 }
 

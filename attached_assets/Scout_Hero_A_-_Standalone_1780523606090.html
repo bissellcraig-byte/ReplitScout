@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Scout — Home Hero (Direction A)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{ --navy:#2e3842; --ink:#26313a; --ivory:#f4f1ea; }
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; padding:0; }
+  body{ font-family:"Jost",sans-serif; background:var(--navy); -webkit-font-smoothing:antialiased; }
+
+  .hero{ position:relative; width:100%; min-height:100svh; overflow:hidden; background:var(--navy); }
+
+  /* Background photo + slow Ken Burns */
+  .hero-bg{ position:absolute; inset:0; transform-origin:55% 45%;
+    background:url("assets/ocean.jpg") center 42%/cover no-repeat; transform:scale(1.04); }
+
+  /* Film grain */
+  .hero-grain{ position:absolute; inset:-50%; pointer-events:none; opacity:.06; mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+
+  /* Contrast scrim — guarantees text legibility */
+  .hero-scrim{ position:absolute; inset:0; pointer-events:none;
+    background:
+      radial-gradient(78% 62% at 50% 46%, rgba(40,52,60,.30) 0%, rgba(40,52,60,.10) 45%, rgba(40,52,60,0) 72%),
+      linear-gradient(180deg, rgba(40,52,60,.18) 0%, rgba(40,52,60,0) 22%); }
+
+  /* Header */
+  .hero-head{ position:absolute; top:0; right:0; z-index:6; padding:30px 44px; }
+  .hero-menu{ display:flex; align-items:center; gap:13px; background:none; border:0; cursor:pointer;
+    color:#fff; font-family:"Jost",sans-serif; font-weight:500; font-size:16px; }
+  .hero-burger{ display:flex; flex-direction:column; gap:4px; }
+  .hero-burger i{ display:block; width:22px; height:2px; background:#fff; }
+
+  /* Center lockup */
+  .hero-center{ position:absolute; inset:0; z-index:4; display:flex; flex-direction:column;
+    align-items:center; justify-content:center; text-align:center; padding:64px 24px; }
+  .hero-lockup{ display:flex; flex-direction:column; align-items:center; }
+
+  /* ===== LOGO — replace the markup below with your real logo image.
+     The typeset SCOUT version here is only a stand-in. ===== */
+  .hero-logo{ font-family:"Playfair Display",serif; font-weight:500; color:#fff;
+    font-size:clamp(46px,8vw,74px); letter-spacing:.18em; line-height:1; padding-left:.18em;
+    text-shadow:0 2px 40px rgba(30,40,48,.25); }
+  .hero-tag{ margin-top:16px; color:rgba(255,255,255,.82); font-size:14px; font-weight:400;
+    letter-spacing:.42em; padding-left:.42em; }
+  .hero-divider{ width:300px; max-width:46vw; height:1px; background:rgba(255,255,255,.5); margin:30px 0 42px; }
+
+  .hero-h{ font-family:"Playfair Display",serif; font-weight:500; color:#fff; margin:0;
+    font-size:clamp(30px,4.6vw,46px); line-height:1.16; letter-spacing:.005em;
+    text-shadow:0 2px 34px rgba(30,40,48,.3); }
+  .hero-sub{ color:rgba(255,255,255,.9); font-weight:300; font-size:clamp(16px,2vw,19px); line-height:1.62;
+    margin:26px auto 0; max-width:50ch; text-shadow:0 1px 22px rgba(30,40,48,.34); text-wrap:pretty; }
+
+  .hero-cta{ margin-top:42px; }
+  .hero-btn{ font-family:"Jost",sans-serif; cursor:pointer; display:inline-flex; align-items:center;
+    justify-content:center; min-height:44px; white-space:nowrap; text-decoration:none;
+    background:var(--ivory); color:var(--ink); font-weight:500; font-size:15px;
+    letter-spacing:.14em; text-transform:uppercase; padding:18px 38px; transition:all .28s ease; }
+  .hero-btn:hover{ background:#fff; transform:translateY(-2px); box-shadow:0 16px 40px rgba(20,30,38,.22); }
+
+  /* Scroll cue */
+  .hero-scroll{ position:absolute; left:50%; bottom:34px; transform:translateX(-50%); z-index:5;
+    display:flex; flex-direction:column; align-items:center; gap:14px;
+    color:rgba(255,255,255,.85); font-size:14px; font-weight:400; }
+  .hero-arrow{ font-size:18px; line-height:1; }
+
+  /* ===== Entrance — resting state is fully visible; .is-enter plays the fade-up ===== */
+  @media (prefers-reduced-motion:no-preference){
+    .hero-bg{ animation:kenburns 26s ease-out both; }
+    .hero-arrow{ animation:bob 2.4s ease-in-out infinite; }
+    .is-enter .s1,.is-enter .s2,.is-enter .s3,.is-enter .s4,.is-enter .s5,.is-enter .s6{
+      animation:rise 1s cubic-bezier(.2,.7,.2,1) both; }
+    .is-enter .s7{ animation:riseScroll 1s cubic-bezier(.2,.7,.2,1) both; }
+    .is-enter .s1{ animation-delay:.15s; }
+    .is-enter .s2{ animation-delay:.4s; }
+    .is-enter .s3{ animation-delay:.6s; }
+    .is-enter .s4{ animation-delay:.8s; }
+    .is-enter .s5{ animation-delay:1.05s; }
+    .is-enter .s6{ animation-delay:1.3s; }
+    .is-enter .s7{ animation-delay:1.7s; }
+  }
+  @keyframes kenburns{ from{ transform:scale(1.12); } to{ transform:scale(1.0); } }
+  @keyframes rise{ from{ opacity:0; transform:translateY(16px); } to{ opacity:1; transform:translateY(0); } }
+  @keyframes riseScroll{ from{ opacity:0; transform:translate(-50%,16px); } to{ opacity:1; transform:translate(-50%,0); } }
+  @keyframes bob{ 0%,100%{ transform:translateY(0); opacity:.7; } 50%{ transform:translateY(7px); opacity:1; } }
+
+  /* Mobile / cellular */
+  @media (max-width:600px){
+    .hero-head{ padding:20px 24px; }
+    .hero-sub{ max-width:100%; }
+    .hero-divider{ margin:24px 0 32px; }
+  }
+  @media (max-height:700px){
+    .hero-scroll{ display:none; }
+  }
+</style>
+</head>
+<body>
+  <section class="hero is-enter" id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grain"></div>
+    <div class="hero-scrim"></div>
+
+    <div class="hero-head">
+      <button class="hero-menu" aria-label="Open menu">
+        <span>Menu</span>
+        <span class="hero-burger"><i></i><i></i><i></i></span>
+      </button>
+    </div>
+
+    <div class="hero-center">
+      <div class="hero-lockup">
+        <!-- Swap this for your real logo asset -->
+        <div class="hero-logo s1">SCOUT</div>
+        <div class="hero-tag s2">CONTENT STUDIO</div>
+      </div>
+      <div class="hero-divider s3"></div>
+      <h1 class="hero-h s4">Websites, applications, and marketing<br />for behavioral health practices</h1>
+      <p class="hero-sub s5">Scout Content Studio helps individual therapists and practice owners build clearer websites, reduce intake friction, and show up more clearly in search and AI&#8209;search results.</p>
+      <div class="hero-cta s6">
+        <a class="hero-btn" href="#contact">Talk through your project</a>
+      </div>
+    </div>
+
+    <div class="hero-scroll s7">
+      <span>See how Scout works</span>
+      <span class="hero-arrow">&#8595;</span>
+    </div>
+  </section>
+
+  <script>
+    // Play the entrance once, then remove the class so the resting state stays visible.
+    window.addEventListener('load', function(){
+      var hero = document.getElementById('hero');
+      setTimeout(function(){ hero.classList.remove('is-enter'); }, 3200);
+    });
+  </script>
+</body>
+</html>

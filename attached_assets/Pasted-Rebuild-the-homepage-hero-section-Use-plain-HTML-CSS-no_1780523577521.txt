@@ -1,0 +1,43 @@
+Rebuild the homepage hero section. Use plain HTML + CSS (no framework). This is a full-viewport hero with a background photo, a centered lockup, and a sequenced fade-in entrance. Keep my existing SCOUT logo exactly as it is — do NOT redraw, replace, or restyle it; reuse the current logo element/markup and only place it where described. Make it work cleanly on both desktop ("web") and mobile/cellular screens.
+
+Fonts (Google Fonts): Playfair Display (400, 500) for the headline and the "CONTENT STUDIO" tagline; Jost (300, 400, 500) for the menu, subhead, button, and scroll cue. Apply -webkit-font-smoothing: antialiased.
+
+Colors:
+
+Hero base / fallback: navy #2e3842
+Button fill: ivory #f4f1ea; button text: #26313a
+All other hero text is white or white at reduced opacity
+box-sizing: border-box globally
+Layout — full-bleed hero:
+
+A position: relative; width: 100%; min-height: 100svh; overflow: hidden section, navy background as fallback.
+Background photo absolutely positioned, inset: 0, background: center 42% / cover no-repeat. Use my ocean photo. Give it a transform-origin: 55% 45%.
+Film grain layer (optional, subtle): an absolutely-positioned overlay using an inline SVG feTurbulence noise, opacity: .06, mix-blend-mode: overlay, pointer-events: none.
+Contrast scrim absolutely positioned, inset: 0, pointer-events: none, so text is always legible regardless of the photo: background: radial-gradient(78% 62% at 50% 46%, rgba(40,52,60,.30) 0%, rgba(40,52,60,.10) 45%, rgba(40,52,60,0) 72%), linear-gradient(180deg, rgba(40,52,60,.18) 0%, rgba(40,52,60,0) 22%);
+Header (top-right): absolutely positioned top-right, padding: 30px 44px, z-index: 6. A "Menu" button — text "Menu" in Jost 500 ~16px, white — next to a 3-bar hamburger icon (each bar 22px × 2px, white, 4px gap). On mobile reduce padding to ~20px 24px.
+
+Centered lockup (absolutely positioned, inset: 0, fl-column, centered, text-align: center, padding: 64px 24px, z-index: 4), stacked in this order with these:
+
+My existing SCOUT logo (reused as-is), centered.
+Tagline "CONTENT STUDIO" — Playfair? no: Jost 400, ~14px, letter-spacing .42em, padding-left: .42em, white at 82%, ~16px above-margin from logo.
+Hairline divider — a 1px line, width 300px (max-width 46vw), rgba(255,255,255,.5), margin 30px 0 42px.
+Headline — Playfair Display 500, font-size: clamp(30px, 4.6vw, 46px), line-height 1.16, white, subtle text-shadow 0 2px 34px rgba(30,40,48,.3). Text: "Websites, applications, and marketing" then a <br> then "for behavioral health practices". On mobile let it wrap naturally (the <br> can stay; clamp handles the size).
+Subhead — Jost 300, ~19px, line-height 1.62, white at 90%, max-width: 50ch, margin-top 26px, text-wrap: pretty. Text: "Scout Content Studio helps individual therapists and practice owners build clearer websites, reduce intake friction, and show up more clearly in search and AI‑search results." (use a non-breaking hyphen in "AI‑search" so it never breaks mid-word).
+Primary button (margin-top 42px) — ivory solid: background: #f4f1ea; color: #26313a, Jost 500, 15px, uppercase, letter-spacing .14em, padding 18px 38px, square corners. Hover: background: #fff; transform: translateY(-2px); box-shadow: 0 16px 40px rgba(20,30,38,.22). Label: "Talk through your project". Make it min 44px tall for touch.
+Scroll cue (absolutely positioned, bottom-center, bottom: 34px, z-index: 5): "See how Scout works" in Jost 400 ~14px white-85%, with a downward arrow below it that gently bobs (a 2.4s ease-in-out infinite up/down of ~7px with slight opacity pulse).
+
+Entrance animation (important — must be robust):
+
+The resting state of every element is fully visible (opacity 1). Do NOT leave anything stuck at opacity 0.
+On page load, add an is-enter class to the hero, which triggers a staggered fade-up: each element animates from { opacity: 0; transform: translateY(16px) } to to { opacity: 1; transform: translateY(0) } over 1s cubic-bezier(.2,.7,.2,1) with animation-fill-mode: both. Stagger delays: logo .15s, tagline .4s, divider .6s, headline .8s, subhead 1.05s, button 1.3s, scroll cue 1.7s.
+Also run a slow "Ken Burns" zoom on the background photo: scale(1.12) → scale(1.0) over ~26s ease-out.
+Accessibility: wrap all entrance + Ken Burns + arrow-bob animations in @media (prefers-reduced-motion: no-preference) (or disable them under prefers-reduced-motion: reduce) so reduced-motion users see the static, fully-visible hero immediately.
+Responsive / mobile (cellular) requirements — verify these actually work:
+
+Use min-height: 100svh (small viewport height) so mobile browser chrome doesn't crop the hero or cause jump.
+Headline, subhead, and button must never overflow horizontally; keep side padding ≥24px and let the headline scale down via clamp().
+On screens ≤600px: reduce logo size if needed so it fits on one line, shrink the divider, and make sure the subhead max-width collapses to 100% (no awkward narrow column).
+The button stays comfortably tappable (≥44px tall, full readable label, not clipped).
+The scroll cue should not overlap the button on short screens — if space is tight on small phones, it's fine to hide the scroll cue under ~700px height.
+Test both a wide desktop viewport and a ~375px-wide phone viewport; the composition should stay centered and balanced in both.
+The overall feel: calm, premium, editorial — soft seascape, refined serif headline, one decisive ivory button, choreographed fade-in. Keep my logo unchanged.
