@@ -51,7 +51,7 @@ export function PainPoint() {
         fontSize: '1.8vw', fontWeight: 300,
         color: 'rgba(255,255,255,0.35)', letterSpacing: '0.06em'
       }}>
-        scoutcontentstudio.com
+        scoutcontent.studio
       </div>
     </div>
   );

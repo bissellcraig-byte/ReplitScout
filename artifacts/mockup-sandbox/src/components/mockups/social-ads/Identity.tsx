@@ -55,7 +55,7 @@ export function Identity() {
         fontSize: '1.8vw', fontWeight: 400,
         color: '#7c8790', letterSpacing: '0.06em'
       }}>
-        scoutcontentstudio.com
+        scoutcontent.studio
       </div>
     </div>
   );
