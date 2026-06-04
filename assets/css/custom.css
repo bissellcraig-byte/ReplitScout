@@ -1,18 +1,19 @@
-@font-face {
-        font-family: "Acumin Variable Concept";
-        src: url("../fonts/AcuminVariableConcept.otf") format("opentype");
-        font-weight: 100 900;
-        font-style: normal;
-        font-display: swap;
-}
-
 /* Site-wide typography — titles (not logos) */
 h1,
 h2,
 h3,
 h4,
 h5,
-h6,
+h6 {
+        font-family: "Playfair Display", Georgia, "Times New Roman", serif !important;
+        font-style: normal !important;
+        font-weight: 400 !important;
+        letter-spacing: 0.01em !important;
+        text-transform: none !important;
+}
+
+/* Header logo wordmark — excluded from the site-wide Playfair swap; kept on its
+   original Cormorant styling per the "except logos" requirement. */
 #header h1,
 #header h1 a {
         font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif !important;
@@ -22,8 +23,16 @@ h6,
         text-transform: none !important;
 }
 
+/* Site-wide body / subheading text */
+body,
+input,
+select,
+textarea {
+        font-family: "Jost", "Open Sans", Helvetica, sans-serif;
+}
+
 #main > header h2 {
-        font-weight: 300 !important;
+        font-weight: 400 !important;
 }
 
 /* Services page: never hide content behind scroll-reveal / motion layer */
@@ -265,7 +274,7 @@ body.page-services #main > header .services-page-subhead {
 
 body.page-services #main > header .services-page-subhead {
         display: flex;
-        font-family: "Acumin Variable Concept", "Open Sans", Helvetica, sans-serif;
+        font-family: "Jost", "Open Sans", Helvetica, sans-serif;
         font-variation-settings: "wght" 400;
         justify-content: center;
         line-height: 1.65;
@@ -347,7 +356,7 @@ body.page-services .wrapper.style5 .inner .service-heading-row .price-tag {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        font-family: "Acumin Variable Concept", "Open Sans", Helvetica, sans-serif;
+        font-family: "Jost", "Open Sans", Helvetica, sans-serif;
         font-size: 0.82em;
         font-variation-settings: "wght" 600;
         font-weight: 600;
@@ -428,7 +437,7 @@ input[type="submit"],
 input[type="reset"],
 input[type="button"],
 .button {
-        font-family: "Acumin Variable Concept", "Open Sans", Helvetica, sans-serif !important;
+        font-family: "Jost", "Open Sans", Helvetica, sans-serif !important;
         font-variation-settings: "wght" 400;
 }
 
@@ -911,7 +920,7 @@ body.landing #header nav {
 
 body.landing #header nav > ul > li > a {
         color: #ffffff;
-        font-family: "Acumin Variable Concept", "Open Sans", Helvetica, sans-serif;
+        font-family: "Jost", "Open Sans", Helvetica, sans-serif;
         font-size: 14px;
         font-variation-settings: "wght" 500;
         font-weight: 500;
@@ -1208,7 +1217,7 @@ button.primary:active,
 
 #two.scout-standards-section .scout-standard-copy p {
         color: rgba(255, 255, 255, 0.88);
-        font-family: "Acumin Variable Concept", "Open Sans", Helvetica, sans-serif;
+        font-family: "Jost", "Open Sans", Helvetica, sans-serif;
         font-size: 1.1rem;
         font-variation-settings: "wght" 400;
         font-weight: 400;
@@ -1291,7 +1300,7 @@ button.primary:active,
         align-items: center;
         border-radius: 10px;
         display: inline-flex;
-        font-family: "Acumin Variable Concept", "Open Sans", Helvetica, sans-serif;
+        font-family: "Jost", "Open Sans", Helvetica, sans-serif;
         font-size: 1em !important;
         font-weight: 600;
         height: auto;

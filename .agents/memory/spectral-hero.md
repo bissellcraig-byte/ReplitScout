@@ -12,9 +12,12 @@ description: Non-obvious traps when customizing the #banner hero of the Spectral
   **Why:** symptom is "my hero photo doesn't show even though the img/div is there."
 
 - **Site-wide `!important` typography must be beaten with `!important`.** custom.css
-  sets global heading font (Cormorant) and body/button font (Acumin) with
-  `!important`, and the primary button has a sage style with `!important`. Any hero
-  type/button override therefore also needs `!important` to win.
+  sets the global heading font (Playfair Display), the body/subheading font (Jost),
+  and the primary button style with `!important`. Any per-element type/button
+  override therefore also needs `!important` to win. The header logo wordmark
+  (`#header h1`, `#header h1 a`) is intentionally kept on Cormorant Garamond and
+  excluded from the global heading swap (it counts as a logo). Playfair's lightest
+  weight is 400 (no 300), so heading weights use 400+.
 
 - **`!important` declarations override CSS animations.** Per the CSS spec, an
   `!important` author rule beats keyframe animation values. So `transform: none !important`
