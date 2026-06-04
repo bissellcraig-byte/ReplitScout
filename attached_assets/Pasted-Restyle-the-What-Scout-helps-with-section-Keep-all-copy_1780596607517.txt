@@ -1,0 +1,39 @@
+Restyle the "What Scout helps with" section. Keep all copy, the six items, their icons, the section heading, and the Menu button exactly as they are — only change the visual styling of the cards and layout. Plain HTML + CSS. The page background in this section is sage green; do not change it. Make sure mobile/cellular layout still works perfectly after the change (see responsive rules at the end).
+
+Fonts (already on the site): Playfair Display (500) for the section heading and each card title; Jost (300, 400, 500) for the subhead, body copy, Menu, and the small "Learn more" label.
+
+Colors:
+
+Section background: keep the existing sage. (If you want the subtle depth I used: linear-gradient(180deg, #8c9d91 0%, #84958a 100%).)
+Card face: ivory #f4f1ea
+Card title text: ink #26313a
+Card body text: ink at ~72% opacity
+Icon chip: filled navy #2e3842 with ivory #f4f1ea glyph
+"Learn more" label: navy #2e3842
+Header (unchanged content, keep centered): heading "What Scout helps with" in Playfair Display 500, a thin 200px white-55% hairline rule under it, then the subhead "Start with the problem in front of you. Scout can build, write, map, or optimize from there." in Jost 300, white-90%. Keep the Menu button (text + hamburger) in the top-right.
+
+Cards — the key change. Replace the flat translucent grid with solid ivory cards:
+
+2-column CSS grid, gap: 22px, max-width: 1120px, centered.
+Each card: ivory background, padding: 38px 40px 34px, a barely-there 1px solid rgba(38,49,58,.08) border, and a soft shadow 0 10px 26px rgba(40,52,60,.12). Square corners (no rounding) to match the brand's editorial feel.
+Card top row (flex, align-center, gap 18px): a 52×52 filled navy icon chip (square, navy #2e3842 background, the existing icon centered in ivory at ~24px), followed by the title in Playfair Display 500, ~27px, ink.
+Below: the description in Jost 400, ~16.5px, line-height 1.66, ink-72%, text-wrap: pretty.
+Below that: a small "Learn more →" label in Jost 500, 12px, uppercase, letter-spacing .18em, navy. Keep it hidden by default (opacity: 0; transform: translateY(4px)), and on card hover fade it in and slide the arrow right ~5px.
+Hover state: the card lifts (transform: translateY(-5px)) with a deeper shadow 0 26px 50px rgba(40,52,60,.22), smooth .3s transition. Do NOT add any growing underline or bottom border — lift + shadow only.
+
+Six items (unchanged copy, in this order):
+
+Websites (globe icon) — "Clear, manageable websites for therapists and behavioral health practices that need better structure, stronger copy, and fewer dead ends."
+Applications (</> code icon) — "Focused applications for intake, referrals, resource libraries, internal workflows, and other practice problems that need a custom tool."
+Marketing (line-chart icon) — "Positioning, website copy, service pages, calls to action, and campaign language that sound specific without becoming manipulative."
+AI workflows (sparkles icon — use a clean two-star "sparkles" glyph, not a wand) — "AI-supported workflow planning for repetitive administrative work, with human review points and clear privacy boundaries."
+SEO and AI-search (magnifier icon) — "Search engine optimization and AI-search content that helps your practice get found, understood, and represented more accurately."
+Intake path audits (connected-nodes / share icon) — "A practical review of what happens from first website visit to first response, including where people get stuck or lose confidence."
+Responsive / mobile (must verify — do not let the redesign break mobile):
+
+Under ~760px: collapse the grid to a single column (grid-template-columns: 1fr), reduce gap to ~16px, and reduce section side padding to ~22px.
+Move/keep the Menu button accessible in the top-right with reduced padding (~22px) and ensure it doesn't overlap the heading.
+Cards must be full-width on mobile with no horizontal overflow; icon chip + title stay on one row, body wraps normally.
+Hover effects are desktop niceties — make sure cards are fully legible and tappable without hover (don't hide any essential content behind hover; only the "Learn more" affordance is hover-revealed, and that's optional flourish, not required info).
+Test at ~375px wide: titles, body, and chips should all fit cleanly with comfortable spacing.
+The result: warm ivory cards with navy icon chips and Playfair titles on the sage background — higher contrast and more premium than the current flat grid, and visually consistent with the ivory primary button in the hero. Same copy, same icons, mobile fully intact.
