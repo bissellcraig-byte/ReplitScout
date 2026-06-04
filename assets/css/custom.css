@@ -1293,26 +1293,50 @@ button.primary:active,
 }
 
 /* CTA buttons — readable (no all-caps), rounded, full text visible */
+/* CTA buttons — editorial system matching hero ivory button */
 #cta .inner .actions .button {
         align-items: center;
-        border-radius: 10px;
+        border-radius: 0 !important;
+        box-shadow: none;
         display: inline-flex;
-        font-family: "Jost", "Open Sans", Helvetica, sans-serif;
-        font-size: 1em !important;
-        font-weight: 600;
+        font-family: "Jost", "Open Sans", Helvetica, sans-serif !important;
+        font-size: 15px !important;
+        font-weight: 500 !important;
         height: auto;
         justify-content: center;
-        letter-spacing: 0 !important;
-        line-height: 1.2;
+        letter-spacing: 0.14em !important;
+        line-height: 1;
+        min-height: 44px;
         overflow: visible;
-        padding: 1.1em 1.5em;
-        text-overflow: clip;
-        text-transform: none !important;
+        padding: 18px 38px !important;
+        text-transform: uppercase !important;
+        transition: background-color 0.28s ease, transform 0.28s ease, box-shadow 0.28s ease !important;
         white-space: nowrap;
 }
 
+/* Primary — ivory fill, ink text (matches hero button) */
 #cta .inner .actions .button.primary {
-        border: 1px solid rgba(255, 255, 255, 0.85) !important;
+        background-color: #f4f1ea !important;
+        border: 0 !important;
+        color: #26313a !important;
+}
+
+#cta .inner .actions .button.primary:hover {
+        background-color: #ffffff !important;
+        box-shadow: 0 16px 40px rgba(20, 30, 38, 0.22) !important;
+        transform: translateY(-2px);
+}
+
+/* Secondary — white ghost outline */
+#cta .inner .actions .button:not(.primary) {
+        background-color: transparent !important;
+        border: 1px solid rgba(255, 255, 255, 0.55) !important;
+        color: #ffffff !important;
+}
+
+#cta .inner .actions .button:not(.primary):hover {
+        background-color: rgba(255, 255, 255, 0.1) !important;
+        transform: translateY(-2px);
 }
 
 @media screen and (max-width: 980px) {
