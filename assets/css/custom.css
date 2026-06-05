@@ -786,13 +786,15 @@ body.is-preload #banner .banner-headline {
 }
 
 /* Services page — SCOUT-only logo in top bar */
-body.page-services #header h1 {
+body.page-services #header h1,
+body.page-project-examples #header h1 {
         height: 3.2em;
         opacity: 1 !important;
         pointer-events: auto !important;
 }
 
-body.page-services #header {
+body.page-services #header,
+body.page-project-examples #header {
         background: #2e3842;
         display: flex;
         align-items: center;
@@ -802,11 +804,13 @@ body.page-services #header {
         padding: 0 48px;
 }
 
-body.page-services #page-wrapper {
+body.page-services #page-wrapper,
+body.page-project-examples #page-wrapper {
         padding-top: 74px;
 }
 
-body.page-services #header h1 {
+body.page-services #header h1,
+body.page-project-examples #header h1 {
         align-items: center;
         display: flex;
         height: auto;
@@ -816,12 +820,14 @@ body.page-services #header h1 {
         transform: none;
 }
 
-body.page-services #header nav {
+body.page-services #header nav,
+body.page-project-examples #header nav {
         position: static;
         height: 74px;
 }
 
-body.page-services #header nav > ul > li > a.menuToggle {
+body.page-services #header nav > ul > li > a.menuToggle,
+body.page-project-examples #header nav > ul > li > a.menuToggle {
         display: flex;
         align-items: center;
         gap: 14px;
@@ -829,11 +835,13 @@ body.page-services #header nav > ul > li > a.menuToggle {
         padding: 0;
 }
 
-body.page-services #header nav > ul > li > a.menuToggle:after {
+body.page-services #header nav > ul > li > a.menuToggle:after,
+body.page-project-examples #header nav > ul > li > a.menuToggle:after {
         display: none;
 }
 
-body.page-services #header nav > ul > li > a.menuToggle .menu-label {
+body.page-services #header nav > ul > li > a.menuToggle .menu-label,
+body.page-project-examples #header nav > ul > li > a.menuToggle .menu-label {
         color: #ffffff;
         display: inline-block;
         font-family: "Jost", "Open Sans", Helvetica, sans-serif;
@@ -843,7 +851,8 @@ body.page-services #header nav > ul > li > a.menuToggle .menu-label {
         text-transform: uppercase;
 }
 
-body.page-services #header nav > ul > li > a.menuToggle .menu-hamburger {
+body.page-services #header nav > ul > li > a.menuToggle .menu-hamburger,
+body.page-project-examples #header nav > ul > li > a.menuToggle .menu-hamburger {
         display: inline-flex;
         flex-direction: column;
         justify-content: center;
@@ -851,7 +860,8 @@ body.page-services #header nav > ul > li > a.menuToggle .menu-hamburger {
         width: 30px;
 }
 
-body.page-services #header nav > ul > li > a.menuToggle .menu-hamburger i {
+body.page-services #header nav > ul > li > a.menuToggle .menu-hamburger i,
+body.page-project-examples #header nav > ul > li > a.menuToggle .menu-hamburger i {
         background: #ffffff;
         display: block;
         height: 2px;
@@ -859,11 +869,13 @@ body.page-services #header nav > ul > li > a.menuToggle .menu-hamburger i {
 }
 
 @media screen and (max-width: 767px) {
-        body.page-services #header {
+        body.page-services #header,
+        body.page-project-examples #header {
                 padding: 0 20px;
         }
 
-        body.page-services #header nav > ul > li > a.menuToggle .menu-label {
+        body.page-services #header nav > ul > li > a.menuToggle .menu-label,
+        body.page-project-examples #header nav > ul > li > a.menuToggle .menu-label {
                 display: inline-block;
         }
 }
