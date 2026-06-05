@@ -849,7 +849,8 @@ body.page-services #header nav > ul > li > a.menuToggle .menu-hamburger i {
         }
 }
 
-body.page-services #header h1 .header-scout-logo-link {
+body.page-services #header h1 .header-scout-logo-link,
+body.page-project-examples #header h1 .header-scout-logo-link {
         align-items: center;
         background: transparent;
         border: 0;
@@ -859,14 +860,16 @@ body.page-services #header h1 .header-scout-logo-link {
         padding: 0.45em 0;
 }
 
-body.page-services #header .header-scout-logo-crop {
+body.page-services #header .header-scout-logo-crop,
+body.page-project-examples #header .header-scout-logo-crop {
         display: block;
         height: 2em;
         overflow: hidden;
         width: 7.625em;
 }
 
-body.page-services #header .header-scout-logo {
+body.page-services #header .header-scout-logo,
+body.page-project-examples #header .header-scout-logo {
         display: block;
         height: auto;
         margin: 0;
@@ -875,12 +878,14 @@ body.page-services #header .header-scout-logo {
 }
 
 @media screen and (max-width: 736px) {
-        body.page-services #header .header-scout-logo-crop {
+        body.page-services #header .header-scout-logo-crop,
+        body.page-project-examples #header .header-scout-logo-crop {
                 height: 1.5625em;
                 width: 5.75em;
         }
 
-        body.page-services #header .header-scout-logo {
+        body.page-services #header .header-scout-logo,
+        body.page-project-examples #header .header-scout-logo {
                 width: 5.75em;
         }
 }
