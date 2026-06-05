@@ -355,7 +355,7 @@ body.page-project-examples .pe-feature__text {
 }
 
 body.page-project-examples .pe-feature__kicker {
-        color: #87a59c;
+        color: rgba(244, 241, 234, 0.7);
         display: block;
         font-family: "Jost", "Open Sans", Helvetica, sans-serif;
         font-size: 12px;
