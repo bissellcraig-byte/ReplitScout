@@ -105,7 +105,8 @@ body.page-services #main > header h2 {
         line-height: 1.15 !important;
 }
 
-body.page-services #main > header.svc-hero {
+body.page-services #main > header.svc-hero,
+body.page-project-examples #main > header.svc-hero {
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         background-attachment: scroll !important;
@@ -120,11 +121,14 @@ body.page-services #main > header.svc-hero {
 }
 
 body.page-services #main > header.svc-hero,
-body.page-services #main > header.svc-hero * {
+body.page-services #main > header.svc-hero *,
+body.page-project-examples #main > header.svc-hero,
+body.page-project-examples #main > header.svc-hero * {
         box-sizing: border-box;
 }
 
-body.page-services #main > header.svc-hero::before {
+body.page-services #main > header.svc-hero::before,
+body.page-project-examples #main > header.svc-hero::before {
         background-color: transparent;
         background-image: url("../../images/banner.jpg");
         background-position: center center;
@@ -138,7 +142,8 @@ body.page-services #main > header.svc-hero::before {
         z-index: 0;
 }
 
-body.page-services #main > header.svc-hero .svc-hero__scrim {
+body.page-services #main > header.svc-hero .svc-hero__scrim,
+body.page-project-examples #main > header.svc-hero .svc-hero__scrim {
         background:
                 linear-gradient(180deg, rgba(26, 34, 41, 0.42), rgba(26, 34, 41, 0) 32%),
                 linear-gradient(360deg, rgba(20, 27, 33, 0.86) 4%, rgba(20, 27, 33, 0.34) 38%, rgba(20, 27, 33, 0) 64%);
@@ -148,7 +153,8 @@ body.page-services #main > header.svc-hero .svc-hero__scrim {
         z-index: 1;
 }
 
-body.page-services #main > header.svc-hero .svc-hero__frame {
+body.page-services #main > header.svc-hero .svc-hero__frame,
+body.page-project-examples #main > header.svc-hero .svc-hero__frame {
         border: 1px solid rgba(255, 255, 255, 0.4);
         display: flex;
         flex-direction: column;
@@ -159,7 +165,8 @@ body.page-services #main > header.svc-hero .svc-hero__frame {
         z-index: 2;
 }
 
-body.page-services #main > header.svc-hero .svc-hero__top {
+body.page-services #main > header.svc-hero .svc-hero__top,
+body.page-project-examples #main > header.svc-hero .svc-hero__top {
         color: rgba(255, 255, 255, 0.82);
         display: flex;
         font-family: "Jost", "Open Sans", Helvetica, sans-serif;
@@ -170,7 +177,8 @@ body.page-services #main > header.svc-hero .svc-hero__top {
         text-transform: uppercase;
 }
 
-body.page-services #main > header.svc-hero .svc-hero__headline {
+body.page-services #main > header.svc-hero .svc-hero__headline,
+body.page-project-examples #main > header.svc-hero .svc-hero__headline {
         color: #ffffff;
         font-family: "Playfair Display", Georgia, "Times New Roman", serif !important;
         font-size: 66px !important;
@@ -181,13 +189,15 @@ body.page-services #main > header.svc-hero .svc-hero__headline {
         margin: 0 0 0 0 !important;
 }
 
-body.page-services #main > header.svc-hero .svc-hero__headline em {
+body.page-services #main > header.svc-hero .svc-hero__headline em,
+body.page-project-examples #main > header.svc-hero .svc-hero__headline em {
         color: rgba(255, 255, 255, 0.92);
         font-style: italic;
         font-weight: 400;
 }
 
-body.page-services #main > header.svc-hero .svc-hero__footer {
+body.page-services #main > header.svc-hero .svc-hero__footer,
+body.page-project-examples #main > header.svc-hero .svc-hero__footer {
         align-items: flex-end;
         border-top: 1px solid rgba(255, 255, 255, 0.28);
         display: flex;
@@ -197,7 +207,8 @@ body.page-services #main > header.svc-hero .svc-hero__footer {
         padding-top: 24px;
 }
 
-body.page-services #main > header.svc-hero .svc-hero__caption {
+body.page-services #main > header.svc-hero .svc-hero__caption,
+body.page-project-examples #main > header.svc-hero .svc-hero__caption {
         color: rgba(255, 255, 255, 0.82);
         font-family: "Jost", "Open Sans", Helvetica, sans-serif;
         font-size: 17px;
@@ -207,7 +218,8 @@ body.page-services #main > header.svc-hero .svc-hero__caption {
         max-width: 42ch;
 }
 
-body.page-services #main > header.svc-hero .svc-hero__cta {
+body.page-services #main > header.svc-hero .svc-hero__cta,
+body.page-project-examples #main > header.svc-hero .svc-hero__cta {
         align-items: center;
         border: 1px solid rgba(255, 255, 255, 0.55);
         color: #ffffff;
@@ -224,36 +236,43 @@ body.page-services #main > header.svc-hero .svc-hero__cta {
         white-space: nowrap;
 }
 
-body.page-services #main > header.svc-hero .svc-hero__cta:hover {
+body.page-services #main > header.svc-hero .svc-hero__cta:hover,
+body.page-project-examples #main > header.svc-hero .svc-hero__cta:hover {
         background: rgba(255, 255, 255, 0.1);
 }
 
-body.page-services #main > header.svc-hero .svc-hero__arrow {
+body.page-services #main > header.svc-hero .svc-hero__arrow,
+body.page-project-examples #main > header.svc-hero .svc-hero__arrow {
         display: inline-block;
         transition: transform 0.25s ease !important;
 }
 
-body.page-services #main > header.svc-hero .svc-hero__cta:hover .svc-hero__arrow {
+body.page-services #main > header.svc-hero .svc-hero__cta:hover .svc-hero__arrow,
+body.page-project-examples #main > header.svc-hero .svc-hero__cta:hover .svc-hero__arrow {
         transform: translateX(5px) !important;
 }
 
 @media screen and (max-width: 767px) {
-        body.page-services #main > header.svc-hero .svc-hero__frame {
+        body.page-services #main > header.svc-hero .svc-hero__frame,
+        body.page-project-examples #main > header.svc-hero .svc-hero__frame {
                 inset: 16px;
                 padding: 20px;
         }
 
-        body.page-services #main > header.svc-hero .svc-hero__headline {
+        body.page-services #main > header.svc-hero .svc-hero__headline,
+        body.page-project-examples #main > header.svc-hero .svc-hero__headline {
                 font-size: 40px !important;
         }
 
-        body.page-services #main > header.svc-hero .svc-hero__footer {
+        body.page-services #main > header.svc-hero .svc-hero__footer,
+        body.page-project-examples #main > header.svc-hero .svc-hero__footer {
                 align-items: flex-start;
                 flex-direction: column;
                 gap: 18px;
         }
 
-        body.page-services #main > header.svc-hero .svc-hero__top {
+        body.page-services #main > header.svc-hero .svc-hero__top,
+        body.page-project-examples #main > header.svc-hero .svc-hero__top {
                 font-size: 11px;
                 letter-spacing: 0.24em;
         }
