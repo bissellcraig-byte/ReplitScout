@@ -278,6 +278,53 @@ body.page-project-examples #main > header.svc-hero .svc-hero__cta:hover .svc-her
         }
 }
 
+/* Project examples — ivory card hero with navy text (no photo) */
+body.page-project-examples #main > header.svc-hero {
+        background-color: #f4f1ea !important;
+}
+
+body.page-project-examples #main > header.svc-hero::before {
+        display: none !important;
+}
+
+body.page-project-examples #main > header.svc-hero .svc-hero__scrim {
+        display: none !important;
+}
+
+body.page-project-examples #main > header.svc-hero .svc-hero__frame {
+        border-color: rgba(46, 56, 66, 0.28);
+}
+
+body.page-project-examples #main > header.svc-hero .svc-hero__top {
+        color: rgba(46, 56, 66, 0.72);
+}
+
+body.page-project-examples #main > header.svc-hero .svc-hero__headline {
+        color: #2e3842;
+}
+
+body.page-project-examples #main > header.svc-hero .svc-hero__headline em {
+        color: #2e3842;
+}
+
+body.page-project-examples #main > header.svc-hero .svc-hero__footer {
+        border-top-color: rgba(46, 56, 66, 0.22);
+}
+
+body.page-project-examples #main > header.svc-hero .svc-hero__caption {
+        color: rgba(38, 49, 58, 0.82);
+}
+
+body.page-project-examples #main > header.svc-hero .svc-hero__cta {
+        border-color: rgba(46, 56, 66, 0.55);
+        color: #2e3842;
+}
+
+body.page-project-examples #main > header.svc-hero .svc-hero__cta:hover {
+        background: #2e3842;
+        color: #f4f1ea;
+}
+
 body.page-services #main > header h2,
 body.page-services #main > header .services-page-subhead {
         position: relative;
