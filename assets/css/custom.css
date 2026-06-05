@@ -383,6 +383,27 @@ body.page-project-examples .pe-feature__desc {
         margin: 0;
 }
 
+/* Alternate variant — off-white background, navy frame + text */
+body.page-project-examples #main > .pe-feature--alt {
+        background: #f4f1ea;
+}
+
+body.page-project-examples .pe-feature--alt .pe-feature__frame {
+        background: #2e3842;
+}
+
+body.page-project-examples .pe-feature--alt .pe-feature__kicker {
+        color: rgba(46, 56, 66, 0.7);
+}
+
+body.page-project-examples .pe-feature--alt .pe-feature__title {
+        color: #2e3842 !important;
+}
+
+body.page-project-examples .pe-feature--alt .pe-feature__desc {
+        color: rgba(38, 49, 58, 0.82);
+}
+
 @media screen and (max-width: 736px) {
         body.page-project-examples #main > .pe-feature {
                 padding: 56px 20px;
