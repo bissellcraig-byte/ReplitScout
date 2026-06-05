@@ -337,7 +337,7 @@ body.page-project-examples .pe-feature__inner {
 }
 
 body.page-project-examples .pe-feature__frame {
-        background: #000000;
+        background: #ffffff;
         border-radius: 2px;
         box-shadow: 0 26px 60px rgba(12, 18, 23, 0.4);
         padding: 16px;
@@ -389,7 +389,7 @@ body.page-project-examples #main > .pe-feature--alt {
 }
 
 body.page-project-examples .pe-feature--alt .pe-feature__frame {
-        background: #000000;
+        background: #ffffff;
 }
 
 body.page-project-examples .pe-feature--alt .pe-feature__kicker {
