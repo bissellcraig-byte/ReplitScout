@@ -1,0 +1,29 @@
+These are examples, not case studies
+The examples below are composite and generalized. They show types of Scout projects, not patient outcomes, client testimonials, or promises of results.
+
+Each example focuses on an operational problem a practice owner might recognize: unclear fit, intake friction, weak service pages, workflow clutter, or search content that does not accurately represent the practice.
+
+Example project types
+A private practice website that sounds warm but vague
+The practice has a clean site, but every page uses the same familiar therapy language. Scout rewrites the homepage, service pages, calls to action, and inquiry path so visitors can understand who the practice helps, what services mean, and what happens next.
+
+A group practice intake path with too many dead ends
+People can submit a form, leave a voicemail, or email the office, but each path sets different expectations. Scout maps the intake handoff, simplifies the website copy, clarifies response expectations, and recommends a cleaner form structure.
+
+A referral workflow living in email threads
+A behavioral health team is tracking referrals through scattered messages and spreadsheets. Scout builds a narrow internal application that organizes referral status, next steps, and team handoff without trying to replace the practice management system.
+
+A practice that wants AI help without losing judgment
+The team wants to reduce repetitive admin work but does not want AI making clinical decisions. Scout maps the workflow, identifies safe support tasks, writes human review points, and documents privacy boundaries before anything is automated.
+
+Service pages that need search structure without diagnosis-bait
+The practice wants to be easier to find in search and AI-search results, but does not want manipulative symptom pages. Scout structures service content around real fit questions, clear definitions, useful FAQs, metadata, and ethical internal links.
+
+A launch that needs simple, usable handoff materials
+The website is ready, but the practice needs to maintain it after launch. Scout provides plain-language documentation for page updates, inquiry paths, content review, and what to check before publishing changes.
+
+What a good example should show
+A good Scout project example should show the problem, the digital work, and the practical improvement in clarity. It should not claim that a website caused a clinical outcome or guaranteed a business result.
+
+The point is to make the work concrete. A clearer page, a cleaner intake path, or a focused application can reduce uncertainty. It cannot promise that every visitor will become a client.
+
