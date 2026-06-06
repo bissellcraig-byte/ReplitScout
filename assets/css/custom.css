@@ -2949,3 +2949,62 @@ body.page-work-with-us .inq .cta .btn-out:hover {
 body.page-project-examples .wrapper.style5 {
         background: #f4f1ea;
 }
+
+/* =========================================================================
+   MOBILE RESPONSIVE PASS — touch ergonomics (added, not edited)
+   Every rule below lives inside a max-width media query, so desktop
+   (>= 769px) renders identically to before. This closes the remaining
+   tap-target gaps found on small screens; the site was already
+   single-column, overflow-free, and using >=16px form inputs.
+   ========================================================================= */
+@media screen and (max-width: 768px) {
+
+        /* Home hero "Menu" trigger is the primary nav on the landing page but
+           renders as a ~15px-tall text link. Give it a >=44px touch target.
+           Only vertical growth (no horizontal margin) to avoid any overflow. */
+        body.landing #header nav > ul > li > a.menuToggle {
+                min-height: 44px;
+                padding: 6px 4px;
+        }
+
+        /* Before / after toggle buttons sit just under 44px tall. */
+        body.page-project-examples .ba-toggle__btn {
+                align-items: center;
+                display: inline-flex;
+                justify-content: center;
+                min-height: 44px;
+        }
+
+        /* Footer social icons are ~18px glyph links; give each a 44x44 target. */
+        #footer .icons a {
+                align-items: center;
+                display: inline-flex;
+                justify-content: center;
+                min-height: 44px;
+                min-width: 44px;
+        }
+
+        /* Footer navigation links are short and clustered; expand each into a
+           comfortable 44px target with breathing room between neighbours. */
+        #footer .footer-nav li {
+                margin: 2px 0.4em;
+        }
+
+        #footer .footer-nav a {
+                align-items: center;
+                display: inline-flex;
+                justify-content: center;
+                min-height: 44px;
+                padding: 0 8px;
+        }
+
+        /* Standalone email / phone links in the footer. */
+        #footer p > a[href^="mailto:"],
+        #footer p > a[href^="tel:"] {
+                align-items: center;
+                display: inline-flex;
+                justify-content: center;
+                min-height: 44px;
+                padding: 0 6px;
+        }
+}
