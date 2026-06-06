@@ -1,0 +1,34 @@
+Build the hero for the "Work With Us" page. Plain HTML + CSS. The look is a cream "paper" card with a thin keyline frame — calm, editorial, premium — with three team headshots stepped on the right. Match this exact style and make sure mobile/cellular works (responsive rules at the end).
+
+Fonts (Google Fonts): Playfair Display (400, 500, plus italic 400/500) for the headline; Jost (300, 400, 500) for the eyebrow labels, subhead, and button.
+
+Colors:
+
+Paper background: #f3efe6
+Ink (headline + button + arrow): #2f3a44
+Muted (eyebrow labels, subhead): #8a9097
+Hairline / frame / rule: rgba(47,58,68,.26)
+Structure — a full-width hero section:
+
+Section background is paper #f3efe6, padding 30px all around.
+Inside, a keyline frame: 1px solid rgba(47,58,68,.26), padding 54px 60px, holding all content. Square corners (no rounding anywhere).
+Eyebrow row (top of the frame, flex space-between, baseline-aligned): left label "WORK WITH US", right label "BEHAVIORAL HEALTH". Both Jost 400, 13px, uppercase, letter-spacing: .28em, color muted.
+
+Body — two columns (CSS grid 1fr 1.05fr, gap 56px, vertically centered, margin-top ~30px):
+
+Left column (flex-column, gap ~30px):
+
+Headline — Playfair Display, font-size: clamp(40px, 5.2vw, 72px), line-height: 1.02, ink. Two lines: "Real people," in weight 500, then a line break, then "real partnership." in italic, weight 400. (Copy is placeholder — easy to swap.)
+A short hairline rule: 80px wide, 1px, hairline color.
+Subhead — Jost 400, 14px, letter-spacing: .2em, line-height: 1.85, uppercase, muted, max-width ~34ch: "A SMALL STUDIO THAT BUILDS, WRITES, AND SHIPS DIGITAL WORK FOR BEHAVIORAL HEALTH PRACTICES."
+Button (outlined, self-start): border: 1px solid #2f3a44, ink text, transparent bg, Jost 500, 13px, letter-spacing: .22em, padding 17px 30px, label "START A PROJECT" followed by a "→". On hover: fill ink (background:#2f3a44), text turns paper #f3efe6, and the arrow nudges right ~5px. Smooth .28s transitions.
+Right column — stepped photo gallery: a 3-column grid (repeat(3,1fr), gap 16px, items vertically centered). Each photo is a figure with aspect-ratio: 4/5, overflow: hidden, dark fallback bg #20262c, and an img at width/height 100%, object-fit: cover. Use the three provided headshots in this order: left = the man with locs/glasses, center = the woman, right = the man in the linen shirt. Stagger them vertically for an editorial rhythm: left photo translateY(26px), center photo translateY(-14px), right photo translateY(34px). (The headshots already have dark backgrounds with a gold keyline — keep them as-is; they're meant to sit as dark framed portraits on the cream.)
+
+Responsive / mobile (must work — verify at ~375px):
+
+Reduce section padding to ~16px and frame padding to ~`30px 24px` under 760px.
+Collapse the body grid to a single column (text first, then the photo gallery below), gap ~38px.
+Remove the vertical stagger on mobile (set all three photos' transform: none) so they line up in a tidy 3-up row; they can stay a 3-column grid or wrap — whichever keeps them from getting too small. Ensure no horizontal overflow.
+Headline scales down via the clamp(); eyebrow row stays space-between (it's fine if the two labels sit on one line).
+Button stays full-readable and ≥44px tall for touch.
+The result: a cream keyline "paper" hero, Playfair headline with an italic accent, tracked labels, an outlined CTA, and three dark framed portraits stepped on the right — consistent with the brand's editorial card. Keep the three photos as provided; copy can be swapped later.
