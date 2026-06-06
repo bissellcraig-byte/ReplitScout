@@ -1,33 +1,32 @@
 (function () {
-	"use strict";
+        "use strict";
 
-	function init(slider) {
-		var range = slider.querySelector(".ba-slider__range");
-		if (!range) {
-			return;
-		}
+        function init(toggle) {
+                toggle.dataset.state = "after";
 
-		function setPosition(value) {
-			slider.style.setProperty("--pos", value + "%");
-		}
+                var btns = toggle.querySelectorAll(".ba-toggle__btn");
 
-		setPosition(range.value);
+                btns.forEach(function (btn) {
+                        btn.addEventListener("click", function () {
+                                var state = btn.dataset.ba;
+                                toggle.dataset.state = state;
+                                btns.forEach(function (b) {
+                                        var active = b.dataset.ba === state;
+                                        b.classList.toggle("is-active", active);
+                                        b.setAttribute("aria-pressed", active ? "true" : "false");
+                                });
+                        });
+                });
+        }
 
-		range.addEventListener("input", function () {
-			setPosition(range.value);
-		});
-	}
+        function boot() {
+                var toggles = document.querySelectorAll("[data-ba-toggle]");
+                toggles.forEach(init);
+        }
 
-	function boot() {
-		var sliders = document.querySelectorAll("[data-ba-slider]");
-		for (var i = 0; i < sliders.length; i++) {
-			init(sliders[i]);
-		}
-	}
-
-	if (document.readyState === "loading") {
-		document.addEventListener("DOMContentLoaded", boot);
-	} else {
-		boot();
-	}
+        if (document.readyState === "loading") {
+                document.addEventListener("DOMContentLoaded", boot);
+        } else {
+                boot();
+        }
 })();

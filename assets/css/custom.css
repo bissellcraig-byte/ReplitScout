@@ -349,135 +349,86 @@ body.page-project-examples .pe-feature__img {
         width: 100%;
 }
 
-/* Before / after comparison slider */
-body.page-project-examples .ba-slider {
-        --pos: 50%;
-        display: block;
+/* Before / after button toggle */
+body.page-project-examples .ba-toggle {
+        width: 100%;
+}
+
+body.page-project-examples .ba-toggle__stage {
         line-height: 0;
         overflow: hidden;
         position: relative;
-        -webkit-user-select: none;
-        user-select: none;
         width: 100%;
 }
 
-body.page-project-examples .ba-slider > .ba-slider__img {
+body.page-project-examples .ba-toggle__img--after {
         display: block;
         height: auto;
+        transition: opacity 0.35s ease;
         width: 100%;
 }
 
-body.page-project-examples .ba-slider__before {
-        -webkit-clip-path: inset(0 calc(100% - var(--pos)) 0 0);
-        clip-path: inset(0 calc(100% - var(--pos)) 0 0);
+body.page-project-examples .ba-toggle__img--before {
+        display: block;
         height: 100%;
-        left: 0;
-        position: absolute;
-        top: 0;
-        width: 100%;
-        z-index: 2;
-}
-
-body.page-project-examples .ba-slider__before .ba-slider__img {
-        height: 100%;
-        left: 0;
+        inset: 0;
         -o-object-fit: cover;
         object-fit: cover;
         position: absolute;
-        top: 0;
+        transition: opacity 0.35s ease;
         width: 100%;
 }
 
-body.page-project-examples .ba-slider__after {
-        -webkit-clip-path: inset(0 0 0 var(--pos));
-        clip-path: inset(0 0 0 var(--pos));
-        height: 100%;
-        left: 0;
-        pointer-events: none;
-        position: absolute;
-        top: 0;
-        width: 100%;
-        z-index: 2;
+body.page-project-examples [data-ba-toggle][data-state="after"] .ba-toggle__img--after {
+        opacity: 1;
 }
 
-body.page-project-examples .ba-slider__handle {
-        bottom: 0;
-        left: var(--pos);
-        pointer-events: none;
-        position: absolute;
-        top: 0;
-        transform: translateX(-50%);
-        z-index: 3;
+body.page-project-examples [data-ba-toggle][data-state="after"] .ba-toggle__img--before {
+        opacity: 0;
 }
 
-body.page-project-examples .ba-slider__handle::before {
-        background: #ffffff;
-        bottom: 0;
-        box-shadow: 0 0 0 1px rgba(20, 27, 33, 0.18);
-        content: "";
-        left: 50%;
-        position: absolute;
-        top: 0;
-        transform: translateX(-50%);
-        width: 2px;
+body.page-project-examples [data-ba-toggle][data-state="before"] .ba-toggle__img--after {
+        opacity: 0;
 }
 
-body.page-project-examples .ba-slider__knob {
-        align-items: center;
-        background: #ffffff;
-        border-radius: 50%;
-        box-shadow: 0 4px 14px rgba(12, 18, 23, 0.35);
-        color: #2e3842;
+body.page-project-examples [data-ba-toggle][data-state="before"] .ba-toggle__img--before {
+        opacity: 1;
+}
+
+body.page-project-examples .ba-toggle__controls {
         display: flex;
-        font-family: "Jost", "Open Sans", Helvetica, sans-serif;
-        font-size: 18px;
-        height: 44px;
-        justify-content: center;
-        left: 50%;
-        line-height: 1;
-        position: absolute;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        width: 44px;
+        gap: 0;
+        margin-top: 12px;
 }
 
-body.page-project-examples .ba-slider:focus-within .ba-slider__knob {
-        box-shadow: 0 0 0 3px #87a59c, 0 4px 14px rgba(12, 18, 23, 0.35);
-}
-
-body.page-project-examples .ba-slider__tag {
-        background: rgba(20, 27, 33, 0.72);
-        color: #f4f1ea;
+body.page-project-examples .ba-toggle__btn {
+        background: transparent;
+        border: 1px solid rgba(46, 56, 66, 0.28);
+        color: rgba(46, 56, 66, 0.55);
+        cursor: pointer;
         font-family: "Jost", "Open Sans", Helvetica, sans-serif;
         font-size: 11px;
         font-weight: 500;
-        letter-spacing: 0.18em;
+        letter-spacing: 0.2em;
         line-height: 1;
-        padding: 7px 12px;
-        position: absolute;
+        padding: 9px 20px;
         text-transform: uppercase;
-        top: 14px;
-        z-index: 3;
+        transition: background 0.22s ease, color 0.22s ease, border-color 0.22s ease;
 }
 
-body.page-project-examples .ba-slider__tag--before {
-        left: 14px;
+body.page-project-examples .ba-toggle__btn:first-child {
+        border-right: none;
 }
 
-body.page-project-examples .ba-slider__tag--after {
-        right: 14px;
+body.page-project-examples .ba-toggle__btn.is-active {
+        background: #9aac9c;
+        border-color: #9aac9c;
+        color: #f4f1ea;
 }
 
-body.page-project-examples .ba-slider__range {
-        cursor: ew-resize;
-        height: 100%;
-        left: 0;
-        margin: 0;
-        opacity: 0;
-        position: absolute;
-        top: 0;
-        width: 100%;
-        z-index: 4;
+body.page-project-examples .ba-toggle__btn:not(.is-active):hover {
+        border-color: rgba(46, 56, 66, 0.55);
+        color: #2e3842;
 }
 
 body.page-project-examples .pe-feature__text {
