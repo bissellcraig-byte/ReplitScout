@@ -88,10 +88,12 @@ hr{ border:0; }
   max-width:1120px; margin:0 auto;
   padding:20px 20px 18px;
 }
-.lockup-img{
-  display:block; height:46px; width:auto;
+.logo-clip{
+  display:block; height:46px; overflow:hidden; line-height:0;
 }
-.lockup-img.small{ height:38px; }
+.logo-clip img{ display:block; height:79px; width:auto; }
+.logo-clip.small{ height:38px; }
+.logo-clip.small img{ height:65px; }
 
 /* ------------------------------------------------------------
    Progress indicator
@@ -1103,7 +1105,7 @@ body{ background:var(--ivory); }
 
 <header class="site-header">
   <div class="header-inner">
-    <a href="../index.html"><img class="lockup-img" src="../images/scout-wordmark-white.png" alt="Scout Content Studio"></a>
+    <a href="../index.html" class="logo-clip"><img src="../images/Scout%20Logo%20white.png" alt="Scout Content Studio"></a>
   </div>
 </header>
 
@@ -1687,7 +1689,7 @@ body{ background:var(--ivory); }
 
 <footer class="site-footer">
   <div class="foot-inner">
-    <a href="../index.html"><img class="lockup-img small" src="../images/scout-wordmark-white.png" alt="Scout Content Studio"></a>
+    <a href="../index.html" class="logo-clip small"><img src="../images/Scout%20Logo%20white.png" alt="Scout Content Studio"></a>
     <p class="foot-privacy">This guide asks about your practice, not your clients. Please do not send client names, diagnoses, or protected health information.</p>
     <a class="foot-link" href="../index.html">Visit Scout Content Studio &#8594;</a>
   </div>
