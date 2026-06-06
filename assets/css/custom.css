@@ -957,6 +957,9 @@ body.is-preload #banner .banner-scroll {
 @media (prefers-reduced-motion: no-preference) {
         #banner .hero-bg {
                 animation: heroKenBurns 26s ease-out both;
+                will-change: transform;
+                -webkit-backface-visibility: hidden;
+                backface-visibility: hidden;
         }
 
         #banner .banner-scroll-icon {
@@ -985,26 +988,41 @@ body.is-preload #banner .banner-headline {
 }
 
 @media (prefers-reduced-motion: no-preference) {
+        /* Hold the hero hidden until web fonts are ready, so the Playfair headline
+           doesn't reflow mid-rise (which reads as a twitch). JS removes .hero-armed
+           and adds the banner's .is-enter once document.fonts.ready resolves. */
+        html.hero-armed #banner .banner-brand,
+        html.hero-armed #banner .banner-divider-wide,
+        html.hero-armed #banner .banner-headline,
+        html.hero-armed #banner .banner-subtext,
+        html.hero-armed #banner .actions.special,
+        html.hero-armed #banner .banner-scroll {
+                opacity: 0;
+        }
+
         #banner.is-enter .banner-brand,
         #banner.is-enter .banner-divider-wide,
         #banner.is-enter .banner-headline,
         #banner.is-enter .banner-subtext,
         #banner.is-enter .actions.special,
         #banner.is-enter .banner-scroll {
-                animation: heroRise 1s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+                animation: heroRise 1.1s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+                will-change: transform, opacity;
+                -webkit-backface-visibility: hidden;
+                backface-visibility: hidden;
         }
 
-        #banner.is-enter .banner-brand { animation-delay: 0.15s; }
-        #banner.is-enter .banner-divider-wide { animation-delay: 0.6s; }
-        #banner.is-enter .banner-headline { animation-delay: 0.8s; }
-        #banner.is-enter .banner-subtext { animation-delay: 1.05s; }
-        #banner.is-enter .actions.special { animation-delay: 1.3s; }
-        #banner.is-enter .banner-scroll { animation-delay: 1.7s; }
+        #banner.is-enter .banner-brand { animation-delay: 0.2s; }
+        #banner.is-enter .banner-divider-wide { animation-delay: 0.55s; }
+        #banner.is-enter .banner-headline { animation-delay: 0.75s; }
+        #banner.is-enter .banner-subtext { animation-delay: 1s; }
+        #banner.is-enter .actions.special { animation-delay: 1.25s; }
+        #banner.is-enter .banner-scroll { animation-delay: 1.6s; }
 }
 
 @keyframes heroRise {
-        from { opacity: 0; transform: translateY(16px); }
-        to { opacity: 1; transform: translateY(0); }
+        from { opacity: 0; transform: translate3d(0, 18px, 0); }
+        to { opacity: 1; transform: translate3d(0, 0, 0); }
 }
 
 /* Services page — SCOUT-only logo in top bar */

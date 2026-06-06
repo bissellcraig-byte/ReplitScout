@@ -10,6 +10,7 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
         <meta name="description" content="Scout Content Studio helps individual therapists and practice owners build clearer websites, reduce intake friction, and show up more clearly in search and AI-search results." />
+        <script>(function(){try{if(window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches)return;document.documentElement.classList.add("hero-armed");}catch(e){}})();</script>
         <link rel="preload" as="image" href="images/hero-ocean.jpg" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -43,7 +44,7 @@
                 </nav>
             </header>
 
-            <section id="banner" class="is-enter">
+            <section id="banner">
                 <div class="hero-bg" aria-hidden="true"></div>
                 <div class="hero-grain" aria-hidden="true"></div>
                 <div class="hero-scrim" aria-hidden="true"></div>
@@ -207,6 +208,7 @@
         <script src="assets/js/util.js"></script>
         <script src="assets/js/main.js"></script>
         <script src="assets/js/motion.js"></script>
+        <script>(function(){var b=document.getElementById("banner");if(!b)return;var d=document.documentElement;if(!d.classList.contains("hero-armed"))return;var done=false;var go=function(){if(done)return;done=true;d.classList.remove("hero-armed");b.classList.add("is-enter");};if(document.fonts&&document.fonts.ready){document.fonts.ready.then(go);}window.setTimeout(go,1500);})();</script>
 
     </body>
 </html>
