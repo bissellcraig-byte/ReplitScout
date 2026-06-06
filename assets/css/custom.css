@@ -1010,7 +1010,8 @@ body.is-preload #banner .banner-headline {
 /* Services page — SCOUT-only logo in top bar */
 body.page-services #header h1,
 body.page-project-examples #header h1,
-body.page-work-with-us #header h1 {
+body.page-work-with-us #header h1,
+body.page-privacy #header h1 {
         height: 3.2em;
         opacity: 1 !important;
         pointer-events: auto !important;
@@ -1018,7 +1019,8 @@ body.page-work-with-us #header h1 {
 
 body.page-services #header,
 body.page-project-examples #header,
-body.page-work-with-us #header {
+body.page-work-with-us #header,
+body.page-privacy #header {
         background: #2e3842;
         display: flex;
         align-items: center;
@@ -1030,13 +1032,15 @@ body.page-work-with-us #header {
 
 body.page-services #page-wrapper,
 body.page-project-examples #page-wrapper,
-body.page-work-with-us #page-wrapper {
+body.page-work-with-us #page-wrapper,
+body.page-privacy #page-wrapper {
         padding-top: 74px;
 }
 
 body.page-services #header h1,
 body.page-project-examples #header h1,
-body.page-work-with-us #header h1 {
+body.page-work-with-us #header h1,
+body.page-privacy #header h1 {
         align-items: center;
         display: flex;
         height: auto;
@@ -1048,14 +1052,16 @@ body.page-work-with-us #header h1 {
 
 body.page-services #header nav,
 body.page-project-examples #header nav,
-body.page-work-with-us #header nav {
+body.page-work-with-us #header nav,
+body.page-privacy #header nav {
         position: static;
         height: 74px;
 }
 
 body.page-services #header nav > ul > li > a.menuToggle,
 body.page-project-examples #header nav > ul > li > a.menuToggle,
-body.page-work-with-us #header nav > ul > li > a.menuToggle {
+body.page-work-with-us #header nav > ul > li > a.menuToggle,
+body.page-privacy #header nav > ul > li > a.menuToggle {
         display: flex;
         align-items: center;
         gap: 14px;
@@ -1065,13 +1071,15 @@ body.page-work-with-us #header nav > ul > li > a.menuToggle {
 
 body.page-services #header nav > ul > li > a.menuToggle:after,
 body.page-project-examples #header nav > ul > li > a.menuToggle:after,
-body.page-work-with-us #header nav > ul > li > a.menuToggle:after {
+body.page-work-with-us #header nav > ul > li > a.menuToggle:after,
+body.page-privacy #header nav > ul > li > a.menuToggle:after {
         display: none;
 }
 
 body.page-services #header nav > ul > li > a.menuToggle .menu-label,
 body.page-project-examples #header nav > ul > li > a.menuToggle .menu-label,
-body.page-work-with-us #header nav > ul > li > a.menuToggle .menu-label {
+body.page-work-with-us #header nav > ul > li > a.menuToggle .menu-label,
+body.page-privacy #header nav > ul > li > a.menuToggle .menu-label {
         color: #ffffff;
         display: inline-block;
         font-family: "Jost", "Open Sans", Helvetica, sans-serif;
@@ -1083,7 +1091,8 @@ body.page-work-with-us #header nav > ul > li > a.menuToggle .menu-label {
 
 body.page-services #header nav > ul > li > a.menuToggle .menu-hamburger,
 body.page-project-examples #header nav > ul > li > a.menuToggle .menu-hamburger,
-body.page-work-with-us #header nav > ul > li > a.menuToggle .menu-hamburger {
+body.page-work-with-us #header nav > ul > li > a.menuToggle .menu-hamburger,
+body.page-privacy #header nav > ul > li > a.menuToggle .menu-hamburger {
         display: inline-flex;
         flex-direction: column;
         justify-content: center;
@@ -1093,7 +1102,8 @@ body.page-work-with-us #header nav > ul > li > a.menuToggle .menu-hamburger {
 
 body.page-services #header nav > ul > li > a.menuToggle .menu-hamburger i,
 body.page-project-examples #header nav > ul > li > a.menuToggle .menu-hamburger i,
-body.page-work-with-us #header nav > ul > li > a.menuToggle .menu-hamburger i {
+body.page-work-with-us #header nav > ul > li > a.menuToggle .menu-hamburger i,
+body.page-privacy #header nav > ul > li > a.menuToggle .menu-hamburger i {
         background: #ffffff;
         display: block;
         height: 2px;
@@ -1103,20 +1113,23 @@ body.page-work-with-us #header nav > ul > li > a.menuToggle .menu-hamburger i {
 @media screen and (max-width: 767px) {
         body.page-services #header,
         body.page-project-examples #header,
-        body.page-work-with-us #header {
+        body.page-work-with-us #header,
+        body.page-privacy #header {
                 padding: 0 20px;
         }
 
         body.page-services #header nav > ul > li > a.menuToggle .menu-label,
         body.page-project-examples #header nav > ul > li > a.menuToggle .menu-label,
-        body.page-work-with-us #header nav > ul > li > a.menuToggle .menu-label {
+        body.page-work-with-us #header nav > ul > li > a.menuToggle .menu-label,
+        body.page-privacy #header nav > ul > li > a.menuToggle .menu-label {
                 display: inline-block;
         }
 }
 
 body.page-services #header h1 .header-scout-logo-link,
 body.page-project-examples #header h1 .header-scout-logo-link,
-body.page-work-with-us #header h1 .header-scout-logo-link {
+body.page-work-with-us #header h1 .header-scout-logo-link,
+body.page-privacy #header h1 .header-scout-logo-link {
         align-items: center;
         background: transparent;
         border: 0;
@@ -1128,7 +1141,8 @@ body.page-work-with-us #header h1 .header-scout-logo-link {
 
 body.page-services #header .header-scout-logo-crop,
 body.page-project-examples #header .header-scout-logo-crop,
-body.page-work-with-us #header .header-scout-logo-crop {
+body.page-work-with-us #header .header-scout-logo-crop,
+body.page-privacy #header .header-scout-logo-crop {
         display: block;
         height: 2em;
         overflow: hidden;
@@ -1137,7 +1151,8 @@ body.page-work-with-us #header .header-scout-logo-crop {
 
 body.page-services #header .header-scout-logo,
 body.page-project-examples #header .header-scout-logo,
-body.page-work-with-us #header .header-scout-logo {
+body.page-work-with-us #header .header-scout-logo,
+body.page-privacy #header .header-scout-logo {
         display: block;
         height: auto;
         margin: 0;
@@ -1148,14 +1163,16 @@ body.page-work-with-us #header .header-scout-logo {
 @media screen and (max-width: 736px) {
         body.page-services #header .header-scout-logo-crop,
         body.page-project-examples #header .header-scout-logo-crop,
-        body.page-work-with-us #header .header-scout-logo-crop {
+        body.page-work-with-us #header .header-scout-logo-crop,
+        body.page-privacy #header .header-scout-logo-crop {
                 height: 1.5625em;
                 width: 5.75em;
         }
 
         body.page-services #header .header-scout-logo,
         body.page-project-examples #header .header-scout-logo,
-        body.page-work-with-us #header .header-scout-logo {
+        body.page-work-with-us #header .header-scout-logo,
+        body.page-privacy #header .header-scout-logo {
                 width: 5.75em;
         }
 }
