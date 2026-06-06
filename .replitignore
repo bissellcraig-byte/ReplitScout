@@ -1,0 +1,20 @@
+# Exclude everything that is not part of the published static site.
+# The site only needs the *.html files plus assets/ and images/.
+
+.git/
+.cache/
+.config/
+.upm/
+.local/
+.agents/
+node_modules/
+**/node_modules/
+
+# Dev-only / canvas mockup tooling — not part of the production site
+artifacts/
+
+# Source assets and uploads that are not served by the site
+attached_assets/
+
+# Dev server (static deployment serves files directly, not via server.js)
+server.js
