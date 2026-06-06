@@ -2659,7 +2659,7 @@ body.page-work-with-us .inq .defdesc {
 
 /* What not to send — keyline note */
 body.page-work-with-us .inq .note {
-        background: rgba(255, 255, 255, 0.04);
+        background: rgba(244, 241, 234, 0.04);
         border: 1px solid var(--inq-line-strong);
         margin-top: 26px;
         padding: 38px 40px;
@@ -2686,7 +2686,7 @@ body.page-work-with-us .inq .note .tag {
 
 /* Form */
 body.page-work-with-us .inq .formwrap {
-        background: rgba(255, 255, 255, 0.035);
+        background: rgba(244, 241, 234, 0.035);
         border: 1px solid var(--inq-line-strong);
         margin-top: 26px;
         padding: 48px 52px;
@@ -2802,7 +2802,7 @@ body.page-work-with-us .inq .btn {
 body.page-work-with-us .inq .btn-sage {
         background: var(--inq-sage);
         border-color: var(--inq-sage);
-        color: #fff;
+        color: #f4f1ea;
 }
 
 body.page-work-with-us .inq .btn-sage:hover {
