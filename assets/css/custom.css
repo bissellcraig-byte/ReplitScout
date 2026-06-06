@@ -388,6 +388,18 @@ body.page-project-examples .ba-slider__before .ba-slider__img {
         width: 100%;
 }
 
+body.page-project-examples .ba-slider__after {
+        -webkit-clip-path: inset(0 0 0 var(--pos));
+        clip-path: inset(0 0 0 var(--pos));
+        height: 100%;
+        left: 0;
+        pointer-events: none;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: 2;
+}
+
 body.page-project-examples .ba-slider__handle {
         bottom: 0;
         left: var(--pos);
