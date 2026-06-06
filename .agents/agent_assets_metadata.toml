@@ -1,0 +1,8 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "0AB2fBlXA2o3ghjel0M4l"
+uri = "file://brand/scout-brand-guidelines.md"
+type = "text"
+title = "Scout Content Studio — Brand Guidelines"
