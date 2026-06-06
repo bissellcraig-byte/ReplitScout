@@ -949,11 +949,6 @@ body{ background:var(--ivory); }
 .welcome-title em, .step-title em, .success-title em{
   font-family:var(--font-accent); font-style:italic; font-weight:500; letter-spacing:0;
 }
-.welcome-title .sw{ position:relative; white-space:nowrap; z-index:0; }
-.welcome-title .sw::after{
-  content:""; position:absolute; left:-2px; right:-2px; bottom:.1em; height:.18em;
-  background:var(--sage); opacity:.55; z-index:-1; transform-origin:left center; border-radius:1px;
-}
 
 /* ---- lead / why: framed by a sage rule ---- */
 .lead{
@@ -1087,13 +1082,6 @@ body{ background:var(--ivory); }
 .screen.enter > *{ animation:fadeUpC .6s var(--ease) both; }
 @keyframes fadeUpC{ from{ opacity:0; transform:translateY(16px); } to{ opacity:1; transform:none; } }
 
-/* swash wipes in after the headline settles */
-@keyframes swashWipe{ from{ transform:scaleX(0); } to{ transform:scaleX(1); } }
-@media (prefers-reduced-motion: no-preference){
-  .welcome-title .sw::after{ transform:scaleX(0); }
-  .screen.enter .welcome-title .sw::after{ animation:swashWipe .72s .42s var(--ease) forwards; }
-}
-
 /* kicker dash draws in */
 @keyframes dashIn{ from{ transform:scaleX(0); } to{ transform:scaleX(1); } }
 @media (prefers-reduced-motion: no-preference){
@@ -1143,7 +1131,7 @@ body{ background:var(--ivory); }
       <!-- Welcome -->
       <section class="screen screen-welcome" data-screen="welcome" aria-labelledby="t-welcome">
         <p class="kicker">Website Brief Builder</p>
-        <h1 class="welcome-title" id="t-welcome" tabindex="-1">Plan a website your clients will <span class="sw">trust</span>.</h1>
+        <h1 class="welcome-title" id="t-welcome" tabindex="-1">Plan a website your clients will trust.</h1>
         <p class="lead">Answer a few questions about your practice. Get a brief you can hand to any designer, including us. Takes about ten minutes. Your answers save as you go.</p>
         <ol class="points">
           <li><span class="pt-num" aria-hidden="true">1</span><span class="pt-text">Clients decide in seconds. Your site has one job: help an anxious person feel safe enough to reach out.</span></li>
