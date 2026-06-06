@@ -1,0 +1,2381 @@
+<!--
+  SCOUT WEBSITE BRIEF BUILDER  ·  Deploy notes for Craig
+
+  1. Put this file in a folder as index.html and deploy it as a new Netlify
+     project. Drag and drop works.
+  2. In Netlify, go to Forms and enable form detection. It is off by default
+     on new projects. Redeploy after enabling.
+  3. Go to Forms, then Notifications, and add an email notification for the
+     form "website-brief".
+  4. Submit one real-looking test. Netlify runs Akismet, so obviously fake
+     test data can get flagged as spam. Check the Verified and Spam tabs.
+  5. The email notification carries the text answers. The PDF attachment is
+     downloadable from the submission detail page in the Netlify dashboard.
+  6. Optional: point a subdomain like brief.scoutcontent.studio at the project.
+  7. Free tier covers 100 submissions per month.
+  8. Find and replace BOOK_A_CALL_URL before going live, and confirm
+     https://scoutcontent.studio resolves to the live site.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Website Brief Builder | Scout Content Studio</title>
+<meta name="description" content="Answer a few questions about your practice and get a website brief you can hand to any designer, including us.">
+<meta property="og:title" content="Website Brief Builder | Scout Content Studio">
+<meta property="og:description" content="Answer a few questions about your practice and get a website brief you can hand to any designer, including us.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#2e3842">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='13'%20fill='%232e3842'/%3E%3Ctext%20x='32'%20y='45'%20font-family='Georgia,serif'%20font-size='38'%20fill='%23f4f1ea'%20text-anchor='middle'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Jost:wght@300;400;500&family=Fraunces:wght@400;600&family=Karla:wght@400;600&family=Libre+Franklin:wght@400;600&family=Source+Sans+3:wght@400;600&family=Lora:wght@400;600&family=Sora:wght@400;600&family=Nunito+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   Scout Content Studio  ·  Website Brief Builder
+   Tool chrome follows the Scout brand system.
+   Client style mockups use their own palettes only.
+   ============================================================ */
+
+:root{
+  --navy:#2e3842; --navy-deep:#26313a; --ink:#1a2229;
+  --deep-blue:#233252; --ivory:#f4f1ea; --ivory-soft:#faf8f4;
+  --sage:#9aac9c; --sage-deep:#84958a; --slate:#7c8790;
+  --navy-200:#c3ccd1; --navy-300:#9caab2;
+  --font-display:"Playfair Display",Georgia,serif;
+  --font-accent:"Cormorant Garamond",Georgia,serif;
+  --font-sans:"Jost","Open Sans",Helvetica,sans-serif;
+  --space:1.1rem; --radius:6px; --maxw:62ch;
+}
+
+*,*::before,*::after{ box-sizing:border-box; }
+html{ -webkit-text-size-adjust:100%; scroll-behavior:smooth; }
+body{
+  margin:0;
+  background:var(--ivory);
+  color:var(--ink);
+  font-family:var(--font-sans);
+  font-weight:400;
+  font-size:16px;
+  line-height:1.7;
+}
+h1,h2,h3{ margin:0; font-family:var(--font-display); font-weight:500; color:var(--navy); }
+p{ margin:0 0 var(--space); }
+hr{ border:0; }
+
+/* Focus */
+:focus{ outline:none; }
+:focus-visible{ outline:2px solid var(--navy); outline-offset:2px; }
+
+/* Visually hidden, still focusable (used by custom radios and checkboxes) */
+.vh{
+  position:absolute; width:1px; height:1px;
+  margin:-1px; padding:0; border:0;
+  clip:rect(0 0 0 0); overflow:hidden;
+}
+.sr-only{
+  position:absolute; width:1px; height:1px;
+  margin:-1px; padding:0; border:0;
+  clip:rect(0 0 0 0); overflow:hidden;
+}
+
+.skip-link{
+  position:absolute; left:-9999px; top:0;
+  background:var(--navy); color:var(--ivory);
+  padding:10px 16px; z-index:100;
+  font:500 13px var(--font-sans); letter-spacing:.08em; text-transform:uppercase;
+  text-decoration:none;
+}
+.skip-link:focus-visible{ left:12px; top:12px; }
+
+/* ------------------------------------------------------------
+   Header band and lockup
+   ------------------------------------------------------------ */
+.site-header{ background:var(--navy); }
+.header-inner{
+  max-width:1120px; margin:0 auto;
+  padding:20px 20px 18px;
+}
+.lockup{
+  display:inline-flex; flex-direction:column; gap:6px;
+  color:var(--ivory); text-decoration:none;
+}
+.lockup-name{
+  font-family:var(--font-display); font-weight:500;
+  font-size:22px; line-height:1; letter-spacing:.05em;
+}
+.lockup-rule{
+  display:block; width:40%; height:1px;
+  background:rgba(244,241,234,.7);
+}
+.lockup-sub{
+  font-family:var(--font-sans); font-weight:500;
+  font-size:9.5px; line-height:1;
+  letter-spacing:.35em; text-transform:uppercase;
+}
+.lockup.small .lockup-name{ font-size:18px; }
+.lockup.small .lockup-sub{ font-size:8.5px; }
+
+/* ------------------------------------------------------------
+   Progress indicator
+   ------------------------------------------------------------ */
+.progress-outer{
+  background:var(--ivory);
+  border-bottom:1px solid var(--navy-200);
+}
+.progress-wrap{
+  max-width:1120px; margin:0 auto;
+  padding:14px 20px;
+  display:flex; align-items:center; gap:16px;
+}
+.progress{ display:flex; gap:6px; flex:1; max-width:560px; }
+.seg{
+  flex:1; height:7px; border-radius:4px;
+  background:var(--ivory-soft);
+  border:1px solid var(--navy-200);
+}
+.seg.done{ background:var(--sage); border-color:var(--sage-deep); }
+.seg.current{ background:var(--navy-200); border:1px solid var(--navy); }
+.progress-count{
+  margin:0; white-space:nowrap;
+  font-size:12.5px; font-weight:500;
+  letter-spacing:.06em; color:var(--navy);
+}
+
+/* ------------------------------------------------------------
+   Layout
+   ------------------------------------------------------------ */
+main{ display:block; max-width:1120px; margin:0 auto; padding:0 20px; }
+.layout{ padding:34px 0 80px; }
+.col-main{ max-width:640px; margin:0 auto; min-width:0; }
+
+@media (min-width:980px){
+  .layout.with-preview{
+    display:grid;
+    grid-template-columns:minmax(0,640px) minmax(330px,400px);
+    gap:48px;
+    justify-content:center;
+    align-items:start;
+  }
+  .layout.with-preview .col-main{ margin:0; }
+}
+
+/* ------------------------------------------------------------
+   Screens and steps
+   ------------------------------------------------------------ */
+.screen{ position:relative; }
+.screen[hidden]{ display:none; }
+
+.kicker{
+  font-size:13px; font-weight:500;
+  letter-spacing:.16em; text-transform:uppercase;
+  color:var(--navy); margin:0 0 12px;
+}
+.step-title{
+  font-size:clamp(28px,4vw,34px);
+  line-height:1.1;
+  margin:0 0 14px;
+}
+.step-title:focus-visible, h1:focus-visible{ outline:none; }
+.why{
+  font-family:var(--font-accent); font-weight:400;
+  font-size:clamp(20px,2.4vw,22px); line-height:1.5;
+  color:var(--navy);
+  margin:0 0 20px;
+}
+.rule{
+  border-top:1px solid var(--navy-200);
+  margin:0 0 32px;
+}
+
+/* ------------------------------------------------------------
+   Welcome and success screens
+   ------------------------------------------------------------ */
+.screen-welcome, .screen-success{
+  isolation:isolate;
+  padding:28px 0 10px;
+}
+.screen-welcome::before, .screen-success::before{
+  content:""; position:absolute; inset:-34px -20px -40px; z-index:-1;
+  pointer-events:none;
+  background:
+    radial-gradient(42% 36% at 86% 4%, rgba(35,50,82,.10), transparent 70%),
+    radial-gradient(38% 32% at 4% 96%, rgba(198,160,106,.13), transparent 70%);
+}
+.welcome-title{
+  font-size:clamp(34px,6vw,52px);
+  line-height:1.05;
+  margin:0 0 18px;
+  max-width:13ch;
+}
+.lead{
+  font-family:var(--font-accent); font-weight:400;
+  font-size:clamp(20px,2.6vw,22px); line-height:1.5;
+  color:var(--navy);
+  max-width:48ch;
+  margin:0 0 34px;
+}
+.points{
+  list-style:none; margin:0 0 34px; padding:0;
+  display:flex; flex-direction:column; gap:18px;
+  max-width:54ch;
+}
+.points li{
+  display:grid; grid-template-columns:36px 1fr; gap:14px;
+  align-items:start;
+}
+.pt-num{
+  font-family:var(--font-display); font-weight:500;
+  font-size:21px; line-height:1.25;
+  color:var(--navy);
+  border-top:1px solid var(--navy-200);
+  padding-top:6px;
+}
+.pt-text{ font-size:16px; line-height:1.65; padding-top:6px; }
+.privacy{
+  font-size:13.5px; line-height:1.6;
+  color:var(--navy);
+  border-left:2px solid var(--sage);
+  padding-left:14px;
+  max-width:var(--maxw);
+  margin:0 0 36px;
+}
+.success-title{
+  font-size:clamp(32px,5vw,46px);
+  line-height:1.08;
+  margin:0 0 18px;
+}
+.success-body{
+  font-family:var(--font-accent); font-weight:400;
+  font-size:clamp(20px,2.5vw,22px); line-height:1.55;
+  color:var(--navy);
+  max-width:48ch;
+  margin:0 0 16px;
+}
+.success-extra{
+  font-size:15px; line-height:1.65; color:var(--navy);
+  border-left:2px solid var(--navy);
+  padding-left:14px;
+  max-width:var(--maxw);
+  margin:0 0 26px;
+}
+.success-extra a{ color:var(--navy); }
+.success-actions{
+  display:flex; align-items:center; gap:26px; flex-wrap:wrap;
+  margin-top:14px;
+}
+
+/* ------------------------------------------------------------
+   Buttons and links
+   ------------------------------------------------------------ */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  min-height:48px; padding:13px 28px;
+  border-radius:var(--radius);
+  font-family:var(--font-sans); font-weight:500;
+  font-size:13.5px; letter-spacing:.16em; text-transform:uppercase;
+  cursor:pointer; text-decoration:none;
+  border:1px solid transparent;
+  transition:background .15s ease, color .15s ease, border-color .15s ease, transform .1s ease;
+}
+.btn-primary{
+  background:var(--sage); color:var(--navy);
+  border-color:var(--sage-deep);
+}
+.btn-primary:hover{ background:var(--sage-deep); color:var(--ink); }
+.btn-primary:active{ transform:translateY(1px); }
+.btn-primary[disabled]{ opacity:.72; cursor:default; transform:none; }
+.btn-ghost{
+  background:transparent; color:var(--navy);
+  border:1px solid var(--navy-300);
+}
+.btn-ghost:hover{ border-color:var(--navy); background:var(--ivory-soft); }
+.btn-row{
+  display:flex; justify-content:space-between; align-items:center;
+  gap:16px; flex-wrap:wrap;
+  margin-top:38px;
+}
+.link{
+  color:var(--navy);
+  text-decoration:underline; text-underline-offset:3px;
+}
+.link:hover{ color:var(--sage-deep); }
+.link-cta{
+  color:var(--navy); font-weight:500;
+  text-decoration:none; letter-spacing:.02em;
+}
+.link-cta:hover{ color:var(--sage-deep); text-decoration:underline; text-underline-offset:3px; }
+.link-btn{
+  background:none; border:0; padding:0;
+  font:500 13.5px var(--font-sans); letter-spacing:.03em;
+  color:var(--navy); text-decoration:underline; text-underline-offset:3px;
+  cursor:pointer;
+}
+.link-btn:hover{ color:var(--sage-deep); }
+
+/* ------------------------------------------------------------
+   Restore notice
+   ------------------------------------------------------------ */
+.notice{
+  display:flex; align-items:center; gap:18px; flex-wrap:wrap;
+  background:var(--ivory-soft);
+  border:1px solid var(--navy-200);
+  border-left:3px solid var(--sage);
+  border-radius:var(--radius);
+  padding:13px 18px;
+  margin:0 0 30px;
+  font-size:14.5px; color:var(--navy);
+}
+.notice p{ margin:0; flex:1; min-width:200px; }
+
+/* ------------------------------------------------------------
+   Fields
+   ------------------------------------------------------------ */
+.field{ margin:0 0 28px; }
+fieldset.field{ border:0; padding:0; margin:0 0 28px; min-width:0; }
+.f-label{
+  display:block;
+  font-weight:500; font-size:15.5px; line-height:1.5;
+  color:var(--navy);
+  margin:0 0 9px; padding:0;
+}
+legend.f-label{ margin-bottom:10px; }
+.f-help{
+  font-size:13.5px; line-height:1.6;
+  color:var(--navy); opacity:.82;
+  margin:-3px 0 11px;
+  max-width:var(--maxw);
+}
+.f-input{
+  display:block; width:100%;
+  font:400 16px/1.5 var(--font-sans);
+  color:var(--ink);
+  background:var(--ivory-soft);
+  border:1px solid var(--navy-200);
+  border-radius:var(--radius);
+  padding:12px 14px;
+  min-height:48px;
+}
+textarea.f-input{ min-height:104px; resize:vertical; }
+select.f-input{ cursor:pointer; }
+.f-input:focus-visible{
+  outline:2px solid var(--navy); outline-offset:1px;
+  border-color:var(--navy);
+}
+.f-input.narrow{ max-width:150px; }
+::placeholder{ color:var(--slate); opacity:1; }
+
+.optional-tag{
+  font-weight:400; font-size:13px; letter-spacing:.04em;
+  color:var(--navy); opacity:.75;
+}
+
+/* Errors: never color alone. Text plus a heavier border. */
+.err{
+  display:none;
+  margin:8px 0 0;
+  font-size:13.5px; font-weight:500; line-height:1.5;
+  color:var(--navy);
+  border-left:3px solid var(--navy);
+  padding-left:10px;
+}
+.field.invalid .err{ display:block; }
+.field.invalid .f-input{ border:2px solid var(--navy); padding:11px 13px; }
+
+/* ------------------------------------------------------------
+   Choice rows (radios and checkboxes)
+   ------------------------------------------------------------ */
+.choices{ display:flex; flex-direction:column; gap:9px; }
+.choices.pair{ flex-direction:row; flex-wrap:wrap; }
+.choices.pair .choice{ flex:1; min-width:120px; }
+.choice{ display:block; }
+.choice-box{
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
+  min-height:48px;
+  padding:11px 15px;
+  background:var(--ivory-soft);
+  border:1px solid var(--navy-200);
+  border-radius:var(--radius);
+  font-size:16px; line-height:1.45; color:var(--ink);
+  cursor:pointer;
+  transition:border-color .15s ease, background .15s ease;
+}
+.choice:hover .choice-box{ border-color:var(--navy-300); }
+.choice input:checked + .choice-box{
+  border:2px solid var(--navy);
+  padding:10px 14px;
+  background:#fdfcf8;
+}
+.choice input:focus-visible + .choice-box{
+  outline:2px solid var(--navy); outline-offset:2px;
+}
+.tick{
+  flex:none;
+  width:20px; height:20px; border-radius:50%;
+  background:var(--sage);
+  position:relative;
+  opacity:0; transform:scale(.6);
+  transition:opacity .15s ease, transform .15s ease;
+}
+.tick::after{
+  content:""; position:absolute;
+  left:6.5px; top:4px;
+  width:5px; height:9px;
+  border:solid var(--navy);
+  border-width:0 2px 2px 0;
+  transform:rotate(45deg);
+}
+.choice input:checked + .choice-box .tick,
+.choice input:checked + .card-body .tick,
+.dot-wrap input:checked + .dot .tick-badge{
+  opacity:1; transform:scale(1);
+}
+
+/* Conditional reveals */
+.reveal[hidden]{ display:none; }
+.reveal{
+  margin:4px 0 0;
+  padding:18px 0 0 16px;
+  border-left:2px solid var(--navy-200);
+}
+.reveal .field:last-child, .reveal fieldset.field:last-child{ margin-bottom:6px; }
+.inline-note{
+  font-size:13.5px; line-height:1.6; color:var(--navy);
+  background:var(--ivory-soft);
+  border:1px solid var(--navy-200);
+  border-radius:var(--radius);
+  padding:11px 14px;
+  margin:10px 0 0;
+  max-width:var(--maxw);
+}
+
+/* ------------------------------------------------------------
+   Tone scales
+   ------------------------------------------------------------ */
+.scale{ max-width:380px; }
+.scale-ends{
+  display:flex; justify-content:space-between; gap:12px;
+  font-size:12.5px; font-weight:500;
+  letter-spacing:.1em; text-transform:uppercase;
+  color:var(--navy);
+  margin-bottom:10px;
+}
+.scale-dots{ display:flex; justify-content:space-between; gap:8px; }
+.dot-wrap{ display:block; position:relative; }
+.dot{
+  display:flex; align-items:center; justify-content:center;
+  width:44px; height:44px; border-radius:50%;
+  background:var(--ivory-soft);
+  border:1px solid var(--navy-200);
+  font-size:14.5px; font-weight:500; color:var(--navy);
+  cursor:pointer; position:relative;
+  transition:border-color .15s ease, background .15s ease;
+}
+.dot-wrap:hover .dot{ border-color:var(--navy-300); }
+.dot-wrap input:checked + .dot{
+  background:var(--sage);
+  border:2px solid var(--navy);
+}
+.dot-wrap input:focus-visible + .dot{
+  outline:2px solid var(--navy); outline-offset:2px;
+}
+.tick-badge{
+  position:absolute; top:-5px; right:-5px;
+  width:16px; height:16px; border-radius:50%;
+  background:var(--sage); border:1px solid var(--navy);
+  opacity:0; transform:scale(.6);
+  transition:opacity .15s ease, transform .15s ease;
+}
+.tick-badge::after{
+  content:""; position:absolute;
+  left:4.5px; top:2.5px;
+  width:4px; height:7px;
+  border:solid var(--navy);
+  border-width:0 2px 2px 0;
+  transform:rotate(45deg);
+}
+
+/* ------------------------------------------------------------
+   Style direction cards (Step 4)
+   Everything inside .mock uses the client style only.
+   ------------------------------------------------------------ */
+.style-cards{
+  display:grid; gap:16px;
+  grid-template-columns:1fr;
+  margin-top:4px;
+}
+@media (min-width:560px){
+  .style-cards{ grid-template-columns:1fr 1fr; }
+}
+.style-card{ display:block; }
+.card-body{
+  display:block; position:relative;
+  border:1px solid var(--navy-200);
+  border-radius:8px;
+  background:var(--ivory-soft);
+  padding:10px;
+  cursor:pointer;
+  transition:border-color .15s ease;
+  height:100%;
+}
+.style-card:hover .card-body{ border-color:var(--navy-300); }
+.style-card input:checked + .card-body{
+  border:2px solid var(--navy);
+  padding:9px;
+}
+.style-card input:focus-visible + .card-body{
+  outline:2px solid var(--navy); outline-offset:3px;
+}
+.card-body .tick{
+  position:absolute; top:10px; right:10px;
+  width:24px; height:24px;
+  border:1px solid var(--navy);
+}
+.card-body .tick::after{ left:8px; top:4.5px; width:6px; height:11px; }
+
+.mock{
+  display:block; overflow:hidden;
+  border-radius:5px;
+  border:1px solid rgba(26,34,41,.1);
+  background:var(--m-bg); color:var(--m-ink);
+}
+.m-nav{
+  display:flex; justify-content:space-between; align-items:center; gap:8px;
+  padding:8px 11px;
+  border-bottom:1px solid rgba(26,34,41,.09);
+  font-family:var(--m-body);
+}
+.m-nav b{ font-weight:600; font-size:9.5px; letter-spacing:.02em; }
+.m-links{ display:flex; gap:7px; font-size:8.5px; opacity:.75; }
+.m-inner{ display:block; padding:13px 12px 12px; }
+.m-head{
+  display:block;
+  font-family:var(--m-head); font-weight:600;
+  font-size:15.5px; line-height:1.25;
+  margin:0 0 5px;
+}
+.m-sub{
+  display:block;
+  font-family:var(--m-body);
+  font-size:10.5px; line-height:1.5; opacity:.82;
+  margin:0 0 10px;
+}
+.m-cta{
+  display:inline-block;
+  background:var(--m-accent); color:#ffffff;
+  font-family:var(--m-body); font-weight:600;
+  font-size:8.5px; line-height:1;
+  letter-spacing:.07em; text-transform:uppercase;
+  padding:7px 11px; border-radius:4px;
+  margin:0 0 12px;
+}
+.m-img{
+  display:block; height:46px;
+  border-radius:4px;
+  background:var(--m-sec);
+  border:1px solid rgba(26,34,41,.06);
+}
+.card-meta{ display:block; padding:12px 4px 4px; }
+.card-name{
+  display:block;
+  font-weight:500; font-size:15px; color:var(--navy);
+  margin:0 0 3px;
+}
+.card-desc{
+  display:block;
+  font-size:13px; line-height:1.55; color:var(--navy); opacity:.85;
+  margin:0 0 10px;
+}
+.sw-row{ display:flex; gap:6px; align-items:center; margin:0 0 8px; }
+.sw{
+  display:block; width:18px; height:18px;
+  border-radius:4px;
+  border:1px solid rgba(26,34,41,.2);
+}
+.pair-tag{
+  display:block;
+  font-size:11.5px; font-weight:500;
+  letter-spacing:.1em; text-transform:uppercase;
+  color:var(--navy);
+}
+
+/* ------------------------------------------------------------
+   Step 5: palette display, palette rows, font pairing rows
+   ------------------------------------------------------------ */
+.pal-display{
+  display:grid; gap:10px;
+  grid-template-columns:repeat(2,1fr);
+  margin:0 0 8px;
+}
+@media (min-width:560px){
+  .pal-display{ grid-template-columns:repeat(4,1fr); }
+}
+.pal-chip{
+  border:1px solid var(--navy-200);
+  border-radius:var(--radius);
+  overflow:hidden;
+  background:var(--ivory-soft);
+}
+.pal-chip .pc-color{ display:block; height:56px; border-bottom:1px solid rgba(26,34,41,.08); }
+.pal-chip .pc-role{
+  display:block;
+  font-size:10.5px; font-weight:500;
+  letter-spacing:.1em; text-transform:uppercase;
+  color:var(--navy);
+  padding:8px 10px 1px;
+}
+.pal-chip .pc-hex{
+  display:block;
+  font-size:12.5px; color:var(--navy);
+  padding:0 10px 9px;
+}
+.pal-hint{ font-size:13.5px; color:var(--navy); opacity:.82; margin:0 0 14px; }
+
+.alt-swatches{ display:flex; gap:5px; flex:none; }
+.alt-swatches .sw{ width:16px; height:16px; }
+.choice-box .row-label{ flex:1; }
+
+.pair-box{
+  flex-direction:column; align-items:flex-start; gap:3px;
+  padding:14px 16px;
+}
+.choice input:checked + .pair-box{ padding:13px 15px; }
+.pair-box .tick{ position:absolute; top:12px; right:12px; }
+.pair-row .choice-box{ position:relative; }
+.pr-name{
+  font-size:11.5px; font-weight:500;
+  letter-spacing:.12em; text-transform:uppercase;
+  color:var(--navy);
+  margin:0 0 2px;
+}
+.pr-head{
+  font-family:var(--pr-head);
+  font-weight:600; font-size:19px; line-height:1.3;
+  color:var(--ink);
+}
+.pr-body{
+  font-family:var(--pr-body);
+  font-size:14px; line-height:1.5;
+  color:var(--ink); opacity:.85;
+  max-width:42ch;
+}
+
+/* ------------------------------------------------------------
+   Live preview
+   Frame and labels are Scout chrome. The hero inside is the
+   client's selected style only.
+   ------------------------------------------------------------ */
+.col-preview{
+  position:fixed; left:0; right:0; bottom:0; z-index:60;
+  transform:translateY(calc(100% - 54px));
+  transition:transform .3s ease;
+}
+.col-preview.open{ transform:none; }
+.col-preview[hidden]{ display:none; }
+.preview-toggle{
+  display:flex; width:100%;
+  align-items:center; justify-content:space-between; gap:12px;
+  min-height:54px; padding:0 22px;
+  background:var(--navy); color:var(--ivory);
+  border:0; cursor:pointer;
+  font:500 13px var(--font-sans);
+  letter-spacing:.14em; text-transform:uppercase;
+}
+.preview-toggle:focus-visible{ outline:2px solid var(--ivory); outline-offset:-4px; }
+.chev{
+  display:block; width:9px; height:9px;
+  border:solid var(--ivory); border-width:0 2px 2px 0;
+  transform:rotate(-135deg) translate(2px,2px);
+  transition:transform .3s ease;
+}
+.col-preview.open .chev{ transform:rotate(45deg); }
+.preview-panel{
+  background:var(--deep-blue);
+  padding:16px 18px 16px;
+  max-height:72vh; overflow:auto;
+}
+.preview-kicker{
+  font-size:11.5px; font-weight:500;
+  letter-spacing:.18em; text-transform:uppercase;
+  color:var(--ivory); opacity:.92;
+  margin:0 0 11px;
+}
+.preview-frame{
+  background:#ffffff;
+  border-radius:8px; overflow:hidden;
+  box-shadow:0 16px 34px rgba(13,19,32,.4);
+}
+.p-hero{
+  background:var(--pv-bg); color:var(--pv-ink);
+}
+.p-nav{
+  display:flex; justify-content:space-between; align-items:center; gap:10px;
+  padding:12px 15px;
+  border-bottom:1px solid rgba(26,34,41,.09);
+  font-family:var(--pv-body);
+}
+.p-name{
+  font-weight:600; font-size:12.5px; letter-spacing:.02em;
+  overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+}
+.p-links{ display:flex; gap:11px; font-size:10.5px; opacity:.75; flex:none; }
+.p-inner{ padding:19px 16px 16px; }
+.p-headline{
+  font-family:var(--pv-head); font-weight:600;
+  font-size:21px; line-height:1.22;
+  color:var(--pv-ink);
+  margin:0 0 8px;
+}
+.p-sub{
+  font-family:var(--pv-body);
+  font-size:12.5px; line-height:1.55; opacity:.85;
+  margin:0 0 14px;
+}
+.p-cta{
+  display:inline-block;
+  background:var(--pv-accent); color:var(--pv-cta);
+  font-family:var(--pv-body); font-weight:600;
+  font-size:10px; line-height:1;
+  letter-spacing:.09em; text-transform:uppercase;
+  padding:10px 15px; border-radius:5px;
+}
+.p-img{ height:64px; background:var(--pv-sec); }
+.preview-caption{
+  font-family:var(--font-accent); font-weight:400;
+  font-size:17px; line-height:1.45;
+  color:var(--ivory);
+  margin:13px 4px 0;
+}
+@keyframes pvFade{ from{ opacity:0; } to{ opacity:1; } }
+.p-hero.swap{ animation:pvFade .32s ease; }
+
+@media (min-width:980px){
+  .col-preview{
+    position:sticky; top:26px; left:auto; right:auto; bottom:auto;
+    transform:none; z-index:1;
+  }
+  .preview-toggle{ display:none; }
+  .preview-panel{
+    border-radius:10px;
+    max-height:none; overflow:visible;
+    padding:18px 18px 17px;
+  }
+}
+@media (max-width:979px){
+  body.preview-active{ padding-bottom:64px; }
+}
+
+/* ------------------------------------------------------------
+   Footer
+   ------------------------------------------------------------ */
+.site-footer{
+  background:var(--navy-deep); color:var(--ivory);
+  margin-top:20px;
+}
+.foot-inner{
+  max-width:1120px; margin:0 auto;
+  padding:38px 20px 44px;
+  display:flex; flex-direction:column; gap:18px;
+}
+.foot-privacy{
+  font-size:13px; line-height:1.65;
+  color:var(--ivory); opacity:.92;
+  max-width:var(--maxw);
+  margin:0;
+}
+.foot-link{
+  color:var(--ivory);
+  font-size:13.5px; font-weight:500; letter-spacing:.05em;
+  text-decoration:none;
+}
+.foot-link:hover{ color:var(--sage); text-decoration:underline; text-underline-offset:3px; }
+
+/* ------------------------------------------------------------
+   Motion: one staggered fade-up per step entry
+   ------------------------------------------------------------ */
+@keyframes fadeUp{
+  from{ opacity:0; transform:translateY(14px); }
+  to{ opacity:1; transform:none; }
+}
+.screen.enter > *{
+  animation:fadeUp .55s cubic-bezier(.2,.7,.3,1) both;
+}
+.screen.enter > *:nth-child(1){ animation-delay:.02s; }
+.screen.enter > *:nth-child(2){ animation-delay:.07s; }
+.screen.enter > *:nth-child(3){ animation-delay:.12s; }
+.screen.enter > *:nth-child(4){ animation-delay:.17s; }
+.screen.enter > *:nth-child(5){ animation-delay:.22s; }
+.screen.enter > *:nth-child(6){ animation-delay:.27s; }
+.screen.enter > *:nth-child(7){ animation-delay:.32s; }
+.screen.enter > *:nth-child(8){ animation-delay:.37s; }
+
+@media (prefers-reduced-motion: reduce){
+  *, *::before, *::after{
+    animation:none !important;
+    transition:none !important;
+  }
+  html{ scroll-behavior:auto; }
+}
+
+/* ------------------------------------------------------------
+   PDF container (off screen, rendered by html2pdf)
+   Literal hex values only inside this block.
+   ------------------------------------------------------------ */
+#pdf-root{
+  position:absolute; left:-10000px; top:0;
+  width:700px;
+  background:#faf8f4;
+  color:#1a2229;
+  font-family:"Jost",Helvetica,sans-serif;
+  font-size:12.5px; line-height:1.6;
+}
+.pdf-band{
+  background:#2e3842;
+  padding:26px 36px 24px;
+}
+.pdf-band .lockup-name{ color:#f4f1ea; font-size:24px; }
+.pdf-band .lockup-rule{ background:rgba(244,241,234,.7); }
+.pdf-band .lockup-sub{ color:#f4f1ea; }
+.pdf-head{ padding:30px 36px 6px; }
+.pdf-title{
+  font-family:"Playfair Display",Georgia,serif;
+  font-weight:500; font-size:33px; line-height:1.1;
+  color:#2e3842; margin:0 0 6px;
+}
+.pdf-prep{
+  font-family:"Cormorant Garamond",Georgia,serif;
+  font-style:italic; font-weight:400;
+  font-size:19px; line-height:1.4;
+  color:#2e3842; margin:0 0 10px;
+}
+.pdf-meta{
+  font-size:11.5px; letter-spacing:.04em;
+  color:#2e3842; margin:0 0 8px;
+}
+.pdf-sec{
+  padding:14px 36px 4px;
+  break-inside:avoid; page-break-inside:avoid;
+}
+.pdf-sec-label{
+  font-size:11px; font-weight:500;
+  letter-spacing:.16em; text-transform:uppercase;
+  color:#2e3842;
+  border-top:1px solid #c3ccd1;
+  padding-top:12px; margin:0 0 12px;
+}
+.pdf-sel-row{ margin:0 0 9px; break-inside:avoid; page-break-inside:avoid; }
+.pdf-sel-key{
+  display:block;
+  font-size:10px; font-weight:500;
+  letter-spacing:.14em; text-transform:uppercase;
+  color:#2e3842; margin:0 0 2px;
+}
+.pdf-sel-val{ font-size:12.5px; color:#1a2229; margin:0; }
+.pdf-swatches{ display:flex; gap:14px; margin:4px 0 12px; }
+.pdf-swatch{ width:92px; }
+.pdf-swatch .ps-color{
+  display:block; width:92px; height:52px;
+  border:1px solid #c3ccd1; border-radius:4px;
+}
+.pdf-swatch .ps-role{
+  display:block;
+  font-size:9px; font-weight:500;
+  letter-spacing:.12em; text-transform:uppercase;
+  color:#2e3842; margin:6px 0 0;
+}
+.pdf-swatch .ps-hex{ display:block; font-size:10.5px; color:#1a2229; }
+.pdf-step{ padding:6px 36px 2px; }
+.pdf-step-h{
+  font-family:"Playfair Display",Georgia,serif;
+  font-weight:500; font-size:20px; line-height:1.2;
+  color:#2e3842;
+  border-top:1px solid #c3ccd1;
+  padding-top:14px; margin:8px 0 14px;
+  break-after:avoid; page-break-after:avoid;
+}
+.pdf-qa{ margin:0 0 13px; break-inside:avoid; page-break-inside:avoid; }
+.pdf-q{
+  display:block;
+  font-size:10px; font-weight:500;
+  letter-spacing:.14em; text-transform:uppercase;
+  color:#2e3842; margin:0 0 3px;
+}
+.pdf-a{
+  font-size:12.5px; line-height:1.6; color:#1a2229;
+  margin:0; white-space:pre-wrap;
+}
+.pdf-foot{
+  background:#26313a; color:#f4f1ea;
+  padding:18px 36px 20px;
+  font-size:11px; line-height:1.7; letter-spacing:.03em;
+  margin-top:22px;
+}
+.pdf-foot p{ margin:0; }
+</style>
+</head>
+<body>
+
+<!-- Netlify blueprint form. Deploy-time parser registers these fields.
+     The visible step inputs below are intentionally not inside any form. -->
+<form name="website-brief" netlify netlify-honeypot="bot-field"
+      enctype="multipart/form-data" hidden>
+  <input type="text" name="bot-field">
+  <input type="text" name="name">
+  <input type="email" name="email">
+  <input type="text" name="phone">
+  <input type="text" name="practice-name">
+  <input type="text" name="practice-type">
+  <input type="text" name="primary-style">
+  <textarea name="summary"></textarea>
+  <input type="file" name="brief-pdf">
+</form>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="header-inner">
+    <span class="lockup">
+      <span class="lockup-name">SCOUT</span>
+      <span class="lockup-rule" aria-hidden="true"></span>
+      <span class="lockup-sub">Content Studio</span>
+    </span>
+  </div>
+</header>
+
+<div class="progress-outer" id="progressOuter" hidden>
+  <div class="progress-wrap">
+    <div class="progress" id="progress" role="progressbar" aria-label="Brief progress"
+         aria-valuemin="1" aria-valuemax="8" aria-valuenow="1" aria-valuetext="Step 1 of 8">
+      <span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span>
+      <span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span>
+    </div>
+    <p class="progress-count" id="progressCount">Step 1 of 8</p>
+  </div>
+</div>
+
+<main id="main" tabindex="-1">
+  <div class="layout" id="layout">
+    <div class="col-main">
+
+      <div class="notice" id="restoreNotice" hidden>
+        <p>Welcome back. Your answers were saved.</p>
+        <button type="button" class="link-btn" id="dismissNotice">Dismiss</button>
+        <button type="button" class="link-btn" id="startOver">Start over</button>
+      </div>
+
+      <!-- Welcome -->
+      <section class="screen screen-welcome" data-screen="welcome" aria-labelledby="t-welcome">
+        <p class="kicker">Website Brief Builder</p>
+        <h1 class="welcome-title" id="t-welcome" tabindex="-1">Plan a website your clients will trust.</h1>
+        <p class="lead">Answer a few questions about your practice. Get a brief you can hand to any designer, including us. Takes about ten minutes. Your answers save as you go.</p>
+        <ol class="points">
+          <li><span class="pt-num" aria-hidden="true">1</span><span class="pt-text">Clients decide in seconds. Your site has one job: help an anxious person feel safe enough to reach out.</span></li>
+          <li><span class="pt-num" aria-hidden="true">2</span><span class="pt-text">Clarity beats clever. Plain words about who you help outperform vague language about wellness.</span></li>
+          <li><span class="pt-num" aria-hidden="true">3</span><span class="pt-text">One next step. Every page should point to the same action: call, book, or write.</span></li>
+        </ol>
+        <p class="privacy">This guide asks about your practice, not your clients. Please do not send client names, diagnoses, or protected health information.</p>
+        <button type="button" class="btn btn-primary" id="startBtn">Start your brief</button>
+      </section>
+
+      <!-- Step 1 -->
+      <section class="screen" data-step="1" aria-labelledby="t-step1" hidden>
+        <p class="kicker">Step 1 of 8</p>
+        <h2 class="step-title" id="t-step1" tabindex="-1">Your practice</h2>
+        <p class="why">The basics you give here become the words at the top of every page. Plain facts first. We can make them sound good later.</p>
+        <hr class="rule">
+
+        <div class="field">
+          <label class="f-label" for="practiceName">Practice name</label>
+          <p class="f-help" id="practiceNameHelp">This goes in the preview and on your brief.</p>
+          <input class="f-input" type="text" id="practiceName" name="practiceName" aria-describedby="practiceNameHelp" autocomplete="organization">
+        </div>
+
+        <fieldset class="field">
+          <legend class="f-label">Practice type</legend>
+          <div class="choices pair">
+            <label class="choice"><input class="vh" type="radio" name="practiceType" value="Solo practice"><span class="choice-box"><span class="row-label">Solo practice</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="radio" name="practiceType" value="Group practice"><span class="choice-box"><span class="row-label">Group practice</span><span class="tick" aria-hidden="true"></span></span></label>
+          </div>
+        </fieldset>
+
+        <div class="reveal" data-when-name="practiceType" data-when-value="Solo practice" hidden>
+          <fieldset class="field">
+            <legend class="f-label">Do you want your photo and story front and center, or should the work lead?</legend>
+            <div class="choices">
+              <label class="choice"><input class="vh" type="radio" name="soloFocus" value="Me first"><span class="choice-box"><span class="row-label">Me first</span><span class="tick" aria-hidden="true"></span></span></label>
+              <label class="choice"><input class="vh" type="radio" name="soloFocus" value="The work first"><span class="choice-box"><span class="row-label">The work first</span><span class="tick" aria-hidden="true"></span></span></label>
+              <label class="choice"><input class="vh" type="radio" name="soloFocus" value="Not sure"><span class="choice-box"><span class="row-label">Not sure</span><span class="tick" aria-hidden="true"></span></span></label>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="reveal" data-when-name="practiceType" data-when-value="Group practice" hidden>
+          <div class="field">
+            <label class="f-label" for="clinicianCount">Number of clinicians</label>
+            <input class="f-input narrow" type="number" id="clinicianCount" name="clinicianCount" min="1" inputmode="numeric">
+          </div>
+          <fieldset class="field">
+            <legend class="f-label">Individual bio pages for each clinician?</legend>
+            <div class="choices pair">
+              <label class="choice"><input class="vh" type="radio" name="bioPages" value="Yes"><span class="choice-box"><span class="row-label">Yes</span><span class="tick" aria-hidden="true"></span></span></label>
+              <label class="choice"><input class="vh" type="radio" name="bioPages" value="No"><span class="choice-box"><span class="row-label">No</span><span class="tick" aria-hidden="true"></span></span></label>
+              <label class="choice"><input class="vh" type="radio" name="bioPages" value="Not sure"><span class="choice-box"><span class="row-label">Not sure</span><span class="tick" aria-hidden="true"></span></span></label>
+            </div>
+          </fieldset>
+          <fieldset class="field">
+            <legend class="f-label">Who responds to new inquiries?</legend>
+            <div class="choices">
+              <label class="choice"><input class="vh" type="radio" name="inquiryResponder" value="The owner"><span class="choice-box"><span class="row-label">The owner</span><span class="tick" aria-hidden="true"></span></span></label>
+              <label class="choice"><input class="vh" type="radio" name="inquiryResponder" value="An intake coordinator"><span class="choice-box"><span class="row-label">An intake coordinator</span><span class="tick" aria-hidden="true"></span></span></label>
+              <label class="choice"><input class="vh" type="radio" name="inquiryResponder" value="Front desk staff"><span class="choice-box"><span class="row-label">Front desk staff</span><span class="tick" aria-hidden="true"></span></span></label>
+              <label class="choice"><input class="vh" type="radio" name="inquiryResponder" value="It varies"><span class="choice-box"><span class="row-label">It varies</span><span class="tick" aria-hidden="true"></span></span></label>
+            </div>
+          </fieldset>
+          <fieldset class="field">
+            <legend class="f-label">Hiring page?</legend>
+            <div class="choices pair">
+              <label class="choice"><input class="vh" type="radio" name="hiringPage" value="Yes now"><span class="choice-box"><span class="row-label">Yes now</span><span class="tick" aria-hidden="true"></span></span></label>
+              <label class="choice"><input class="vh" type="radio" name="hiringPage" value="Maybe later"><span class="choice-box"><span class="row-label">Maybe later</span><span class="tick" aria-hidden="true"></span></span></label>
+              <label class="choice"><input class="vh" type="radio" name="hiringPage" value="No"><span class="choice-box"><span class="row-label">No</span><span class="tick" aria-hidden="true"></span></span></label>
+            </div>
+          </fieldset>
+        </div>
+
+        <fieldset class="field">
+          <legend class="f-label">Where you see clients</legend>
+          <div class="choices">
+            <label class="choice"><input class="vh" type="radio" name="setting" value="In person"><span class="choice-box"><span class="row-label">In person</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="radio" name="setting" value="Telehealth only"><span class="choice-box"><span class="row-label">Telehealth only</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="radio" name="setting" value="Both"><span class="choice-box"><span class="row-label">Both</span><span class="tick" aria-hidden="true"></span></span></label>
+          </div>
+        </fieldset>
+
+        <div class="field">
+          <label class="f-label" for="city">City or region served</label>
+          <input class="f-input" type="text" id="city" name="city" autocomplete="address-level2">
+        </div>
+
+        <div class="field">
+          <label class="f-label" for="treat">What you treat</label>
+          <p class="f-help" id="treatHelp">What do you specialize in? List the issues clients actually search for.</p>
+          <textarea class="f-input" id="treat" name="treat" aria-describedby="treatHelp"></textarea>
+        </div>
+
+        <div class="field">
+          <label class="f-label" for="modalities">Modalities</label>
+          <p class="f-help" id="modalitiesHelp">Only list what clients ask about by name. EMDR, yes. Your full training history, no.</p>
+          <textarea class="f-input" id="modalities" name="modalities" aria-describedby="modalitiesHelp"></textarea>
+        </div>
+
+        <div class="field">
+          <label class="f-label" for="credentials">Credentials and licenses to display</label>
+          <input class="f-input" type="text" id="credentials" name="credentials">
+        </div>
+
+        <div class="field">
+          <label class="f-label" for="differentiator">What sets your work apart</label>
+          <p class="f-help" id="differentiatorHelp">What do clients get from you that they didn't get from their last therapist?</p>
+          <textarea class="f-input" id="differentiator" name="differentiator" aria-describedby="differentiatorHelp"></textarea>
+        </div>
+
+        <div class="btn-row">
+          <button type="button" class="btn btn-ghost" data-nav="back">Back</button>
+          <button type="button" class="btn btn-primary" data-nav="next">Next</button>
+        </div>
+      </section>
+
+      <!-- Step 2 -->
+      <section class="screen" data-step="2" aria-labelledby="t-step2" hidden>
+        <p class="kicker">Step 2 of 8</p>
+        <h2 class="step-title" id="t-step2" tabindex="-1">Your clients</h2>
+        <p class="why">People don't comparison-shop therapists the way they shop for shoes. They look for one signal: this person gets it. These answers shape every headline.</p>
+        <hr class="rule">
+
+        <fieldset class="field">
+          <legend class="f-label">Who usually finds the site</legend>
+          <p class="f-help">Check everything that applies.</p>
+          <div class="choices">
+            <label class="choice"><input class="vh" type="checkbox" name="audience" value="The client themselves"><span class="choice-box"><span class="row-label">The client themselves</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="checkbox" name="audience" value="A parent"><span class="choice-box"><span class="row-label">A parent</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="checkbox" name="audience" value="A partner or spouse"><span class="choice-box"><span class="row-label">A partner or spouse</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="checkbox" name="audience" value="A referring professional"><span class="choice-box"><span class="row-label">A referring professional</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="checkbox" name="audience" value="Other"><span class="choice-box"><span class="row-label">Other</span><span class="tick" aria-hidden="true"></span></span></label>
+          </div>
+          <div class="reveal" data-when-name="audience" data-when-value="Other" hidden>
+            <div class="field">
+              <label class="f-label" for="audienceOther">Who else finds it</label>
+              <input class="f-input" type="text" id="audienceOther" name="audienceOther">
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="field">
+          <legend class="f-label">When someone lands on your site, what state are they usually in?</legend>
+          <div class="choices">
+            <label class="choice"><input class="vh" type="checkbox" name="arrivalState" value="Overwhelmed"><span class="choice-box"><span class="row-label">Overwhelmed</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="checkbox" name="arrivalState" value="In crisis"><span class="choice-box"><span class="row-label">In crisis</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="checkbox" name="arrivalState" value="Skeptical it will help"><span class="choice-box"><span class="row-label">Skeptical it will help</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="checkbox" name="arrivalState" value="Hopeful and ready"><span class="choice-box"><span class="row-label">Hopeful and ready</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="checkbox" name="arrivalState" value="Researching for someone else"><span class="choice-box"><span class="row-label">Researching for someone else</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="checkbox" name="arrivalState" value="Comparing several therapists"><span class="choice-box"><span class="row-label">Comparing several therapists</span><span class="tick" aria-hidden="true"></span></span></label>
+          </div>
+        </fieldset>
+
+        <div class="field">
+          <label class="f-label" for="needToSee">What do they need to see or feel before they'll reach out?</label>
+          <textarea class="f-input" id="needToSee" name="needToSee"></textarea>
+        </div>
+
+        <fieldset class="field">
+          <legend class="f-label">Common hesitations</legend>
+          <div class="choices">
+            <label class="choice"><input class="vh" type="checkbox" name="hesitations" value="Cost"><span class="choice-box"><span class="row-label">Cost</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="checkbox" name="hesitations" value="Insurance confusion"><span class="choice-box"><span class="row-label">Insurance confusion</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="checkbox" name="hesitations" value="Stigma"><span class="choice-box"><span class="row-label">Stigma</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="checkbox" name="hesitations" value="Time"><span class="choice-box"><span class="row-label">Time</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="checkbox" name="hesitations" value="A past bad therapy experience"><span class="choice-box"><span class="row-label">A past bad therapy experience</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="checkbox" name="hesitations" value="Not sure my problem is bad enough"><span class="choice-box"><span class="row-label">Not sure my problem is bad enough</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="checkbox" name="hesitations" value="Other"><span class="choice-box"><span class="row-label">Other</span><span class="tick" aria-hidden="true"></span></span></label>
+          </div>
+          <div class="reveal" data-when-name="hesitations" data-when-value="Other" hidden>
+            <div class="field">
+              <label class="f-label" for="hesitationsOther">What else holds them back</label>
+              <input class="f-input" type="text" id="hesitationsOther" name="hesitationsOther">
+            </div>
+          </div>
+        </fieldset>
+
+        <div class="btn-row">
+          <button type="button" class="btn btn-ghost" data-nav="back">Back</button>
+          <button type="button" class="btn btn-primary" data-nav="next">Next</button>
+        </div>
+      </section>
+
+      <!-- Step 3 -->
+      <section class="screen" data-step="3" aria-labelledby="t-step3" hidden>
+        <p class="kicker">Step 3 of 8</p>
+        <h2 class="step-title" id="t-step3" tabindex="-1">Goals</h2>
+        <p class="why">A site with one clear next step outperforms a site with five. Decide the step here and everything else lines up behind it.</p>
+        <hr class="rule">
+
+        <fieldset class="field">
+          <legend class="f-label">The one action you most want a visitor to take</legend>
+          <div class="choices">
+            <label class="choice"><input class="vh" type="radio" name="primaryAction" value="Call the practice"><span class="choice-box"><span class="row-label">Call the practice</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="radio" name="primaryAction" value="Fill out a contact form"><span class="choice-box"><span class="row-label">Fill out a contact form</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="radio" name="primaryAction" value="Book a consultation online"><span class="choice-box"><span class="row-label">Book a consultation online</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="radio" name="primaryAction" value="Send an email"><span class="choice-box"><span class="row-label">Send an email</span><span class="tick" aria-hidden="true"></span></span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="field">
+          <legend class="f-label">Where clients come from</legend>
+          <div class="choices">
+            <label class="choice"><input class="vh" type="radio" name="referralMix" value="Mostly direct from search and word of mouth"><span class="choice-box"><span class="row-label">Mostly direct from search and word of mouth</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="radio" name="referralMix" value="Mostly professional referrals"><span class="choice-box"><span class="row-label">Mostly professional referrals</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="radio" name="referralMix" value="A real mix"><span class="choice-box"><span class="row-label">A real mix</span><span class="tick" aria-hidden="true"></span></span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="field">
+          <legend class="f-label">Fees on the site?</legend>
+          <div class="choices pair">
+            <label class="choice"><input class="vh" type="radio" name="feesOnSite" value="Yes"><span class="choice-box"><span class="row-label">Yes</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="radio" name="feesOnSite" value="No"><span class="choice-box"><span class="row-label">No</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="radio" name="feesOnSite" value="Not sure"><span class="choice-box"><span class="row-label">Not sure</span><span class="tick" aria-hidden="true"></span></span></label>
+          </div>
+          <p class="inline-note">Listing fees filters for fit. Leaving them off gets more calls, including calls from people who can't afford you. There's no wrong answer. We just need to know where you stand.</p>
+        </fieldset>
+
+        <div class="field">
+          <label class="f-label" for="growth">Anything you want room to grow into?</label>
+          <textarea class="f-input" id="growth" name="growth" placeholder="Groups, intensives, workshops, courses"></textarea>
+        </div>
+
+        <div class="btn-row">
+          <button type="button" class="btn btn-ghost" data-nav="back">Back</button>
+          <button type="button" class="btn btn-primary" data-nav="next">Next</button>
+        </div>
+      </section>
+
+      <!-- Step 4 -->
+      <section class="screen" data-step="4" aria-labelledby="t-step4" hidden>
+        <p class="kicker">Step 4 of 8</p>
+        <h2 class="step-title" id="t-step4" tabindex="-1">Style direction</h2>
+        <p class="why">Most visitors decide how they feel about a practice before they read a word. Pick the direction that feels like your office, not someone else's.</p>
+        <hr class="rule">
+
+        <fieldset class="field">
+          <legend class="f-label">Pick a primary direction</legend>
+          <p class="f-help">Each card is a rough sketch of a homepage in that style. The preview panel follows your pick.</p>
+          <div class="style-cards" id="styleCards"></div>
+        </fieldset>
+
+        <div class="field">
+          <label class="f-label" for="secondaryStyle">Also drawn to <span class="optional-tag">(optional)</span></label>
+          <select class="f-input" id="secondaryStyle" name="secondaryStyle">
+            <option value="">None</option>
+            <option value="warm-minimal">Warm Minimal</option>
+            <option value="clean-clinical">Clean Clinical</option>
+            <option value="grounded-earth">Grounded Earth</option>
+            <option value="modern-calm">Modern Calm</option>
+            <option value="soft-editorial">Soft Editorial</option>
+          </select>
+        </div>
+
+        <div class="btn-row">
+          <button type="button" class="btn btn-ghost" data-nav="back">Back</button>
+          <button type="button" class="btn btn-primary" data-nav="next">Next</button>
+        </div>
+      </section>
+
+      <!-- Step 5 -->
+      <section class="screen" data-step="5" aria-labelledby="t-step5" hidden>
+        <p class="kicker">Step 5 of 8</p>
+        <h2 class="step-title" id="t-step5" tabindex="-1">Colors and type</h2>
+        <p class="why">Color and type carry tone before copy does. This locks in a starting point, not a final answer.</p>
+        <hr class="rule">
+
+        <div class="field">
+          <p class="f-label">Your starting palette</p>
+          <p class="pal-hint" id="palHint">From the style you picked. Hex codes included so nothing gets lost.</p>
+          <div class="pal-display" id="paletteDisplay"></div>
+        </div>
+
+        <fieldset class="field">
+          <legend class="f-label">How should we treat it?</legend>
+          <div class="choices">
+            <label class="choice"><input class="vh" type="radio" name="paletteChoice" value="Keep this palette"><span class="choice-box"><span class="row-label">Keep this palette</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="radio" name="paletteChoice" value="Use a different one"><span class="choice-box"><span class="row-label">Use a different one</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="radio" name="paletteChoice" value="I have brand colors"><span class="choice-box"><span class="row-label">I have brand colors</span><span class="tick" aria-hidden="true"></span></span></label>
+          </div>
+          <div class="reveal" data-when-name="paletteChoice" data-when-value="Use a different one" hidden>
+            <fieldset class="field">
+              <legend class="f-label">Pick one</legend>
+              <div class="choices" id="paletteAltRows"></div>
+            </fieldset>
+          </div>
+          <div class="reveal" data-when-name="paletteChoice" data-when-value="I have brand colors" hidden>
+            <div class="field">
+              <label class="f-label" for="brandColors">List your hex codes or describe your colors</label>
+              <input class="f-input" type="text" id="brandColors" name="brandColors">
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="field">
+          <legend class="f-label">Logo</legend>
+          <div class="choices">
+            <label class="choice"><input class="vh" type="radio" name="logoStatus" value="I have a logo"><span class="choice-box"><span class="row-label">I have a logo</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="radio" name="logoStatus" value="I need one"><span class="choice-box"><span class="row-label">I need one</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="radio" name="logoStatus" value="I have one but it needs work"><span class="choice-box"><span class="row-label">I have one but it needs work</span><span class="tick" aria-hidden="true"></span></span></label>
+          </div>
+          <div class="reveal" data-when-name="logoStatus" data-when-value="I have a logo|I have one but it needs work" hidden>
+            <p class="inline-note">No upload needed now. We'll collect files after you book a call.</p>
+          </div>
+        </fieldset>
+
+        <fieldset class="field">
+          <legend class="f-label">Font pairing</legend>
+          <p class="f-help">Each row is set in its own fonts. We preselected the pairing that matches your style. Override it if another reads more like you.</p>
+          <div class="choices" id="fontPairRows"></div>
+        </fieldset>
+
+        <div class="btn-row">
+          <button type="button" class="btn btn-ghost" data-nav="back">Back</button>
+          <button type="button" class="btn btn-primary" data-nav="next">Next</button>
+        </div>
+      </section>
+
+      <!-- Step 6 -->
+      <section class="screen" data-step="6" aria-labelledby="t-step6" hidden>
+        <p class="kicker">Step 6 of 8</p>
+        <h2 class="step-title" id="t-step6" tabindex="-1">Voice and copy</h2>
+        <p class="why">The words on the site should sound like you on a good day, not like a brochure.</p>
+        <hr class="rule">
+
+        <fieldset class="field scale">
+          <legend class="f-label">Warm to clinical</legend>
+          <div class="scale-ends" aria-hidden="true"><span>Warm</span><span>Clinical</span></div>
+          <div class="scale-dots">
+            <label class="dot-wrap"><input class="vh" type="radio" name="toneWarmth" value="1"><span class="dot">1<span class="tick-badge" aria-hidden="true"></span></span><span class="sr-only">1, most warm</span></label>
+            <label class="dot-wrap"><input class="vh" type="radio" name="toneWarmth" value="2"><span class="dot">2<span class="tick-badge" aria-hidden="true"></span></span><span class="sr-only">2</span></label>
+            <label class="dot-wrap"><input class="vh" type="radio" name="toneWarmth" value="3"><span class="dot">3<span class="tick-badge" aria-hidden="true"></span></span><span class="sr-only">3, balanced</span></label>
+            <label class="dot-wrap"><input class="vh" type="radio" name="toneWarmth" value="4"><span class="dot">4<span class="tick-badge" aria-hidden="true"></span></span><span class="sr-only">4</span></label>
+            <label class="dot-wrap"><input class="vh" type="radio" name="toneWarmth" value="5"><span class="dot">5<span class="tick-badge" aria-hidden="true"></span></span><span class="sr-only">5, most clinical</span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="field scale">
+          <legend class="f-label">Conversational to formal</legend>
+          <div class="scale-ends" aria-hidden="true"><span>Conversational</span><span>Formal</span></div>
+          <div class="scale-dots">
+            <label class="dot-wrap"><input class="vh" type="radio" name="toneFormality" value="1"><span class="dot">1<span class="tick-badge" aria-hidden="true"></span></span><span class="sr-only">1, most conversational</span></label>
+            <label class="dot-wrap"><input class="vh" type="radio" name="toneFormality" value="2"><span class="dot">2<span class="tick-badge" aria-hidden="true"></span></span><span class="sr-only">2</span></label>
+            <label class="dot-wrap"><input class="vh" type="radio" name="toneFormality" value="3"><span class="dot">3<span class="tick-badge" aria-hidden="true"></span></span><span class="sr-only">3, balanced</span></label>
+            <label class="dot-wrap"><input class="vh" type="radio" name="toneFormality" value="4"><span class="dot">4<span class="tick-badge" aria-hidden="true"></span></span><span class="sr-only">4</span></label>
+            <label class="dot-wrap"><input class="vh" type="radio" name="toneFormality" value="5"><span class="dot">5<span class="tick-badge" aria-hidden="true"></span></span><span class="sr-only">5, most formal</span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="field scale">
+          <legend class="f-label">Gentle to direct</legend>
+          <div class="scale-ends" aria-hidden="true"><span>Gentle</span><span>Direct</span></div>
+          <div class="scale-dots">
+            <label class="dot-wrap"><input class="vh" type="radio" name="toneDirectness" value="1"><span class="dot">1<span class="tick-badge" aria-hidden="true"></span></span><span class="sr-only">1, most gentle</span></label>
+            <label class="dot-wrap"><input class="vh" type="radio" name="toneDirectness" value="2"><span class="dot">2<span class="tick-badge" aria-hidden="true"></span></span><span class="sr-only">2</span></label>
+            <label class="dot-wrap"><input class="vh" type="radio" name="toneDirectness" value="3"><span class="dot">3<span class="tick-badge" aria-hidden="true"></span></span><span class="sr-only">3, balanced</span></label>
+            <label class="dot-wrap"><input class="vh" type="radio" name="toneDirectness" value="4"><span class="dot">4<span class="tick-badge" aria-hidden="true"></span></span><span class="sr-only">4</span></label>
+            <label class="dot-wrap"><input class="vh" type="radio" name="toneDirectness" value="5"><span class="dot">5<span class="tick-badge" aria-hidden="true"></span></span><span class="sr-only">5, most direct</span></label>
+          </div>
+        </fieldset>
+
+        <div class="field">
+          <label class="f-label" for="neverWords">Words or phrases you never want on your site</label>
+          <textarea class="f-input" id="neverWords" name="neverWords"></textarea>
+        </div>
+
+        <fieldset class="field">
+          <legend class="f-label">Copy status</legend>
+          <div class="choices">
+            <label class="choice"><input class="vh" type="radio" name="copyStatus" value="I have copy I like"><span class="choice-box"><span class="row-label">I have copy I like</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="radio" name="copyStatus" value="I have copy that needs work"><span class="choice-box"><span class="row-label">I have copy that needs work</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="radio" name="copyStatus" value="Write it from scratch"><span class="choice-box"><span class="row-label">Write it from scratch</span><span class="tick" aria-hidden="true"></span></span></label>
+          </div>
+        </fieldset>
+
+        <div class="field">
+          <label class="f-label" for="voiceSample">A sentence or two that sounds like you <span class="optional-tag">(optional)</span></label>
+          <p class="f-help" id="voiceSampleHelp">From your site, an email, anywhere.</p>
+          <textarea class="f-input" id="voiceSample" name="voiceSample" aria-describedby="voiceSampleHelp"></textarea>
+        </div>
+
+        <div class="btn-row">
+          <button type="button" class="btn btn-ghost" data-nav="back">Back</button>
+          <button type="button" class="btn btn-primary" data-nav="next">Next</button>
+        </div>
+      </section>
+
+      <!-- Step 7 -->
+      <section class="screen" data-step="7" aria-labelledby="t-step7" hidden>
+        <p class="kicker">Step 7 of 8</p>
+        <h2 class="step-title" id="t-step7" tabindex="-1">Pages and assets</h2>
+        <p class="why">A site is only as strong as what you can actually put on it. Honest inventory now saves weeks later.</p>
+        <hr class="rule">
+
+        <fieldset class="field">
+          <legend class="f-label">Pages you expect to need</legend>
+          <div class="choices">
+            <label class="choice"><input class="vh" type="checkbox" name="pages" value="Home"><span class="choice-box"><span class="row-label">Home</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="checkbox" name="pages" value="About"><span class="choice-box"><span class="row-label">About</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="checkbox" name="pages" value="Services or Specialties"><span class="choice-box"><span class="row-label">Services or Specialties</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="checkbox" name="pages" value="Individual specialty pages"><span class="choice-box"><span class="row-label">Individual specialty pages</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="checkbox" name="pages" value="Rates and Insurance"><span class="choice-box"><span class="row-label">Rates and Insurance</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="checkbox" name="pages" value="FAQ"><span class="choice-box"><span class="row-label">FAQ</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="checkbox" name="pages" value="Contact"><span class="choice-box"><span class="row-label">Contact</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="checkbox" name="pages" value="Blog"><span class="choice-box"><span class="row-label">Blog</span><span class="tick" aria-hidden="true"></span></span></label>
+          </div>
+          <div class="reveal" data-when-name="practiceType" data-when-value="Group practice" hidden>
+            <p class="f-help">For a group practice, two more worth considering.</p>
+            <div class="choices">
+              <label class="choice"><input class="vh" type="checkbox" name="pages" value="Team"><span class="choice-box"><span class="row-label">Team</span><span class="tick" aria-hidden="true"></span></span></label>
+              <label class="choice"><input class="vh" type="checkbox" name="pages" value="Join Our Team"><span class="choice-box"><span class="row-label">Join Our Team</span><span class="tick" aria-hidden="true"></span></span></label>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="field">
+          <legend class="f-label">Professional headshots</legend>
+          <div class="choices pair">
+            <label class="choice"><input class="vh" type="radio" name="photoHeadshots" value="Yes"><span class="choice-box"><span class="row-label">Yes</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="radio" name="photoHeadshots" value="No"><span class="choice-box"><span class="row-label">No</span><span class="tick" aria-hidden="true"></span></span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="field">
+          <legend class="f-label">Photos of your office or space</legend>
+          <div class="choices pair">
+            <label class="choice"><input class="vh" type="radio" name="photoOffice" value="Yes"><span class="choice-box"><span class="row-label">Yes</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="radio" name="photoOffice" value="No"><span class="choice-box"><span class="row-label">No</span><span class="tick" aria-hidden="true"></span></span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="field">
+          <legend class="f-label">Open to well-chosen stock photos while we plan a shoot</legend>
+          <div class="choices pair">
+            <label class="choice"><input class="vh" type="radio" name="photoStock" value="Yes"><span class="choice-box"><span class="row-label">Yes</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="radio" name="photoStock" value="No"><span class="choice-box"><span class="row-label">No</span><span class="tick" aria-hidden="true"></span></span></label>
+          </div>
+        </fieldset>
+
+        <div class="field">
+          <p class="inline-note" id="testimonialNote">Most licensing boards restrict asking clients for testimonials. That's fine. Unprompted Google reviews, colleague endorsements, and plain credentials do the same work without the ethics problem.</p>
+          <label class="f-label" for="testimonials">Any reviews or endorsements you can ethically point to?</label>
+          <textarea class="f-input" id="testimonials" name="testimonials" aria-describedby="testimonialNote"></textarea>
+        </div>
+
+        <div class="field">
+          <label class="f-label" for="currentUrl">Current website URL, if any</label>
+          <input class="f-input" type="url" id="currentUrl" name="currentUrl" inputmode="url" autocomplete="url">
+        </div>
+
+        <div class="field">
+          <label class="f-label" for="sitesYouLike">Two or three sites you like, and what you like about them</label>
+          <textarea class="f-input" id="sitesYouLike" name="sitesYouLike"></textarea>
+        </div>
+
+        <div class="field">
+          <label class="f-label" for="siteDislikes">Anything you hate seeing on therapy websites?</label>
+          <textarea class="f-input" id="siteDislikes" name="siteDislikes"></textarea>
+        </div>
+
+        <div class="btn-row">
+          <button type="button" class="btn btn-ghost" data-nav="back">Back</button>
+          <button type="button" class="btn btn-primary" data-nav="next">Next</button>
+        </div>
+      </section>
+
+      <!-- Step 8 -->
+      <section class="screen" data-step="8" aria-labelledby="t-step8" hidden>
+        <p class="kicker">Step 8 of 8</p>
+        <h2 class="step-title" id="t-step8" tabindex="-1">Last step. Where should your brief go?</h2>
+        <p class="why">The PDF lands in your downloads the moment you build it. The email is so it can find you again.</p>
+        <hr class="rule">
+
+        <div class="field" id="nameField">
+          <label class="f-label" for="name">Name</label>
+          <input class="f-input" type="text" id="name" name="name" autocomplete="name" aria-describedby="nameErr">
+          <p class="err" id="nameErr">Add your name so we know whose brief this is.</p>
+        </div>
+
+        <div class="field" id="emailField">
+          <label class="f-label" for="email">Email</label>
+          <input class="f-input" type="email" id="email" name="email" autocomplete="email" inputmode="email" aria-describedby="emailErr">
+          <p class="err" id="emailErr">That email doesn't look complete. Check it once more.</p>
+        </div>
+
+        <div class="field">
+          <label class="f-label" for="phone">Phone <span class="optional-tag">(optional)</span></label>
+          <input class="f-input" type="tel" id="phone" name="phone" autocomplete="tel" inputmode="tel">
+        </div>
+
+        <fieldset class="field">
+          <legend class="f-label">Preferred contact</legend>
+          <div class="choices pair">
+            <label class="choice"><input class="vh" type="radio" name="preferredContact" value="Email"><span class="choice-box"><span class="row-label">Email</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="radio" name="preferredContact" value="Phone"><span class="choice-box"><span class="row-label">Phone</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="radio" name="preferredContact" value="Either"><span class="choice-box"><span class="row-label">Either</span><span class="tick" aria-hidden="true"></span></span></label>
+          </div>
+        </fieldset>
+
+        <p class="f-help" style="opacity:1; margin:30px 0 14px;">Your PDF downloads instantly. A copy goes to Scout Content Studio so we're ready if you book a call.</p>
+
+        <div class="btn-row">
+          <button type="button" class="btn btn-ghost" data-nav="back">Back</button>
+          <button type="button" class="btn btn-primary" id="buildBtn">Build my brief</button>
+        </div>
+      </section>
+
+      <!-- Success -->
+      <section class="screen screen-success" data-screen="success" aria-labelledby="t-success" hidden>
+        <p class="kicker">Your brief</p>
+        <h1 class="success-title" id="t-success" tabindex="-1">Your brief is downloading.</h1>
+        <p class="success-body" id="successBody">It's yours. Use it with any designer. If you want Scout to build the site, your brief is already in our inbox. Book a call and we'll pick up right where you left off.</p>
+        <p class="success-extra" id="successExtra" hidden></p>
+        <div class="success-actions">
+          <a class="btn btn-primary" id="bookCallLink" href="BOOK_A_CALL_URL">Book a call</a>
+          <a class="link-cta" href="https://scoutcontent.studio">See Scout's work &#8594;</a>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Live preview. Frame is Scout chrome; the hero inside is the client's style. -->
+    <aside class="col-preview" id="previewCol" hidden>
+      <button type="button" class="preview-toggle" id="previewToggle" aria-expanded="false" aria-controls="previewPanel">
+        <span>Preview your style</span>
+        <span class="chev" aria-hidden="true"></span>
+      </button>
+      <div class="preview-panel" id="previewPanel">
+        <p class="preview-kicker">Live preview</p>
+        <div class="preview-frame">
+          <div class="p-hero" id="pvHero">
+            <div class="p-nav">
+              <span class="p-name" id="pvName">Your Practice</span>
+              <span class="p-links" aria-hidden="true"><span>About</span><span>Contact</span></span>
+            </div>
+            <div class="p-inner">
+              <p class="p-headline" id="pvHeadline">You don't have to figure this out alone.</p>
+              <p class="p-sub" id="pvSub">A clear sense of who we help and how to begin.</p>
+              <span class="p-cta" id="pvCta">Get in touch</span>
+              <div class="p-img" aria-hidden="true"></div>
+            </div>
+          </div>
+        </div>
+        <p class="preview-caption">A rough sketch, not a design. Your real site starts from your answers.</p>
+      </div>
+    </aside>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="foot-inner">
+    <span class="lockup small">
+      <span class="lockup-name">SCOUT</span>
+      <span class="lockup-rule" aria-hidden="true"></span>
+      <span class="lockup-sub">Content Studio</span>
+    </span>
+    <p class="foot-privacy">This guide asks about your practice, not your clients. Please do not send client names, diagnoses, or protected health information.</p>
+    <a class="foot-link" href="https://scoutcontent.studio">Visit Scout Content Studio &#8594;</a>
+  </div>
+</footer>
+
+<div id="pdf-root" aria-hidden="true"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script>
+(function(){
+'use strict';
+
+/* ------------------------------------------------------------
+   Config. Find and replace BOOK_A_CALL_URL before going live.
+   ------------------------------------------------------------ */
+var BOOK_URL  = 'BOOK_A_CALL_URL';
+var SITE_URL  = 'https://scoutcontent.studio';
+var EMAIL     = 'info@scoutcontent.studio';
+var STORE_KEY = 'scoutBriefBuilder.v1';
+
+/* ------------------------------------------------------------
+   The five client style directions. Single source of truth for
+   the cards, palette rows, font rows, preview, and PDF.
+   ------------------------------------------------------------ */
+var STYLES = [
+  { id:'warm-minimal',  name:'Warm Minimal',
+    desc:'Quiet, warm, lots of space. Feels like a calm office with good light.',
+    bg:'#FAF6F0', ink:'#2B2724', accent:'#C96F4A', sec:'#E8DFD3',
+    head:'"Fraunces",Georgia,serif', body:'"Karla",Helvetica,sans-serif',
+    tag:'Fraunces + Karla' },
+  { id:'clean-clinical', name:'Clean Clinical',
+    desc:'Clear, credible, unfussy. Built for people who want answers fast.',
+    bg:'#FFFFFF', ink:'#16324F', accent:'#3E7CB1', sec:'#E9F0F6',
+    head:'"Libre Franklin",Helvetica,sans-serif', body:'"Source Sans 3",Helvetica,sans-serif',
+    tag:'Libre Franklin + Source Sans 3' },
+  { id:'grounded-earth', name:'Grounded Earth',
+    desc:'Natural tones, steady pace. Feels rooted and unhurried.',
+    bg:'#F4EFE6', ink:'#2E2A24', accent:'#5A6B4F', sec:'#DCCDB4',
+    head:'"Lora",Georgia,serif', body:'"Karla",Helvetica,sans-serif',
+    tag:'Lora + Karla' },
+  { id:'modern-calm', name:'Modern Calm',
+    desc:'Current and simple. Soft color, clean lines, nothing loud.',
+    bg:'#F6F7F5', ink:'#20241F', accent:'#6F8F77', sec:'#DDE5DD',
+    head:'"Sora",Helvetica,sans-serif', body:'"Karla",Helvetica,sans-serif',
+    tag:'Sora + Karla' },
+  { id:'soft-editorial', name:'Soft Editorial',
+    desc:'Literary and personal. Serif headlines, gentle color, room to breathe.',
+    bg:'#FBF7F4', ink:'#2F262B', accent:'#7D4F66', sec:'#EBDFDC',
+    head:'"Cormorant Garamond",Georgia,serif', body:'"Nunito Sans",Helvetica,sans-serif',
+    tag:'Cormorant Garamond + Nunito Sans' }
+];
+
+function styleById(id){
+  for(var i=0;i<STYLES.length;i++){ if(STYLES[i].id===id) return STYLES[i]; }
+  return null;
+}
+
+/* ------------------------------------------------------------
+   Answer state
+   ------------------------------------------------------------ */
+var DEFAULTS = {
+  practiceName:'', practiceType:'', setting:'', city:'',
+  treat:'', modalities:'', credentials:'', differentiator:'',
+  soloFocus:'', clinicianCount:'', bioPages:'', inquiryResponder:'', hiringPage:'',
+  audience:[], audienceOther:'', arrivalState:[], needToSee:'',
+  hesitations:[], hesitationsOther:'',
+  primaryAction:'', referralMix:'', feesOnSite:'', growth:'',
+  primaryStyle:'', secondaryStyle:'',
+  paletteChoice:'', paletteOverride:'', brandColors:'', logoStatus:'', fontPair:'',
+  toneWarmth:'', toneFormality:'', toneDirectness:'',
+  neverWords:'', copyStatus:'', voiceSample:'',
+  pages:[], photoHeadshots:'', photoOffice:'', photoStock:'',
+  testimonials:'', currentUrl:'', sitesYouLike:'', siteDislikes:'',
+  name:'', email:'', phone:'', preferredContact:''
+};
+
+var answers = JSON.parse(JSON.stringify(DEFAULTS));
+var step = 0;              /* 0 welcome, 1 to 8 steps, 9 success */
+var fontPairTouched = false;
+var building = false;
+
+/* ------------------------------------------------------------
+   Storage, wrapped so restricted previews still run
+   ------------------------------------------------------------ */
+function saveState(){
+  try{
+    localStorage.setItem(STORE_KEY, JSON.stringify({
+      step: step >= 1 && step <= 8 ? step : 0,
+      answers: answers,
+      fontPairTouched: fontPairTouched
+    }));
+  }catch(e){}
+}
+function loadState(){
+  try{
+    var raw = localStorage.getItem(STORE_KEY);
+    if(!raw) return null;
+    return JSON.parse(raw);
+  }catch(e){ return null; }
+}
+function clearState(){
+  try{ localStorage.removeItem(STORE_KEY); }catch(e){}
+}
+
+/* ------------------------------------------------------------
+   Color utilities. Keeps every preview button readable.
+   ------------------------------------------------------------ */
+function hexToRgb(hex){
+  var h = hex.replace('#','');
+  if(h.length===3){ h = h[0]+h[0]+h[1]+h[1]+h[2]+h[2]; }
+  return [parseInt(h.substr(0,2),16), parseInt(h.substr(2,2),16), parseInt(h.substr(4,2),16)];
+}
+function rgbToHex(r,g,b){
+  function p(n){ n=Math.max(0,Math.min(255,Math.round(n))); var s=n.toString(16); return s.length===1?'0'+s:s; }
+  return '#'+p(r)+p(g)+p(b);
+}
+function lum(rgb){
+  var a = rgb.map(function(v){
+    v/=255;
+    return v<=0.03928 ? v/12.92 : Math.pow((v+0.055)/1.055, 2.4);
+  });
+  return 0.2126*a[0]+0.7152*a[1]+0.0722*a[2];
+}
+function contrast(hexA, hexB){
+  var l1=lum(hexToRgb(hexA)), l2=lum(hexToRgb(hexB));
+  var hi=Math.max(l1,l2), lo=Math.min(l1,l2);
+  return (hi+0.05)/(lo+0.05);
+}
+function darken(hex, f){
+  var rgb = hexToRgb(hex);
+  return rgbToHex(rgb[0]*(1-f), rgb[1]*(1-f), rgb[2]*(1-f));
+}
+function accessibleAccent(hex){
+  var out = hex, guard = 0;
+  while(contrast('#ffffff', out) < 4.5 && guard < 24){
+    out = darken(out, 0.06); guard++;
+  }
+  return out;
+}
+
+function esc(s){
+  return String(s==null?'':s)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
+/* ------------------------------------------------------------
+   Effective style and fonts
+   ------------------------------------------------------------ */
+function effectiveStyle(){
+  if(answers.paletteChoice==='Use a different one' && answers.paletteOverride){
+    var o = styleById(answers.paletteOverride);
+    if(o) return o;
+  }
+  return styleById(answers.primaryStyle) || STYLES[0];
+}
+function effectiveFonts(){
+  return styleById(answers.fontPair) || effectiveStyle();
+}
+
+/* ------------------------------------------------------------
+   Render the dynamic rows
+   ------------------------------------------------------------ */
+function renderStyleCards(){
+  var html = STYLES.map(function(s){
+    var acc = accessibleAccent(s.accent);
+    return '<label class="style-card">' +
+      '<input class="vh" type="radio" name="primaryStyle" value="'+s.id+'">' +
+      '<span class="card-body">' +
+        '<span class="tick" aria-hidden="true"></span>' +
+        '<span class="mock" aria-hidden="true" style="--m-bg:'+s.bg+';--m-ink:'+s.ink+';--m-accent:'+acc+';--m-sec:'+s.sec+';--m-head:'+s.head.replace(/"/g,'&quot;')+';--m-body:'+s.body.replace(/"/g,'&quot;')+'">' +
+          '<span class="m-nav"><b>Your Practice</b><span class="m-links"><span>About</span><span>Contact</span></span></span>' +
+          '<span class="m-inner">' +
+            '<span class="m-head">Steady support for hard seasons.</span>' +
+            '<span class="m-sub">Individual therapy for adults.</span>' +
+            '<span class="m-cta">Book a consultation</span>' +
+            '<span class="m-img"></span>' +
+          '</span>' +
+        '</span>' +
+        '<span class="card-meta">' +
+          '<span class="card-name">'+s.name+'</span>' +
+          '<span class="card-desc">'+s.desc+'</span>' +
+          '<span class="sw-row">' +
+            '<span class="sw" style="background:'+s.bg+'"></span>' +
+            '<span class="sw" style="background:'+s.ink+'"></span>' +
+            '<span class="sw" style="background:'+s.accent+'"></span>' +
+            '<span class="sw" style="background:'+s.sec+'"></span>' +
+          '</span>' +
+          '<span class="pair-tag">'+s.tag+'</span>' +
+        '</span>' +
+      '</span>' +
+    '</label>';
+  }).join('');
+  document.getElementById('styleCards').innerHTML = html;
+}
+
+function renderPaletteAltRows(){
+  var current = answers.primaryStyle || STYLES[0].id;
+  var html = STYLES.filter(function(s){ return s.id !== current; }).map(function(s){
+    return '<label class="choice">' +
+      '<input class="vh" type="radio" name="paletteOverride" value="'+s.id+'">' +
+      '<span class="choice-box">' +
+        '<span class="row-label">'+s.name+'</span>' +
+        '<span class="alt-swatches" aria-hidden="true">' +
+          '<span class="sw" style="background:'+s.bg+'"></span>' +
+          '<span class="sw" style="background:'+s.ink+'"></span>' +
+          '<span class="sw" style="background:'+s.accent+'"></span>' +
+          '<span class="sw" style="background:'+s.sec+'"></span>' +
+        '</span>' +
+        '<span class="tick" aria-hidden="true"></span>' +
+      '</span>' +
+    '</label>';
+  }).join('');
+  document.getElementById('paletteAltRows').innerHTML = html;
+  if(answers.paletteOverride === current){ answers.paletteOverride = ''; }
+  if(answers.paletteOverride){
+    var el = document.querySelector('input[name="paletteOverride"][value="'+answers.paletteOverride+'"]');
+    if(el) el.checked = true;
+  }
+}
+
+function renderFontPairRows(){
+  var html = STYLES.map(function(s){
+    return '<label class="choice pair-row">' +
+      '<input class="vh" type="radio" name="fontPair" value="'+s.id+'">' +
+      '<span class="choice-box pair-box" style="--pr-head:'+s.head.replace(/"/g,'&quot;')+';--pr-body:'+s.body.replace(/"/g,'&quot;')+'">' +
+        '<span class="pr-name">'+s.tag+'</span>' +
+        '<span class="pr-head" aria-hidden="true">Steady support for hard seasons.</span>' +
+        '<span class="pr-body" aria-hidden="true">Plain words about who you help, and one clear way to begin.</span>' +
+        '<span class="tick" aria-hidden="true"></span>' +
+      '</span>' +
+    '</label>';
+  }).join('');
+  document.getElementById('fontPairRows').innerHTML = html;
+}
+
+function updatePaletteDisplay(){
+  var s = effectiveStyle();
+  var roles = [['Background',s.bg],['Ink',s.ink],['Accent',s.accent],['Secondary',s.sec]];
+  document.getElementById('paletteDisplay').innerHTML = roles.map(function(r){
+    return '<span class="pal-chip">' +
+      '<span class="pc-color" style="background:'+r[1]+'"></span>' +
+      '<span class="pc-role">'+r[0]+'</span>' +
+      '<span class="pc-hex">'+r[1]+'</span>' +
+    '</span>';
+  }).join('');
+}
+
+/* ------------------------------------------------------------
+   Conditional reveals
+   ------------------------------------------------------------ */
+function runReveals(){
+  var reveals = document.querySelectorAll('.reveal[data-when-name]');
+  for(var i=0;i<reveals.length;i++){
+    var r = reveals[i];
+    var name = r.getAttribute('data-when-name');
+    var wanted = r.getAttribute('data-when-value').split('|');
+    var val = answers[name];
+    var show = false;
+    for(var j=0;j<wanted.length;j++){
+      if(Array.isArray(val) ? val.indexOf(wanted[j])!==-1 : val===wanted[j]){ show = true; break; }
+    }
+    if(show){ r.removeAttribute('hidden'); } else { r.setAttribute('hidden',''); }
+  }
+}
+
+/* ------------------------------------------------------------
+   Live preview
+   ------------------------------------------------------------ */
+function firstSpecialty(){
+  var raw = (answers.treat||'').trim();
+  if(!raw) return '';
+  var first = raw.split(/[\n,;]| and /)[0].trim().replace(/\.+$/,'');
+  if(!first) return '';
+  if(first.length > 42) first = first.slice(0,42).trim();
+  var token = first.split(/\s+/)[0];
+  var isAcronym = token.length <= 6 && token === token.toUpperCase() && /[A-Z]/.test(token);
+  if(!isAcronym){ first = first.charAt(0).toLowerCase() + first.slice(1); }
+  return first;
+}
+function ctaLabel(){
+  var map = {
+    'Call the practice':'Call now',
+    'Book a consultation online':'Book a consultation',
+    'Fill out a contact form':'Get in touch',
+    'Send an email':'Send an email'
+  };
+  return map[answers.primaryAction] || 'Get in touch';
+}
+function updatePreview(animate){
+  var s = effectiveStyle();
+  var f = effectiveFonts();
+  var hero = document.getElementById('pvHero');
+  hero.style.setProperty('--pv-bg', s.bg);
+  hero.style.setProperty('--pv-ink', s.ink);
+  hero.style.setProperty('--pv-accent', accessibleAccent(s.accent));
+  hero.style.setProperty('--pv-cta', '#ffffff');
+  hero.style.setProperty('--pv-sec', s.sec);
+  hero.style.setProperty('--pv-head', f.head);
+  hero.style.setProperty('--pv-body', f.body);
+
+  document.getElementById('pvName').textContent = (answers.practiceName||'').trim() || 'Your Practice';
+
+  var spec = firstSpecialty();
+  var city = (answers.city||'').trim();
+  var headline;
+  if(spec && city){ headline = 'Therapy for '+spec+' in '+city; }
+  else if(spec){ headline = 'Therapy for '+spec; }
+  else if(city){ headline = 'Therapy in '+city; }
+  else { headline = "You don't have to figure this out alone."; }
+  document.getElementById('pvHeadline').textContent = headline;
+  document.getElementById('pvCta').textContent = ctaLabel();
+
+  if(animate){
+    hero.classList.remove('swap');
+    void hero.offsetWidth;
+    hero.classList.add('swap');
+  }
+}
+
+/* ------------------------------------------------------------
+   Screen navigation and progress
+   ------------------------------------------------------------ */
+function screenFor(n){
+  if(n===0) return document.querySelector('[data-screen="welcome"]');
+  if(n===9) return document.querySelector('[data-screen="success"]');
+  return document.querySelector('[data-step="'+n+'"]');
+}
+function showScreen(n){
+  step = n;
+  var screens = document.querySelectorAll('.screen');
+  for(var i=0;i<screens.length;i++){ screens[i].setAttribute('hidden',''); screens[i].classList.remove('enter'); }
+  var target = screenFor(n);
+  target.removeAttribute('hidden');
+  void target.offsetWidth;
+  target.classList.add('enter');
+
+  var inStep = n>=1 && n<=8;
+  var progressOuter = document.getElementById('progressOuter');
+  if(inStep){
+    progressOuter.removeAttribute('hidden');
+    var bar = document.getElementById('progress');
+    bar.setAttribute('aria-valuenow', String(n));
+    bar.setAttribute('aria-valuetext', 'Step '+n+' of 8');
+    document.getElementById('progressCount').textContent = 'Step '+n+' of 8';
+    var segs = bar.querySelectorAll('.seg');
+    for(var k=0;k<segs.length;k++){
+      segs[k].classList.toggle('done', k < n-1);
+      segs[k].classList.toggle('current', k === n-1);
+    }
+  } else {
+    progressOuter.setAttribute('hidden','');
+  }
+
+  var withPreview = n>=4 && n<=8;
+  document.getElementById('layout').classList.toggle('with-preview', withPreview);
+  var col = document.getElementById('previewCol');
+  if(withPreview){
+    col.removeAttribute('hidden');
+    document.body.classList.add('preview-active');
+    updatePreview(false);
+  } else {
+    col.setAttribute('hidden','');
+    col.classList.remove('open');
+    document.getElementById('previewToggle').setAttribute('aria-expanded','false');
+    document.body.classList.remove('preview-active');
+  }
+
+  window.scrollTo(0,0);
+  var title = target.querySelector('.step-title, .welcome-title, .success-title');
+  if(title){ title.focus({preventScroll:true}); }
+  saveState();
+}
+
+/* ------------------------------------------------------------
+   Input handling
+   ------------------------------------------------------------ */
+var CHECK_GROUPS = ['audience','arrivalState','hesitations','pages'];
+
+function collectChecks(name){
+  var out = [];
+  var els = document.querySelectorAll('input[name="'+name+'"]:checked');
+  for(var i=0;i<els.length;i++){ out.push(els[i].value); }
+  return out;
+}
+
+function onFieldEvent(e){
+  var t = e.target;
+  if(!t || !t.name || !(t.name in answers)) return;
+  var name = t.name;
+
+  if(CHECK_GROUPS.indexOf(name)!==-1){
+    answers[name] = collectChecks(name);
+  } else if(t.type==='radio'){
+    if(!t.checked) return;
+    answers[name] = t.value;
+  } else {
+    answers[name] = t.value;
+  }
+
+  if(name==='fontPair'){ fontPairTouched = true; }
+
+  if(name==='primaryStyle'){
+    renderPaletteAltRows();
+    if(!fontPairTouched){
+      answers.fontPair = answers.primaryStyle;
+      var fp = document.querySelector('input[name="fontPair"][value="'+answers.fontPair+'"]');
+      if(fp) fp.checked = true;
+    }
+  }
+
+  if(name==='name' || name==='email'){
+    var field = document.getElementById(name+'Field');
+    if(field) field.classList.remove('invalid');
+  }
+
+  runReveals();
+  updatePaletteDisplay();
+  var styleish = ['primaryStyle','paletteChoice','paletteOverride','fontPair'].indexOf(name)!==-1;
+  updatePreview(styleish);
+  saveState();
+}
+
+function hydrate(){
+  Object.keys(answers).forEach(function(name){
+    var val = answers[name];
+    if(CHECK_GROUPS.indexOf(name)!==-1){
+      for(var i=0;i<val.length;i++){
+        var box = document.querySelector('input[name="'+name+'"][value="'+val[i]+'"]');
+        if(box) box.checked = true;
+      }
+      return;
+    }
+    var els = document.querySelectorAll('[name="'+name+'"]');
+    if(!els.length) return;
+    if(els[0].type==='radio'){
+      for(var j=0;j<els.length;j++){ els[j].checked = (els[j].value===val); }
+    } else {
+      els[0].value = val;
+    }
+  });
+}
+
+/* ------------------------------------------------------------
+   Step 8 validation
+   ------------------------------------------------------------ */
+function validateStep8(){
+  var ok = true;
+  var nameField = document.getElementById('nameField');
+  var emailField = document.getElementById('emailField');
+  nameField.classList.remove('invalid');
+  emailField.classList.remove('invalid');
+
+  if(!(answers.name||'').trim()){
+    nameField.classList.add('invalid'); ok = false;
+  }
+  var email = (answers.email||'').trim();
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+    emailField.classList.add('invalid'); ok = false;
+  }
+  if(!ok){
+    var firstBad = document.querySelector('.field.invalid .f-input');
+    if(firstBad) firstBad.focus();
+  }
+  return ok;
+}
+
+/* ------------------------------------------------------------
+   Sections drive the PDF body and the plain text summary
+   ------------------------------------------------------------ */
+function isSolo(){ return answers.practiceType==='Solo practice'; }
+function isGroup(){ return answers.practiceType==='Group practice'; }
+
+var SECTIONS = [
+  { h:'Your practice', qa:[
+    ['Practice name','practiceName'],
+    ['Practice type','practiceType'],
+    ['Photo and story up front, or work first','soloFocus', isSolo],
+    ['Number of clinicians','clinicianCount', isGroup],
+    ['Individual bio pages','bioPages', isGroup],
+    ['Who responds to new inquiries','inquiryResponder', isGroup],
+    ['Hiring page','hiringPage', isGroup],
+    ['Where you see clients','setting'],
+    ['City or region served','city'],
+    ['What you treat','treat'],
+    ['Modalities','modalities'],
+    ['Credentials and licenses','credentials'],
+    ['What sets the work apart','differentiator']
+  ]},
+  { h:'Your clients', qa:[
+    ['Who usually finds the site','audience'],
+    ['Other audience','audienceOther'],
+    ['State they arrive in','arrivalState'],
+    ['What they need to see or feel first','needToSee'],
+    ['Common hesitations','hesitations'],
+    ['Other hesitation','hesitationsOther']
+  ]},
+  { h:'Goals', qa:[
+    ['Primary action','primaryAction'],
+    ['Where clients come from','referralMix'],
+    ['Fees on the site','feesOnSite'],
+    ['Room to grow into','growth']
+  ]},
+  { h:'Style direction', qa:[
+    ['Primary direction','primaryStyle', null, styleName],
+    ['Also drawn to','secondaryStyle', null, styleName]
+  ]},
+  { h:'Colors and type', qa:[
+    ['Palette decision','paletteChoice'],
+    ['Different palette picked','paletteOverride', null, styleName],
+    ['Brand colors','brandColors'],
+    ['Logo','logoStatus'],
+    ['Font pairing','fontPair', null, styleTag]
+  ]},
+  { h:'Voice and copy', qa:[
+    ['Warm to clinical','toneWarmth', null, function(v){ return toneReadout(v,'Warm','Clinical'); }],
+    ['Conversational to formal','toneFormality', null, function(v){ return toneReadout(v,'Conversational','Formal'); }],
+    ['Gentle to direct','toneDirectness', null, function(v){ return toneReadout(v,'Gentle','Direct'); }],
+    ['Words to never use','neverWords'],
+    ['Copy status','copyStatus'],
+    ['A sentence that sounds like them','voiceSample']
+  ]},
+  { h:'Pages and assets', qa:[
+    ['Pages','pages', null, pagesForExport],
+    ['Professional headshots','photoHeadshots'],
+    ['Office or space photos','photoOffice'],
+    ['Open to stock while planning a shoot','photoStock'],
+    ['Reviews or endorsements','testimonials'],
+    ['Current website','currentUrl'],
+    ['Sites they like','sitesYouLike'],
+    ['Things they hate on therapy sites','siteDislikes']
+  ]},
+  { h:'Get your brief', qa:[
+    ['Name','name'],
+    ['Email','email'],
+    ['Phone','phone'],
+    ['Preferred contact','preferredContact']
+  ]}
+];
+
+function styleName(id){ var s = styleById(id); return s ? s.name : ''; }
+function styleTag(id){ var s = styleById(id); return s ? s.tag : ''; }
+function pagesForExport(){
+  var list = answers.pages.slice();
+  if(!isGroup()){
+    list = list.filter(function(p){ return p!=='Team' && p!=='Join Our Team'; });
+  }
+  return list.join(', ');
+}
+function toneReadout(v, left, right){
+  var n = parseInt(v,10);
+  if(!n) return '';
+  if(n===3) return 'Balanced';
+  if(n<=2) return left+' '+(6-n)+' of 5';
+  return right+' '+n+' of 5';
+}
+function resolveQA(row){
+  var key = row[1], cond = row[2], fmt = row[3];
+  if(cond && !cond()) return '';
+  var val = answers[key];
+  if(fmt){
+    var out = fmt.length ? fmt(val) : fmt();
+    return (out||'').trim();
+  }
+  if(Array.isArray(val)) return val.join(', ');
+  return String(val==null?'':val).trim();
+}
+
+function buildPlainTextSummary(){
+  var lines = [];
+  SECTIONS.forEach(function(sec){
+    var block = [];
+    sec.qa.forEach(function(row){
+      var v = resolveQA(row);
+      if(!v) return;
+      block.push(row[0]+':');
+      block.push(v);
+      block.push('');
+    });
+    if(block.length){
+      lines.push(sec.h.toUpperCase());
+      lines.push('');
+      lines = lines.concat(block);
+    }
+  });
+  return lines.join('\n').trim();
+}
+
+/* ------------------------------------------------------------
+   PDF
+   ------------------------------------------------------------ */
+function slug(s){
+  return String(s||'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
+}
+function pdfFilename(){
+  var sl = slug(answers.practiceName);
+  return sl ? 'website-brief-'+sl+'.pdf' : 'website-brief.pdf';
+}
+function buildPdfDom(){
+  var s = effectiveStyle();
+  var f = effectiveFonts();
+  var dateStr = new Date().toLocaleDateString('en-US', {year:'numeric', month:'long', day:'numeric'});
+  var preparedFor = (answers.practiceName||'').trim() || (answers.name||'').trim() || 'your practice';
+
+  var selRows = [];
+  selRows.push(['Style direction', s.name+'. '+s.desc]);
+  if(answers.secondaryStyle){ selRows.push(['Also drawn to', styleName(answers.secondaryStyle)]); }
+  selRows.push(['Font pairing', f.tag]);
+  var w = toneReadout(answers.toneWarmth,'Warm','Clinical');
+  var fo = toneReadout(answers.toneFormality,'Conversational','Formal');
+  var d = toneReadout(answers.toneDirectness,'Gentle','Direct');
+  if(w){ selRows.push(['Tone, warm to clinical', w]); }
+  if(fo){ selRows.push(['Tone, conversational to formal', fo]); }
+  if(d){ selRows.push(['Tone, gentle to direct', d]); }
+  if(answers.primaryAction){ selRows.push(['Primary site action', answers.primaryAction]); }
+  if(answers.paletteChoice==='I have brand colors' && answers.brandColors.trim()){
+    selRows.push(['Brand colors', answers.brandColors.trim()]);
+  }
+
+  var html = '';
+  html += '<div class="pdf-band"><span class="lockup"><span class="lockup-name">SCOUT</span><span class="lockup-rule"></span><span class="lockup-sub">Content Studio</span></span></div>';
+  html += '<div class="pdf-head">';
+  html += '<p class="pdf-title">Website Brief</p>';
+  html += '<p class="pdf-prep">Prepared for '+esc(preparedFor)+'</p>';
+  html += '<p class="pdf-meta">'+esc(dateStr)+' &middot; '+esc((answers.name||'').trim())+' &middot; '+esc((answers.email||'').trim())+'</p>';
+  html += '</div>';
+
+  html += '<div class="pdf-sec"><p class="pdf-sec-label">Your selections</p>';
+  selRows.forEach(function(r){
+    html += '<div class="pdf-sel-row"><span class="pdf-sel-key">'+esc(r[0])+'</span><p class="pdf-sel-val">'+esc(r[1])+'</p></div>';
+  });
+  html += '<div class="pdf-swatches">';
+  [['Background',s.bg],['Ink',s.ink],['Accent',s.accent],['Secondary',s.sec]].forEach(function(r){
+    html += '<span class="pdf-swatch"><span class="ps-color" style="background:'+r[1]+'"></span><span class="ps-role">'+r[0]+'</span><span class="ps-hex">'+r[1]+'</span></span>';
+  });
+  html += '</div></div>';
+
+  SECTIONS.forEach(function(sec){
+    var rows = '';
+    sec.qa.forEach(function(row){
+      var v = resolveQA(row);
+      if(!v) return;
+      rows += '<div class="pdf-qa"><span class="pdf-q">'+esc(row[0])+'</span><p class="pdf-a">'+esc(v)+'</p></div>';
+    });
+    if(rows){
+      html += '<div class="pdf-step"><p class="pdf-step-h">'+esc(sec.h)+'</p>'+rows+'</div>';
+    }
+  });
+
+  html += '<div class="pdf-foot">';
+  html += '<p>Built with the Scout Website Brief Builder &middot; '+SITE_URL+'</p>';
+  html += '<p>Ready when you are: book a call at '+BOOK_URL+'.</p>';
+  html += '</div>';
+
+  document.getElementById('pdf-root').innerHTML = html;
+}
+
+function downloadBlob(blob, filename){
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url; a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(function(){ document.body.removeChild(a); URL.revokeObjectURL(url); }, 4000);
+}
+
+/* ------------------------------------------------------------
+   Build and submit
+   ------------------------------------------------------------ */
+function submitToNetlify(pdfBlob, filename){
+  var fd = new FormData();
+  fd.append('form-name', 'website-brief');
+  fd.append('bot-field', '');
+  fd.append('name', answers.name);
+  fd.append('email', answers.email);
+  fd.append('phone', answers.phone || '');
+  fd.append('practice-name', answers.practiceName || '');
+  fd.append('practice-type', answers.practiceType || '');
+  fd.append('primary-style', styleName(answers.primaryStyle) || '');
+  fd.append('summary', buildPlainTextSummary());
+  if(pdfBlob){
+    fd.append('brief-pdf', new File([pdfBlob], filename, { type:'application/pdf' }));
+  }
+  return fetch('/', { method:'POST', body:fd }).then(function(res){
+    return res.ok;
+  });
+}
+
+function showSuccess(pdfOk, netOk){
+  var title = document.getElementById('t-success');
+  var body = document.getElementById('successBody');
+  var extra = document.getElementById('successExtra');
+  var mail = '<a href="mailto:'+EMAIL+'">'+EMAIL+'</a>';
+
+  if(pdfOk && netOk){
+    title.textContent = 'Your brief is downloading.';
+    body.textContent = "It's yours. Use it with any designer. If you want Scout to build the site, your brief is already in our inbox. Book a call and we'll pick up right where you left off.";
+    extra.setAttribute('hidden',''); extra.innerHTML = '';
+  } else if(pdfOk && !netOk){
+    title.textContent = 'Your brief is downloading.';
+    body.textContent = "It's yours. Use it with any designer. If you want Scout to build the site, book a call and we'll pick up right where you left off.";
+    extra.innerHTML = "One thing didn't go through. Your answers weren't lost, and your PDF still downloaded. Email it to "+mail+" and we'll take it from there.";
+    extra.removeAttribute('hidden');
+  } else if(!pdfOk && netOk){
+    title.textContent = 'Your answers went through.';
+    body.textContent = "Your answers are in Scout's inbox. The PDF couldn't be generated in this browser, so book a call and we'll bring your brief to it.";
+    extra.setAttribute('hidden',''); extra.innerHTML = '';
+  } else {
+    title.textContent = "That didn't go through.";
+    body.textContent = "The PDF couldn't be generated here and the send to Scout didn't connect. Your answers are still saved in this browser.";
+    extra.innerHTML = "Email "+mail+" and we'll take it from there.";
+    extra.removeAttribute('hidden');
+  }
+}
+
+function handleBuild(){
+  if(building) return;
+  if(!validateStep8()) return;
+  building = true;
+
+  var btn = document.getElementById('buildBtn');
+  btn.disabled = true;
+  btn.textContent = 'Building your brief...';
+
+  var pdfOk = false, netOk = false;
+  var blob = null;
+  var filename = pdfFilename();
+
+  var fontsReady = (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve();
+
+  fontsReady.catch(function(){}).then(function(){
+    buildPdfDom();
+    var opt = {
+      margin: [0.6, 0.6, 0.7, 0.6],
+      filename: filename,
+      image: { type:'jpeg', quality:0.95 },
+      html2canvas: { scale:2, useCORS:true, backgroundColor:'#faf8f4' },
+      jsPDF: { unit:'in', format:'letter', orientation:'portrait' },
+      pagebreak: { mode:['css','legacy'] }
+    };
+    return html2pdf().set(opt).from(document.getElementById('pdf-root')).outputPdf('blob');
+  }).then(function(b){
+    blob = b; pdfOk = true;
+    downloadBlob(blob, filename);
+  }).catch(function(){
+    pdfOk = false;
+  }).then(function(){
+    return submitToNetlify(blob, filename).then(function(ok){ netOk = ok; }).catch(function(){ netOk = false; });
+  }).then(function(){
+    showSuccess(pdfOk, netOk);
+    showScreen(9);
+    btn.disabled = false;
+    btn.textContent = 'Build my brief';
+    building = false;
+  });
+}
+
+/* ------------------------------------------------------------
+   Wiring
+   ------------------------------------------------------------ */
+function bindEvents(){
+  document.addEventListener('input', onFieldEvent);
+  document.addEventListener('change', onFieldEvent);
+
+  document.getElementById('startBtn').addEventListener('click', function(){ showScreen(1); });
+
+  var navBtns = document.querySelectorAll('[data-nav]');
+  for(var i=0;i<navBtns.length;i++){
+    navBtns[i].addEventListener('click', function(e){
+      var dir = e.currentTarget.getAttribute('data-nav');
+      if(dir==='next' && step < 8){ showScreen(step+1); }
+      else if(dir==='back'){ showScreen(step<=1 ? 0 : step-1); }
+    });
+  }
+
+  document.getElementById('buildBtn').addEventListener('click', handleBuild);
+
+  var toggle = document.getElementById('previewToggle');
+  toggle.addEventListener('click', function(){
+    var col = document.getElementById('previewCol');
+    var open = col.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key==='Escape'){
+      var col = document.getElementById('previewCol');
+      if(col.classList.contains('open')){
+        col.classList.remove('open');
+        toggle.setAttribute('aria-expanded','false');
+        toggle.focus();
+      }
+    }
+  });
+
+  document.getElementById('dismissNotice').addEventListener('click', function(){
+    document.getElementById('restoreNotice').setAttribute('hidden','');
+  });
+  document.getElementById('startOver').addEventListener('click', function(){
+    clearState();
+    location.reload();
+  });
+}
+
+function hasSavedContent(saved){
+  if(!saved || !saved.answers) return false;
+  if(saved.step && saved.step > 0) return true;
+  var a = saved.answers;
+  return Object.keys(DEFAULTS).some(function(k){
+    var v = a[k];
+    if(Array.isArray(v)) return v.length > 0;
+    return String(v||'').trim() !== '';
+  });
+}
+
+function init(){
+  renderStyleCards();
+  renderFontPairRows();
+
+  var saved = loadState();
+  var restored = false;
+  if(saved && saved.answers){
+    Object.keys(DEFAULTS).forEach(function(k){
+      if(k in saved.answers){ answers[k] = saved.answers[k]; }
+    });
+    fontPairTouched = !!saved.fontPairTouched;
+    restored = hasSavedContent(saved);
+  }
+  if(!answers.fontPair){
+    answers.fontPair = answers.primaryStyle || STYLES[0].id;
+  }
+
+  renderPaletteAltRows();
+  hydrate();
+  runReveals();
+  updatePaletteDisplay();
+  updatePreview(false);
+  bindEvents();
+
+  if(restored){
+    document.getElementById('restoreNotice').removeAttribute('hidden');
+    showScreen(saved.step >= 1 && saved.step <= 8 ? saved.step : 0);
+  } else {
+    showScreen(0);
+  }
+}
+
+init();
+
+})();
+</script>
+</body>
+</html>
