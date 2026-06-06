@@ -1035,7 +1035,7 @@ body.landing #header h1 {
 
 body.landing #header .header-phone {
         position: absolute;
-        left: 1.5em;
+        left: 3.25em;
         top: 0;
         height: inherit;
         display: inline-flex;
@@ -1044,7 +1044,7 @@ body.landing #header .header-phone {
         border: 0;
         color: #ffffff;
         font-family: "Jost", "Open Sans", Helvetica, sans-serif;
-        font-size: 0.8em;
+        font-size: 1.05em;
         letter-spacing: 0.14em;
         text-shadow: 0 1px 16px rgba(30, 40, 48, 0.55);
         z-index: 3;
@@ -1063,7 +1063,8 @@ body.landing #header .header-phone .header-phone-icon {
 
 @media screen and (max-width: 736px) {
         body.landing #header .header-phone {
-                left: 1em;
+                left: 1.25em;
+                font-size: 0.9em;
                 letter-spacing: 0.06em;
         }
 }
