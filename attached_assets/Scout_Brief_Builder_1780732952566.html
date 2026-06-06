@@ -1,0 +1,2579 @@
+<!--
+  SCOUT WEBSITE BRIEF BUILDER  ·  Deploy notes for Craig
+
+  1. Put this file in a folder as index.html and deploy it as a new Netlify
+     project. Drag and drop works.
+  2. In Netlify, go to Forms and enable form detection. It is off by default
+     on new projects. Redeploy after enabling.
+  3. Go to Forms, then Notifications, and add an email notification for the
+     form "website-brief".
+  4. Submit one real-looking test. Netlify runs Akismet, so obviously fake
+     test data can get flagged as spam. Check the Verified and Spam tabs.
+  5. The email notification carries the text answers. The PDF attachment is
+     downloadable from the submission detail page in the Netlify dashboard.
+  6. Optional: point a subdomain like brief.scoutcontent.studio at the project.
+  7. Free tier covers 100 submissions per month.
+  8. Find and replace BOOK_A_CALL_URL before going live, and confirm
+     https://scoutcontent.studio resolves to the live site.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Website Brief Builder | Scout Content Studio</title>
+<meta name="description" content="Answer a few questions about your practice and get a website brief you can hand to any designer, including us.">
+<meta property="og:title" content="Website Brief Builder | Scout Content Studio">
+<meta property="og:description" content="Answer a few questions about your practice and get a website brief you can hand to any designer, including us.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#2e3842">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='13'%20fill='%232e3842'/%3E%3Ctext%20x='32'%20y='45'%20font-family='Georgia,serif'%20font-size='38'%20fill='%23f4f1ea'%20text-anchor='middle'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Jost:wght@300;400;500&family=Fraunces:wght@400;600&family=Karla:wght@400;600&family=Libre+Franklin:wght@400;600&family=Source+Sans+3:wght@400;600&family=Lora:wght@400;600&family=Sora:wght@400;600&family=Nunito+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   Scout Content Studio  ·  Website Brief Builder
+   Tool chrome follows the Scout brand system.
+   Client style mockups use their own palettes only.
+   ============================================================ */
+
+:root{
+  --navy:#2e3842; --navy-deep:#26313a; --ink:#1a2229;
+  --deep-blue:#233252; --ivory:#f4f1ea; --ivory-soft:#faf8f4;
+  --sage:#9aac9c; --sage-deep:#84958a; --slate:#7c8790;
+  --navy-200:#c3ccd1; --navy-300:#9caab2;
+  --font-display:"Playfair Display",Georgia,serif;
+  --font-accent:"Cormorant Garamond",Georgia,serif;
+  --font-sans:"Jost","Open Sans",Helvetica,sans-serif;
+  --space:1.1rem; --radius:6px; --maxw:62ch;
+}
+
+*,*::before,*::after{ box-sizing:border-box; }
+html{ -webkit-text-size-adjust:100%; scroll-behavior:smooth; }
+body{
+  margin:0;
+  background:var(--ivory);
+  color:var(--ink);
+  font-family:var(--font-sans);
+  font-weight:400;
+  font-size:16px;
+  line-height:1.7;
+}
+h1,h2,h3{ margin:0; font-family:var(--font-display); font-weight:500; color:var(--navy); }
+p{ margin:0 0 var(--space); }
+hr{ border:0; }
+
+/* Focus */
+:focus{ outline:none; }
+:focus-visible{ outline:2px solid var(--navy); outline-offset:2px; }
+
+/* Visually hidden, still focusable (used by custom radios and checkboxes) */
+.vh{
+  position:absolute; width:1px; height:1px;
+  margin:-1px; padding:0; border:0;
+  clip:rect(0 0 0 0); overflow:hidden;
+}
+.sr-only{
+  position:absolute; width:1px; height:1px;
+  margin:-1px; padding:0; border:0;
+  clip:rect(0 0 0 0); overflow:hidden;
+}
+
+.skip-link{
+  position:absolute; left:-9999px; top:0;
+  background:var(--navy); color:var(--ivory);
+  padding:10px 16px; z-index:100;
+  font:500 13px var(--font-sans); letter-spacing:.08em; text-transform:uppercase;
+  text-decoration:none;
+}
+.skip-link:focus-visible{ left:12px; top:12px; }
+
+/* ------------------------------------------------------------
+   Header band and lockup
+   ------------------------------------------------------------ */
+.site-header{ background:var(--navy); }
+.header-inner{
+  max-width:1120px; margin:0 auto;
+  padding:20px 20px 18px;
+}
+.lockup-img{
+  display:block; height:46px; width:auto;
+}
+.lockup-img.small{ height:38px; }
+
+/* ------------------------------------------------------------
+   Progress indicator
+   ------------------------------------------------------------ */
+.progress-outer{
+  background:var(--ivory);
+  border-bottom:1px solid var(--navy-200);
+}
+.progress-wrap{
+  max-width:1120px; margin:0 auto;
+  padding:14px 20px;
+  display:flex; align-items:center; gap:16px;
+}
+.progress{ display:flex; gap:6px; flex:1; max-width:560px; }
+.seg{
+  flex:1; height:7px; border-radius:4px;
+  background:var(--ivory-soft);
+  border:1px solid var(--navy-200);
+}
+.seg.done{ background:var(--sage); border-color:var(--sage-deep); }
+.seg.current{ background:var(--navy-200); border:1px solid var(--navy); }
+.progress-count{
+  margin:0; white-space:nowrap;
+  font-size:12.5px; font-weight:500;
+  letter-spacing:.06em; color:var(--navy);
+}
+
+/* ------------------------------------------------------------
+   Layout
+   ------------------------------------------------------------ */
+main{ display:block; max-width:1120px; margin:0 auto; padding:0 20px; }
+.layout{ padding:34px 0 80px; }
+.col-main{ max-width:640px; margin:0 auto; min-width:0; }
+
+@media (min-width:980px){
+  .layout.with-preview{
+    display:grid;
+    grid-template-columns:minmax(0,640px) minmax(330px,400px);
+    gap:48px;
+    justify-content:center;
+    align-items:start;
+  }
+  .layout.with-preview .col-main{ margin:0; }
+}
+
+/* ------------------------------------------------------------
+   Screens and steps
+   ------------------------------------------------------------ */
+.screen{ position:relative; }
+.screen[hidden]{ display:none; }
+
+.kicker{
+  font-size:13px; font-weight:500;
+  letter-spacing:.16em; text-transform:uppercase;
+  color:var(--navy); margin:0 0 12px;
+}
+.step-title{
+  font-size:clamp(28px,4vw,34px);
+  line-height:1.1;
+  margin:0 0 14px;
+}
+.step-title:focus-visible, h1:focus-visible{ outline:none; }
+.why{
+  font-family:var(--font-accent); font-weight:400;
+  font-size:clamp(20px,2.4vw,22px); line-height:1.5;
+  color:var(--navy);
+  margin:0 0 20px;
+}
+.rule{
+  border-top:1px solid var(--navy-200);
+  margin:0 0 32px;
+}
+
+/* ------------------------------------------------------------
+   Welcome and success screens
+   ------------------------------------------------------------ */
+.screen-welcome, .screen-success{
+  isolation:isolate;
+  padding:28px 0 10px;
+}
+.screen-welcome::before, .screen-success::before{
+  content:""; position:absolute; inset:-34px -20px -40px; z-index:-1;
+  pointer-events:none;
+  background:
+    radial-gradient(42% 36% at 86% 4%, rgba(35,50,82,.10), transparent 70%),
+    radial-gradient(38% 32% at 4% 96%, rgba(198,160,106,.13), transparent 70%);
+}
+.welcome-title{
+  font-size:clamp(34px,6vw,52px);
+  line-height:1.05;
+  margin:0 0 18px;
+  max-width:13ch;
+}
+.lead{
+  font-family:var(--font-accent); font-weight:400;
+  font-size:clamp(20px,2.6vw,22px); line-height:1.5;
+  color:var(--navy);
+  max-width:48ch;
+  margin:0 0 34px;
+}
+.points{
+  list-style:none; margin:0 0 34px; padding:0;
+  display:flex; flex-direction:column; gap:18px;
+  max-width:54ch;
+}
+.points li{
+  display:grid; grid-template-columns:36px 1fr; gap:14px;
+  align-items:start;
+}
+.pt-num{
+  font-family:var(--font-display); font-weight:500;
+  font-size:21px; line-height:1.25;
+  color:var(--navy);
+  border-top:1px solid var(--navy-200);
+  padding-top:6px;
+}
+.pt-text{ font-size:16px; line-height:1.65; padding-top:6px; }
+.privacy{
+  font-size:13.5px; line-height:1.6;
+  color:var(--navy);
+  border-left:2px solid var(--sage);
+  padding-left:14px;
+  max-width:var(--maxw);
+  margin:0 0 36px;
+}
+.success-title{
+  font-size:clamp(32px,5vw,46px);
+  line-height:1.08;
+  margin:0 0 18px;
+}
+.success-body{
+  font-family:var(--font-accent); font-weight:400;
+  font-size:clamp(20px,2.5vw,22px); line-height:1.55;
+  color:var(--navy);
+  max-width:48ch;
+  margin:0 0 16px;
+}
+.success-extra{
+  font-size:15px; line-height:1.65; color:var(--navy);
+  border-left:2px solid var(--navy);
+  padding-left:14px;
+  max-width:var(--maxw);
+  margin:0 0 26px;
+}
+.success-extra a{ color:var(--navy); }
+.success-actions{
+  display:flex; align-items:center; gap:26px; flex-wrap:wrap;
+  margin-top:14px;
+}
+
+/* ------------------------------------------------------------
+   Buttons and links
+   ------------------------------------------------------------ */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  min-height:48px; padding:13px 28px;
+  border-radius:var(--radius);
+  font-family:var(--font-sans); font-weight:500;
+  font-size:13.5px; letter-spacing:.16em; text-transform:uppercase;
+  cursor:pointer; text-decoration:none;
+  border:1px solid transparent;
+  transition:background .15s ease, color .15s ease, border-color .15s ease, transform .1s ease;
+}
+.btn-primary{
+  background:var(--sage); color:var(--navy);
+  border-color:var(--sage-deep);
+}
+.btn-primary:hover{ background:var(--sage-deep); color:var(--ink); }
+.btn-primary:active{ transform:translateY(1px); }
+.btn-primary[disabled]{ opacity:.72; cursor:default; transform:none; }
+.btn-ghost{
+  background:transparent; color:var(--navy);
+  border:1px solid var(--navy-300);
+}
+.btn-ghost:hover{ border-color:var(--navy); background:var(--ivory-soft); }
+.btn-row{
+  display:flex; justify-content:space-between; align-items:center;
+  gap:16px; flex-wrap:wrap;
+  margin-top:38px;
+}
+.link{
+  color:var(--navy);
+  text-decoration:underline; text-underline-offset:3px;
+}
+.link:hover{ color:var(--sage-deep); }
+.link-cta{
+  color:var(--navy); font-weight:500;
+  text-decoration:none; letter-spacing:.02em;
+}
+.link-cta:hover{ color:var(--sage-deep); text-decoration:underline; text-underline-offset:3px; }
+.link-btn{
+  background:none; border:0; padding:0;
+  font:500 13.5px var(--font-sans); letter-spacing:.03em;
+  color:var(--navy); text-decoration:underline; text-underline-offset:3px;
+  cursor:pointer;
+}
+.link-btn:hover{ color:var(--sage-deep); }
+
+/* ------------------------------------------------------------
+   Restore notice
+   ------------------------------------------------------------ */
+.notice{
+  display:flex; align-items:center; gap:18px; flex-wrap:wrap;
+  background:var(--ivory-soft);
+  border:1px solid var(--navy-200);
+  border-left:3px solid var(--sage);
+  border-radius:var(--radius);
+  padding:13px 18px;
+  margin:0 0 30px;
+  font-size:14.5px; color:var(--navy);
+}
+.notice p{ margin:0; flex:1; min-width:200px; }
+
+/* ------------------------------------------------------------
+   Fields
+   ------------------------------------------------------------ */
+.field{ margin:0 0 28px; }
+fieldset.field{ border:0; padding:0; margin:0 0 28px; min-width:0; }
+.f-label{
+  display:block;
+  font-weight:500; font-size:15.5px; line-height:1.5;
+  color:var(--navy);
+  margin:0 0 9px; padding:0;
+}
+legend.f-label{ margin-bottom:10px; }
+.f-help{
+  font-size:13.5px; line-height:1.6;
+  color:var(--navy); opacity:.82;
+  margin:-3px 0 11px;
+  max-width:var(--maxw);
+}
+.f-input{
+  display:block; width:100%;
+  font:400 16px/1.5 var(--font-sans);
+  color:var(--ink);
+  background:var(--ivory-soft);
+  border:1px solid var(--navy-200);
+  border-radius:var(--radius);
+  padding:12px 14px;
+  min-height:48px;
+}
+textarea.f-input{ min-height:104px; resize:vertical; }
+select.f-input{ cursor:pointer; }
+.f-input:focus-visible{
+  outline:2px solid var(--navy); outline-offset:1px;
+  border-color:var(--navy);
+}
+.f-input.narrow{ max-width:150px; }
+::placeholder{ color:var(--slate); opacity:1; }
+
+.optional-tag{
+  font-weight:400; font-size:13px; letter-spacing:.04em;
+  color:var(--navy); opacity:.75;
+}
+
+/* Errors: never color alone. Text plus a heavier border. */
+.err{
+  display:none;
+  margin:8px 0 0;
+  font-size:13.5px; font-weight:500; line-height:1.5;
+  color:var(--navy);
+  border-left:3px solid var(--navy);
+  padding-left:10px;
+}
+.field.invalid .err{ display:block; }
+.field.invalid .f-input{ border:2px solid var(--navy); padding:11px 13px; }
+
+/* ------------------------------------------------------------
+   Choice rows (radios and checkboxes)
+   ------------------------------------------------------------ */
+.choices{ display:flex; flex-direction:column; gap:9px; }
+.choices.pair{ flex-direction:row; flex-wrap:wrap; }
+.choices.pair .choice{ flex:1; min-width:120px; }
+.choice{ display:block; }
+.choice-box{
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
+  min-height:48px;
+  padding:11px 15px;
+  background:var(--ivory-soft);
+  border:1px solid var(--navy-200);
+  border-radius:var(--radius);
+  font-size:16px; line-height:1.45; color:var(--ink);
+  cursor:pointer;
+  transition:border-color .15s ease, background .15s ease;
+}
+.choice:hover .choice-box{ border-color:var(--navy-300); }
+.choice input:checked + .choice-box{
+  border:2px solid var(--navy);
+  padding:10px 14px;
+  background:#fdfcf8;
+}
+.choice input:focus-visible + .choice-box{
+  outline:2px solid var(--navy); outline-offset:2px;
+}
+.tick{
+  flex:none;
+  width:20px; height:20px; border-radius:50%;
+  background:var(--sage);
+  position:relative;
+  opacity:0; transform:scale(.6);
+  transition:opacity .15s ease, transform .15s ease;
+}
+.tick::after{
+  content:""; position:absolute;
+  left:6.5px; top:4px;
+  width:5px; height:9px;
+  border:solid var(--navy);
+  border-width:0 2px 2px 0;
+  transform:rotate(45deg);
+}
+.choice input:checked + .choice-box .tick,
+.choice input:checked + .card-body .tick,
+.dot-wrap input:checked + .dot .tick-badge{
+  opacity:1; transform:scale(1);
+}
+
+/* Conditional reveals */
+.reveal[hidden]{ display:none; }
+.reveal{
+  margin:4px 0 0;
+  padding:18px 0 0 16px;
+  border-left:2px solid var(--navy-200);
+}
+.reveal .field:last-child, .reveal fieldset.field:last-child{ margin-bottom:6px; }
+.inline-note{
+  font-size:13.5px; line-height:1.6; color:var(--navy);
+  background:var(--ivory-soft);
+  border:1px solid var(--navy-200);
+  border-radius:var(--radius);
+  padding:11px 14px;
+  margin:10px 0 0;
+  max-width:var(--maxw);
+}
+
+/* ------------------------------------------------------------
+   Tone scales
+   ------------------------------------------------------------ */
+.scale{ max-width:380px; }
+.scale-ends{
+  display:flex; justify-content:space-between; gap:12px;
+  font-size:12.5px; font-weight:500;
+  letter-spacing:.1em; text-transform:uppercase;
+  color:var(--navy);
+  margin-bottom:10px;
+}
+.scale-dots{ display:flex; justify-content:space-between; gap:8px; }
+.dot-wrap{ display:block; position:relative; }
+.dot{
+  display:flex; align-items:center; justify-content:center;
+  width:44px; height:44px; border-radius:50%;
+  background:var(--ivory-soft);
+  border:1px solid var(--navy-200);
+  font-size:14.5px; font-weight:500; color:var(--navy);
+  cursor:pointer; position:relative;
+  transition:border-color .15s ease, background .15s ease;
+}
+.dot-wrap:hover .dot{ border-color:var(--navy-300); }
+.dot-wrap input:checked + .dot{
+  background:var(--sage);
+  border:2px solid var(--navy);
+}
+.dot-wrap input:focus-visible + .dot{
+  outline:2px solid var(--navy); outline-offset:2px;
+}
+.tick-badge{
+  position:absolute; top:-5px; right:-5px;
+  width:16px; height:16px; border-radius:50%;
+  background:var(--sage); border:1px solid var(--navy);
+  opacity:0; transform:scale(.6);
+  transition:opacity .15s ease, transform .15s ease;
+}
+.tick-badge::after{
+  content:""; position:absolute;
+  left:4.5px; top:2.5px;
+  width:4px; height:7px;
+  border:solid var(--navy);
+  border-width:0 2px 2px 0;
+  transform:rotate(45deg);
+}
+
+/* ------------------------------------------------------------
+   Style direction cards (Step 4)
+   Everything inside .mock uses the client style only.
+   ------------------------------------------------------------ */
+.style-cards{
+  display:grid; gap:16px;
+  grid-template-columns:1fr;
+  margin-top:4px;
+}
+@media (min-width:560px){
+  .style-cards{ grid-template-columns:1fr 1fr; }
+}
+.style-card{ display:block; }
+.card-body{
+  display:block; position:relative;
+  border:1px solid var(--navy-200);
+  border-radius:8px;
+  background:var(--ivory-soft);
+  padding:10px;
+  cursor:pointer;
+  transition:border-color .15s ease;
+  height:100%;
+}
+.style-card:hover .card-body{ border-color:var(--navy-300); }
+.style-card input:checked + .card-body{
+  border:2px solid var(--navy);
+  padding:9px;
+}
+.style-card input:focus-visible + .card-body{
+  outline:2px solid var(--navy); outline-offset:3px;
+}
+.card-body .tick{
+  position:absolute; top:10px; right:10px;
+  width:24px; height:24px;
+  border:1px solid var(--navy);
+}
+.card-body .tick::after{ left:8px; top:4.5px; width:6px; height:11px; }
+
+.mock{
+  display:block; overflow:hidden;
+  border-radius:5px;
+  border:1px solid rgba(26,34,41,.1);
+  background:var(--m-bg); color:var(--m-ink);
+}
+.m-nav{
+  display:flex; justify-content:space-between; align-items:center; gap:8px;
+  padding:8px 11px;
+  border-bottom:1px solid rgba(26,34,41,.09);
+  font-family:var(--m-body);
+}
+.m-nav b{ font-weight:600; font-size:9.5px; letter-spacing:.02em; }
+.m-links{ display:flex; gap:7px; font-size:8.5px; opacity:.75; }
+.m-inner{ display:block; padding:13px 12px 12px; }
+.m-head{
+  display:block;
+  font-family:var(--m-head); font-weight:600;
+  font-size:15.5px; line-height:1.25;
+  margin:0 0 5px;
+}
+.m-sub{
+  display:block;
+  font-family:var(--m-body);
+  font-size:10.5px; line-height:1.5; opacity:.82;
+  margin:0 0 10px;
+}
+.m-cta{
+  display:inline-block;
+  background:var(--m-accent); color:#ffffff;
+  font-family:var(--m-body); font-weight:600;
+  font-size:8.5px; line-height:1;
+  letter-spacing:.07em; text-transform:uppercase;
+  padding:7px 11px; border-radius:4px;
+  margin:0 0 12px;
+}
+.m-img{
+  display:block; height:46px;
+  border-radius:4px;
+  background:var(--m-sec);
+  border:1px solid rgba(26,34,41,.06);
+}
+.card-meta{ display:block; padding:12px 4px 4px; }
+.card-name{
+  display:block;
+  font-weight:500; font-size:15px; color:var(--navy);
+  margin:0 0 3px;
+}
+.card-desc{
+  display:block;
+  font-size:13px; line-height:1.55; color:var(--navy); opacity:.85;
+  margin:0 0 10px;
+}
+.sw-row{ display:flex; gap:6px; align-items:center; margin:0 0 8px; }
+.sw{
+  display:block; width:18px; height:18px;
+  border-radius:4px;
+  border:1px solid rgba(26,34,41,.2);
+}
+.pair-tag{
+  display:block;
+  font-size:11.5px; font-weight:500;
+  letter-spacing:.1em; text-transform:uppercase;
+  color:var(--navy);
+}
+
+/* ------------------------------------------------------------
+   Step 5: palette display, palette rows, font pairing rows
+   ------------------------------------------------------------ */
+.pal-display{
+  display:grid; gap:10px;
+  grid-template-columns:repeat(2,1fr);
+  margin:0 0 8px;
+}
+@media (min-width:560px){
+  .pal-display{ grid-template-columns:repeat(4,1fr); }
+}
+.pal-chip{
+  border:1px solid var(--navy-200);
+  border-radius:var(--radius);
+  overflow:hidden;
+  background:var(--ivory-soft);
+}
+.pal-chip .pc-color{ display:block; height:56px; border-bottom:1px solid rgba(26,34,41,.08); }
+.pal-chip .pc-role{
+  display:block;
+  font-size:10.5px; font-weight:500;
+  letter-spacing:.1em; text-transform:uppercase;
+  color:var(--navy);
+  padding:8px 10px 1px;
+}
+.pal-chip .pc-hex{
+  display:block;
+  font-size:12.5px; color:var(--navy);
+  padding:0 10px 9px;
+}
+.pal-hint{ font-size:13.5px; color:var(--navy); opacity:.82; margin:0 0 14px; }
+
+.alt-swatches{ display:flex; gap:5px; flex:none; }
+.alt-swatches .sw{ width:16px; height:16px; }
+.choice-box .row-label{ flex:1; }
+
+.pair-box{
+  flex-direction:column; align-items:flex-start; gap:3px;
+  padding:14px 16px;
+}
+.choice input:checked + .pair-box{ padding:13px 15px; }
+.pair-box .tick{ position:absolute; top:12px; right:12px; }
+.pair-row .choice-box{ position:relative; }
+.pr-name{
+  font-size:11.5px; font-weight:500;
+  letter-spacing:.12em; text-transform:uppercase;
+  color:var(--navy);
+  margin:0 0 2px;
+}
+.pr-head{
+  font-family:var(--pr-head);
+  font-weight:600; font-size:19px; line-height:1.3;
+  color:var(--ink);
+}
+.pr-body{
+  font-family:var(--pr-body);
+  font-size:14px; line-height:1.5;
+  color:var(--ink); opacity:.85;
+  max-width:42ch;
+}
+
+/* ------------------------------------------------------------
+   Live preview
+   Frame and labels are Scout chrome. The hero inside is the
+   client's selected style only.
+   ------------------------------------------------------------ */
+.col-preview{
+  position:fixed; left:0; right:0; bottom:0; z-index:60;
+  transform:translateY(calc(100% - 54px));
+  transition:transform .3s ease;
+}
+.col-preview.open{ transform:none; }
+.col-preview[hidden]{ display:none; }
+.preview-toggle{
+  display:flex; width:100%;
+  align-items:center; justify-content:space-between; gap:12px;
+  min-height:54px; padding:0 22px;
+  background:var(--navy); color:var(--ivory);
+  border:0; cursor:pointer;
+  font:500 13px var(--font-sans);
+  letter-spacing:.14em; text-transform:uppercase;
+}
+.preview-toggle:focus-visible{ outline:2px solid var(--ivory); outline-offset:-4px; }
+.chev{
+  display:block; width:9px; height:9px;
+  border:solid var(--ivory); border-width:0 2px 2px 0;
+  transform:rotate(-135deg) translate(2px,2px);
+  transition:transform .3s ease;
+}
+.col-preview.open .chev{ transform:rotate(45deg); }
+.preview-panel{
+  background:var(--deep-blue);
+  padding:16px 18px 16px;
+  max-height:72vh; overflow:auto;
+}
+.preview-kicker{
+  font-size:11.5px; font-weight:500;
+  letter-spacing:.18em; text-transform:uppercase;
+  color:var(--ivory); opacity:.92;
+  margin:0 0 11px;
+}
+.preview-frame{
+  background:#ffffff;
+  border-radius:8px; overflow:hidden;
+  box-shadow:0 16px 34px rgba(13,19,32,.4);
+}
+.p-hero{
+  background:var(--pv-bg); color:var(--pv-ink);
+}
+.p-nav{
+  display:flex; justify-content:space-between; align-items:center; gap:10px;
+  padding:12px 15px;
+  border-bottom:1px solid rgba(26,34,41,.09);
+  font-family:var(--pv-body);
+}
+.p-name{
+  font-weight:600; font-size:12.5px; letter-spacing:.02em;
+  overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+}
+.p-links{ display:flex; gap:11px; font-size:10.5px; opacity:.75; flex:none; }
+.p-inner{ padding:19px 16px 16px; }
+.p-headline{
+  font-family:var(--pv-head); font-weight:600;
+  font-size:21px; line-height:1.22;
+  color:var(--pv-ink);
+  margin:0 0 8px;
+}
+.p-sub{
+  font-family:var(--pv-body);
+  font-size:12.5px; line-height:1.55; opacity:.85;
+  margin:0 0 14px;
+}
+.p-cta{
+  display:inline-block;
+  background:var(--pv-accent); color:var(--pv-cta);
+  font-family:var(--pv-body); font-weight:600;
+  font-size:10px; line-height:1;
+  letter-spacing:.09em; text-transform:uppercase;
+  padding:10px 15px; border-radius:5px;
+}
+.p-img{ height:64px; background:var(--pv-sec); }
+.preview-caption{
+  font-family:var(--font-accent); font-weight:400;
+  font-size:17px; line-height:1.45;
+  color:var(--ivory);
+  margin:13px 4px 0;
+}
+@keyframes pvFade{ from{ opacity:0; } to{ opacity:1; } }
+.p-hero.swap{ animation:pvFade .32s ease; }
+
+@media (min-width:980px){
+  .col-preview{
+    position:sticky; top:26px; left:auto; right:auto; bottom:auto;
+    transform:none; z-index:1;
+  }
+  .preview-toggle{ display:none; }
+  .preview-panel{
+    border-radius:10px;
+    max-height:none; overflow:visible;
+    padding:18px 18px 17px;
+  }
+}
+@media (max-width:979px){
+  body.preview-active{ padding-bottom:64px; }
+}
+
+/* ------------------------------------------------------------
+   Footer
+   ------------------------------------------------------------ */
+.site-footer{
+  background:var(--navy-deep); color:var(--ivory);
+  margin-top:20px;
+}
+.foot-inner{
+  max-width:1120px; margin:0 auto;
+  padding:38px 20px 44px;
+  display:flex; flex-direction:column; gap:18px;
+}
+.foot-privacy{
+  font-size:13px; line-height:1.65;
+  color:var(--ivory); opacity:.92;
+  max-width:var(--maxw);
+  margin:0;
+}
+.foot-link{
+  color:var(--ivory);
+  font-size:13.5px; font-weight:500; letter-spacing:.05em;
+  text-decoration:none;
+}
+.foot-link:hover{ color:var(--sage); text-decoration:underline; text-underline-offset:3px; }
+
+/* ------------------------------------------------------------
+   Motion: one staggered fade-up per step entry
+   ------------------------------------------------------------ */
+@keyframes fadeUp{
+  from{ opacity:0; transform:translateY(14px); }
+  to{ opacity:1; transform:none; }
+}
+.screen.enter > *{
+  animation:fadeUp .55s cubic-bezier(.2,.7,.3,1) both;
+}
+.screen.enter > *:nth-child(1){ animation-delay:.02s; }
+.screen.enter > *:nth-child(2){ animation-delay:.07s; }
+.screen.enter > *:nth-child(3){ animation-delay:.12s; }
+.screen.enter > *:nth-child(4){ animation-delay:.17s; }
+.screen.enter > *:nth-child(5){ animation-delay:.22s; }
+.screen.enter > *:nth-child(6){ animation-delay:.27s; }
+.screen.enter > *:nth-child(7){ animation-delay:.32s; }
+.screen.enter > *:nth-child(8){ animation-delay:.37s; }
+
+@media (prefers-reduced-motion: reduce){
+  *, *::before, *::after{
+    animation:none !important;
+    transition:none !important;
+  }
+  html{ scroll-behavior:auto; }
+}
+
+/* ------------------------------------------------------------
+   PDF container (off screen, rendered by html2pdf)
+   Literal hex values only inside this block.
+   ------------------------------------------------------------ */
+#pdf-root{
+  position:absolute; left:-10000px; top:0;
+  width:700px;
+  background:#faf8f4;
+  color:#1a2229;
+  font-family:"Jost",Helvetica,sans-serif;
+  font-size:12.5px; line-height:1.6;
+}
+.pdf-band{
+  background:#2e3842;
+  padding:26px 36px 24px;
+}
+.pdf-band img{ display:block; height:48px; width:auto; }
+.pdf-head{ padding:30px 36px 6px; }
+.pdf-title{
+  font-family:"Playfair Display",Georgia,serif;
+  font-weight:500; font-size:33px; line-height:1.1;
+  color:#2e3842; margin:0 0 6px;
+}
+.pdf-prep{
+  font-family:"Cormorant Garamond",Georgia,serif;
+  font-style:italic; font-weight:400;
+  font-size:19px; line-height:1.4;
+  color:#2e3842; margin:0 0 10px;
+}
+.pdf-meta{
+  font-size:11.5px; letter-spacing:.04em;
+  color:#2e3842; margin:0 0 8px;
+}
+.pdf-sec{
+  padding:14px 36px 4px;
+  break-inside:avoid; page-break-inside:avoid;
+}
+.pdf-sec-label{
+  font-size:11px; font-weight:500;
+  letter-spacing:.16em; text-transform:uppercase;
+  color:#2e3842;
+  border-top:1px solid #c3ccd1;
+  padding-top:12px; margin:0 0 12px;
+}
+.pdf-sel-row{ margin:0 0 9px; break-inside:avoid; page-break-inside:avoid; }
+.pdf-sel-key{
+  display:block;
+  font-size:10px; font-weight:500;
+  letter-spacing:.14em; text-transform:uppercase;
+  color:#2e3842; margin:0 0 2px;
+}
+.pdf-sel-val{ font-size:12.5px; color:#1a2229; margin:0; }
+.pdf-swatches{ display:flex; gap:14px; margin:4px 0 12px; }
+.pdf-swatch{ width:92px; }
+.pdf-swatch .ps-color{
+  display:block; width:92px; height:52px;
+  border:1px solid #c3ccd1; border-radius:4px;
+}
+.pdf-swatch .ps-role{
+  display:block;
+  font-size:9px; font-weight:500;
+  letter-spacing:.12em; text-transform:uppercase;
+  color:#2e3842; margin:6px 0 0;
+}
+.pdf-swatch .ps-hex{ display:block; font-size:10.5px; color:#1a2229; }
+.pdf-step{ padding:6px 36px 2px; }
+.pdf-step-h{
+  font-family:"Playfair Display",Georgia,serif;
+  font-weight:500; font-size:20px; line-height:1.2;
+  color:#2e3842;
+  border-top:1px solid #c3ccd1;
+  padding-top:14px; margin:8px 0 14px;
+  break-after:avoid; page-break-after:avoid;
+}
+.pdf-qa{ margin:0 0 13px; break-inside:avoid; page-break-inside:avoid; }
+.pdf-q{
+  display:block;
+  font-size:10px; font-weight:500;
+  letter-spacing:.14em; text-transform:uppercase;
+  color:#2e3842; margin:0 0 3px;
+}
+.pdf-a{
+  font-size:12.5px; line-height:1.6; color:#1a2229;
+  margin:0; white-space:pre-wrap;
+}
+.pdf-foot{
+  background:#26313a; color:#f4f1ea;
+  padding:18px 36px 20px;
+  font-size:11px; line-height:1.7; letter-spacing:.03em;
+  margin-top:22px;
+}
+.pdf-foot p{ margin:0; }
+
+/* ============================================================
+   ▓▓▓  DIRECTION C — EDITORIAL BOLD  ▓▓▓
+   Override skin. Reuses every existing selector so all behaviour
+   (steps, validation, preview, PDF, storage) is untouched.
+   Magazine confidence: oversized Playfair, italic Cormorant,
+   a sage swash, indexed numerals, hairline-rule controls.
+   ============================================================ */
+:root{
+  --hair:#c8d0d4; --hair-soft:#dfe4e3;
+  --swash:#9aac9c; --paper:#fffdf8;
+  --ease:cubic-bezier(.2,.74,.28,1);
+}
+body{ background:var(--ivory); }
+
+/* ---- header: add a hairline of warmth under the band ---- */
+.site-header{ position:relative; }
+.site-header::after{
+  content:""; position:absolute; left:0; right:0; bottom:0; height:2px;
+  background:linear-gradient(90deg, var(--sage) 0 64px, transparent 64px);
+}
+.header-inner{ padding:22px 20px 20px; }
+
+/* ---- progress: thin editorial baseline ---- */
+.progress-outer{ background:var(--ivory); border-bottom:1px solid var(--hair); }
+.progress{ gap:7px; }
+.seg{
+  height:3px; border-radius:0; background:transparent;
+  border:0; border-bottom:2px solid var(--hair);
+  transition:border-color .5s var(--ease), background .5s var(--ease);
+}
+.seg.done{ background:transparent; border-bottom-color:var(--navy); }
+.seg.current{ background:transparent; border-bottom:2px solid var(--sage-deep); }
+.progress-count{
+  font-size:11.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--navy);
+}
+
+/* ---- kicker: short navy dash + tracked caps ---- */
+.kicker{
+  display:flex; align-items:center; gap:11px;
+  font-size:12px; letter-spacing:.2em; color:var(--navy); margin:0 0 18px;
+}
+.kicker::before{
+  content:""; width:22px; height:2px; background:var(--navy); flex:none;
+  transform-origin:left; 
+}
+
+/* ---- oversized titles, inline italic Cormorant, sage swash ---- */
+.welcome-title{
+  font-size:clamp(40px,6.6vw,66px); line-height:.98;
+  letter-spacing:-.022em; max-width:12ch; margin:0 0 12px;
+}
+.step-title{
+  font-size:clamp(32px,4.6vw,46px); line-height:1.0;
+  letter-spacing:-.015em; margin:0 0 16px;
+}
+.success-title{
+  font-size:clamp(38px,5.6vw,58px); line-height:1.0;
+  letter-spacing:-.02em; margin:0 0 20px; max-width:14ch;
+}
+.welcome-title em, .step-title em, .success-title em{
+  font-family:var(--font-accent); font-style:italic; font-weight:500; letter-spacing:0;
+}
+.welcome-title .sw{ position:relative; white-space:nowrap; z-index:0; }
+.welcome-title .sw::after{
+  content:""; position:absolute; left:-2px; right:-2px; bottom:.1em; height:.18em;
+  background:var(--sage); opacity:.55; z-index:-1; transform-origin:left center; border-radius:1px;
+}
+
+/* ---- lead / why: framed by a sage rule ---- */
+.lead{
+  font-size:clamp(21px,2.6vw,24px); line-height:1.46; max-width:42ch;
+  padding-left:22px; border-left:2px solid var(--sage); margin:18px 0 36px;
+}
+.why{
+  font-size:clamp(21px,2.5vw,23px); line-height:1.45; max-width:50ch;
+  padding-left:22px; border-left:2px solid var(--sage); margin:0 0 6px;
+}
+.rule{ border-top:1px solid var(--hair); margin:30px 0 34px; }
+
+/* ---- welcome points: indexed big numerals on hairlines ---- */
+.points{ gap:0; max-width:60ch; border-top:1px solid var(--navy); margin:0 0 36px; }
+.points li{ grid-template-columns:66px 1fr; gap:22px; align-items:baseline;
+  padding:20px 0; border-bottom:1px solid var(--hair); }
+.pt-num{
+  font-family:var(--font-display); font-weight:500; font-size:40px; line-height:.9;
+  color:var(--sage-deep); border-top:0; padding-top:0;
+}
+.pt-text{ font-size:16px; line-height:1.55; padding-top:0; color:var(--ink); }
+.privacy{
+  font-size:13px; line-height:1.65; color:var(--slate);
+  border-left:0; padding-left:0; max-width:62ch; margin:0 0 36px; letter-spacing:.01em;
+}
+
+/* ---- buttons: squared, wider tracking, a lift on hover ---- */
+.btn{ border-radius:0; letter-spacing:.2em; transition:background .18s var(--ease),
+  color .18s var(--ease), transform .18s var(--ease), box-shadow .18s var(--ease); }
+.btn-primary{ background:var(--sage); color:var(--navy); border-color:var(--sage-deep); }
+.btn-primary:hover{ background:var(--sage-deep); color:var(--ink);
+  transform:translateY(-2px); box-shadow:0 10px 22px rgba(132,149,138,.32); }
+.btn-primary:active{ transform:translateY(0); }
+.btn-ghost{ border-radius:0; }
+.btn-ghost:hover{ transform:translateY(-2px); }
+.btn-row{ margin-top:40px; }
+
+/* ---- inputs: squared paper fields, hairline, navy focus ---- */
+.f-input{ background:var(--paper); border:1px solid var(--hair); border-radius:0;
+  transition:border-color .16s var(--ease), box-shadow .16s var(--ease); }
+.f-input:focus-visible{ outline:none; border-color:var(--navy);
+  box-shadow:inset 0 -2px 0 var(--sage); }
+.field.invalid .f-input{ border:1px solid var(--navy); box-shadow:inset 0 -2px 0 var(--navy); padding:12px 14px; }
+.f-label{ font-size:15px; letter-spacing:.005em; }
+
+/* ---- choice rows: hairline list, bold + underline when chosen ---- */
+.choices{ gap:0; }
+.choice-box{
+  background:transparent; border:0; border-bottom:1px solid var(--hair);
+  border-radius:0; padding:15px 4px; min-height:auto;
+  transition:background .16s var(--ease), border-color .16s var(--ease), padding .12s var(--ease);
+}
+.choice:hover .choice-box{ background:rgba(154,172,156,.09); border-bottom-color:var(--sage-deep); }
+.choice input:checked + .choice-box{
+  border:0; border-bottom:2px solid var(--navy); background:transparent; padding:15px 4px 14px;
+}
+.choice input:checked + .choice-box .row-label{ font-weight:600; }
+.choice input:focus-visible + .choice-box{ outline:2px solid var(--navy); outline-offset:3px; }
+.tick{ width:19px; height:19px; }
+
+/* pair choices (Yes / No): squared outline chips, not hairlines */
+.choices.pair{ gap:10px; }
+.choices.pair .choice-box{
+  border:1px solid var(--hair); border-radius:0; padding:13px 16px;
+  justify-content:center; gap:10px;
+}
+.choices.pair .choice input:checked + .choice-box{
+  border:2px solid var(--navy); padding:12px 15px; background:transparent;
+}
+.choices.pair .choice:hover .choice-box{ border-color:var(--sage-deep); }
+
+/* reveal indent rule -> sage */
+.reveal{ border-left:2px solid var(--sage); padding:18px 0 0 18px; }
+.inline-note, .note{ border-radius:0; }
+.inline-note{ background:var(--ivory-soft); border:1px solid var(--hair);
+  border-left:2px solid var(--sage); }
+
+/* ---- tone scale: squared dots, navy fill when chosen ---- */
+.dot{ border-radius:0; width:46px; height:46px; transition:background .16s var(--ease),
+  border-color .16s var(--ease), color .16s var(--ease), transform .16s var(--ease); }
+.dot-wrap:hover .dot{ border-color:var(--sage-deep); transform:translateY(-2px); }
+.dot-wrap input:checked + .dot{ background:var(--navy); border:2px solid var(--navy); color:var(--ivory); }
+.tick-badge{ border-radius:0; background:var(--sage); border-color:var(--navy); }
+.scale-ends{ letter-spacing:.12em; }
+
+/* ---- style cards (Step 4): squared frames ---- */
+.card-body{ border:1px solid var(--hair); border-radius:0; background:var(--ivory-soft);
+  transition:border-color .16s var(--ease), transform .16s var(--ease), box-shadow .16s var(--ease); }
+.style-card:hover .card-body{ border-color:var(--sage-deep);
+  transform:translateY(-3px); box-shadow:0 12px 26px rgba(46,56,66,.09); }
+.style-card input:checked + .card-body{ border:2px solid var(--navy); padding:9px; }
+.mock{ border-radius:0; }
+.card-name{ font-family:var(--font-display); font-size:16px; font-weight:500; }
+.card-desc{ font-size:12.5px; }
+.pair-tag{ letter-spacing:.12em; }
+
+/* ---- Step 5 palette + font rows ---- */
+.pal-chip{ border:1px solid var(--hair); border-radius:0; }
+.pal-chip .pc-color{ height:60px; }
+.pair-row .choice-box{ border:1px solid var(--hair); border-radius:0; padding:16px 18px; }
+.pair-row .choice:hover .choice-box{ border-color:var(--sage-deep); background:transparent; }
+.choice input:checked + .pair-box{ border:2px solid var(--navy); padding:15px 17px; }
+.pr-name{ letter-spacing:.14em; }
+.alt-swatches .sw, .sw{ border-radius:0; }
+
+/* ---- live preview: deep navy chrome, squared ---- */
+.preview-panel{ background:var(--deep-blue); border-radius:0; }
+.preview-frame{ border-radius:0; box-shadow:0 18px 40px rgba(13,19,32,.46); }
+.preview-kicker{ letter-spacing:.22em; }
+.preview-caption{ font-size:17px; }
+.preview-toggle{ letter-spacing:.18em; }
+@media (min-width:980px){ .preview-panel{ border-radius:0; } }
+
+/* ---- restore notice + footer ---- */
+.notice{ border-radius:0; border:1px solid var(--hair); border-left:2px solid var(--sage); }
+.site-footer{ position:relative; }
+.site-footer::before{ content:""; position:absolute; left:0; right:0; top:0; height:2px;
+  background:linear-gradient(90deg, var(--sage) 0 64px, transparent 64px); }
+.foot-inner{ padding:40px 20px 46px; align-items:flex-start; }
+
+/* ---- crisp text lockup (replaces the low-res raster wordmark) ---- */
+.lockup{ display:inline-block; font-family:var(--font-display); font-weight:500;
+  color:var(--ivory); font-size:27px; letter-spacing:.26em; line-height:1; text-indent:.26em; }
+.lockup > span{ display:block; font-family:var(--font-sans); font-weight:400; font-size:8.5px;
+  letter-spacing:.44em; color:var(--sage); margin-top:8px; text-indent:.46em; text-transform:uppercase; white-space:nowrap; }
+.lockup-foot{ font-size:23px; }
+
+/* ============================================================
+   MOTION — alive & delightful, reduced-motion safe
+   ============================================================ */
+.screen.enter > *{ animation:fadeUpC .6s var(--ease) both; }
+@keyframes fadeUpC{ from{ opacity:0; transform:translateY(16px); } to{ opacity:1; transform:none; } }
+
+/* swash wipes in after the headline settles */
+@keyframes swashWipe{ from{ transform:scaleX(0); } to{ transform:scaleX(1); } }
+@media (prefers-reduced-motion: no-preference){
+  .welcome-title .sw::after{ transform:scaleX(0); }
+  .screen.enter .welcome-title .sw::after{ animation:swashWipe .72s .42s var(--ease) forwards; }
+}
+
+/* kicker dash draws in */
+@keyframes dashIn{ from{ transform:scaleX(0); } to{ transform:scaleX(1); } }
+@media (prefers-reduced-motion: no-preference){
+  .screen.enter .kicker::before{ animation:dashIn .5s .05s var(--ease) both; }
+}
+
+/* numerals lift in with a touch more travel */
+@media (prefers-reduced-motion: no-preference){
+  .screen.enter .points li{ animation:fadeUpC .6s var(--ease) both; }
+  .screen.enter .points li:nth-child(1){ animation-delay:.18s; }
+  .screen.enter .points li:nth-child(2){ animation-delay:.26s; }
+  .screen.enter .points li:nth-child(3){ animation-delay:.34s; }
+}
+</style>
+</head>
+<body>
+
+<!-- Netlify blueprint form. Deploy-time parser registers these fields.
+     The visible step inputs below are intentionally not inside any form. -->
+<form name="website-brief" netlify netlify-honeypot="bot-field"
+      enctype="multipart/form-data" hidden>
+  <input type="text" name="bot-field">
+  <input type="text" name="name">
+  <input type="email" name="email">
+  <input type="text" name="phone">
+  <input type="text" name="practice-name">
+  <input type="text" name="practice-type">
+  <input type="text" name="primary-style">
+  <textarea name="summary"></textarea>
+  <input type="file" name="brief-pdf">
+</form>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="header-inner">
+    <span class="lockup" role="img" aria-label="Scout Content Studio">SCOUT<span aria-hidden="true">Content Studio</span></span>
+  </div>
+</header>
+
+<div class="progress-outer" id="progressOuter" hidden>
+  <div class="progress-wrap">
+    <div class="progress" id="progress" role="progressbar" aria-label="Brief progress"
+         aria-valuemin="1" aria-valuemax="8" aria-valuenow="1" aria-valuetext="Step 1 of 8">
+      <span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span>
+      <span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span>
+    </div>
+    <p class="progress-count" id="progressCount">Step 1 of 8</p>
+  </div>
+</div>
+
+<main id="main" tabindex="-1">
+  <div class="layout" id="layout">
+    <div class="col-main">
+
+      <div class="notice" id="restoreNotice" hidden>
+        <p>Welcome back. Your answers were saved.</p>
+        <button type="button" class="link-btn" id="dismissNotice">Dismiss</button>
+        <button type="button" class="link-btn" id="startOver">Start over</button>
+      </div>
+
+      <!-- Welcome -->
+      <section class="screen screen-welcome" data-screen="welcome" aria-labelledby="t-welcome">
+        <p class="kicker">Website Brief Builder</p>
+        <h1 class="welcome-title" id="t-welcome" tabindex="-1">Plan a website your clients will <span class="sw">trust</span>.</h1>
+        <p class="lead">Answer a few questions about your practice. Get a brief you can hand to any designer, including us. Takes about ten minutes. Your answers save as you go.</p>
+        <ol class="points">
+          <li><span class="pt-num" aria-hidden="true">1</span><span class="pt-text">Clients decide in seconds. Your site has one job: help an anxious person feel safe enough to reach out.</span></li>
+          <li><span class="pt-num" aria-hidden="true">2</span><span class="pt-text">Clarity beats clever. Plain words about who you help outperform vague language about wellness.</span></li>
+          <li><span class="pt-num" aria-hidden="true">3</span><span class="pt-text">One next step. Every page should point to the same action: call, book, or write.</span></li>
+        </ol>
+        <p class="privacy">This guide asks about your practice, not your clients. Please do not send client names, diagnoses, or protected health information.</p>
+        <button type="button" class="btn btn-primary" id="startBtn">Start your brief</button>
+      </section>
+
+      <!-- Step 1 -->
+      <section class="screen" data-step="1" aria-labelledby="t-step1" hidden>
+        <p class="kicker">Step 1 of 8</p>
+        <h2 class="step-title" id="t-step1" tabindex="-1">Your practice</h2>
+        <p class="why">The basics you give here become the words at the top of every page. Plain facts first. We can make them sound good later.</p>
+        <hr class="rule">
+
+        <div class="field">
+          <label class="f-label" for="practiceName">Practice name</label>
+          <p class="f-help" id="practiceNameHelp">This goes in the preview and on your brief.</p>
+          <input class="f-input" type="text" id="practiceName" name="practiceName" aria-describedby="practiceNameHelp" autocomplete="organization">
+        </div>
+
+        <fieldset class="field">
+          <legend class="f-label">Practice type</legend>
+          <div class="choices pair">
+            <label class="choice"><input class="vh" type="radio" name="practiceType" value="Solo practice"><span class="choice-box"><span class="row-label">Solo practice</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="radio" name="practiceType" value="Group practice"><span class="choice-box"><span class="row-label">Group practice</span><span class="tick" aria-hidden="true"></span></span></label>
+          </div>
+        </fieldset>
+
+        <div class="reveal" data-when-name="practiceType" data-when-value="Solo practice" hidden>
+          <fieldset class="field">
+            <legend class="f-label">Do you want your photo and story front and center, or should the work lead?</legend>
+            <div class="choices">
+              <label class="choice"><input class="vh" type="radio" name="soloFocus" value="Me first"><span class="choice-box"><span class="row-label">Me first</span><span class="tick" aria-hidden="true"></span></span></label>
+              <label class="choice"><input class="vh" type="radio" name="soloFocus" value="The work first"><span class="choice-box"><span class="row-label">The work first</span><span class="tick" aria-hidden="true"></span></span></label>
+              <label class="choice"><input class="vh" type="radio" name="soloFocus" value="Not sure"><span class="choice-box"><span class="row-label">Not sure</span><span class="tick" aria-hidden="true"></span></span></label>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="reveal" data-when-name="practiceType" data-when-value="Group practice" hidden>
+          <div class="field">
+            <label class="f-label" for="clinicianCount">Number of clinicians</label>
+            <input class="f-input narrow" type="number" id="clinicianCount" name="clinicianCount" min="1" inputmode="numeric">
+          </div>
+          <fieldset class="field">
+            <legend class="f-label">Individual bio pages for each clinician?</legend>
+            <div class="choices pair">
+              <label class="choice"><input class="vh" type="radio" name="bioPages" value="Yes"><span class="choice-box"><span class="row-label">Yes</span><span class="tick" aria-hidden="true"></span></span></label>
+              <label class="choice"><input class="vh" type="radio" name="bioPages" value="No"><span class="choice-box"><span class="row-label">No</span><span class="tick" aria-hidden="true"></span></span></label>
+              <label class="choice"><input class="vh" type="radio" name="bioPages" value="Not sure"><span class="choice-box"><span class="row-label">Not sure</span><span class="tick" aria-hidden="true"></span></span></label>
+            </div>
+          </fieldset>
+          <fieldset class="field">
+            <legend class="f-label">Who responds to new inquiries?</legend>
+            <div class="choices">
+              <label class="choice"><input class="vh" type="radio" name="inquiryResponder" value="The owner"><span class="choice-box"><span class="row-label">The owner</span><span class="tick" aria-hidden="true"></span></span></label>
+              <label class="choice"><input class="vh" type="radio" name="inquiryResponder" value="An intake coordinator"><span class="choice-box"><span class="row-label">An intake coordinator</span><span class="tick" aria-hidden="true"></span></span></label>
+              <label class="choice"><input class="vh" type="radio" name="inquiryResponder" value="Front desk staff"><span class="choice-box"><span class="row-label">Front desk staff</span><span class="tick" aria-hidden="true"></span></span></label>
+              <label class="choice"><input class="vh" type="radio" name="inquiryResponder" value="It varies"><span class="choice-box"><span class="row-label">It varies</span><span class="tick" aria-hidden="true"></span></span></label>
+            </div>
+          </fieldset>
+          <fieldset class="field">
+            <legend class="f-label">Hiring page?</legend>
+            <div class="choices pair">
+              <label class="choice"><input class="vh" type="radio" name="hiringPage" value="Yes now"><span class="choice-box"><span class="row-label">Yes now</span><span class="tick" aria-hidden="true"></span></span></label>
+              <label class="choice"><input class="vh" type="radio" name="hiringPage" value="Maybe later"><span class="choice-box"><span class="row-label">Maybe later</span><span class="tick" aria-hidden="true"></span></span></label>
+              <label class="choice"><input class="vh" type="radio" name="hiringPage" value="No"><span class="choice-box"><span class="row-label">No</span><span class="tick" aria-hidden="true"></span></span></label>
+            </div>
+          </fieldset>
+        </div>
+
+        <fieldset class="field">
+          <legend class="f-label">Where you see clients</legend>
+          <div class="choices">
+            <label class="choice"><input class="vh" type="radio" name="setting" value="In person"><span class="choice-box"><span class="row-label">In person</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="radio" name="setting" value="Telehealth only"><span class="choice-box"><span class="row-label">Telehealth only</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="radio" name="setting" value="Both"><span class="choice-box"><span class="row-label">Both</span><span class="tick" aria-hidden="true"></span></span></label>
+          </div>
+        </fieldset>
+
+        <div class="field">
+          <label class="f-label" for="city">City or region served</label>
+          <input class="f-input" type="text" id="city" name="city" autocomplete="address-level2">
+        </div>
+
+        <div class="field">
+          <label class="f-label" for="treat">What you treat</label>
+          <p class="f-help" id="treatHelp">What do you specialize in? List the issues clients actually search for.</p>
+          <textarea class="f-input" id="treat" name="treat" aria-describedby="treatHelp"></textarea>
+        </div>
+
+        <div class="field">
+          <label class="f-label" for="modalities">Modalities</label>
+          <p class="f-help" id="modalitiesHelp">Only list what clients ask about by name. EMDR, yes. Your full training history, no.</p>
+          <textarea class="f-input" id="modalities" name="modalities" aria-describedby="modalitiesHelp"></textarea>
+        </div>
+
+        <div class="field">
+          <label class="f-label" for="credentials">Credentials and licenses to display</label>
+          <input class="f-input" type="text" id="credentials" name="credentials">
+        </div>
+
+        <div class="field">
+          <label class="f-label" for="differentiator">What sets your work apart</label>
+          <p class="f-help" id="differentiatorHelp">What do clients get from you that they didn't get from their last therapist?</p>
+          <textarea class="f-input" id="differentiator" name="differentiator" aria-describedby="differentiatorHelp"></textarea>
+        </div>
+
+        <div class="btn-row">
+          <button type="button" class="btn btn-ghost" data-nav="back">Back</button>
+          <button type="button" class="btn btn-primary" data-nav="next">Next</button>
+        </div>
+      </section>
+
+      <!-- Step 2 -->
+      <section class="screen" data-step="2" aria-labelledby="t-step2" hidden>
+        <p class="kicker">Step 2 of 8</p>
+        <h2 class="step-title" id="t-step2" tabindex="-1">Your clients</h2>
+        <p class="why">People don't comparison-shop therapists the way they shop for shoes. They look for one signal: this person gets it. These answers shape every headline.</p>
+        <hr class="rule">
+
+        <fieldset class="field">
+          <legend class="f-label">Who usually finds the site</legend>
+          <p class="f-help">Check everything that applies.</p>
+          <div class="choices">
+            <label class="choice"><input class="vh" type="checkbox" name="audience" value="The client themselves"><span class="choice-box"><span class="row-label">The client themselves</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="checkbox" name="audience" value="A parent"><span class="choice-box"><span class="row-label">A parent</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="checkbox" name="audience" value="A partner or spouse"><span class="choice-box"><span class="row-label">A partner or spouse</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="checkbox" name="audience" value="A referring professional"><span class="choice-box"><span class="row-label">A referring professional</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="checkbox" name="audience" value="Other"><span class="choice-box"><span class="row-label">Other</span><span class="tick" aria-hidden="true"></span></span></label>
+          </div>
+          <div class="reveal" data-when-name="audience" data-when-value="Other" hidden>
+            <div class="field">
+              <label class="f-label" for="audienceOther">Who else finds it</label>
+              <input class="f-input" type="text" id="audienceOther" name="audienceOther">
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="field">
+          <legend class="f-label">When someone lands on your site, what state are they usually in?</legend>
+          <div class="choices">
+            <label class="choice"><input class="vh" type="checkbox" name="arrivalState" value="Overwhelmed"><span class="choice-box"><span class="row-label">Overwhelmed</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="checkbox" name="arrivalState" value="In crisis"><span class="choice-box"><span class="row-label">In crisis</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="checkbox" name="arrivalState" value="Skeptical it will help"><span class="choice-box"><span class="row-label">Skeptical it will help</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="checkbox" name="arrivalState" value="Hopeful and ready"><span class="choice-box"><span class="row-label">Hopeful and ready</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="checkbox" name="arrivalState" value="Researching for someone else"><span class="choice-box"><span class="row-label">Researching for someone else</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="checkbox" name="arrivalState" value="Comparing several therapists"><span class="choice-box"><span class="row-label">Comparing several therapists</span><span class="tick" aria-hidden="true"></span></span></label>
+          </div>
+        </fieldset>
+
+        <div class="field">
+          <label class="f-label" for="needToSee">What do they need to see or feel before they'll reach out?</label>
+          <textarea class="f-input" id="needToSee" name="needToSee"></textarea>
+        </div>
+
+        <fieldset class="field">
+          <legend class="f-label">Common hesitations</legend>
+          <div class="choices">
+            <label class="choice"><input class="vh" type="checkbox" name="hesitations" value="Cost"><span class="choice-box"><span class="row-label">Cost</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="checkbox" name="hesitations" value="Insurance confusion"><span class="choice-box"><span class="row-label">Insurance confusion</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="checkbox" name="hesitations" value="Stigma"><span class="choice-box"><span class="row-label">Stigma</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="checkbox" name="hesitations" value="Time"><span class="choice-box"><span class="row-label">Time</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="checkbox" name="hesitations" value="A past bad therapy experience"><span class="choice-box"><span class="row-label">A past bad therapy experience</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="checkbox" name="hesitations" value="Not sure my problem is bad enough"><span class="choice-box"><span class="row-label">Not sure my problem is bad enough</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="checkbox" name="hesitations" value="Other"><span class="choice-box"><span class="row-label">Other</span><span class="tick" aria-hidden="true"></span></span></label>
+          </div>
+          <div class="reveal" data-when-name="hesitations" data-when-value="Other" hidden>
+            <div class="field">
+              <label class="f-label" for="hesitationsOther">What else holds them back</label>
+              <input class="f-input" type="text" id="hesitationsOther" name="hesitationsOther">
+            </div>
+          </div>
+        </fieldset>
+
+        <div class="btn-row">
+          <button type="button" class="btn btn-ghost" data-nav="back">Back</button>
+          <button type="button" class="btn btn-primary" data-nav="next">Next</button>
+        </div>
+      </section>
+
+      <!-- Step 3 -->
+      <section class="screen" data-step="3" aria-labelledby="t-step3" hidden>
+        <p class="kicker">Step 3 of 8</p>
+        <h2 class="step-title" id="t-step3" tabindex="-1">Goals</h2>
+        <p class="why">A site with one clear next step outperforms a site with five. Decide the step here and everything else lines up behind it.</p>
+        <hr class="rule">
+
+        <fieldset class="field">
+          <legend class="f-label">The one action you most want a visitor to take</legend>
+          <div class="choices">
+            <label class="choice"><input class="vh" type="radio" name="primaryAction" value="Call the practice"><span class="choice-box"><span class="row-label">Call the practice</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="radio" name="primaryAction" value="Fill out a contact form"><span class="choice-box"><span class="row-label">Fill out a contact form</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="radio" name="primaryAction" value="Book a consultation online"><span class="choice-box"><span class="row-label">Book a consultation online</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="radio" name="primaryAction" value="Send an email"><span class="choice-box"><span class="row-label">Send an email</span><span class="tick" aria-hidden="true"></span></span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="field">
+          <legend class="f-label">Where clients come from</legend>
+          <div class="choices">
+            <label class="choice"><input class="vh" type="radio" name="referralMix" value="Mostly direct from search and word of mouth"><span class="choice-box"><span class="row-label">Mostly direct from search and word of mouth</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="radio" name="referralMix" value="Mostly professional referrals"><span class="choice-box"><span class="row-label">Mostly professional referrals</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="radio" name="referralMix" value="A real mix"><span class="choice-box"><span class="row-label">A real mix</span><span class="tick" aria-hidden="true"></span></span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="field">
+          <legend class="f-label">Fees on the site?</legend>
+          <div class="choices pair">
+            <label class="choice"><input class="vh" type="radio" name="feesOnSite" value="Yes"><span class="choice-box"><span class="row-label">Yes</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="radio" name="feesOnSite" value="No"><span class="choice-box"><span class="row-label">No</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="radio" name="feesOnSite" value="Not sure"><span class="choice-box"><span class="row-label">Not sure</span><span class="tick" aria-hidden="true"></span></span></label>
+          </div>
+          <p class="inline-note">Listing fees filters for fit. Leaving them off gets more calls, including calls from people who can't afford you. There's no wrong answer. We just need to know where you stand.</p>
+        </fieldset>
+
+        <div class="field">
+          <label class="f-label" for="growth">Anything you want room to grow into?</label>
+          <textarea class="f-input" id="growth" name="growth" placeholder="Groups, intensives, workshops, courses"></textarea>
+        </div>
+
+        <div class="btn-row">
+          <button type="button" class="btn btn-ghost" data-nav="back">Back</button>
+          <button type="button" class="btn btn-primary" data-nav="next">Next</button>
+        </div>
+      </section>
+
+      <!-- Step 4 -->
+      <section class="screen" data-step="4" aria-labelledby="t-step4" hidden>
+        <p class="kicker">Step 4 of 8</p>
+        <h2 class="step-title" id="t-step4" tabindex="-1">Style direction</h2>
+        <p class="why">Most visitors decide how they feel about a practice before they read a word. Pick the direction that feels like your office, not someone else's.</p>
+        <hr class="rule">
+
+        <fieldset class="field">
+          <legend class="f-label">Pick a primary direction</legend>
+          <p class="f-help">Each card is a rough sketch of a homepage in that style. The preview panel follows your pick.</p>
+          <div class="style-cards" id="styleCards"></div>
+        </fieldset>
+
+        <div class="field">
+          <label class="f-label" for="secondaryStyle">Also drawn to <span class="optional-tag">(optional)</span></label>
+          <select class="f-input" id="secondaryStyle" name="secondaryStyle">
+            <option value="">None</option>
+            <option value="warm-minimal">Warm Minimal</option>
+            <option value="clean-clinical">Clean Clinical</option>
+            <option value="grounded-earth">Grounded Earth</option>
+            <option value="modern-calm">Modern Calm</option>
+            <option value="soft-editorial">Soft Editorial</option>
+          </select>
+        </div>
+
+        <div class="btn-row">
+          <button type="button" class="btn btn-ghost" data-nav="back">Back</button>
+          <button type="button" class="btn btn-primary" data-nav="next">Next</button>
+        </div>
+      </section>
+
+      <!-- Step 5 -->
+      <section class="screen" data-step="5" aria-labelledby="t-step5" hidden>
+        <p class="kicker">Step 5 of 8</p>
+        <h2 class="step-title" id="t-step5" tabindex="-1">Colors and type</h2>
+        <p class="why">Color and type carry tone before copy does. This locks in a starting point, not a final answer.</p>
+        <hr class="rule">
+
+        <div class="field">
+          <p class="f-label">Your starting palette</p>
+          <p class="pal-hint" id="palHint">From the style you picked. Hex codes included so nothing gets lost.</p>
+          <div class="pal-display" id="paletteDisplay"></div>
+        </div>
+
+        <fieldset class="field">
+          <legend class="f-label">How should we treat it?</legend>
+          <div class="choices">
+            <label class="choice"><input class="vh" type="radio" name="paletteChoice" value="Keep this palette"><span class="choice-box"><span class="row-label">Keep this palette</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="radio" name="paletteChoice" value="Use a different one"><span class="choice-box"><span class="row-label">Use a different one</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="radio" name="paletteChoice" value="I have brand colors"><span class="choice-box"><span class="row-label">I have brand colors</span><span class="tick" aria-hidden="true"></span></span></label>
+          </div>
+          <div class="reveal" data-when-name="paletteChoice" data-when-value="Use a different one" hidden>
+            <fieldset class="field">
+              <legend class="f-label">Pick one</legend>
+              <div class="choices" id="paletteAltRows"></div>
+            </fieldset>
+          </div>
+          <div class="reveal" data-when-name="paletteChoice" data-when-value="I have brand colors" hidden>
+            <div class="field">
+              <label class="f-label" for="brandColors">List your hex codes or describe your colors</label>
+              <input class="f-input" type="text" id="brandColors" name="brandColors">
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="field">
+          <legend class="f-label">Logo</legend>
+          <div class="choices">
+            <label class="choice"><input class="vh" type="radio" name="logoStatus" value="I have a logo"><span class="choice-box"><span class="row-label">I have a logo</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="radio" name="logoStatus" value="I need one"><span class="choice-box"><span class="row-label">I need one</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="radio" name="logoStatus" value="I have one but it needs work"><span class="choice-box"><span class="row-label">I have one but it needs work</span><span class="tick" aria-hidden="true"></span></span></label>
+          </div>
+          <div class="reveal" data-when-name="logoStatus" data-when-value="I have a logo|I have one but it needs work" hidden>
+            <p class="inline-note">No upload needed now. We'll collect files after you book a call.</p>
+          </div>
+        </fieldset>
+
+        <fieldset class="field">
+          <legend class="f-label">Font pairing</legend>
+          <p class="f-help">Each row is set in its own fonts. We preselected the pairing that matches your style. Override it if another reads more like you.</p>
+          <div class="choices" id="fontPairRows"></div>
+        </fieldset>
+
+        <div class="btn-row">
+          <button type="button" class="btn btn-ghost" data-nav="back">Back</button>
+          <button type="button" class="btn btn-primary" data-nav="next">Next</button>
+        </div>
+      </section>
+
+      <!-- Step 6 -->
+      <section class="screen" data-step="6" aria-labelledby="t-step6" hidden>
+        <p class="kicker">Step 6 of 8</p>
+        <h2 class="step-title" id="t-step6" tabindex="-1">Voice and copy</h2>
+        <p class="why">The words on the site should sound like you on a good day, not like a brochure.</p>
+        <hr class="rule">
+
+        <fieldset class="field scale">
+          <legend class="f-label">Warm to clinical</legend>
+          <div class="scale-ends" aria-hidden="true"><span>Warm</span><span>Clinical</span></div>
+          <div class="scale-dots">
+            <label class="dot-wrap"><input class="vh" type="radio" name="toneWarmth" value="1"><span class="dot">1<span class="tick-badge" aria-hidden="true"></span></span><span class="sr-only">1, most warm</span></label>
+            <label class="dot-wrap"><input class="vh" type="radio" name="toneWarmth" value="2"><span class="dot">2<span class="tick-badge" aria-hidden="true"></span></span><span class="sr-only">2</span></label>
+            <label class="dot-wrap"><input class="vh" type="radio" name="toneWarmth" value="3"><span class="dot">3<span class="tick-badge" aria-hidden="true"></span></span><span class="sr-only">3, balanced</span></label>
+            <label class="dot-wrap"><input class="vh" type="radio" name="toneWarmth" value="4"><span class="dot">4<span class="tick-badge" aria-hidden="true"></span></span><span class="sr-only">4</span></label>
+            <label class="dot-wrap"><input class="vh" type="radio" name="toneWarmth" value="5"><span class="dot">5<span class="tick-badge" aria-hidden="true"></span></span><span class="sr-only">5, most clinical</span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="field scale">
+          <legend class="f-label">Conversational to formal</legend>
+          <div class="scale-ends" aria-hidden="true"><span>Conversational</span><span>Formal</span></div>
+          <div class="scale-dots">
+            <label class="dot-wrap"><input class="vh" type="radio" name="toneFormality" value="1"><span class="dot">1<span class="tick-badge" aria-hidden="true"></span></span><span class="sr-only">1, most conversational</span></label>
+            <label class="dot-wrap"><input class="vh" type="radio" name="toneFormality" value="2"><span class="dot">2<span class="tick-badge" aria-hidden="true"></span></span><span class="sr-only">2</span></label>
+            <label class="dot-wrap"><input class="vh" type="radio" name="toneFormality" value="3"><span class="dot">3<span class="tick-badge" aria-hidden="true"></span></span><span class="sr-only">3, balanced</span></label>
+            <label class="dot-wrap"><input class="vh" type="radio" name="toneFormality" value="4"><span class="dot">4<span class="tick-badge" aria-hidden="true"></span></span><span class="sr-only">4</span></label>
+            <label class="dot-wrap"><input class="vh" type="radio" name="toneFormality" value="5"><span class="dot">5<span class="tick-badge" aria-hidden="true"></span></span><span class="sr-only">5, most formal</span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="field scale">
+          <legend class="f-label">Gentle to direct</legend>
+          <div class="scale-ends" aria-hidden="true"><span>Gentle</span><span>Direct</span></div>
+          <div class="scale-dots">
+            <label class="dot-wrap"><input class="vh" type="radio" name="toneDirectness" value="1"><span class="dot">1<span class="tick-badge" aria-hidden="true"></span></span><span class="sr-only">1, most gentle</span></label>
+            <label class="dot-wrap"><input class="vh" type="radio" name="toneDirectness" value="2"><span class="dot">2<span class="tick-badge" aria-hidden="true"></span></span><span class="sr-only">2</span></label>
+            <label class="dot-wrap"><input class="vh" type="radio" name="toneDirectness" value="3"><span class="dot">3<span class="tick-badge" aria-hidden="true"></span></span><span class="sr-only">3, balanced</span></label>
+            <label class="dot-wrap"><input class="vh" type="radio" name="toneDirectness" value="4"><span class="dot">4<span class="tick-badge" aria-hidden="true"></span></span><span class="sr-only">4</span></label>
+            <label class="dot-wrap"><input class="vh" type="radio" name="toneDirectness" value="5"><span class="dot">5<span class="tick-badge" aria-hidden="true"></span></span><span class="sr-only">5, most direct</span></label>
+          </div>
+        </fieldset>
+
+        <div class="field">
+          <label class="f-label" for="neverWords">Words or phrases you never want on your site</label>
+          <textarea class="f-input" id="neverWords" name="neverWords"></textarea>
+        </div>
+
+        <fieldset class="field">
+          <legend class="f-label">Copy status</legend>
+          <div class="choices">
+            <label class="choice"><input class="vh" type="radio" name="copyStatus" value="I have copy I like"><span class="choice-box"><span class="row-label">I have copy I like</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="radio" name="copyStatus" value="I have copy that needs work"><span class="choice-box"><span class="row-label">I have copy that needs work</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="radio" name="copyStatus" value="Write it from scratch"><span class="choice-box"><span class="row-label">Write it from scratch</span><span class="tick" aria-hidden="true"></span></span></label>
+          </div>
+        </fieldset>
+
+        <div class="field">
+          <label class="f-label" for="voiceSample">A sentence or two that sounds like you <span class="optional-tag">(optional)</span></label>
+          <p class="f-help" id="voiceSampleHelp">From your site, an email, anywhere.</p>
+          <textarea class="f-input" id="voiceSample" name="voiceSample" aria-describedby="voiceSampleHelp"></textarea>
+        </div>
+
+        <div class="btn-row">
+          <button type="button" class="btn btn-ghost" data-nav="back">Back</button>
+          <button type="button" class="btn btn-primary" data-nav="next">Next</button>
+        </div>
+      </section>
+
+      <!-- Step 7 -->
+      <section class="screen" data-step="7" aria-labelledby="t-step7" hidden>
+        <p class="kicker">Step 7 of 8</p>
+        <h2 class="step-title" id="t-step7" tabindex="-1">Pages and assets</h2>
+        <p class="why">A site is only as strong as what you can actually put on it. Honest inventory now saves weeks later.</p>
+        <hr class="rule">
+
+        <fieldset class="field">
+          <legend class="f-label">Pages you expect to need</legend>
+          <div class="choices">
+            <label class="choice"><input class="vh" type="checkbox" name="pages" value="Home"><span class="choice-box"><span class="row-label">Home</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="checkbox" name="pages" value="About"><span class="choice-box"><span class="row-label">About</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="checkbox" name="pages" value="Services or Specialties"><span class="choice-box"><span class="row-label">Services or Specialties</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="checkbox" name="pages" value="Individual specialty pages"><span class="choice-box"><span class="row-label">Individual specialty pages</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="checkbox" name="pages" value="Rates and Insurance"><span class="choice-box"><span class="row-label">Rates and Insurance</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="checkbox" name="pages" value="FAQ"><span class="choice-box"><span class="row-label">FAQ</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="checkbox" name="pages" value="Contact"><span class="choice-box"><span class="row-label">Contact</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="checkbox" name="pages" value="Blog"><span class="choice-box"><span class="row-label">Blog</span><span class="tick" aria-hidden="true"></span></span></label>
+          </div>
+          <div class="reveal" data-when-name="practiceType" data-when-value="Group practice" hidden>
+            <p class="f-help">For a group practice, two more worth considering.</p>
+            <div class="choices">
+              <label class="choice"><input class="vh" type="checkbox" name="pages" value="Team"><span class="choice-box"><span class="row-label">Team</span><span class="tick" aria-hidden="true"></span></span></label>
+              <label class="choice"><input class="vh" type="checkbox" name="pages" value="Join Our Team"><span class="choice-box"><span class="row-label">Join Our Team</span><span class="tick" aria-hidden="true"></span></span></label>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="field">
+          <legend class="f-label">Professional headshots</legend>
+          <div class="choices pair">
+            <label class="choice"><input class="vh" type="radio" name="photoHeadshots" value="Yes"><span class="choice-box"><span class="row-label">Yes</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="radio" name="photoHeadshots" value="No"><span class="choice-box"><span class="row-label">No</span><span class="tick" aria-hidden="true"></span></span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="field">
+          <legend class="f-label">Photos of your office or space</legend>
+          <div class="choices pair">
+            <label class="choice"><input class="vh" type="radio" name="photoOffice" value="Yes"><span class="choice-box"><span class="row-label">Yes</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="radio" name="photoOffice" value="No"><span class="choice-box"><span class="row-label">No</span><span class="tick" aria-hidden="true"></span></span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="field">
+          <legend class="f-label">Open to well-chosen stock photos while we plan a shoot</legend>
+          <div class="choices pair">
+            <label class="choice"><input class="vh" type="radio" name="photoStock" value="Yes"><span class="choice-box"><span class="row-label">Yes</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="radio" name="photoStock" value="No"><span class="choice-box"><span class="row-label">No</span><span class="tick" aria-hidden="true"></span></span></label>
+          </div>
+        </fieldset>
+
+        <div class="field">
+          <p class="inline-note" id="testimonialNote">Most licensing boards restrict asking clients for testimonials. That's fine. Unprompted Google reviews, colleague endorsements, and plain credentials do the same work without the ethics problem.</p>
+          <label class="f-label" for="testimonials">Any reviews or endorsements you can ethically point to?</label>
+          <textarea class="f-input" id="testimonials" name="testimonials" aria-describedby="testimonialNote"></textarea>
+        </div>
+
+        <div class="field">
+          <label class="f-label" for="currentUrl">Current website URL, if any</label>
+          <input class="f-input" type="url" id="currentUrl" name="currentUrl" inputmode="url" autocomplete="url">
+        </div>
+
+        <div class="field">
+          <label class="f-label" for="sitesYouLike">Two or three sites you like, and what you like about them</label>
+          <textarea class="f-input" id="sitesYouLike" name="sitesYouLike"></textarea>
+        </div>
+
+        <div class="field">
+          <label class="f-label" for="siteDislikes">Anything you hate seeing on therapy websites?</label>
+          <textarea class="f-input" id="siteDislikes" name="siteDislikes"></textarea>
+        </div>
+
+        <div class="btn-row">
+          <button type="button" class="btn btn-ghost" data-nav="back">Back</button>
+          <button type="button" class="btn btn-primary" data-nav="next">Next</button>
+        </div>
+      </section>
+
+      <!-- Step 8 -->
+      <section class="screen" data-step="8" aria-labelledby="t-step8" hidden>
+        <p class="kicker">Step 8 of 8</p>
+        <h2 class="step-title" id="t-step8" tabindex="-1">Last step. Where should your brief go?</h2>
+        <p class="why">The PDF lands in your downloads the moment you build it. The email is so it can find you again.</p>
+        <hr class="rule">
+
+        <div class="field" id="nameField">
+          <label class="f-label" for="name">Name</label>
+          <input class="f-input" type="text" id="name" name="name" autocomplete="name" aria-describedby="nameErr">
+          <p class="err" id="nameErr">Add your name so we know whose brief this is.</p>
+        </div>
+
+        <div class="field" id="emailField">
+          <label class="f-label" for="email">Email</label>
+          <input class="f-input" type="email" id="email" name="email" autocomplete="email" inputmode="email" aria-describedby="emailErr">
+          <p class="err" id="emailErr">That email doesn't look complete. Check it once more.</p>
+        </div>
+
+        <div class="field">
+          <label class="f-label" for="phone">Phone <span class="optional-tag">(optional)</span></label>
+          <input class="f-input" type="tel" id="phone" name="phone" autocomplete="tel" inputmode="tel">
+        </div>
+
+        <fieldset class="field">
+          <legend class="f-label">Preferred contact</legend>
+          <div class="choices pair">
+            <label class="choice"><input class="vh" type="radio" name="preferredContact" value="Email"><span class="choice-box"><span class="row-label">Email</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="radio" name="preferredContact" value="Phone"><span class="choice-box"><span class="row-label">Phone</span><span class="tick" aria-hidden="true"></span></span></label>
+            <label class="choice"><input class="vh" type="radio" name="preferredContact" value="Either"><span class="choice-box"><span class="row-label">Either</span><span class="tick" aria-hidden="true"></span></span></label>
+          </div>
+        </fieldset>
+
+        <p class="f-help" style="opacity:1; margin:30px 0 14px;">Your PDF downloads instantly. A copy goes to Scout Content Studio so we're ready if you book a call.</p>
+
+        <div class="btn-row">
+          <button type="button" class="btn btn-ghost" data-nav="back">Back</button>
+          <button type="button" class="btn btn-primary" id="buildBtn">Build my brief</button>
+        </div>
+      </section>
+
+      <!-- Success -->
+      <section class="screen screen-success" data-screen="success" aria-labelledby="t-success" hidden>
+        <p class="kicker">Your brief</p>
+        <h1 class="success-title" id="t-success" tabindex="-1">Your brief is downloading.</h1>
+        <p class="success-body" id="successBody">It's yours. Use it with any designer. If you want Scout to build the site, your brief is already in our inbox. Book a call and we'll pick up right where you left off.</p>
+        <p class="success-extra" id="successExtra" hidden></p>
+        <div class="success-actions">
+          <a class="btn btn-primary" id="bookCallLink" href="BOOK_A_CALL_URL">Book a call</a>
+          <a class="link-cta" href="https://scoutcontent.studio">See Scout's work &#8594;</a>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Live preview. Frame is Scout chrome; the hero inside is the client's style. -->
+    <aside class="col-preview" id="previewCol" hidden>
+      <button type="button" class="preview-toggle" id="previewToggle" aria-expanded="false" aria-controls="previewPanel">
+        <span>Preview your style</span>
+        <span class="chev" aria-hidden="true"></span>
+      </button>
+      <div class="preview-panel" id="previewPanel">
+        <p class="preview-kicker">Live preview</p>
+        <div class="preview-frame">
+          <div class="p-hero" id="pvHero">
+            <div class="p-nav">
+              <span class="p-name" id="pvName">Your Practice</span>
+              <span class="p-links" aria-hidden="true"><span>About</span><span>Contact</span></span>
+            </div>
+            <div class="p-inner">
+              <p class="p-headline" id="pvHeadline">You don't have to figure this out alone.</p>
+              <p class="p-sub" id="pvSub">A clear sense of who we help and how to begin.</p>
+              <span class="p-cta" id="pvCta">Get in touch</span>
+              <div class="p-img" aria-hidden="true"></div>
+            </div>
+          </div>
+        </div>
+        <p class="preview-caption">A rough sketch, not a design. Your real site starts from your answers.</p>
+      </div>
+    </aside>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="foot-inner">
+    <span class="lockup lockup-foot" role="img" aria-label="Scout Content Studio">SCOUT<span aria-hidden="true">Content Studio</span></span>
+    <p class="foot-privacy">This guide asks about your practice, not your clients. Please do not send client names, diagnoses, or protected health information.</p>
+    <a class="foot-link" href="https://scoutcontent.studio">Visit Scout Content Studio &#8594;</a>
+  </div>
+</footer>
+
+<div id="pdf-root" aria-hidden="true"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script>
+(function(){
+'use strict';
+
+/* ------------------------------------------------------------
+   Config. Find and replace BOOK_A_CALL_URL before going live.
+   ------------------------------------------------------------ */
+var BOOK_URL  = 'BOOK_A_CALL_URL';
+var LOGO_SRC  = 'data:image/png;base64,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';
+var SITE_URL  = 'https://scoutcontent.studio';
+var EMAIL     = 'info@scoutcontent.studio';
+var STORE_KEY = 'scoutBriefBuilder.v1';
+
+/* ------------------------------------------------------------
+   The five client style directions. Single source of truth for
+   the cards, palette rows, font rows, preview, and PDF.
+   ------------------------------------------------------------ */
+var STYLES = [
+  { id:'warm-minimal',  name:'Warm Minimal',
+    desc:'Quiet, warm, lots of space. Feels like a calm office with good light.',
+    bg:'#FAF6F0', ink:'#2B2724', accent:'#C96F4A', sec:'#E8DFD3',
+    head:'"Fraunces",Georgia,serif', body:'"Karla",Helvetica,sans-serif',
+    tag:'Fraunces + Karla' },
+  { id:'clean-clinical', name:'Clean Clinical',
+    desc:'Clear, credible, unfussy. Built for people who want answers fast.',
+    bg:'#FFFFFF', ink:'#16324F', accent:'#3E7CB1', sec:'#E9F0F6',
+    head:'"Libre Franklin",Helvetica,sans-serif', body:'"Source Sans 3",Helvetica,sans-serif',
+    tag:'Libre Franklin + Source Sans 3' },
+  { id:'grounded-earth', name:'Grounded Earth',
+    desc:'Natural tones, steady pace. Feels rooted and unhurried.',
+    bg:'#F4EFE6', ink:'#2E2A24', accent:'#5A6B4F', sec:'#DCCDB4',
+    head:'"Lora",Georgia,serif', body:'"Karla",Helvetica,sans-serif',
+    tag:'Lora + Karla' },
+  { id:'modern-calm', name:'Modern Calm',
+    desc:'Current and simple. Soft color, clean lines, nothing loud.',
+    bg:'#F6F7F5', ink:'#20241F', accent:'#6F8F77', sec:'#DDE5DD',
+    head:'"Sora",Helvetica,sans-serif', body:'"Karla",Helvetica,sans-serif',
+    tag:'Sora + Karla' },
+  { id:'soft-editorial', name:'Soft Editorial',
+    desc:'Literary and personal. Serif headlines, gentle color, room to breathe.',
+    bg:'#FBF7F4', ink:'#2F262B', accent:'#7D4F66', sec:'#EBDFDC',
+    head:'"Cormorant Garamond",Georgia,serif', body:'"Nunito Sans",Helvetica,sans-serif',
+    tag:'Cormorant Garamond + Nunito Sans' }
+];
+
+function styleById(id){
+  for(var i=0;i<STYLES.length;i++){ if(STYLES[i].id===id) return STYLES[i]; }
+  return null;
+}
+
+/* ------------------------------------------------------------
+   Answer state
+   ------------------------------------------------------------ */
+var DEFAULTS = {
+  practiceName:'', practiceType:'', setting:'', city:'',
+  treat:'', modalities:'', credentials:'', differentiator:'',
+  soloFocus:'', clinicianCount:'', bioPages:'', inquiryResponder:'', hiringPage:'',
+  audience:[], audienceOther:'', arrivalState:[], needToSee:'',
+  hesitations:[], hesitationsOther:'',
+  primaryAction:'', referralMix:'', feesOnSite:'', growth:'',
+  primaryStyle:'', secondaryStyle:'',
+  paletteChoice:'', paletteOverride:'', brandColors:'', logoStatus:'', fontPair:'',
+  toneWarmth:'', toneFormality:'', toneDirectness:'',
+  neverWords:'', copyStatus:'', voiceSample:'',
+  pages:[], photoHeadshots:'', photoOffice:'', photoStock:'',
+  testimonials:'', currentUrl:'', sitesYouLike:'', siteDislikes:'',
+  name:'', email:'', phone:'', preferredContact:''
+};
+
+var answers = JSON.parse(JSON.stringify(DEFAULTS));
+var step = 0;              /* 0 welcome, 1 to 8 steps, 9 success */
+var fontPairTouched = false;
+var building = false;
+
+/* ------------------------------------------------------------
+   Storage, wrapped so restricted previews still run
+   ------------------------------------------------------------ */
+function saveState(){
+  try{
+    localStorage.setItem(STORE_KEY, JSON.stringify({
+      step: step >= 1 && step <= 8 ? step : 0,
+      answers: answers,
+      fontPairTouched: fontPairTouched
+    }));
+  }catch(e){}
+}
+function loadState(){
+  try{
+    var raw = localStorage.getItem(STORE_KEY);
+    if(!raw) return null;
+    return JSON.parse(raw);
+  }catch(e){ return null; }
+}
+function clearState(){
+  try{ localStorage.removeItem(STORE_KEY); }catch(e){}
+}
+
+/* ------------------------------------------------------------
+   Color utilities. Keeps every preview button readable.
+   ------------------------------------------------------------ */
+function hexToRgb(hex){
+  var h = hex.replace('#','');
+  if(h.length===3){ h = h[0]+h[0]+h[1]+h[1]+h[2]+h[2]; }
+  return [parseInt(h.substr(0,2),16), parseInt(h.substr(2,2),16), parseInt(h.substr(4,2),16)];
+}
+function rgbToHex(r,g,b){
+  function p(n){ n=Math.max(0,Math.min(255,Math.round(n))); var s=n.toString(16); return s.length===1?'0'+s:s; }
+  return '#'+p(r)+p(g)+p(b);
+}
+function lum(rgb){
+  var a = rgb.map(function(v){
+    v/=255;
+    return v<=0.03928 ? v/12.92 : Math.pow((v+0.055)/1.055, 2.4);
+  });
+  return 0.2126*a[0]+0.7152*a[1]+0.0722*a[2];
+}
+function contrast(hexA, hexB){
+  var l1=lum(hexToRgb(hexA)), l2=lum(hexToRgb(hexB));
+  var hi=Math.max(l1,l2), lo=Math.min(l1,l2);
+  return (hi+0.05)/(lo+0.05);
+}
+function darken(hex, f){
+  var rgb = hexToRgb(hex);
+  return rgbToHex(rgb[0]*(1-f), rgb[1]*(1-f), rgb[2]*(1-f));
+}
+function accessibleAccent(hex){
+  var out = hex, guard = 0;
+  while(contrast('#ffffff', out) < 4.5 && guard < 24){
+    out = darken(out, 0.06); guard++;
+  }
+  return out;
+}
+
+function esc(s){
+  return String(s==null?'':s)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
+/* ------------------------------------------------------------
+   Effective style and fonts
+   ------------------------------------------------------------ */
+function effectiveStyle(){
+  if(answers.paletteChoice==='Use a different one' && answers.paletteOverride){
+    var o = styleById(answers.paletteOverride);
+    if(o) return o;
+  }
+  return styleById(answers.primaryStyle) || STYLES[0];
+}
+function effectiveFonts(){
+  return styleById(answers.fontPair) || effectiveStyle();
+}
+
+/* ------------------------------------------------------------
+   Render the dynamic rows
+   ------------------------------------------------------------ */
+function renderStyleCards(){
+  var html = STYLES.map(function(s){
+    var acc = accessibleAccent(s.accent);
+    return '<label class="style-card">' +
+      '<input class="vh" type="radio" name="primaryStyle" value="'+s.id+'">' +
+      '<span class="card-body">' +
+        '<span class="tick" aria-hidden="true"></span>' +
+        '<span class="mock" aria-hidden="true" style="--m-bg:'+s.bg+';--m-ink:'+s.ink+';--m-accent:'+acc+';--m-sec:'+s.sec+';--m-head:'+s.head.replace(/"/g,'&quot;')+';--m-body:'+s.body.replace(/"/g,'&quot;')+'">' +
+          '<span class="m-nav"><b>Your Practice</b><span class="m-links"><span>About</span><span>Contact</span></span></span>' +
+          '<span class="m-inner">' +
+            '<span class="m-head">Steady support for hard seasons.</span>' +
+            '<span class="m-sub">Individual therapy for adults.</span>' +
+            '<span class="m-cta">Book a consultation</span>' +
+            '<span class="m-img"></span>' +
+          '</span>' +
+        '</span>' +
+        '<span class="card-meta">' +
+          '<span class="card-name">'+s.name+'</span>' +
+          '<span class="card-desc">'+s.desc+'</span>' +
+          '<span class="sw-row">' +
+            '<span class="sw" style="background:'+s.bg+'"></span>' +
+            '<span class="sw" style="background:'+s.ink+'"></span>' +
+            '<span class="sw" style="background:'+s.accent+'"></span>' +
+            '<span class="sw" style="background:'+s.sec+'"></span>' +
+          '</span>' +
+          '<span class="pair-tag">'+s.tag+'</span>' +
+        '</span>' +
+      '</span>' +
+    '</label>';
+  }).join('');
+  document.getElementById('styleCards').innerHTML = html;
+}
+
+function renderPaletteAltRows(){
+  var current = answers.primaryStyle || STYLES[0].id;
+  var html = STYLES.filter(function(s){ return s.id !== current; }).map(function(s){
+    return '<label class="choice">' +
+      '<input class="vh" type="radio" name="paletteOverride" value="'+s.id+'">' +
+      '<span class="choice-box">' +
+        '<span class="row-label">'+s.name+'</span>' +
+        '<span class="alt-swatches" aria-hidden="true">' +
+          '<span class="sw" style="background:'+s.bg+'"></span>' +
+          '<span class="sw" style="background:'+s.ink+'"></span>' +
+          '<span class="sw" style="background:'+s.accent+'"></span>' +
+          '<span class="sw" style="background:'+s.sec+'"></span>' +
+        '</span>' +
+        '<span class="tick" aria-hidden="true"></span>' +
+      '</span>' +
+    '</label>';
+  }).join('');
+  document.getElementById('paletteAltRows').innerHTML = html;
+  if(answers.paletteOverride === current){ answers.paletteOverride = ''; }
+  if(answers.paletteOverride){
+    var el = document.querySelector('input[name="paletteOverride"][value="'+answers.paletteOverride+'"]');
+    if(el) el.checked = true;
+  }
+}
+
+function renderFontPairRows(){
+  var html = STYLES.map(function(s){
+    return '<label class="choice pair-row">' +
+      '<input class="vh" type="radio" name="fontPair" value="'+s.id+'">' +
+      '<span class="choice-box pair-box" style="--pr-head:'+s.head.replace(/"/g,'&quot;')+';--pr-body:'+s.body.replace(/"/g,'&quot;')+'">' +
+        '<span class="pr-name">'+s.tag+'</span>' +
+        '<span class="pr-head" aria-hidden="true">Steady support for hard seasons.</span>' +
+        '<span class="pr-body" aria-hidden="true">Plain words about who you help, and one clear way to begin.</span>' +
+        '<span class="tick" aria-hidden="true"></span>' +
+      '</span>' +
+    '</label>';
+  }).join('');
+  document.getElementById('fontPairRows').innerHTML = html;
+}
+
+function updatePaletteDisplay(){
+  var s = effectiveStyle();
+  var roles = [['Background',s.bg],['Ink',s.ink],['Accent',s.accent],['Secondary',s.sec]];
+  document.getElementById('paletteDisplay').innerHTML = roles.map(function(r){
+    return '<span class="pal-chip">' +
+      '<span class="pc-color" style="background:'+r[1]+'"></span>' +
+      '<span class="pc-role">'+r[0]+'</span>' +
+      '<span class="pc-hex">'+r[1]+'</span>' +
+    '</span>';
+  }).join('');
+}
+
+/* ------------------------------------------------------------
+   Conditional reveals
+   ------------------------------------------------------------ */
+function runReveals(){
+  var reveals = document.querySelectorAll('.reveal[data-when-name]');
+  for(var i=0;i<reveals.length;i++){
+    var r = reveals[i];
+    var name = r.getAttribute('data-when-name');
+    var wanted = r.getAttribute('data-when-value').split('|');
+    var val = answers[name];
+    var show = false;
+    for(var j=0;j<wanted.length;j++){
+      if(Array.isArray(val) ? val.indexOf(wanted[j])!==-1 : val===wanted[j]){ show = true; break; }
+    }
+    if(show){ r.removeAttribute('hidden'); } else { r.setAttribute('hidden',''); }
+  }
+}
+
+/* ------------------------------------------------------------
+   Live preview
+   ------------------------------------------------------------ */
+function firstSpecialty(){
+  var raw = (answers.treat||'').trim();
+  if(!raw) return '';
+  var first = raw.split(/[\n,;]| and /)[0].trim().replace(/\.+$/,'');
+  if(!first) return '';
+  if(first.length > 42) first = first.slice(0,42).trim();
+  var token = first.split(/\s+/)[0];
+  var isAcronym = token.length <= 6 && token === token.toUpperCase() && /[A-Z]/.test(token);
+  if(!isAcronym){ first = first.charAt(0).toLowerCase() + first.slice(1); }
+  return first;
+}
+function ctaLabel(){
+  var map = {
+    'Call the practice':'Call now',
+    'Book a consultation online':'Book a consultation',
+    'Fill out a contact form':'Get in touch',
+    'Send an email':'Send an email'
+  };
+  return map[answers.primaryAction] || 'Get in touch';
+}
+function updatePreview(animate){
+  var s = effectiveStyle();
+  var f = effectiveFonts();
+  var hero = document.getElementById('pvHero');
+  hero.style.setProperty('--pv-bg', s.bg);
+  hero.style.setProperty('--pv-ink', s.ink);
+  hero.style.setProperty('--pv-accent', accessibleAccent(s.accent));
+  hero.style.setProperty('--pv-cta', '#ffffff');
+  hero.style.setProperty('--pv-sec', s.sec);
+  hero.style.setProperty('--pv-head', f.head);
+  hero.style.setProperty('--pv-body', f.body);
+
+  document.getElementById('pvName').textContent = (answers.practiceName||'').trim() || 'Your Practice';
+
+  var spec = firstSpecialty();
+  var city = (answers.city||'').trim();
+  var headline;
+  if(spec && city){ headline = 'Therapy for '+spec+' in '+city; }
+  else if(spec){ headline = 'Therapy for '+spec; }
+  else if(city){ headline = 'Therapy in '+city; }
+  else { headline = "You don't have to figure this out alone."; }
+  document.getElementById('pvHeadline').textContent = headline;
+  document.getElementById('pvCta').textContent = ctaLabel();
+
+  if(animate){
+    hero.classList.remove('swap');
+    void hero.offsetWidth;
+    hero.classList.add('swap');
+  }
+}
+
+/* ------------------------------------------------------------
+   Screen navigation and progress
+   ------------------------------------------------------------ */
+function screenFor(n){
+  if(n===0) return document.querySelector('[data-screen="welcome"]');
+  if(n===9) return document.querySelector('[data-screen="success"]');
+  return document.querySelector('[data-step="'+n+'"]');
+}
+function showScreen(n){
+  step = n;
+  var screens = document.querySelectorAll('.screen');
+  for(var i=0;i<screens.length;i++){ screens[i].setAttribute('hidden',''); screens[i].classList.remove('enter'); }
+  var target = screenFor(n);
+  target.removeAttribute('hidden');
+  void target.offsetWidth;
+  target.classList.add('enter');
+
+  var inStep = n>=1 && n<=8;
+  var progressOuter = document.getElementById('progressOuter');
+  if(inStep){
+    progressOuter.removeAttribute('hidden');
+    var bar = document.getElementById('progress');
+    bar.setAttribute('aria-valuenow', String(n));
+    bar.setAttribute('aria-valuetext', 'Step '+n+' of 8');
+    document.getElementById('progressCount').textContent = 'Step '+n+' of 8';
+    var segs = bar.querySelectorAll('.seg');
+    for(var k=0;k<segs.length;k++){
+      segs[k].classList.toggle('done', k < n-1);
+      segs[k].classList.toggle('current', k === n-1);
+    }
+  } else {
+    progressOuter.setAttribute('hidden','');
+  }
+
+  var withPreview = n>=4 && n<=8;
+  document.getElementById('layout').classList.toggle('with-preview', withPreview);
+  var col = document.getElementById('previewCol');
+  if(withPreview){
+    col.removeAttribute('hidden');
+    document.body.classList.add('preview-active');
+    updatePreview(false);
+  } else {
+    col.setAttribute('hidden','');
+    col.classList.remove('open');
+    document.getElementById('previewToggle').setAttribute('aria-expanded','false');
+    document.body.classList.remove('preview-active');
+  }
+
+  window.scrollTo(0,0);
+  var title = target.querySelector('.step-title, .welcome-title, .success-title');
+  if(title){ title.focus({preventScroll:true}); }
+  saveState();
+}
+
+/* ------------------------------------------------------------
+   Input handling
+   ------------------------------------------------------------ */
+var CHECK_GROUPS = ['audience','arrivalState','hesitations','pages'];
+
+function collectChecks(name){
+  var out = [];
+  var els = document.querySelectorAll('input[name="'+name+'"]:checked');
+  for(var i=0;i<els.length;i++){ out.push(els[i].value); }
+  return out;
+}
+
+function onFieldEvent(e){
+  var t = e.target;
+  if(!t || !t.name || !(t.name in answers)) return;
+  var name = t.name;
+
+  if(CHECK_GROUPS.indexOf(name)!==-1){
+    answers[name] = collectChecks(name);
+  } else if(t.type==='radio'){
+    if(!t.checked) return;
+    answers[name] = t.value;
+  } else {
+    answers[name] = t.value;
+  }
+
+  if(name==='fontPair'){ fontPairTouched = true; }
+
+  if(name==='primaryStyle'){
+    renderPaletteAltRows();
+    if(!fontPairTouched){
+      answers.fontPair = answers.primaryStyle;
+      var fp = document.querySelector('input[name="fontPair"][value="'+answers.fontPair+'"]');
+      if(fp) fp.checked = true;
+    }
+  }
+
+  if(name==='name' || name==='email'){
+    var field = document.getElementById(name+'Field');
+    if(field) field.classList.remove('invalid');
+  }
+
+  runReveals();
+  updatePaletteDisplay();
+  var styleish = ['primaryStyle','paletteChoice','paletteOverride','fontPair'].indexOf(name)!==-1;
+  updatePreview(styleish);
+  saveState();
+}
+
+function hydrate(){
+  Object.keys(answers).forEach(function(name){
+    var val = answers[name];
+    if(CHECK_GROUPS.indexOf(name)!==-1){
+      for(var i=0;i<val.length;i++){
+        var box = document.querySelector('input[name="'+name+'"][value="'+val[i]+'"]');
+        if(box) box.checked = true;
+      }
+      return;
+    }
+    var els = document.querySelectorAll('[name="'+name+'"]');
+    if(!els.length) return;
+    if(els[0].type==='radio'){
+      for(var j=0;j<els.length;j++){ els[j].checked = (els[j].value===val); }
+    } else {
+      els[0].value = val;
+    }
+  });
+}
+
+/* ------------------------------------------------------------
+   Step 8 validation
+   ------------------------------------------------------------ */
+function validateStep8(){
+  var ok = true;
+  var nameField = document.getElementById('nameField');
+  var emailField = document.getElementById('emailField');
+  nameField.classList.remove('invalid');
+  emailField.classList.remove('invalid');
+
+  if(!(answers.name||'').trim()){
+    nameField.classList.add('invalid'); ok = false;
+  }
+  var email = (answers.email||'').trim();
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+    emailField.classList.add('invalid'); ok = false;
+  }
+  if(!ok){
+    var firstBad = document.querySelector('.field.invalid .f-input');
+    if(firstBad) firstBad.focus();
+  }
+  return ok;
+}
+
+/* ------------------------------------------------------------
+   Sections drive the PDF body and the plain text summary
+   ------------------------------------------------------------ */
+function isSolo(){ return answers.practiceType==='Solo practice'; }
+function isGroup(){ return answers.practiceType==='Group practice'; }
+
+var SECTIONS = [
+  { h:'Your practice', qa:[
+    ['Practice name','practiceName'],
+    ['Practice type','practiceType'],
+    ['Photo and story up front, or work first','soloFocus', isSolo],
+    ['Number of clinicians','clinicianCount', isGroup],
+    ['Individual bio pages','bioPages', isGroup],
+    ['Who responds to new inquiries','inquiryResponder', isGroup],
+    ['Hiring page','hiringPage', isGroup],
+    ['Where you see clients','setting'],
+    ['City or region served','city'],
+    ['What you treat','treat'],
+    ['Modalities','modalities'],
+    ['Credentials and licenses','credentials'],
+    ['What sets the work apart','differentiator']
+  ]},
+  { h:'Your clients', qa:[
+    ['Who usually finds the site','audience'],
+    ['Other audience','audienceOther'],
+    ['State they arrive in','arrivalState'],
+    ['What they need to see or feel first','needToSee'],
+    ['Common hesitations','hesitations'],
+    ['Other hesitation','hesitationsOther']
+  ]},
+  { h:'Goals', qa:[
+    ['Primary action','primaryAction'],
+    ['Where clients come from','referralMix'],
+    ['Fees on the site','feesOnSite'],
+    ['Room to grow into','growth']
+  ]},
+  { h:'Style direction', qa:[
+    ['Primary direction','primaryStyle', null, styleName],
+    ['Also drawn to','secondaryStyle', null, styleName]
+  ]},
+  { h:'Colors and type', qa:[
+    ['Palette decision','paletteChoice'],
+    ['Different palette picked','paletteOverride', null, styleName],
+    ['Brand colors','brandColors'],
+    ['Logo','logoStatus'],
+    ['Font pairing','fontPair', null, styleTag]
+  ]},
+  { h:'Voice and copy', qa:[
+    ['Warm to clinical','toneWarmth', null, function(v){ return toneReadout(v,'Warm','Clinical'); }],
+    ['Conversational to formal','toneFormality', null, function(v){ return toneReadout(v,'Conversational','Formal'); }],
+    ['Gentle to direct','toneDirectness', null, function(v){ return toneReadout(v,'Gentle','Direct'); }],
+    ['Words to never use','neverWords'],
+    ['Copy status','copyStatus'],
+    ['A sentence that sounds like them','voiceSample']
+  ]},
+  { h:'Pages and assets', qa:[
+    ['Pages','pages', null, pagesForExport],
+    ['Professional headshots','photoHeadshots'],
+    ['Office or space photos','photoOffice'],
+    ['Open to stock while planning a shoot','photoStock'],
+    ['Reviews or endorsements','testimonials'],
+    ['Current website','currentUrl'],
+    ['Sites they like','sitesYouLike'],
+    ['Things they hate on therapy sites','siteDislikes']
+  ]},
+  { h:'Get your brief', qa:[
+    ['Name','name'],
+    ['Email','email'],
+    ['Phone','phone'],
+    ['Preferred contact','preferredContact']
+  ]}
+];
+
+function styleName(id){ var s = styleById(id); return s ? s.name : ''; }
+function styleTag(id){ var s = styleById(id); return s ? s.tag : ''; }
+function pagesForExport(){
+  var list = answers.pages.slice();
+  if(!isGroup()){
+    list = list.filter(function(p){ return p!=='Team' && p!=='Join Our Team'; });
+  }
+  return list.join(', ');
+}
+function toneReadout(v, left, right){
+  var n = parseInt(v,10);
+  if(!n) return '';
+  if(n===3) return 'Balanced';
+  if(n<=2) return left+' '+(6-n)+' of 5';
+  return right+' '+n+' of 5';
+}
+function resolveQA(row){
+  var key = row[1], cond = row[2], fmt = row[3];
+  if(cond && !cond()) return '';
+  var val = answers[key];
+  if(fmt){
+    var out = fmt.length ? fmt(val) : fmt();
+    return (out||'').trim();
+  }
+  if(Array.isArray(val)) return val.join(', ');
+  return String(val==null?'':val).trim();
+}
+
+function buildPlainTextSummary(){
+  var lines = [];
+  SECTIONS.forEach(function(sec){
+    var block = [];
+    sec.qa.forEach(function(row){
+      var v = resolveQA(row);
+      if(!v) return;
+      block.push(row[0]+':');
+      block.push(v);
+      block.push('');
+    });
+    if(block.length){
+      lines.push(sec.h.toUpperCase());
+      lines.push('');
+      lines = lines.concat(block);
+    }
+  });
+  return lines.join('\n').trim();
+}
+
+/* ------------------------------------------------------------
+   PDF
+   ------------------------------------------------------------ */
+function slug(s){
+  return String(s||'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
+}
+function pdfFilename(){
+  var sl = slug(answers.practiceName);
+  return sl ? 'website-brief-'+sl+'.pdf' : 'website-brief.pdf';
+}
+function buildPdfDom(){
+  var s = effectiveStyle();
+  var f = effectiveFonts();
+  var dateStr = new Date().toLocaleDateString('en-US', {year:'numeric', month:'long', day:'numeric'});
+  var preparedFor = (answers.practiceName||'').trim() || (answers.name||'').trim() || 'your practice';
+
+  var selRows = [];
+  selRows.push(['Style direction', s.name+'. '+s.desc]);
+  if(answers.secondaryStyle){ selRows.push(['Also drawn to', styleName(answers.secondaryStyle)]); }
+  selRows.push(['Font pairing', f.tag]);
+  var w = toneReadout(answers.toneWarmth,'Warm','Clinical');
+  var fo = toneReadout(answers.toneFormality,'Conversational','Formal');
+  var d = toneReadout(answers.toneDirectness,'Gentle','Direct');
+  if(w){ selRows.push(['Tone, warm to clinical', w]); }
+  if(fo){ selRows.push(['Tone, conversational to formal', fo]); }
+  if(d){ selRows.push(['Tone, gentle to direct', d]); }
+  if(answers.primaryAction){ selRows.push(['Primary site action', answers.primaryAction]); }
+  if(answers.paletteChoice==='I have brand colors' && answers.brandColors.trim()){
+    selRows.push(['Brand colors', answers.brandColors.trim()]);
+  }
+
+  var html = '';
+  html += '<div class="pdf-band"><img src="' + LOGO_SRC + '" alt=""></div>';
+  html += '<div class="pdf-head">';
+  html += '<p class="pdf-title">Website Brief</p>';
+  html += '<p class="pdf-prep">Prepared for '+esc(preparedFor)+'</p>';
+  html += '<p class="pdf-meta">'+esc(dateStr)+' &middot; '+esc((answers.name||'').trim())+' &middot; '+esc((answers.email||'').trim())+'</p>';
+  html += '</div>';
+
+  html += '<div class="pdf-sec"><p class="pdf-sec-label">Your selections</p>';
+  selRows.forEach(function(r){
+    html += '<div class="pdf-sel-row"><span class="pdf-sel-key">'+esc(r[0])+'</span><p class="pdf-sel-val">'+esc(r[1])+'</p></div>';
+  });
+  html += '<div class="pdf-swatches">';
+  [['Background',s.bg],['Ink',s.ink],['Accent',s.accent],['Secondary',s.sec]].forEach(function(r){
+    html += '<span class="pdf-swatch"><span class="ps-color" style="background:'+r[1]+'"></span><span class="ps-role">'+r[0]+'</span><span class="ps-hex">'+r[1]+'</span></span>';
+  });
+  html += '</div></div>';
+
+  SECTIONS.forEach(function(sec){
+    var rows = '';
+    sec.qa.forEach(function(row){
+      var v = resolveQA(row);
+      if(!v) return;
+      rows += '<div class="pdf-qa"><span class="pdf-q">'+esc(row[0])+'</span><p class="pdf-a">'+esc(v)+'</p></div>';
+    });
+    if(rows){
+      html += '<div class="pdf-step"><p class="pdf-step-h">'+esc(sec.h)+'</p>'+rows+'</div>';
+    }
+  });
+
+  html += '<div class="pdf-foot">';
+  html += '<p>Built with the Scout Website Brief Builder &middot; '+SITE_URL+'</p>';
+  html += '<p>Ready when you are: book a call at '+BOOK_URL+'.</p>';
+  html += '</div>';
+
+  document.getElementById('pdf-root').innerHTML = html;
+}
+
+function downloadBlob(blob, filename){
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url; a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(function(){ document.body.removeChild(a); URL.revokeObjectURL(url); }, 4000);
+}
+
+/* ------------------------------------------------------------
+   Build and submit
+   ------------------------------------------------------------ */
+function submitToNetlify(pdfBlob, filename){
+  var fd = new FormData();
+  fd.append('form-name', 'website-brief');
+  fd.append('bot-field', '');
+  fd.append('name', answers.name);
+  fd.append('email', answers.email);
+  fd.append('phone', answers.phone || '');
+  fd.append('practice-name', answers.practiceName || '');
+  fd.append('practice-type', answers.practiceType || '');
+  fd.append('primary-style', styleName(answers.primaryStyle) || '');
+  fd.append('summary', buildPlainTextSummary());
+  if(pdfBlob){
+    fd.append('brief-pdf', new File([pdfBlob], filename, { type:'application/pdf' }));
+  }
+  return fetch('/', { method:'POST', body:fd }).then(function(res){
+    return res.ok;
+  });
+}
+
+function showSuccess(pdfOk, netOk){
+  var title = document.getElementById('t-success');
+  var body = document.getElementById('successBody');
+  var extra = document.getElementById('successExtra');
+  var mail = '<a href="mailto:'+EMAIL+'">'+EMAIL+'</a>';
+
+  if(pdfOk && netOk){
+    title.textContent = 'Your brief is downloading.';
+    body.textContent = "It's yours. Use it with any designer. If you want Scout to build the site, your brief is already in our inbox. Book a call and we'll pick up right where you left off.";
+    extra.setAttribute('hidden',''); extra.innerHTML = '';
+  } else if(pdfOk && !netOk){
+    title.textContent = 'Your brief is downloading.';
+    body.textContent = "It's yours. Use it with any designer. If you want Scout to build the site, book a call and we'll pick up right where you left off.";
+    extra.innerHTML = "One thing didn't go through. Your answers weren't lost, and your PDF still downloaded. Email it to "+mail+" and we'll take it from there.";
+    extra.removeAttribute('hidden');
+  } else if(!pdfOk && netOk){
+    title.textContent = 'Your answers went through.';
+    body.textContent = "Your answers are in Scout's inbox. The PDF couldn't be generated in this browser, so book a call and we'll bring your brief to it.";
+    extra.setAttribute('hidden',''); extra.innerHTML = '';
+  } else {
+    title.textContent = "That didn't go through.";
+    body.textContent = "The PDF couldn't be generated here and the send to Scout didn't connect. Your answers are still saved in this browser.";
+    extra.innerHTML = "Email "+mail+" and we'll take it from there.";
+    extra.removeAttribute('hidden');
+  }
+}
+
+function handleBuild(){
+  if(building) return;
+  if(!validateStep8()) return;
+  building = true;
+
+  var btn = document.getElementById('buildBtn');
+  btn.disabled = true;
+  btn.textContent = 'Building your brief...';
+
+  var pdfOk = false, netOk = false;
+  var blob = null;
+  var filename = pdfFilename();
+
+  var fontsReady = (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve();
+
+  fontsReady.catch(function(){}).then(function(){
+    buildPdfDom();
+    var opt = {
+      margin: [0.6, 0.6, 0.7, 0.6],
+      filename: filename,
+      image: { type:'jpeg', quality:0.95 },
+      html2canvas: { scale:2, useCORS:true, backgroundColor:'#faf8f4' },
+      jsPDF: { unit:'in', format:'letter', orientation:'portrait' },
+      pagebreak: { mode:['css','legacy'] }
+    };
+    return html2pdf().set(opt).from(document.getElementById('pdf-root')).outputPdf('blob');
+  }).then(function(b){
+    blob = b; pdfOk = true;
+    downloadBlob(blob, filename);
+  }).catch(function(){
+    pdfOk = false;
+  }).then(function(){
+    return submitToNetlify(blob, filename).then(function(ok){ netOk = ok; }).catch(function(){ netOk = false; });
+  }).then(function(){
+    showSuccess(pdfOk, netOk);
+    showScreen(9);
+    btn.disabled = false;
+    btn.textContent = 'Build my brief';
+    building = false;
+  });
+}
+
+/* ------------------------------------------------------------
+   Wiring
+   ------------------------------------------------------------ */
+function bindEvents(){
+  document.addEventListener('input', onFieldEvent);
+  document.addEventListener('change', onFieldEvent);
+
+  document.getElementById('startBtn').addEventListener('click', function(){ showScreen(1); });
+
+  var navBtns = document.querySelectorAll('[data-nav]');
+  for(var i=0;i<navBtns.length;i++){
+    navBtns[i].addEventListener('click', function(e){
+      var dir = e.currentTarget.getAttribute('data-nav');
+      if(dir==='next' && step < 8){ showScreen(step+1); }
+      else if(dir==='back'){ showScreen(step<=1 ? 0 : step-1); }
+    });
+  }
+
+  document.getElementById('buildBtn').addEventListener('click', handleBuild);
+
+  var toggle = document.getElementById('previewToggle');
+  toggle.addEventListener('click', function(){
+    var col = document.getElementById('previewCol');
+    var open = col.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key==='Escape'){
+      var col = document.getElementById('previewCol');
+      if(col.classList.contains('open')){
+        col.classList.remove('open');
+        toggle.setAttribute('aria-expanded','false');
+        toggle.focus();
+      }
+    }
+  });
+
+  document.getElementById('dismissNotice').addEventListener('click', function(){
+    document.getElementById('restoreNotice').setAttribute('hidden','');
+  });
+  document.getElementById('startOver').addEventListener('click', function(){
+    clearState();
+    location.reload();
+  });
+}
+
+function hasSavedContent(saved){
+  if(!saved || !saved.answers) return false;
+  if(saved.step && saved.step > 0) return true;
+  var a = saved.answers;
+  return Object.keys(DEFAULTS).some(function(k){
+    var v = a[k];
+    if(Array.isArray(v)) return v.length > 0;
+    return String(v||'').trim() !== '';
+  });
+}
+
+function init(){
+  document.querySelectorAll('.lockup-img').forEach(function(img){ img.src = LOGO_SRC; });
+  renderStyleCards();
+  renderFontPairRows();
+
+  var saved = loadState();
+  var restored = false;
+  if(saved && saved.answers){
+    Object.keys(DEFAULTS).forEach(function(k){
+      if(k in saved.answers){ answers[k] = saved.answers[k]; }
+    });
+    fontPairTouched = !!saved.fontPairTouched;
+    restored = hasSavedContent(saved);
+  }
+  if(!answers.fontPair){
+    answers.fontPair = answers.primaryStyle || STYLES[0].id;
+  }
+
+  renderPaletteAltRows();
+  hydrate();
+  runReveals();
+  updatePaletteDisplay();
+  updatePreview(false);
+  bindEvents();
+
+  if(restored){
+    document.getElementById('restoreNotice').removeAttribute('hidden');
+    showScreen(saved.step >= 1 && saved.step <= 8 ? saved.step : 0);
+  } else {
+    showScreen(0);
+  }
+}
+
+init();
+
+})();
+</script>
+</body>
+</html>

@@ -1,2 +1,3 @@
 - [Spectral template hero gotchas](spectral-hero.md) — ::after navy preload curtain hides hero bg; site-wide !important fonts/button need !important to beat; !important blocks keyframe transforms; entrance via is-enter class.
+- [Scout lead-capture (no backend)](scout-lead-capture.md) — static site; leads go via mailto to info@scoutcontent.studio; never fake mailto "sent" success — use a user-clicked button + deterministic copy.
 - [Mobile preview harness](mobile-preview-harness.md) — screenshot tool only renders desktop; embed page in a width-set iframe to verify mobile layout/overflow/tap-targets.
