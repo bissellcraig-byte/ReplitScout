@@ -69,7 +69,18 @@
                 <section class="pe-feature">
                     <div class="pe-feature__inner">
                         <div class="pe-feature__frame">
-                            <img src="images/project-spiral-to-anchor.png" alt="Spiral to Anchor — high-conflict co-parenting support website" class="pe-feature__img" />
+                            <div class="ba-slider" data-ba-slider>
+                                <img class="ba-slider__img" src="images/project-spiral-to-anchor.png" alt="Spiral to Anchor — redesigned website (after)" />
+                                <div class="ba-slider__before" aria-hidden="true">
+                                    <img class="ba-slider__img" src="images/project-spiral-to-anchor-before.png" alt="" />
+                                </div>
+                                <span class="ba-slider__tag ba-slider__tag--before">Before</span>
+                                <span class="ba-slider__tag ba-slider__tag--after">After</span>
+                                <div class="ba-slider__handle" aria-hidden="true">
+                                    <span class="ba-slider__knob">&#8596;</span>
+                                </div>
+                                <input class="ba-slider__range" type="range" min="0" max="100" value="50" aria-label="Drag to compare the Spiral to Anchor website before and after" />
+                            </div>
                         </div>
                         <div class="pe-feature__text">
                             <span class="pe-feature__kicker">Featured Project</span>
@@ -151,6 +162,7 @@
         <script src="assets/js/util.js"></script>
         <script src="assets/js/main.js"></script>
         <script src="assets/js/motion.js"></script>
+        <script src="assets/js/before-after.js"></script>
 
     </body>
 </html>
