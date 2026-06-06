@@ -6,3 +6,9 @@ id = "0AB2fBlXA2o3ghjel0M4l"
 uri = "file://brand/scout-brand-guidelines.md"
 type = "text"
 title = "Scout Content Studio — Brand Guidelines"
+
+[[outputs]]
+id = "Gzodvpq0kSP41GljWFXlW"
+uri = "file://brand/scout-brand-guidelines.pdf"
+type = "pdf"
+title = "Scout Content Studio — Brand Guidelines (PDF)"
