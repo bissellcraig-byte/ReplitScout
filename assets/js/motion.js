@@ -25,8 +25,6 @@
 		return;
 	}
 
-	docEl.classList.add("motion-ready");
-
 	// Selectors that get a simple upward reveal. Missing nodes are ignored.
 	// NOTE: #two .scout-standard-card is intentionally NOT revealed. Compositing
 	// it (via will-change / opacity) clips its absolutely positioned image and
@@ -76,6 +74,21 @@
 			return rect.top < viewHeight && rect.bottom > 0;
 		};
 
+		// Mark all currently-visible elements as revealed BEFORE adding motion-ready.
+		// This prevents a flash where elements snap to opacity:0 and then fade back in.
+		var toObserve = [];
+		revealEls.forEach(function (el) {
+			if (isInViewport(el)) {
+				revealNow(el);
+			} else {
+				toObserve.push(el);
+			}
+		});
+
+		// Only NOW enable reveal styles — in-viewport elements already have is-revealed
+		// so they stay fully visible. Off-screen elements correctly start hidden.
+		docEl.classList.add("motion-ready");
+
 		var io = new IntersectionObserver(
 			function (entries, observer) {
 				entries.forEach(function (entry) {
@@ -88,12 +101,7 @@
 			{ threshold: 0.08, rootMargin: "0px 0px 0px 0px" }
 		);
 
-		revealEls.forEach(function (el) {
-			if (isInViewport(el)) {
-				revealNow(el);
-				return;
-			}
-
+		toObserve.forEach(function (el) {
 			io.observe(el);
 		});
 
