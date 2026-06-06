@@ -1025,50 +1025,6 @@ body.is-preload #banner .banner-headline {
         to { opacity: 1; transform: translate3d(0, 0, 0); }
 }
 
-/* Home header — phone number in the top-left slot. The template's "Scout
-   Content Studio" wordmark is hidden here so the two never collide when the
-   header turns solid on scroll (Home is still reachable via the Menu). */
-body.landing #header h1 {
-        opacity: 0 !important;
-        pointer-events: none !important;
-}
-
-body.landing #header .header-phone {
-        position: absolute;
-        left: 3.25em;
-        top: 0;
-        height: inherit;
-        display: inline-flex;
-        align-items: center;
-        gap: 0.55em;
-        border: 0;
-        color: #ffffff;
-        font-family: "Jost", "Open Sans", Helvetica, sans-serif;
-        font-size: 1.05em;
-        letter-spacing: 0.14em;
-        text-shadow: 0 1px 16px rgba(30, 40, 48, 0.55);
-        z-index: 3;
-}
-
-body.landing #header .header-phone:hover {
-        color: #ffffff;
-}
-
-body.landing #header .header-phone .header-phone-icon {
-        width: 1em;
-        height: 1em;
-        flex: 0 0 auto;
-        opacity: 0.92;
-}
-
-@media screen and (max-width: 736px) {
-        body.landing #header .header-phone {
-                left: 1.25em;
-                font-size: 0.9em;
-                letter-spacing: 0.06em;
-        }
-}
-
 /* Services page — SCOUT-only logo in top bar */
 body.page-services #header h1,
 body.page-project-examples #header h1,
