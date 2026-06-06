@@ -1,0 +1,32 @@
+Rebuild the project-inquiry page ("Send a project note") as a single editorial document on a NAVY background with off-white text. Plain HTML + CSS. Keep all existing copy verbatim. Match the rest of the site (Playfair Display headings + Jost body, keyline frames, tracked uppercase labels, sage accent). Make mobile work (rules at the end).
+
+Fonts (Google): Playfair Display (400/500 + italic 400/500) for headings and accents; Jost (300/400/500) for body, labels, buttons.
+
+Palette:
+
+Page background: navy #28323b
+Headings + input text + accents: off-white #f4f1ea
+Body text: rgba(244,241,234,.72)
+Muted labels: rgba(244,241,234,.5)
+Hairlines: rgba(244,241,234,.13); stronger rgba(244,241,234,.28)
+Sage (buttons): #9aac9c, hover #86997f
+Global: box-sizing:border-box, antialiased, square corners everywhere. Centered column max-width:1140px, side padding 56px (24px mobile).
+
+Lead block: padding 112px 0 60px (the 60px keeps the intro clear of the divider below). A kicker "SEND A PROJECT NOTE" (Jost 500, 12px, letter-spacing:.3em, uppercase, muted) with a 64px hairline after it; an <h1> "Start with the problem." in Playfair clamp(40px,5.4vw,64px), line-height 1.04, off-white, the word "problem." in italic 400; then a 20px Jost-300 off-white intro line (max-width:34ch).
+
+Section scaffold (repeat for each): CSS grid 210px 1fr, gap 64px, border-top:1px solid hairline, padding 78px 0. Left rail = a sticky (top:48px) kicker label (Jost 500, 12px, .28em, uppercase, muted) with a 32px hairline under it. Content column max-width:760px: <h2> in Playfair 500 clamp(28px,3.2vw,38px) off-white; body <p> Jost 17px, line-height 1.78, body color, max-width:64ch; a .intro first paragraph is 19px Jost-300 off-white.
+
+Sections, in order, with these rail kickers:
+
+THE INQUIRY — "Start with the problem" + its two paragraphs.
+WHAT TO INCLUDE — "What to include", rendered as a hairline definition list: each row is a grid 240px 1fr, padding 24px 0, separated by hairlines; the term in Playfair italic 21px off-white, the description in Jost 16.5px body. Five rows: Your practice type / The digital problem / The likely service area / Existing materials / Timeline and constraints (use the existing copy for each).
+PRIVACY — "What not to send" inside a keyline note box (border:1px solid strong-hairline, background:rgba(255,255,255,.04), padding 38px 40px) with a small sage "KEEP IT GENERAL" tag above the two paragraphs; render the example phrase "Our referral form creates confusion for new inquiries" in Playfair italic off-white.
+PROCESS — "What happens next" + its two paragraphs.
+THE FORM — "Send a project note" + its intro line, then a form in a keyline panel (border:1px solid strong-hairline, background:rgba(255,255,255,.035), padding 48px 52px). Fields in a 2-col grid (Name + Email side by side; Practice/organization, the help select, and the message textarea each full-width). Each field: a tiny tracked uppercase label (11px, .22em, muted) above the input. Inputs are transparent with a bottom hairline border, off-white text, placeholder rgba(244,241,234,.38), focus border off-white; the textarea is a full bordered box (min-height 140px). The select is custom (off-white text, light chevron icon; give option { color:#28323b } so the native dropdown stays legible) with options: Website, Application, Marketing, AI workflow, SEO, AI-search, Intake path audit, Not sure yet. Buttons row: a sage solid "Send project note →" and an outlined "Email Scout instead". On submit, build a mailto: from the field values (subject "Project note — {org}", body with name/org/help/message) — no backend.
+Closing CTA — inverts to a LIGHT paper bookend (so it pops against the navy): a band with background:#f4f1ea, padding 30px, holding an inner keyline frame (border:1px solid rgba(40,50,59,.22), padding 64px 60px). Inside: a muted-navy kicker "READY WHEN YOU ARE", an <h2> "Ready to send the project note?" in Playfair 500 navy #28323b, the supporting paragraph in navy-gray #4a545d, then a sage solid "Email Scout →" + an outlined-navy "Review services".
+
+Buttons (shared): Jost 500, 13px, .2em, uppercase, padding 16px 30px, min-height 44px, .26s transitions; arrow nudges right on hover. Sage = white text on sage. Outlined = transparent with hairline border that strengthens on hover.
+
+Responsive (≤820px): wrap padding 24px; sections collapse to one column (rail kicker becomes an inline label above the heading, drop its hairline); definition rows go single-column; form grid single-column; note/form/CTA paddings tighten; everything stays legible off-white on navy with no overflow at ~390px.
+
+The result: a calm, premium, navy editorial inquiry page — off-white Playfair headings, sticky kicker rails, hairline definition list, keyline note + form panels, sage accent, and a light paper CTA bookend. Copy unchanged; mobile intact.
