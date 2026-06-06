@@ -2939,3 +2939,8 @@ body.page-work-with-us .inq .cta .btn-out:hover {
                 padding: 36px 26px;
         }
 }
+
+/* Project examples — off-white CTA section */
+body.page-project-examples .wrapper.style5 {
+        background: #f4f1ea;
+}
