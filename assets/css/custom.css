@@ -724,7 +724,9 @@ body.is-mobile.landing .wrapper.style4 {
         background: #2e3842 url("../../images/hero-ocean.jpg") center 42% / cover no-repeat;
         inset: 0;
         position: absolute;
-        transform: scale(1.04);
+        /* Resting transform matches heroKenBurns' `from` (scale(1.12)) so the photo
+           doesn't pop when is-preload lifts and the animation re-engages. */
+        transform: scale(1.12);
         transform-origin: 55% 45%;
         z-index: 0;
 }
