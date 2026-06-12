@@ -217,7 +217,7 @@
         <script src="assets/js/util.js"></script>
         <script src="assets/js/main.js"></script>
         <script src="assets/js/motion.js"></script>
-        <script>(function(){var b=document.getElementById("banner");if(!b)return;var d=document.documentElement;if(!d.classList.contains("hero-armed"))return;var done=false;var go=function(){if(done)return;done=true;d.classList.remove("hero-armed");b.classList.add("is-enter");};if(document.fonts&&document.fonts.ready){document.fonts.ready.then(go);}window.setTimeout(go,1500);})();</script>
+        <script>(function(){var b=document.getElementById("banner");if(!b)return;var d=document.documentElement;if(!d.classList.contains("hero-armed"))return;var done=false,fontsReady=false,preloadGone=false;var reveal=function(animate){if(done)return;done=true;d.classList.remove("hero-armed");if(animate)b.classList.add("is-enter");};var maybeGo=function(){if(fontsReady&&preloadGone)reveal(true);};var checkPreload=function(){if(!document.body.classList.contains("is-preload")){preloadGone=true;maybeGo();return true;}return false;};if(document.fonts&&document.fonts.ready){document.fonts.ready.then(function(){fontsReady=true;maybeGo();});}else{fontsReady=true;}if(!checkPreload()&&window.MutationObserver){var mo=new MutationObserver(function(){if(checkPreload())mo.disconnect();});mo.observe(document.body,{attributes:true,attributeFilter:["class"]});}window.setTimeout(function(){reveal(preloadGone);},2500);})();</script>
 
     </body>
 </html>

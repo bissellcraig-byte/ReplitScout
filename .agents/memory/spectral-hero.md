@@ -31,3 +31,16 @@ description: Non-obvious traps when customizing the #banner hero of the Spectral
   double-animating). Resting state of all hero elements is fully visible; reduced
   motion users get the static hero immediately. A small inline script removes
   `is-enter` ~3.2s after load.
+
+- **Don't add `is-enter` while `body.is-preload` is still present — it causes a
+  flicker.** The template's `body.is-preload * { animation: none !important }`
+  (main.css) suppresses `heroRise`; if `is-enter` is added on `document.fonts.ready`
+  (which fires fast) while `is-preload` is still on, the hero snaps visible, then
+  ~100ms after `window.load` main.js removes `is-preload`, which re-triggers
+  `heroRise` (animation-fill-mode `both`) from opacity 0 → a visible flash.
+  **Fix:** the end-of-body inline script in index.html gates `is-enter` on BOTH
+  `document.fonts.ready` AND `is-preload` removal (watched via MutationObserver on
+  body class), with a 2.5s safety timeout that reveals statically (no `is-enter`)
+  if preload is still on, to avoid the same flash on slow loads.
+  **Why:** symptom is "home page flickers on load." Any new gating/animation on the
+  hero must respect that `is-preload` globally kills animations until just after load.
