@@ -20,3 +20,12 @@ when it wasn't (and the async call was outside the original click gesture).
 it to a visible button's `href`; keep messaging deterministic. `mailto:` also can't
 attach files — if a PDF is involved, tell the user to attach the downloaded file
 manually.
+
+## Social link previews (Open Graph)
+- Share previews come from OG/Twitter `<meta>` tags in each page `<head>`; the
+  shared image is `images/scout-social-card.png` (the white "S" logo), referenced
+  by **absolute prod URL** `https://scoutcontent.studio/images/scout-social-card.png`.
+- `twitter:card` is `summary` (square) because the logo is square — `summary_large_image` would crop it.
+- **Why nothing shows after a change:** platforms cache previews. The image must be
+  live (deploy first), and old links need a re-scrape (e.g. Facebook Sharing
+  Debugger, LinkedIn Post Inspector) to refresh the cached card.
