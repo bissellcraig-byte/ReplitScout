@@ -1,0 +1,67 @@
+Please fix the site performance issue showing that CSS and JavaScript files are not minified on scoutcontent.studio.
+
+Do not change any design, copy, layout, styling, animations, structured data, canonical tags, sitemap, robots.txt, or visible page content.
+
+Files flagged:
+
+* assets/js/motion.js
+* assets/js/main.js
+* assets/js/util.js
+* assets/js/before-after.js
+* assets/css/motion.css
+* assets/css/custom.css
+* assets/css/main.css
+
+Please do the following:
+
+1. Minify the local CSS and JavaScript files listed above.
+
+2. Prefer creating minified versions using standard naming:
+
+   * main.min.css
+   * custom.min.css
+   * motion.min.css
+   * main.min.js
+   * util.min.js
+   * motion.min.js
+   * before-after.min.js
+
+3. Keep the original unminified files in the project for future editing.
+
+4. Update all HTML pages to reference the minified versions instead of the unminified files, while preserving the exact same load order.
+
+5. Make sure every page still loads correctly:
+
+   * homepage
+   * services.html
+   * project-examples.html
+   * work-with-us.html
+   * privacy.html
+   * conceptualizer/index.html, if it uses these assets
+
+6. Do not combine files unless absolutely necessary. This should be a conservative minification fix, not a redesign or rebuild.
+
+7. After updating references, verify:
+
+   * CSS still renders the same
+   * JavaScript animations still work
+   * navigation still works
+   * before/after slider still works on project-examples.html
+   * no browser console errors appear
+   * no broken asset paths
+
+8. Check whether any noindexed template/reference HTML pages still reference the old unminified files. If they do, update those references too, but do not change their noindex tags.
+
+9. Run a local server test and confirm the minified files return 200.
+
+10. Provide a before/after report showing:
+
+* which files were minified
+* original file size
+* minified file size
+* percentage reduction
+* which HTML files were updated
+* whether the changes were pushed to GitHub
+* whether Netlify redeployed successfully
+
+Important: This should only address the minification warning. Do not make broad SEO, schema, design, or content changes.
