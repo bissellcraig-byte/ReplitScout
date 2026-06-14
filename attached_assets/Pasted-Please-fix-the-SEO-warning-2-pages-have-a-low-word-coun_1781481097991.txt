@@ -1,0 +1,60 @@
+Please fix the SEO warning: “2 pages have a low word count” on scoutcontent.studio.
+
+Affected pages:
+
+* privacy.html, currently around 108 words
+* project-examples.html, currently around 193 words
+
+Do not change the overall design, layout, styling, animations, structured data, canonicals, sitemap, robots.txt, noindex tags, or JavaScript behavior.
+
+Please add meaningful visible page content only. Do not use hidden text, keyword stuffing, duplicate text, or filler content.
+
+Goals:
+
+* Bring privacy.html to at least 350 meaningful words.
+* Bring project-examples.html to at least 350 meaningful words.
+* Keep the tone clear, professional, human, and concise.
+* Make sure the added content actually belongs on each page.
+
+For privacy.html:
+Expand the privacy policy with clear sections such as:
+
+* Information we collect
+* How we use information
+* Contact form submissions
+* Analytics and website usage data
+* Cookies or similar technologies, if applicable
+* Third-party services
+* Data retention
+* Children’s privacy
+* How users can contact Scout Content Studio with privacy questions
+
+Keep the language simple and honest. Do not make legal claims we cannot guarantee. Do not invent compliance language unless already accurate.
+
+For project-examples.html:
+Add useful explanatory content around the existing project examples, such as:
+
+* A short intro explaining what the examples represent
+* What Scout looks for in behavioral health websites and applications
+* How project examples should be interpreted
+* The kinds of problems these projects solve, such as clarity, trust, conversion, accessibility, content structure, and ease of use
+* A short section inviting visitors to start a project if they want something similar
+
+Do not invent fake clients, case study metrics, testimonials, outcomes, or project details. Keep the added content general and truthful.
+
+After making the changes, please verify:
+
+1. privacy.html has at least 350 visible words.
+2. project-examples.html has at least 350 visible words.
+3. The pages still render correctly.
+4. No design or layout issues were introduced.
+5. Existing titles, meta descriptions, canonicals, structured data, and noindex settings were preserved unless a tiny consistency update is necessary.
+6. The changes are pushed to GitHub and Netlify redeploys successfully.
+
+Please provide a short report showing:
+
+* which files changed
+* old word count vs. new word count
+* what content sections were added
+* confirmation that no hidden text or keyword stuffing was used
+* confirmation that Netlify redeployed successfully
