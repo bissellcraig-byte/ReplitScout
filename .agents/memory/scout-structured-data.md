@@ -1,27 +1,25 @@
 ---
-name: Scout structured data (JSON-LD)
-description: Schema architecture and the no-address decision for the Scout marketing site
+name: Scout structured-data invalid item
+description: Why services.html had a Google "1 structured data item is invalid" error and the conservative fix.
 ---
 
-# Scout structured data
+# Scout structured-data invalid item
 
-One JSON-LD `@graph` block per live page (index, services, project-examples,
-work-with-us, privacy), inserted right after the `twitter:image` meta tag.
-Every page carries `Organization` + `WebSite` + `WebPage`; `services.html` also
-carries `FAQPage` and puts `hasOfferCatalog` on the Organization (prices visible
-there). Stable ids: `https://scoutcontent.studio/#organization` and `.../#website`;
-each page's WebPage uses `<absolute-url>#webpage` and links `isPartOf` website +
-`about` organization.
+The recurring Google "1 structured data item is invalid" error on
+scoutcontent.studio traced to `services.html`: the Organization JSON-LD carried a
+`hasOfferCatalog` whose `Offer` entries used `priceSpecification` with `minPrice`
+(several offers had no price at all), none attached to a `Product`. Google treats
+loose offer/price objects like this as an invalid item.
 
-**Decision: use `Organization`, NOT `LocalBusiness`/`ProfessionalService`.**
-**Why:** the site shows no physical street address. LocalBusiness subtypes
-(incl. ProfessionalService) expect a PostalAddress for Google; using them without
-one triggers warnings and is inappropriate. `serviceType` is also NOT a valid
-property on LocalBusiness/ProfessionalService (it's a `Service` property) — it was
-removed. Service offerings live in `Organization.hasOfferCatalog` instead.
-**How to apply:** keep schema = visible content only (no fake address/reviews/
-prices). Offer prices use `priceSpecification.minPrice` ("starting at") and must
-match the visible $ figures; 3 offers intentionally have no price (scoped by project).
+**Fix:** removed the entire `hasOfferCatalog` block so the Organization is clean and
+basic (identical in shape to the other four pages). Kept the FAQPage — its Q&As are
+all rendered visibly on the page and match the schema text exactly.
 
-Regenerate with `/tmp/fix_schema.py` (uses `json.dumps`, guarantees valid JSON,
-strips any existing ld+json blocks before inserting).
+**Why:** Google only reliably validates a few rich-result types. Organization,
+WebSite, WebPage stay clean/basic with no offers/pricing/address. FAQPage is only
+safe to keep when every question/answer is visible on the page; otherwise remove it.
+
+**How to apply:** Don't add OfferCatalog/Offer/Service pricing schema to this site.
+JSON-LD lives only in the 5 main pages (index, services, project-examples,
+work-with-us, privacy), one block each. Visible prices stay in the page body
+(`svc-price` spans) — removing the schema doesn't change anything users see.

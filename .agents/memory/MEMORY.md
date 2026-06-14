@@ -2,3 +2,4 @@
 - [Scout lead-capture (no backend)](scout-lead-capture.md) — static site; leads go via mailto to info@scoutcontent.studio; never fake mailto "sent" success — use a user-clicked button + deterministic copy.
 - [Mobile preview harness](mobile-preview-harness.md) — screenshot tool only renders desktop; embed page in a width-set iframe to verify mobile layout/overflow/tap-targets.
 - [Scout structured data](scout-structured-data.md) — one @graph/page (Organization+WebSite+WebPage, services adds FAQPage+hasOfferCatalog); Organization not LocalBusiness because no visible address; serviceType is invalid there.
+- [Scout structured-data invalid item](scout-structured-data.md) — Google flagged services.html Organization hasOfferCatalog (Offer.priceSpecification minPrice, no Product) as invalid; keep Org/WebSite/WebPage basic; FAQPage OK only if every Q&A is visible.

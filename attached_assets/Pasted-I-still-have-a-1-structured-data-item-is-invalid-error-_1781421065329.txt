@@ -1,0 +1,75 @@
+I still have a “1 structured data item is invalid” error for scoutcontent.studio.
+
+Please troubleshoot and fix the remaining structured data issue without changing any design, copy, layout, styling, animations, or visible page content.
+
+Important context:
+
+* The site is built in Replit and hosted on Netlify.
+* Previous fixes added JSON-LD, canonical tags, sitemap.xml, robots.txt, and noindex tags for template/reference pages.
+* The remaining issue may be on the live Netlify site, not just the local Replit preview.
+* Do not add more schema until you identify the exact invalid structured data item.
+
+Please do the following:
+
+1. Confirm the latest Replit/GitHub changes have been pushed and Netlify has deployed the newest version.
+
+2. Compare the live production pages against the local Replit files:
+
+   * https://scoutcontent.studio/
+   * https://scoutcontent.studio/services.html
+   * https://scoutcontent.studio/project-examples.html
+   * https://scoutcontent.studio/work-with-us.html
+   * https://scoutcontent.studio/privacy.html
+
+3. Search the entire codebase for every structured data block:
+
+   * application/ld+json
+   * schema.org
+   * itemscope
+   * itemtype
+   * itemprop
+   * JSON-LD
+   * FAQPage
+   * Organization
+   * WebSite
+   * WebPage
+   * OfferCatalog
+   * ProfessionalService
+   * LocalBusiness
+   * Service
+
+4. Identify the exact page, schema type, and field causing the invalid structured data item.
+
+5. Check for common causes:
+
+   * invalid or unsupported schema property
+   * wrong URL format
+   * duplicate/conflicting schema blocks
+   * FAQPage content that does not match visible page content
+   * OfferCatalog or services schema using fields Google does not support
+   * Organization schema using fields that require a physical address
+   * old schema still present in a template or attached HTML page
+   * production site still serving older code
+   * malformed JSON-LD
+   * hidden structured data that does not match visible content
+
+6. Fix the issue conservatively:
+
+   * Remove invalid fields rather than adding unnecessary new schema.
+   * Keep Organization, WebSite, and WebPage clean and basic.
+   * Only keep FAQPage if every question and answer appears visibly on the page.
+   * Do not use LocalBusiness or ProfessionalService unless a visible physical address is shown.
+   * Do not include reviews, ratings, fake address, fake pricing, or hidden claims.
+
+7. Validate all JSON-LD after the fix.
+
+8. Confirm:
+
+   * which page had the invalid item
+   * what field or schema caused the error
+   * which files changed
+   * whether the fix was pushed to GitHub
+   * whether Netlify redeployed the fixed version
+   * the exact live URL I should retest in the structured data tool
+
+Do not make broad SEO changes. Only fix the remaining invalid structured data item.
