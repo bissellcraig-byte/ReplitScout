@@ -2547,7 +2547,7 @@ body.page-work-with-us .inq .lead-kicker::after {
         width: 64px;
 }
 
-body.page-work-with-us .inq .lead h1 {
+body.page-work-with-us .inq .lead h2 {
         color: var(--inq-ink);
         font-family: "Playfair Display", serif;
         font-size: clamp(40px, 5.4vw, 64px);
@@ -2557,7 +2557,7 @@ body.page-work-with-us .inq .lead h1 {
         margin: 0;
 }
 
-body.page-work-with-us .inq .lead h1 em {
+body.page-work-with-us .inq .lead h2 em {
         font-style: italic;
         font-weight: 400 !important;
 }
