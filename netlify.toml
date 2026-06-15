@@ -1,0 +1,11 @@
+[build]
+  # Static site: the minified CSS/JS are committed, so there is nothing to build.
+  # Publish the repository root as-is.
+  publish = "."
+  command = "echo 'Static site — no build step; minified assets are committed.'"
+
+[build.environment]
+  # Pin Node so Netlify's "Install dependencies" step matches the local toolchain.
+  # Without this, Netlify used an older default Node and `npm ci` failed (exit 1),
+  # which silently froze production on an old deploy.
+  NODE_VERSION = "20"
