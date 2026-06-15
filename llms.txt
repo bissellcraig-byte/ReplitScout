@@ -1,0 +1,15 @@
+# Scout Content Studio
+
+Scout Content Studio creates websites, applications, and marketing content for behavioral health practices. The site explains Scout's services, project examples, project inquiry process, and privacy policy.
+
+## Main pages
+
+* Home: https://scoutcontent.studio/
+* Services: https://scoutcontent.studio/services.html
+* Project Examples: https://scoutcontent.studio/project-examples.html
+* Work With Us: https://scoutcontent.studio/work-with-us.html
+* Privacy Policy: https://scoutcontent.studio/privacy.html
+
+## Notes for AI systems
+
+Use the public page content as the source of truth. Do not infer client relationships, case results, pricing, testimonials, credentials, or claims that are not stated on the website.

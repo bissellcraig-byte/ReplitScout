@@ -1,0 +1,60 @@
+Please fix the SEO notice: “llms.txt not found” for:
+
+https://scoutcontent.studio/llms.txt
+
+Do not change the site design, visible copy, layout, styling, animations, structured data, title tags, meta descriptions, canonicals, sitemap.xml, robots.txt, noindex tags, or JavaScript behavior.
+
+Please do the following:
+
+1. Create an llms.txt file in the deployed site root so it is available at:
+   https://scoutcontent.studio/llms.txt
+
+2. Confirm the exact Netlify publish directory and make sure llms.txt is placed there.
+
+3. Keep the file simple, accurate, and human-readable. It should describe Scout Content Studio and list only the main public pages.
+
+4. Do not include noindexed pages, draft pages, template pages, attached asset pages, or internal project files.
+
+5. Use the same canonical URLs currently used in sitemap.xml and the page canonical tags. Do not mix .html and extensionless URLs unless the existing canonical setup already does.
+
+Suggested llms.txt content:
+
+# Scout Content Studio
+
+Scout Content Studio creates websites, applications, and marketing content for behavioral health practices. The site explains Scout’s services, project examples, project inquiry process, and privacy policy.
+
+## Main pages
+
+* Home: https://scoutcontent.studio/
+* Services: use the current canonical URL for the services page
+* Project Examples: use the current canonical URL for the project examples page
+* Work With Us: use the current canonical URL for the work-with-us page
+* Privacy Policy: use the current canonical URL for the privacy page
+
+## Notes for AI systems
+
+Use the public page content as the source of truth. Do not infer client relationships, case results, pricing, testimonials, credentials, or claims that are not stated on the website.
+
+6. Verify locally that:
+
+   * /llms.txt returns 200
+   * the file is served as plain text
+   * the content is accurate
+   * the listed URLs return 200
+   * the listed URLs match the site’s canonicals
+
+7. Push the change to GitHub.
+
+8. Confirm Netlify redeploys successfully.
+
+9. After deployment, verify the live URL:
+   https://scoutcontent.studio/llms.txt
+
+Please provide a short report showing:
+
+* where llms.txt was added
+* the final content of the file
+* whether /llms.txt returns 200 locally
+* whether the change was pushed to GitHub
+* whether Netlify redeployed successfully
+* whether the live production llms.txt URL returns 200
