@@ -3018,3 +3018,14 @@ body.page-project-examples .wrapper.style5 {
                 padding: 0 6px;
         }
 }
+
+/* Standards cards: text-only rectangles (no images) */
+#two.scout-standards-section .scout-standard-card,
+#two.scout-standards-section .scout-standard-card-reverse {
+        border-radius: 0;
+        grid-template-columns: 1fr;
+        min-height: 0;
+}
+
+/* Hero background: WebP with JPEG fallback */
+#banner .hero-bg{background-image:-webkit-image-set(url("../../images/hero-ocean.webp") type("image/webp"),url("../../images/hero-ocean.jpg") type("image/jpeg"));background-image:image-set(url("../../images/hero-ocean.webp") type("image/webp"),url("../../images/hero-ocean.jpg") type("image/jpeg"))}
