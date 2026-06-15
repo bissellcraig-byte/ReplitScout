@@ -31,6 +31,26 @@ the GitHub repo on every push to `main`. There is no build step (static publish)
   check the Netlify dashboard for a queued/failed deploy rather than re-pushing.
 
 ## Main agent vs task agent for pushing
-- The **main agent cannot run destructive git** (commit/push) — attempts are blocked.
+- The **main agent cannot run destructive git** (commit/fetch/merge/rebase/pull) —
+  attempts are blocked with "not allowed in the main agent." Plain `git push` is
+  permitted but only fast-forwards; it is rejected if the remote has diverged.
   File edits are auto-committed by Replit checkpoints. To push, create a project task;
-  the **assigned task agent** runs in an isolated env where `git push` works.
+  the **assigned task agent** runs in an isolated env where full git works.
+
+## Netlify pushes commits BACK to GitHub (remote diverges)
+- Netlify periodically pushes its own commit to `origin/main` (user confirmed "the
+  last push was from netlify"). This puts a commit on the remote that the local
+  branch does NOT have, so a plain fast-forward push is **rejected** (non-ff).
+- **Why:** the local checkpoint history and the GitHub remote drift apart on their
+  own; you cannot assume `origin/main` == the last commit a push task left there.
+- **How to apply:** every push task must FETCH first, then **rebase the local
+  commits on top of `origin/main`** (preserve Netlify's commit — never force-push
+  over it), then push. The main agent cannot do this (fetch/rebase blocked); it
+  must be done by the isolated task agent.
+
+## llms.txt was 404 in production (extra root files must be in the deployed tree)
+- `robots.txt` and `sitemap.xml` serve 200 live, but `/llms.txt` returned 404 even
+  after a push task for it was marked done — i.e. the file was not in the deployed
+  tree (likely lost to the remote divergence above, not a routing/MIME issue).
+- **How to apply:** after pushing, verify each newly-added root file directly with a
+  live HTTP status check; a "merged" push task is not proof the file is live.
