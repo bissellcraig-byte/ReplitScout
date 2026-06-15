@@ -26,6 +26,20 @@ A lightweight Node static file server (`server.js`) serves the site.
 - The server sends no-cache headers in development so the preview always reflects
   the latest files.
 
+## Build (minified CSS/JS)
+
+The site serves minified assets (`*.min.css`, `*.min.js`) referenced by the HTML.
+The readable source files (`assets/css/main.css`, `custom.css`, `motion.css` and
+`assets/js/util.js`, `main.js`, `motion.js`, `before-after.js`) are the working
+copies — edit those, then regenerate the minified output:
+
+- `npm run build` — minify all CSS (clean-css) and JS (terser)
+- `npm run build:css` / `npm run build:js` — run one half
+
+Netlify still publishes the directory as-is (no build step on deploy); commit the
+regenerated `*.min` files. Vendor files already shipped minified (jQuery,
+breakpoints, browser, fontawesome) are not rebuilt.
+
 ## Deployment
 
 Configured as a **static** deployment with `publicDir: "."`. Replit serves the
