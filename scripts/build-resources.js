@@ -372,13 +372,7 @@ function scriptsHtml() {
         <script src="/assets/js/main.min.js" defer></script>`;
 }
 
-/* ---------- card / chip fragments ---------- */
-
-function chipsHtml() {
-  return CATEGORIES.map(
-    (c) => `                        <li><span class="fr-chip">${esc(c)}</span></li>`
-  ).join("\n");
-}
+/* ---------- card fragments ---------- */
 
 function gridCard(p) {
   return `                    <a class="fr-card" href="${p.href}">
@@ -404,6 +398,24 @@ function featuredCard(p) {
   }</span>
                             <span class="fr-featured__more">Read the guide <span aria-hidden="true">&rarr;</span></span>
                         </a>
+                    </div>
+                </section>`;
+}
+
+function communityCard() {
+  return `                <section class="fr-community" aria-labelledby="fr-community-title">
+                    <div class="fr-community__inner">
+                        <div class="fr-community__card">
+                            <span class="fr-community__kicker">Free Community</span>
+                            <h2 class="fr-community__title" id="fr-community-title">Paid to Help: Marketing Support for Mental Health Professionals</h2>
+                            <p class="fr-community__subhead">A free Facebook community for mental health professionals who want to grow ethical, sustainable practices.</p>
+                            <div class="fr-community__body">
+                                <p>Building a practice should not require you to become a full-time marketer, chase trends, or pretend you love being on camera.</p>
+                                <p>Paid to Help is a free Facebook community for therapists and mental health professionals who want practical marketing education that actually fits the work they do. We share simple lessons, daily tips, AI-era strategies, and real support for getting found, building trust, and creating a healthier business.</p>
+                                <p>No fluff. No gatekeeping. No weird sales bro energy. Just useful guidance from people who understand both the clinical work and the reality of trying to build something sustainable.</p>
+                            </div>
+                            <a class="button primary fr-community__cta" href="https://www.facebook.com/groups/paidtohelp" target="_blank" rel="noopener noreferrer">Join the free Facebook community</a>
+                        </div>
                     </div>
                 </section>`;
 }
@@ -515,11 +527,10 @@ ${headerHtml()}
                             <li><a href="#fr-resources" class="button primary">Browse resources</a></li>
                             <li><a href="/work-with-us.html" class="button">Work with Scout</a></li>
                         </ul>
-                        <ul class="fr-chips" aria-label="Resource topics">
-${chipsHtml()}
-                        </ul>
                     </div>
                 </header>
+
+${communityCard()}
 
 ${featuredCard(featuredPost)}
 

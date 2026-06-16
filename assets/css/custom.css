@@ -3393,33 +3393,95 @@ body.page-resource-post #cta .inner .actions .button:not(.primary):hover {
         border-color: rgba(38, 49, 58, 0.7) !important;
 }
 
-/* --- Category chips (static) --- */
-.fr-chips {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        list-style: none;
-        margin: 0;
-        padding: 0;
+/* --- Paid to Help community card --- */
+body.page-free-resources .fr-community {
+        background: #f4f1ea;
+        padding: 0 !important;
 }
 
-.fr-chips li {
-        margin: 0;
-        padding: 0;
+.fr-community__inner {
+        margin: 0 auto;
+        max-width: 1120px;
+        padding: 0 2em 1.75em;
+        width: 100%;
 }
 
-.fr-chip {
+.fr-community__card {
         background: #ffffff;
-        border: 1px solid rgba(38, 49, 58, 0.16);
-        border-radius: 999px;
-        color: #3a454f;
-        display: inline-block;
+        border: 1px solid rgba(135, 160, 156, 0.4);
+        border-left: 4px solid #87a09c;
+        border-bottom: 1px solid rgba(135, 160, 156, 0.4) !important;
+        box-shadow: 0 14px 40px rgba(40, 52, 60, 0.1);
+        padding: 2.75em 3.25em;
+}
+
+.fr-community__kicker {
+        color: #7d938f;
+        display: block;
         font-family: "Jost", "Open Sans", Helvetica, sans-serif;
         font-size: 12px;
-        font-weight: 500;
-        letter-spacing: 0.12em;
-        padding: 8px 16px;
+        font-weight: 600;
+        letter-spacing: 0.22em;
+        margin: 0 0 1em;
         text-transform: uppercase;
+}
+
+.fr-community__title {
+        color: #26313a !important;
+        font-family: "Playfair Display", Georgia, serif !important;
+        font-size: clamp(1.6rem, 2.8vw, 2.3rem) !important;
+        font-weight: 400 !important;
+        line-height: 1.15 !important;
+        margin: 0 0 0.5em !important;
+        max-width: 28ch;
+}
+
+.fr-community__subhead {
+        color: rgba(38, 49, 58, 0.9) !important;
+        font-family: "Jost", "Open Sans", Helvetica, sans-serif !important;
+        font-size: 1.15rem !important;
+        font-weight: 500 !important;
+        line-height: 1.5 !important;
+        margin: 0 0 1.3em !important;
+        max-width: 60ch;
+}
+
+.fr-community__body p {
+        color: rgba(38, 49, 58, 0.72) !important;
+        font-family: "Jost", "Open Sans", Helvetica, sans-serif !important;
+        font-size: 1.02rem !important;
+        font-weight: 400 !important;
+        line-height: 1.65 !important;
+        margin: 0 0 1em !important;
+        max-width: 64ch;
+}
+
+.fr-community__body p:last-child {
+        margin-bottom: 0 !important;
+}
+
+.fr-community__cta.button.primary {
+        background-color: #87a09c !important;
+        border: 0 !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        color: #ffffff !important;
+        display: inline-block;
+        font-family: "Jost", "Open Sans", Helvetica, sans-serif !important;
+        font-size: 14px !important;
+        font-weight: 500 !important;
+        letter-spacing: 0.14em !important;
+        line-height: 1 !important;
+        margin-top: 1.6em;
+        min-height: 44px;
+        padding: 16px 34px !important;
+        text-transform: uppercase !important;
+        transition: background-color 0.28s ease, transform 0.28s ease !important;
+}
+
+.fr-community__cta.button.primary:hover {
+        background-color: #96b0ac !important;
+        transform: translateY(-2px);
 }
 
 /* --- Featured card --- */
@@ -3768,11 +3830,13 @@ body.page-resource-post .fr-post__body {
         .fr-hero .fr-hero__inner {
                 padding: 3em 1.5em 2.5em;
         }
+        .fr-community__inner,
         .fr-featured__inner,
         .fr-grid-section__inner {
                 padding-left: 1.5em;
                 padding-right: 1.5em;
         }
+        .fr-community__card,
         .fr-featured__card {
                 padding: 2em 1.6em;
         }
