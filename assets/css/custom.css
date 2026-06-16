@@ -3846,3 +3846,102 @@ body.page-resource-post .fr-post__body {
                 padding-right: 1.5em;
         }
 }
+
+/* =========================================================================
+   Landing hero — top navigation
+   The header scrolls away with the hero (not fixed) and stays transparent over
+   the photo, and the wordmark is hidden (the hero logo stands in for it).
+   Desktop (>= 1025px): the five links show centered across the top of the hero.
+   Tablet / mobile (<= 1024px): the links hide and the hamburger toggle shows.
+   Scoped to body.landing so the inner pages keep their existing header.
+   ========================================================================= */
+
+/* Scroll away with the hero instead of following the viewport, and stay
+   transparent so it never turns into a navy bar that overlaps lower sections. */
+body.landing #header {
+        background: transparent !important;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 10000;
+}
+
+/* The hero logo stands in for the wordmark on the landing page. */
+body.landing #header h1 {
+        display: none;
+}
+
+/* Hidden by default (mobile-first); revealed at the desktop breakpoint. */
+body.landing #header nav > ul > li.nav-link {
+        display: none;
+        padding: 0;
+}
+
+body.landing #header nav > ul > li.nav-link > a {
+        background-image: linear-gradient(#96b0ac, #96b0ac);
+        background-position: left bottom;
+        background-repeat: no-repeat;
+        background-size: 0 2px;
+        color: rgba(255, 255, 255, 0.92);
+        display: inline-block;
+        font-family: "Jost", "Open Sans", Helvetica, sans-serif;
+        font-size: 1.02rem;
+        font-weight: 400;
+        letter-spacing: 0.05em;
+        padding: 0 0 0.45em;
+        text-transform: none;
+        transition: background-size 0.24s ease, color 0.2s ease;
+}
+
+body.landing #header nav > ul > li.nav-link > a:hover {
+        color: #ffffff;
+}
+
+body.landing #header nav > ul > li.nav-link > a:hover,
+body.landing #header nav > ul > li.nav-link > a:focus-visible,
+body.landing #header nav > ul > li.nav-link > a[aria-current="page"] {
+        background-size: 100% 2px;
+}
+
+/* Desktop only (laptops and up): show the links centered across the hero,
+   set apart from the very top, and hide the hamburger.
+   Phones and tablets (incl. iPad landscape at 1024px) keep the hamburger. */
+@media screen and (min-width: 1025px) {
+        body.landing #header {
+                display: flex;
+                height: auto;
+                justify-content: center;
+                line-height: normal;
+                /* Reset the inherited right padding from the earlier landing
+                   header rule so the flex centering is truly centered. */
+                padding: 2.6em 0 0;
+        }
+
+        /* Push the centered hero content down so it clears the top menu with
+           room to breathe (the scroll prompt stays pinned to the bottom). */
+        body.landing #banner {
+                padding-top: 8em;
+        }
+
+        body.landing #header nav {
+                height: auto;
+                line-height: normal;
+                position: static;
+        }
+
+        body.landing #header nav > ul {
+                align-items: center;
+                display: flex;
+                gap: 3em;
+                justify-content: center;
+        }
+
+        body.landing #header nav > ul > li.nav-link {
+                display: inline-block;
+        }
+
+        body.landing #header nav > ul > li.special {
+                display: none;
+        }
+}

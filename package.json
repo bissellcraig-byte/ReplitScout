@@ -8,7 +8,13 @@
     "dev": "node server.js",
     "build:css": "cd assets/css && cleancss --inline none -o main.min.css main.css && cleancss --inline none -o custom.min.css custom.css && cleancss --inline none -o motion.min.css motion.css",
     "build:js": "terser assets/js/util.js -c -m -o assets/js/util.min.js && terser assets/js/main.js -c -m -o assets/js/main.min.js && terser assets/js/motion.js -c -m -o assets/js/motion.min.js && terser assets/js/before-after.js -c -m -o assets/js/before-after.min.js",
-    "build": "npm run build:css && npm run build:js"
+    "build": "npm run build:css && npm run build:js",
+    "check:lockfile": "bash scripts/check-lockfile.sh",
+    "fix:lockfile": "bash scripts/check-lockfile.sh --fix",
+    "postinstall": "bash scripts/check-lockfile.sh --fix",
+    "predeploy": "bash scripts/check-lockfile.sh",
+    "pretest": "bash scripts/check-lockfile.sh",
+    "test": "echo \"No tests; pretest guards the lockfile.\" && exit 0"
   },
   "devDependencies": {
     "clean-css-cli": "^5.6.3",
