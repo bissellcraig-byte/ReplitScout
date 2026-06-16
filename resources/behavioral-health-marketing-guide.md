@@ -8,7 +8,7 @@ featuredImage: /images/scout-social-card.png
 seoTitle: Behavioral Health Marketing Guide: Websites, SEO & AI Search | Scout Content Studio
 seoDescription: How therapists and behavioral health practices grow with clearer websites, honest SEO, and AI-search visibility. A practical, no-hype guide from Scout Content Studio.
 author: Scout Content Studio
-featured: true
+featured: false
 readingTime: 7 min read
 ---
 
