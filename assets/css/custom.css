@@ -3354,6 +3354,45 @@ body.page-free-resources .fr-hero__headline {
         transform: translateY(-2px);
 }
 
+/* --- CTA on the off-white canvas: the global #cta styling targets a dark
+   section, so on these light pages re-tone the heading, copy and buttons to
+   match the hub hero (legible navy text + sage primary / navy-ghost secondary). --- */
+body.page-free-resources #cta header h2,
+body.page-resource-post #cta header h2 {
+        color: #26313a !important;
+}
+
+body.page-free-resources #cta header p,
+body.page-resource-post #cta header p {
+        color: rgba(38, 49, 58, 0.78) !important;
+}
+
+body.page-free-resources #cta .inner .actions .button.primary,
+body.page-resource-post #cta .inner .actions .button.primary {
+        background-color: #87a09c !important;
+        border: 0 !important;
+        color: #ffffff !important;
+}
+
+body.page-free-resources #cta .inner .actions .button.primary:hover,
+body.page-resource-post #cta .inner .actions .button.primary:hover {
+        background-color: #96b0ac !important;
+        box-shadow: none !important;
+}
+
+body.page-free-resources #cta .inner .actions .button:not(.primary),
+body.page-resource-post #cta .inner .actions .button:not(.primary) {
+        background-color: transparent !important;
+        border: 1px solid rgba(38, 49, 58, 0.45) !important;
+        color: #2e3842 !important;
+}
+
+body.page-free-resources #cta .inner .actions .button:not(.primary):hover,
+body.page-resource-post #cta .inner .actions .button:not(.primary):hover {
+        background-color: rgba(38, 49, 58, 0.06) !important;
+        border-color: rgba(38, 49, 58, 0.7) !important;
+}
+
 /* --- Category chips (static) --- */
 .fr-chips {
         display: flex;
