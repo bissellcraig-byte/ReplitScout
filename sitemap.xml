@@ -20,4 +20,54 @@
     <loc>https://scoutcontent.studio/privacy.html</loc>
     <lastmod>2026-06-14</lastmod>
   </url>
+  <!-- FREE-RESOURCES:START -->
+  <url>
+    <loc>https://scoutcontent.studio/free-resources/</loc>
+    <lastmod>2026-06-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://scoutcontent.studio/free-resources/behavioral-health-marketing-guide.html</loc>
+    <lastmod>2026-06-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://scoutcontent.studio/free-resources/why-your-therapy-website-is-not-converting.html</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://scoutcontent.studio/free-resources/how-therapists-can-show-up-in-ai-search.html</loc>
+    <lastmod>2026-06-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://scoutcontent.studio/free-resources/what-every-private-practice-website-needs.html</loc>
+    <lastmod>2026-05-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://scoutcontent.studio/free-resources/simple-seo-fixes-for-behavioral-health-websites.html</loc>
+    <lastmod>2026-05-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://scoutcontent.studio/free-resources/how-to-make-your-website-easier-to-trust.html</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://scoutcontent.studio/free-resources/google-business-profile-basics-for-therapists.html</loc>
+    <lastmod>2026-05-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <!-- FREE-RESOURCES:END -->
 </urlset>
