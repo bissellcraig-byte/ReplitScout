@@ -1,0 +1,18 @@
+name: Submit to IndexNow
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  indexnow:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Wait for Netlify to publish
+        run: sleep 120
+      - name: Submit recent URLs to IndexNow
+        run: node .github/scripts/indexnow-submit.mjs
