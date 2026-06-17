@@ -3945,3 +3945,103 @@ body.landing #header nav > ul > li.nav-link > a[aria-current="page"] {
                 display: none;
         }
 }
+
+/* =========================================================================
+   Interior-page top navigation (desktop) — mirror the landing menu style.
+   The interior navy bar keeps the logo on the left; on laptops and up the
+   hamburger is swapped for the same sentence-case Jost links used on the home
+   page, right-aligned and vertically centered in the bar. Below 1025px (phones
+   + tablet / iPad landscape) the links hide and the hamburger toggle returns.
+   ========================================================================= */
+body.page-services #header nav > ul > li.nav-link,
+body.page-project-examples #header nav > ul > li.nav-link,
+body.page-work-with-us #header nav > ul > li.nav-link,
+body.page-privacy #header nav > ul > li.nav-link,
+body.page-free-resources #header nav > ul > li.nav-link,
+body.page-resource-post #header nav > ul > li.nav-link {
+        display: none;
+        padding: 0;
+}
+
+body.page-services #header nav > ul > li.nav-link > a,
+body.page-project-examples #header nav > ul > li.nav-link > a,
+body.page-work-with-us #header nav > ul > li.nav-link > a,
+body.page-privacy #header nav > ul > li.nav-link > a,
+body.page-free-resources #header nav > ul > li.nav-link > a,
+body.page-resource-post #header nav > ul > li.nav-link > a {
+        background-image: linear-gradient(#96b0ac, #96b0ac);
+        background-position: left bottom;
+        background-repeat: no-repeat;
+        background-size: 0 2px;
+        color: rgba(255, 255, 255, 0.92);
+        display: inline-block;
+        font-family: "Jost", "Open Sans", Helvetica, sans-serif;
+        font-size: 1.02rem;
+        font-weight: 400;
+        letter-spacing: 0.05em;
+        padding: 0 0 0.3em;
+        text-transform: none;
+        transition: background-size 0.24s ease, color 0.2s ease;
+}
+
+body.page-services #header nav > ul > li.nav-link > a:hover,
+body.page-project-examples #header nav > ul > li.nav-link > a:hover,
+body.page-work-with-us #header nav > ul > li.nav-link > a:hover,
+body.page-privacy #header nav > ul > li.nav-link > a:hover,
+body.page-free-resources #header nav > ul > li.nav-link > a:hover,
+body.page-resource-post #header nav > ul > li.nav-link > a:hover {
+        color: #ffffff;
+}
+
+body.page-services #header nav > ul > li.nav-link > a:hover,
+body.page-services #header nav > ul > li.nav-link > a:focus-visible,
+body.page-services #header nav > ul > li.nav-link > a[aria-current="page"],
+body.page-project-examples #header nav > ul > li.nav-link > a:hover,
+body.page-project-examples #header nav > ul > li.nav-link > a:focus-visible,
+body.page-project-examples #header nav > ul > li.nav-link > a[aria-current="page"],
+body.page-work-with-us #header nav > ul > li.nav-link > a:hover,
+body.page-work-with-us #header nav > ul > li.nav-link > a:focus-visible,
+body.page-work-with-us #header nav > ul > li.nav-link > a[aria-current="page"],
+body.page-privacy #header nav > ul > li.nav-link > a:hover,
+body.page-privacy #header nav > ul > li.nav-link > a:focus-visible,
+body.page-privacy #header nav > ul > li.nav-link > a[aria-current="page"],
+body.page-free-resources #header nav > ul > li.nav-link > a:hover,
+body.page-free-resources #header nav > ul > li.nav-link > a:focus-visible,
+body.page-free-resources #header nav > ul > li.nav-link > a[aria-current="page"],
+body.page-resource-post #header nav > ul > li.nav-link > a:hover,
+body.page-resource-post #header nav > ul > li.nav-link > a:focus-visible,
+body.page-resource-post #header nav > ul > li.nav-link > a[aria-current="page"] {
+        background-size: 100% 2px;
+}
+
+@media screen and (min-width: 1025px) {
+        body.page-services #header nav > ul,
+        body.page-project-examples #header nav > ul,
+        body.page-work-with-us #header nav > ul,
+        body.page-privacy #header nav > ul,
+        body.page-free-resources #header nav > ul,
+        body.page-resource-post #header nav > ul {
+                align-items: center;
+                display: flex;
+                gap: 2.1em;
+                height: 74px;
+        }
+
+        body.page-services #header nav > ul > li.nav-link,
+        body.page-project-examples #header nav > ul > li.nav-link,
+        body.page-work-with-us #header nav > ul > li.nav-link,
+        body.page-privacy #header nav > ul > li.nav-link,
+        body.page-free-resources #header nav > ul > li.nav-link,
+        body.page-resource-post #header nav > ul > li.nav-link {
+                display: inline-block;
+        }
+
+        body.page-services #header nav > ul > li.special,
+        body.page-project-examples #header nav > ul > li.special,
+        body.page-work-with-us #header nav > ul > li.special,
+        body.page-privacy #header nav > ul > li.special,
+        body.page-free-resources #header nav > ul > li.special,
+        body.page-resource-post #header nav > ul > li.special {
+                display: none;
+        }
+}

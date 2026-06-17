@@ -319,6 +319,11 @@ function headerHtml() {
                 </div>
                 <nav id="nav">
                     <ul>
+                        <li class="nav-link"><a href="/index.html">Home</a></li>
+                        <li class="nav-link"><a href="/services.html">More on services</a></li>
+                        <li class="nav-link"><a href="/project-examples.html">Project examples</a></li>
+                        <li class="nav-link"><a href="/work-with-us.html">Work with us</a></li>
+                        <li class="nav-link"><a href="/free-resources/" aria-current="page">Free Resources</a></li>
                         <li class="special">
                             <a href="#menu" class="menuToggle"><span class="menu-label">Menu</span><span class="menu-hamburger" aria-hidden="true"><i></i><i></i><i></i></span></a>
                             <div id="menu">
