@@ -3840,6 +3840,12 @@ body.page-resource-post .fr-post__body {
         .fr-featured__card {
                 padding: 2em 1.6em;
         }
+        .fr-community__cta.button.primary {
+                box-sizing: border-box;
+                display: block;
+                text-align: center;
+                width: 100%;
+        }
         .fr-post__head-inner,
         .fr-post__body-inner {
                 padding-left: 1.5em;
