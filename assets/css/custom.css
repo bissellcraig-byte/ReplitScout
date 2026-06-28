@@ -1031,7 +1031,8 @@ body.is-preload #banner .banner-headline {
 body.page-services #header h1,
 body.page-project-examples #header h1,
 body.page-work-with-us #header h1,
-body.page-privacy #header h1 {
+body.page-privacy #header h1,
+body.page-pricing #header h1 {
         height: 3.2em;
         opacity: 1 !important;
         pointer-events: auto !important;
@@ -1040,7 +1041,8 @@ body.page-privacy #header h1 {
 body.page-services #header,
 body.page-project-examples #header,
 body.page-work-with-us #header,
-body.page-privacy #header {
+body.page-privacy #header,
+body.page-pricing #header {
         background: #2e3842;
         display: flex;
         align-items: center;
@@ -1053,14 +1055,16 @@ body.page-privacy #header {
 body.page-services #page-wrapper,
 body.page-project-examples #page-wrapper,
 body.page-work-with-us #page-wrapper,
-body.page-privacy #page-wrapper {
+body.page-privacy #page-wrapper,
+body.page-pricing #page-wrapper {
         padding-top: 74px;
 }
 
 body.page-services #header h1,
 body.page-project-examples #header h1,
 body.page-work-with-us #header h1,
-body.page-privacy #header h1 {
+body.page-privacy #header h1,
+body.page-pricing #header h1 {
         align-items: center;
         display: flex;
         height: auto;
@@ -1073,7 +1077,8 @@ body.page-privacy #header h1 {
 body.page-services #header nav,
 body.page-project-examples #header nav,
 body.page-work-with-us #header nav,
-body.page-privacy #header nav {
+body.page-privacy #header nav,
+body.page-pricing #header nav {
         position: static;
         height: 74px;
 }
@@ -1081,7 +1086,8 @@ body.page-privacy #header nav {
 body.page-services #header nav > ul > li > a.menuToggle,
 body.page-project-examples #header nav > ul > li > a.menuToggle,
 body.page-work-with-us #header nav > ul > li > a.menuToggle,
-body.page-privacy #header nav > ul > li > a.menuToggle {
+body.page-privacy #header nav > ul > li > a.menuToggle,
+body.page-pricing #header nav > ul > li > a.menuToggle {
         display: flex;
         align-items: center;
         gap: 14px;
@@ -1092,14 +1098,16 @@ body.page-privacy #header nav > ul > li > a.menuToggle {
 body.page-services #header nav > ul > li > a.menuToggle:after,
 body.page-project-examples #header nav > ul > li > a.menuToggle:after,
 body.page-work-with-us #header nav > ul > li > a.menuToggle:after,
-body.page-privacy #header nav > ul > li > a.menuToggle:after {
+body.page-privacy #header nav > ul > li > a.menuToggle:after,
+body.page-pricing #header nav > ul > li > a.menuToggle:after {
         display: none;
 }
 
 body.page-services #header nav > ul > li > a.menuToggle .menu-label,
 body.page-project-examples #header nav > ul > li > a.menuToggle .menu-label,
 body.page-work-with-us #header nav > ul > li > a.menuToggle .menu-label,
-body.page-privacy #header nav > ul > li > a.menuToggle .menu-label {
+body.page-privacy #header nav > ul > li > a.menuToggle .menu-label,
+body.page-pricing #header nav > ul > li > a.menuToggle .menu-label {
         color: #ffffff;
         display: inline-block;
         font-family: "Jost", "Open Sans", Helvetica, sans-serif;
@@ -1112,7 +1120,8 @@ body.page-privacy #header nav > ul > li > a.menuToggle .menu-label {
 body.page-services #header nav > ul > li > a.menuToggle .menu-hamburger,
 body.page-project-examples #header nav > ul > li > a.menuToggle .menu-hamburger,
 body.page-work-with-us #header nav > ul > li > a.menuToggle .menu-hamburger,
-body.page-privacy #header nav > ul > li > a.menuToggle .menu-hamburger {
+body.page-privacy #header nav > ul > li > a.menuToggle .menu-hamburger,
+body.page-pricing #header nav > ul > li > a.menuToggle .menu-hamburger {
         display: inline-flex;
         flex-direction: column;
         justify-content: center;
@@ -1123,7 +1132,8 @@ body.page-privacy #header nav > ul > li > a.menuToggle .menu-hamburger {
 body.page-services #header nav > ul > li > a.menuToggle .menu-hamburger i,
 body.page-project-examples #header nav > ul > li > a.menuToggle .menu-hamburger i,
 body.page-work-with-us #header nav > ul > li > a.menuToggle .menu-hamburger i,
-body.page-privacy #header nav > ul > li > a.menuToggle .menu-hamburger i {
+body.page-privacy #header nav > ul > li > a.menuToggle .menu-hamburger i,
+body.page-pricing #header nav > ul > li > a.menuToggle .menu-hamburger i {
         background: #ffffff;
         display: block;
         height: 2px;
@@ -1134,14 +1144,16 @@ body.page-privacy #header nav > ul > li > a.menuToggle .menu-hamburger i {
         body.page-services #header,
         body.page-project-examples #header,
         body.page-work-with-us #header,
-        body.page-privacy #header {
+        body.page-privacy #header,
+        body.page-pricing #header {
                 padding: 0 20px;
         }
 
         body.page-services #header nav > ul > li > a.menuToggle .menu-label,
         body.page-project-examples #header nav > ul > li > a.menuToggle .menu-label,
         body.page-work-with-us #header nav > ul > li > a.menuToggle .menu-label,
-        body.page-privacy #header nav > ul > li > a.menuToggle .menu-label {
+        body.page-privacy #header nav > ul > li > a.menuToggle .menu-label,
+        body.page-pricing #header nav > ul > li > a.menuToggle .menu-label {
                 display: inline-block;
         }
 }
@@ -1149,7 +1161,8 @@ body.page-privacy #header nav > ul > li > a.menuToggle .menu-hamburger i {
 body.page-services #header h1 .header-scout-logo-link,
 body.page-project-examples #header h1 .header-scout-logo-link,
 body.page-work-with-us #header h1 .header-scout-logo-link,
-body.page-privacy #header h1 .header-scout-logo-link {
+body.page-privacy #header h1 .header-scout-logo-link,
+body.page-pricing #header h1 .header-scout-logo-link {
         align-items: center;
         background: transparent;
         border: 0;
@@ -1162,7 +1175,8 @@ body.page-privacy #header h1 .header-scout-logo-link {
 body.page-services #header .header-scout-logo-crop,
 body.page-project-examples #header .header-scout-logo-crop,
 body.page-work-with-us #header .header-scout-logo-crop,
-body.page-privacy #header .header-scout-logo-crop {
+body.page-privacy #header .header-scout-logo-crop,
+body.page-pricing #header .header-scout-logo-crop {
         display: block;
         height: 2em;
         overflow: hidden;
@@ -1172,7 +1186,8 @@ body.page-privacy #header .header-scout-logo-crop {
 body.page-services #header .header-scout-logo,
 body.page-project-examples #header .header-scout-logo,
 body.page-work-with-us #header .header-scout-logo,
-body.page-privacy #header .header-scout-logo {
+body.page-privacy #header .header-scout-logo,
+body.page-pricing #header .header-scout-logo {
         display: block;
         height: auto;
         margin: 0;
@@ -1184,7 +1199,8 @@ body.page-privacy #header .header-scout-logo {
         body.page-services #header .header-scout-logo-crop,
         body.page-project-examples #header .header-scout-logo-crop,
         body.page-work-with-us #header .header-scout-logo-crop,
-        body.page-privacy #header .header-scout-logo-crop {
+        body.page-privacy #header .header-scout-logo-crop,
+        body.page-pricing #header .header-scout-logo-crop {
                 height: 1.5625em;
                 width: 5.75em;
         }
@@ -1192,7 +1208,8 @@ body.page-privacy #header .header-scout-logo {
         body.page-services #header .header-scout-logo,
         body.page-project-examples #header .header-scout-logo,
         body.page-work-with-us #header .header-scout-logo,
-        body.page-privacy #header .header-scout-logo {
+        body.page-privacy #header .header-scout-logo,
+        body.page-pricing #header .header-scout-logo {
                 width: 5.75em;
         }
 }
@@ -3963,6 +3980,7 @@ body.page-services #header nav > ul > li.nav-link,
 body.page-project-examples #header nav > ul > li.nav-link,
 body.page-work-with-us #header nav > ul > li.nav-link,
 body.page-privacy #header nav > ul > li.nav-link,
+body.page-pricing #header nav > ul > li.nav-link,
 body.page-free-resources #header nav > ul > li.nav-link,
 body.page-resource-post #header nav > ul > li.nav-link {
         display: none;
@@ -3973,6 +3991,7 @@ body.page-services #header nav > ul > li.nav-link > a,
 body.page-project-examples #header nav > ul > li.nav-link > a,
 body.page-work-with-us #header nav > ul > li.nav-link > a,
 body.page-privacy #header nav > ul > li.nav-link > a,
+body.page-pricing #header nav > ul > li.nav-link > a,
 body.page-free-resources #header nav > ul > li.nav-link > a,
 body.page-resource-post #header nav > ul > li.nav-link > a {
         background-image: linear-gradient(#96b0ac, #96b0ac);
@@ -3994,6 +4013,7 @@ body.page-services #header nav > ul > li.nav-link > a:hover,
 body.page-project-examples #header nav > ul > li.nav-link > a:hover,
 body.page-work-with-us #header nav > ul > li.nav-link > a:hover,
 body.page-privacy #header nav > ul > li.nav-link > a:hover,
+body.page-pricing #header nav > ul > li.nav-link > a:hover,
 body.page-free-resources #header nav > ul > li.nav-link > a:hover,
 body.page-resource-post #header nav > ul > li.nav-link > a:hover {
         color: #ffffff;
@@ -4009,8 +4029,11 @@ body.page-work-with-us #header nav > ul > li.nav-link > a:hover,
 body.page-work-with-us #header nav > ul > li.nav-link > a:focus-visible,
 body.page-work-with-us #header nav > ul > li.nav-link > a[aria-current="page"],
 body.page-privacy #header nav > ul > li.nav-link > a:hover,
+body.page-pricing #header nav > ul > li.nav-link > a:hover,
 body.page-privacy #header nav > ul > li.nav-link > a:focus-visible,
+body.page-pricing #header nav > ul > li.nav-link > a:focus-visible,
 body.page-privacy #header nav > ul > li.nav-link > a[aria-current="page"],
+body.page-pricing #header nav > ul > li.nav-link > a[aria-current="page"],
 body.page-free-resources #header nav > ul > li.nav-link > a:hover,
 body.page-free-resources #header nav > ul > li.nav-link > a:focus-visible,
 body.page-free-resources #header nav > ul > li.nav-link > a[aria-current="page"],
@@ -4025,6 +4048,7 @@ body.page-resource-post #header nav > ul > li.nav-link > a[aria-current="page"] 
         body.page-project-examples #header nav > ul,
         body.page-work-with-us #header nav > ul,
         body.page-privacy #header nav > ul,
+        body.page-pricing #header nav > ul,
         body.page-free-resources #header nav > ul,
         body.page-resource-post #header nav > ul {
                 align-items: center;
@@ -4037,6 +4061,7 @@ body.page-resource-post #header nav > ul > li.nav-link > a[aria-current="page"] 
         body.page-project-examples #header nav > ul > li.nav-link,
         body.page-work-with-us #header nav > ul > li.nav-link,
         body.page-privacy #header nav > ul > li.nav-link,
+        body.page-pricing #header nav > ul > li.nav-link,
         body.page-free-resources #header nav > ul > li.nav-link,
         body.page-resource-post #header nav > ul > li.nav-link {
                 display: inline-block;
@@ -4046,8 +4071,685 @@ body.page-resource-post #header nav > ul > li.nav-link > a[aria-current="page"] 
         body.page-project-examples #header nav > ul > li.special,
         body.page-work-with-us #header nav > ul > li.special,
         body.page-privacy #header nav > ul > li.special,
+        body.page-pricing #header nav > ul > li.special,
         body.page-free-resources #header nav > ul > li.special,
         body.page-resource-post #header nav > ul > li.special {
                 display: none;
+        }
+}
+
+/* =========================================================================
+   Pricing page (body.page-pricing) — dedicated pricing layout.
+   Tokens mirror the services / free-resources system: navy #2e3842,
+   cream #f5f2ec / #f4f1ea, sage #87a09c, ink #2e3842, body #4a555e.
+   ========================================================================= */
+body.page-pricing #main {
+        background: #f5f2ec;
+}
+
+body.page-pricing #main,
+body.page-pricing #main * {
+        box-sizing: border-box;
+}
+
+/* --- Hero / intro --- */
+body.page-pricing .pr-hero {
+        background: #f5f2ec;
+        padding: 0 !important;
+}
+
+body.page-pricing .pr-hero__inner {
+        margin: 0 auto;
+        max-width: 1080px;
+        padding: 76px 48px 52px;
+        width: 100%;
+}
+
+body.page-pricing .pr-hero__kicker {
+        color: #7d938f;
+        display: block;
+        font-family: "Jost", sans-serif;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.28em;
+        margin: 0 0 1.1em;
+        text-transform: uppercase;
+}
+
+body.page-pricing .pr-hero__headline {
+        color: #2e3842;
+        font-family: "Playfair Display", serif;
+        font-size: clamp(34px, 4.6vw, 52px);
+        font-weight: 500;
+        letter-spacing: 0;
+        line-height: 1.06;
+        margin: 0 0 0.5em;
+        max-width: 19ch;
+        text-transform: none;
+}
+
+body.page-pricing .pr-hero__lead {
+        color: #4a555e;
+        font-family: "Jost", sans-serif;
+        font-size: 20px;
+        font-weight: 300;
+        line-height: 1.6;
+        margin: 0;
+        max-width: 60ch;
+}
+
+/* --- Shared layout --- */
+body.page-pricing .pr-body {
+        background: #f5f2ec;
+}
+
+body.page-pricing .pr-content {
+        margin: 0 auto;
+        max-width: 1080px;
+        padding: 0 48px;
+        width: 100%;
+}
+
+/* --- Section heads --- */
+body.page-pricing .pr-section__head {
+        margin: 0 0 2em;
+        max-width: 64ch;
+}
+
+body.page-pricing .pr-kicker {
+        color: #7c8790;
+        display: block;
+        font-family: "Jost", sans-serif;
+        font-size: 12px;
+        font-weight: 500;
+        letter-spacing: 0.28em;
+        margin: 0 0 0.9em;
+        text-transform: uppercase;
+}
+
+body.page-pricing .pr-kicker--sage {
+        color: #7d938f;
+}
+
+body.page-pricing .pr-kicker--light {
+        color: rgba(244, 241, 234, 0.6);
+}
+
+body.page-pricing .pr-section__title {
+        color: #2e3842;
+        font-family: "Playfair Display", serif;
+        font-size: clamp(28px, 3.4vw, 40px);
+        font-weight: 500;
+        letter-spacing: 0;
+        line-height: 1.1;
+        margin: 0;
+        text-transform: none;
+}
+
+body.page-pricing .pr-section__lead {
+        color: #4a555e;
+        font-family: "Jost", sans-serif;
+        font-size: 18px;
+        font-weight: 300;
+        line-height: 1.65;
+        margin: 1em 0 0;
+        max-width: 66ch;
+}
+
+/* --- Buttons --- */
+body.page-pricing .pr-button {
+        border: 1px solid transparent;
+        cursor: pointer;
+        display: inline-block;
+        font-family: "Jost", sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: 0.14em;
+        line-height: 1;
+        margin: 0;
+        padding: 16px 32px;
+        text-decoration: none;
+        text-transform: uppercase;
+        transition: background-color 0.25s ease, color 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+}
+
+body.page-pricing .pr-button--primary {
+        background: #87a09c;
+        border-color: #87a09c;
+        color: #ffffff;
+}
+
+body.page-pricing .pr-button--primary:hover {
+        background: #96b0ac;
+        border-color: #96b0ac;
+        transform: translateY(-2px);
+}
+
+body.page-pricing .pr-button--light {
+        background: #f4f1ea;
+        border-color: #f4f1ea;
+        color: #1a2229;
+}
+
+body.page-pricing .pr-button--light:hover {
+        background: #ffffff;
+        border-color: #ffffff;
+        transform: translateY(-2px);
+}
+
+body.page-pricing .pr-button--ghost {
+        background: transparent;
+        border-color: rgba(255, 255, 255, 0.55);
+        color: #ffffff;
+}
+
+body.page-pricing .pr-button--ghost:hover {
+        background: rgba(255, 255, 255, 0.1);
+}
+
+body.page-pricing .pr-button:focus-visible {
+        outline: 2px solid #87a09c;
+        outline-offset: 3px;
+}
+
+/* --- Front door callout --- */
+body.page-pricing .pr-frontdoor {
+        padding: 8px 0 24px;
+}
+
+body.page-pricing .pr-frontdoor__card {
+        background: #ffffff;
+        border: 1px solid rgba(135, 160, 156, 0.4);
+        border-left: 4px solid #87a09c;
+        box-shadow: 0 14px 40px rgba(40, 52, 60, 0.1);
+        padding: 2.75em 3.25em;
+}
+
+body.page-pricing .pr-frontdoor__title {
+        color: #2e3842;
+        font-family: "Playfair Display", serif;
+        font-size: clamp(26px, 3vw, 36px);
+        font-weight: 500;
+        line-height: 1.12;
+        margin: 0 0 0.45em;
+}
+
+body.page-pricing .pr-frontdoor__price {
+        color: #5c6b66;
+        font-family: "Jost", sans-serif;
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 1.5;
+        margin: 0 0 1em;
+}
+
+body.page-pricing .pr-frontdoor__body {
+        color: #4a555e;
+        font-family: "Jost", sans-serif;
+        font-size: 17px;
+        font-weight: 300;
+        line-height: 1.7;
+        margin: 0 0 1.6em;
+        max-width: 72ch;
+}
+
+/* --- Pricing tiers + toggle --- */
+body.page-pricing .pr-tiers {
+        padding: 32px 0 24px;
+}
+
+body.page-pricing .pr-toggle {
+        background: rgba(46, 56, 66, 0.06);
+        border: 1px solid rgba(46, 56, 66, 0.12);
+        border-radius: 999px;
+        display: inline-flex;
+        gap: 4px;
+        margin: 0 0 2.2em;
+        padding: 5px;
+}
+
+body.page-pricing .pr-toggle__btn {
+        background: transparent;
+        border: 0;
+        border-radius: 999px;
+        color: #4a555e;
+        cursor: pointer;
+        font-family: "Jost", sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: 0.06em;
+        line-height: 1;
+        overflow: visible;
+        padding: 12px 22px;
+        text-overflow: clip;
+        transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+        white-space: nowrap;
+}
+
+body.page-pricing .pr-toggle__btn:hover {
+        color: #2e3842;
+}
+
+body.page-pricing .pr-toggle__btn.is-active {
+        background: #2e3842;
+        box-shadow: 0 6px 18px rgba(40, 52, 60, 0.18);
+        color: #ffffff;
+}
+
+body.page-pricing .pr-toggle__btn:focus-visible {
+        outline: 2px solid #87a09c;
+        outline-offset: 2px;
+}
+
+body.page-pricing .pr-panel {
+        display: none;
+}
+
+body.page-pricing .pr-panel.is-active {
+        display: block;
+}
+
+body.page-pricing .pr-panel__intro {
+        color: #7c8790;
+        font-family: "Jost", sans-serif;
+        font-size: 15px;
+        font-weight: 400;
+        letter-spacing: 0.02em;
+        margin: 0 0 1.6em;
+}
+
+/* --- Cards --- */
+body.page-pricing .pr-cards {
+        display: grid;
+        gap: 24px;
+}
+
+body.page-pricing .pr-cards--three {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+body.page-pricing .pr-cards--two {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+body.page-pricing .pr-card {
+        background: #ffffff;
+        border: 1px solid rgba(135, 160, 156, 0.4);
+        box-shadow: 0 10px 30px rgba(40, 52, 60, 0.07);
+        display: flex;
+        flex-direction: column;
+        padding: 2.4em 2.1em;
+        position: relative;
+}
+
+body.page-pricing .pr-card__name {
+        color: #2e3842;
+        font-family: "Playfair Display", serif;
+        font-size: 23px;
+        font-weight: 500;
+        letter-spacing: 0;
+        line-height: 1.2;
+        margin: 0 0 0.5em;
+}
+
+body.page-pricing .pr-card__price {
+        color: #2e3842;
+        font-family: "Jost", sans-serif;
+        font-size: 30px;
+        font-weight: 500;
+        letter-spacing: 0;
+        line-height: 1.15;
+        margin: 0 0 0.7em;
+}
+
+body.page-pricing .pr-card__price--multi {
+        font-size: 18px;
+        line-height: 1.4;
+}
+
+body.page-pricing .pr-card__desc {
+        color: #4a555e;
+        font-family: "Jost", sans-serif;
+        font-size: 16px;
+        font-weight: 300;
+        line-height: 1.65;
+        margin: 0;
+}
+
+body.page-pricing .pr-card--featured {
+        background: #2e3842;
+        border-color: #2e3842;
+        box-shadow: 0 22px 50px rgba(40, 52, 60, 0.22);
+}
+
+body.page-pricing .pr-card--featured .pr-card__name,
+body.page-pricing .pr-card--featured .pr-card__price {
+        color: #ffffff;
+}
+
+body.page-pricing .pr-card--featured .pr-card__desc {
+        color: rgba(244, 241, 234, 0.82);
+}
+
+body.page-pricing .pr-card__badge {
+        align-self: flex-start;
+        background: #87a09c;
+        color: #ffffff;
+        font-family: "Jost", sans-serif;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.16em;
+        line-height: 1;
+        margin: 0 0 1.1em;
+        padding: 7px 12px;
+        text-transform: uppercase;
+}
+
+body.page-pricing .pr-tier-note {
+        color: #7c8790;
+        font-family: "Jost", sans-serif;
+        font-size: 15px;
+        font-style: italic;
+        font-weight: 400;
+        line-height: 1.5;
+        margin: 1.6em 0 0;
+}
+
+/* --- Generic block spacing / dividers --- */
+body.page-pricing .pr-block {
+        border-top: 1px solid rgba(46, 56, 66, 0.14);
+        padding: 64px 0;
+}
+
+body.page-pricing .pr-block--alacarte {
+        padding-bottom: 84px;
+}
+
+/* --- Large organizations band (full-bleed navy) --- */
+body.page-pricing .pr-org {
+        background: #2e3842;
+        margin: 24px 0;
+        padding: 0;
+}
+
+body.page-pricing .pr-org__inner {
+        margin: 0 auto;
+        max-width: 1080px;
+        padding: 72px 48px;
+        width: 100%;
+}
+
+body.page-pricing .pr-org__title {
+        color: #ffffff;
+        font-family: "Playfair Display", serif;
+        font-size: clamp(28px, 3.4vw, 40px);
+        font-weight: 500;
+        line-height: 1.1;
+        margin: 0 0 0.5em;
+        max-width: 24ch;
+}
+
+body.page-pricing .pr-org__price {
+        color: #aec2bd;
+        font-family: "Jost", sans-serif;
+        font-size: 20px;
+        font-weight: 500;
+        margin: 0 0 1em;
+}
+
+body.page-pricing .pr-org__body {
+        color: rgba(244, 241, 234, 0.82);
+        font-family: "Jost", sans-serif;
+        font-size: 18px;
+        font-weight: 300;
+        line-height: 1.7;
+        margin: 0 0 1.8em;
+        max-width: 72ch;
+}
+
+/* --- A la carte (collapsible) --- */
+body.page-pricing .pr-alacarte {
+        background: #ffffff;
+        border: 1px solid rgba(135, 160, 156, 0.4);
+}
+
+body.page-pricing .pr-alacarte__summary {
+        align-items: center;
+        cursor: pointer;
+        display: flex;
+        gap: 1em;
+        justify-content: space-between;
+        list-style: none;
+        padding: 1.5em 2em;
+}
+
+body.page-pricing .pr-alacarte__summary::-webkit-details-marker {
+        display: none;
+}
+
+body.page-pricing .pr-alacarte__summary-title {
+        color: #2e3842;
+        font-family: "Playfair Display", serif;
+        font-size: 22px;
+        font-weight: 500;
+        line-height: 1.2;
+}
+
+body.page-pricing .pr-alacarte__icon {
+        border-bottom: 2px solid #87a09c;
+        border-right: 2px solid #87a09c;
+        display: inline-block;
+        flex: none;
+        height: 10px;
+        transform: rotate(45deg);
+        transition: transform 0.25s ease;
+        width: 10px;
+}
+
+body.page-pricing .pr-alacarte[open] .pr-alacarte__icon {
+        transform: rotate(-135deg);
+}
+
+body.page-pricing .pr-alacarte__list {
+        border-top: 1px solid rgba(46, 56, 66, 0.12);
+        list-style: none;
+        margin: 0;
+        padding: 0.25em 2em 1.25em;
+}
+
+body.page-pricing .pr-alacarte__list li {
+        align-items: baseline;
+        border-bottom: 1px solid rgba(46, 56, 66, 0.1);
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4em 1.5em;
+        justify-content: space-between;
+        padding: 0.95em 0;
+}
+
+body.page-pricing .pr-alacarte__list li:last-child {
+        border-bottom: 0;
+}
+
+body.page-pricing .pr-alacarte__label {
+        color: #2e3842;
+        font-family: "Jost", sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 1.5;
+}
+
+body.page-pricing .pr-alacarte__value {
+        color: #5c6b66;
+        font-family: "Jost", sans-serif;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 1.5;
+        text-align: right;
+        white-space: nowrap;
+}
+
+/* --- Closing CTA (navy band) --- */
+body.page-pricing .pr-cta {
+        background: #2e3842;
+        padding: 0;
+}
+
+body.page-pricing .pr-cta__frame {
+        border: 1px solid rgba(255, 255, 255, 0.32);
+        margin: 56px auto;
+        max-width: 984px;
+        padding: 72px 64px;
+        width: calc(100% - 96px);
+}
+
+body.page-pricing .pr-cta__heading {
+        color: #ffffff;
+        font-family: "Playfair Display", serif;
+        font-size: clamp(30px, 4vw, 46px);
+        font-weight: 500;
+        line-height: 1.08;
+        margin: 0 0 0.5em;
+}
+
+body.page-pricing .pr-cta__text {
+        color: rgba(255, 255, 255, 0.82);
+        font-family: "Jost", sans-serif;
+        font-size: 18px;
+        font-weight: 300;
+        line-height: 1.7;
+        margin: 0 0 1em;
+        max-width: 60ch;
+}
+
+body.page-pricing .pr-cta__actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        margin-top: 2.2em;
+}
+
+/* --- Beat site-wide !important template typography --- */
+body.page-pricing .pr-hero__headline,
+body.page-pricing .pr-section__title,
+body.page-pricing .pr-frontdoor__title,
+body.page-pricing .pr-org__title,
+body.page-pricing .pr-cta__heading,
+body.page-pricing .pr-card__name,
+body.page-pricing .pr-alacarte__summary-title {
+        font-family: "Playfair Display", Georgia, serif !important;
+        font-weight: 500 !important;
+        letter-spacing: 0 !important;
+        text-transform: none !important;
+}
+
+body.page-pricing .pr-hero__kicker,
+body.page-pricing .pr-hero__lead,
+body.page-pricing .pr-kicker,
+body.page-pricing .pr-section__lead,
+body.page-pricing .pr-panel__intro,
+body.page-pricing .pr-frontdoor__price,
+body.page-pricing .pr-frontdoor__body,
+body.page-pricing .pr-card__price,
+body.page-pricing .pr-card__desc,
+body.page-pricing .pr-card__badge,
+body.page-pricing .pr-org__price,
+body.page-pricing .pr-org__body,
+body.page-pricing .pr-cta__text,
+body.page-pricing .pr-tier-note,
+body.page-pricing .pr-toggle__btn,
+body.page-pricing .pr-button,
+body.page-pricing .pr-alacarte__label,
+body.page-pricing .pr-alacarte__value {
+        font-family: "Jost", "Open Sans", Helvetica, sans-serif !important;
+}
+
+body.page-pricing .pr-kicker,
+body.page-pricing .pr-hero__kicker,
+body.page-pricing .pr-card__badge {
+        text-transform: uppercase !important;
+}
+
+body.page-pricing .pr-frontdoor a,
+body.page-pricing .pr-org a,
+body.page-pricing .pr-cta a {
+        border-bottom: 0;
+        text-decoration: none;
+}
+
+/* --- Featured lift + responsive --- */
+@media screen and (min-width: 861px) {
+        body.page-pricing .pr-cards--three .pr-card--featured {
+                transform: translateY(-12px);
+        }
+}
+
+@media screen and (max-width: 860px) {
+        body.page-pricing .pr-hero__inner {
+                padding: 56px 24px 40px;
+        }
+
+        body.page-pricing .pr-content {
+                padding: 0 24px;
+        }
+
+        body.page-pricing .pr-hero__lead {
+                font-size: 18px;
+        }
+
+        body.page-pricing .pr-frontdoor__card {
+                padding: 2em 1.6em;
+        }
+
+        body.page-pricing .pr-cards--three,
+        body.page-pricing .pr-cards--two {
+                grid-template-columns: 1fr;
+        }
+
+        body.page-pricing .pr-org__inner {
+                padding: 56px 24px;
+        }
+
+        body.page-pricing .pr-toggle {
+                display: flex;
+                width: 100%;
+        }
+
+        body.page-pricing .pr-toggle__btn {
+                flex: 1 1 0;
+                font-size: 13px;
+                letter-spacing: 0.02em;
+                line-height: 1.25;
+                min-width: 0;
+                padding: 11px 10px;
+                text-align: center;
+                white-space: normal;
+        }
+
+        body.page-pricing .pr-alacarte__summary {
+                padding: 1.25em 1.4em;
+        }
+
+        body.page-pricing .pr-alacarte__list {
+                padding: 0.25em 1.4em 1.25em;
+        }
+
+        body.page-pricing .pr-alacarte__value {
+                white-space: normal;
+                text-align: left;
+        }
+
+        body.page-pricing .pr-cta__frame {
+                margin: 40px auto;
+                padding: 48px 28px;
+                width: calc(100% - 48px);
+        }
+
+        body.page-pricing .pr-cta__actions {
+                flex-direction: column;
+        }
+
+        body.page-pricing .pr-button {
+                text-align: center;
         }
 }
