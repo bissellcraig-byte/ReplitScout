@@ -3927,6 +3927,13 @@ body.landing #header nav > ul > li.nav-link > a[aria-current="page"] {
         background-size: 100% 2px;
 }
 
+/* Mobile/tablet: give the hamburger breathing room from the very top edge. */
+@media screen and (max-width: 1024px) {
+        body.landing #header {
+                top: 28px;
+        }
+}
+
 /* Desktop only (laptops and up): show the links centered across the hero,
    set apart from the very top, and hide the hamburger.
    Phones and tablets (incl. iPad landscape at 1024px) keep the hamburger. */
