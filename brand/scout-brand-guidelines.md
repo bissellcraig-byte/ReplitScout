@@ -63,15 +63,15 @@ heavy lifting.
 
 | Color | Role | HEX | OKLCH (approx.) |
 |-------|------|-----|------|
-| **Scout Navy** | Primary · ink & surfaces | `#2E3842` | 31% .017 240 |
+| **Scout Navy** | Primary · ink & surfaces | `#11212f` | 31% .017 240 |
 | **Ivory** | Background · canvas | `#F4F1EA` | 95% .010 92 |
 | **Sage** | Accent · actions | `#9AAC9C` | 71% .028 150 |
-| **Deep Blue** | Secondary · depth panels | `#233252` | 30% .065 264 |
-| **Navy Deep** | Footer · shadow | `#26313A` | 28% .017 240 |
+| **Deep Blue** | Secondary · depth panels | `#11212f` | 30% .065 264 |
+| **Navy Deep** | Footer · shadow | `#11212f` | 28% .017 240 |
 | **Slate** | Muted text · captions | `#7C8790` | 60% .013 232 |
 
 **Navy ramp** — `50 #f3f5f6` · `100 #e1e6e9` · `200 #c3ccd1` · `300 #9caab2` · `400 #6e8088` ·
-`500 #4a5963` · `600 #3a4751` · `700 #2e3842` · `800 #26313a` · `900 #1a2229`
+`500 #4a5963` · `600 #3a4751` · `700 #11212f` · `800 #11212f` · `900 #11212f`
 
 **Sage ramp** — `50 #f1f4f1` · `100 #e0e7e1` · `200 #c6d2c7` · `300 #a9bcab` · `400 #9aac9c` ·
 `500 #84958a` · `600 #6e8074` · `700 #586a5e` · `800 #44524a` · `900 #2f3a34`
@@ -172,8 +172,8 @@ Calm design is also accessible design. These standards are part of the brand.
 **CSS custom properties**
 ```css
 :root{
-  --navy:#2e3842;        --navy-deep:#26313a;   --ink:#1a2229;
-  --deep-blue:#233252;   --ivory:#f4f1ea;       --ivory-soft:#faf8f4;
+  --navy:#11212f;        --navy-deep:#11212f;   --ink:#11212f;
+  --deep-blue:#11212f;   --ivory:#f4f1ea;       --ivory-soft:#faf8f4;
   --sage:#9aac9c;        --sage-deep:#84958a;   --slate:#7c8790;
 
   --font-display:"Playfair Display",Georgia,serif;
@@ -188,12 +188,12 @@ Calm design is also accessible design. These standards are part of the brand.
 ```js
 colors:{
   navy:{50:'#f3f5f6',100:'#e1e6e9',200:'#c3ccd1',300:'#9caab2',
-        400:'#6e8088',500:'#4a5963',600:'#3a4751',700:'#2e3842',
-        800:'#26313a',900:'#1a2229'},
+        400:'#6e8088',500:'#4a5963',600:'#3a4751',700:'#11212f',
+        800:'#11212f',900:'#11212f'},
   sage:{50:'#f1f4f1',100:'#e0e7e1',200:'#c6d2c7',300:'#a9bcab',
         400:'#9aac9c',500:'#84958a',600:'#6e8074',700:'#586a5e',
         800:'#44524a',900:'#2f3a34'},
-  ivory:'#f4f1ea', 'deep-blue':'#233252', slate:'#7c8790',
+  ivory:'#f4f1ea', 'deep-blue':'#11212f', slate:'#7c8790',
 },
 fontFamily:{
   display:['"Playfair Display"','serif'],
