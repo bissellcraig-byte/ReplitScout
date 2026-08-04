@@ -176,7 +176,8 @@ button {
 @media (prefers-reduced-motion: reduce) {
         html.motion-ready .reveal,
         html.motion-ready .stagger > *,
-        html.motion-ready .banner-brand,
+        html.motion-ready .banner-eyebrow,
+        html.motion-ready .banner-headline,
         html.motion-ready .banner-divider-wide,
         html.motion-ready .banner-subtext,
         html.motion-ready #banner .actions.special,
