@@ -421,8 +421,8 @@ body.page-project-examples .ba-toggle__btn:first-child {
 }
 
 body.page-project-examples .ba-toggle__btn.is-active {
-        background: #9aac9c;
-        border-color: #9aac9c;
+        background: #115f72;
+        border-color: #115f72;
         color: #f4f1ea;
 }
 
@@ -582,7 +582,7 @@ body.page-services .wrapper.style5 .inner .service-heading-row {
 }
 
 body.page-services .wrapper.style5 .inner .service-heading-row h3 {
-        border-left: 3px solid rgba(135, 165, 156, 0.85);
+        border-left: 3px solid rgba(17, 95, 114, 0.85);
         flex-shrink: 0;
         line-height: 1.2;
         margin: 0;
@@ -610,8 +610,8 @@ body.page-services .wrapper.style5 .inner .service-heading-row .price-tag {
 }
 
 body.page-services .services-faq-panel {
-        background: rgba(135, 165, 156, 0.08);
-        border: 1px solid rgba(143, 184, 176, 0.4);
+        background: rgba(17, 95, 114, 0.08);
+        border: 1px solid rgba(17, 95, 114, 0.4);
         border-radius: 16px;
         margin: 2.5em 0;
         padding: 2em 2.25em 2.25em;
@@ -1405,7 +1405,7 @@ body.landing #header nav > ul > li > a.menuToggle:after {
 
 /* Brand sage — menu sidebar + primary (Activate) button */
 #menu {
-        background: #87a09c !important;
+        background: #115f72 !important;
 }
 
 input[type="submit"].primary,
@@ -1413,7 +1413,7 @@ input[type="reset"].primary,
 input[type="button"].primary,
 button.primary,
 .button.primary {
-        background-color: #87a09c !important;
+        background-color: #115f72 !important;
         box-shadow: none !important;
         color: #ffffff !important;
 }
@@ -1423,7 +1423,7 @@ input[type="reset"].primary:hover,
 input[type="button"].primary:hover,
 button.primary:hover,
 .button.primary:hover {
-        background-color: #96b0ac !important;
+        background-color: #1c859f !important;
 }
 
 input[type="submit"].primary:active,
@@ -1431,7 +1431,7 @@ input[type="reset"].primary:active,
 input[type="button"].primary:active,
 button.primary:active,
 .button.primary:active {
-        background-color: #768a86 !important;
+        background-color: #073c48 !important;
 }
 
 #footer p {
@@ -1493,8 +1493,8 @@ button.primary:active,
 }
 
 #three.wrapper.style3 {
-        background-color: #87a59c !important;
-        background-image: linear-gradient(180deg, #8c9d91 0%, #84958a 100%) !important;
+        background-color: #115f72 !important;
+        background-image: linear-gradient(180deg, #115f72 0%, #073c48 100%) !important;
 }
 
 /* Scout standards — framed alternating cards (section #two only) */
@@ -1518,7 +1518,7 @@ button.primary:active,
 #two.scout-standards-section .scout-standard-card {
         align-items: stretch !important;
         background: #11212f !important;
-        border: 2px solid rgba(143, 184, 176, 0.75);
+        border: 2px solid rgba(39, 173, 206, 0.75);
         border-radius: 28px;
         box-shadow: 0 24px 60px rgba(0, 0, 0, 0.18);
         display: grid !important;
@@ -2564,8 +2564,8 @@ body.page-work-with-us #main > .inq {
         --inq-muted: rgba(244, 241, 234, 0.5);
         --inq-line: rgba(244, 241, 234, 0.13);
         --inq-line-strong: rgba(244, 241, 234, 0.28);
-        --inq-sage: #9aac9c;
-        --inq-sage-deep: #86997f;
+        --inq-sage: #27adce;
+        --inq-sage-deep: #45d6fc;
         --inq-cta-ink: #11212f;
         --inq-cta-body: #4a545d;
         background: var(--inq-bg);
@@ -2880,10 +2880,13 @@ body.page-work-with-us .inq .btn {
         transition: all 0.26s ease;
 }
 
+/* Filled CTA on the navy inquiry doc: the bright accent carries dark ink, not
+   cream. Cream on #27adce is only ~2.3:1; ink on it is ~6.8:1, and the fill
+   itself stays 6.2:1 against the navy page so the button is easy to find. */
 body.page-work-with-us .inq .btn-sage {
         background: var(--inq-sage);
         border-color: var(--inq-sage);
-        color: #f4f1ea;
+        color: #021b23;
 }
 
 body.page-work-with-us .inq .btn-sage:hover {
@@ -3100,7 +3103,7 @@ body.page-project-examples .wrapper.style5 {
 #two.scout-standards-section .scout-standard-card,
 #two.scout-standards-section .scout-standard-card-reverse {
         background: #11212f !important;
-        border: 1px solid rgba(143, 184, 176, 0.32) !important;
+        border: 1px solid rgba(39, 173, 206, 0.32) !important;
         border-radius: 0 !important;
         box-shadow: none !important;
         display: block !important;
@@ -3124,7 +3127,7 @@ body.page-project-examples .wrapper.style5 {
 }
 
 #two.scout-standards-section .scout-standard-eyebrow {
-        color: #8fb8b0;
+        color: #27adce;
         display: block;
         font-family: "Jost", "Open Sans", Helvetica, sans-serif;
         font-size: 0.82rem;
@@ -3143,7 +3146,7 @@ body.page-project-examples .wrapper.style5 {
 }
 
 #two.scout-standards-section .scout-standard-divider {
-        background: rgba(143, 184, 176, 0.6);
+        background: rgba(39, 173, 206, 0.6);
         border: 0;
         display: block;
         height: 2px;
@@ -3167,7 +3170,7 @@ body.page-project-examples .wrapper.style5 {
 /* ============================================================
    FREE RESOURCES — hub (body.page-free-resources) + posts (body.page-resource-post)
    Additive, scoped styles built from existing brand tokens
-   (#f4f1ea off-white, #11212f navy, #87a09c sage; Playfair / Jost).
+   (#f4f1ea off-white, #11212f navy, #115f72 sage; Playfair / Jost).
    ============================================================ */
 
 /* --- Interior navy header. The logo is a <div> here (not <h1>) so the page's
@@ -3338,7 +3341,7 @@ body.page-free-resources #main > header.fr-hero {
 }
 
 .fr-hero__eyebrow {
-        color: #87a09c;
+        color: #115f72;
         display: block;
         font-family: "Jost", "Open Sans", Helvetica, sans-serif;
         font-size: 13px;
@@ -3398,13 +3401,13 @@ body.page-free-resources .fr-hero__headline {
 }
 
 .fr-hero__actions .button.primary {
-        background-color: #87a09c !important;
+        background-color: #115f72 !important;
         border: 0 !important;
         color: #ffffff !important;
 }
 
 .fr-hero__actions .button.primary:hover {
-        background-color: #96b0ac !important;
+        background-color: #1c859f !important;
         transform: translateY(-2px);
 }
 
@@ -3434,14 +3437,14 @@ body.page-resource-post #cta header p {
 
 body.page-free-resources #cta .inner .actions .button.primary,
 body.page-resource-post #cta .inner .actions .button.primary {
-        background-color: #87a09c !important;
+        background-color: #115f72 !important;
         border: 0 !important;
         color: #ffffff !important;
 }
 
 body.page-free-resources #cta .inner .actions .button.primary:hover,
 body.page-resource-post #cta .inner .actions .button.primary:hover {
-        background-color: #96b0ac !important;
+        background-color: #1c859f !important;
         box-shadow: none !important;
 }
 
@@ -3473,15 +3476,15 @@ body.page-free-resources .fr-community {
 
 .fr-community__card {
         background: #ffffff;
-        border: 1px solid rgba(135, 160, 156, 0.4);
-        border-left: 4px solid #87a09c;
-        border-bottom: 1px solid rgba(135, 160, 156, 0.4) !important;
+        border: 1px solid rgba(17, 95, 114, 0.4);
+        border-left: 4px solid #115f72;
+        border-bottom: 1px solid rgba(17, 95, 114, 0.4) !important;
         box-shadow: 0 14px 40px rgba(17, 33, 47, 0.1);
         padding: 2.75em 3.25em;
 }
 
 .fr-community__kicker {
-        color: #7d938f;
+        color: #115f72;
         display: block;
         font-family: "Jost", "Open Sans", Helvetica, sans-serif;
         font-size: 12px;
@@ -3526,7 +3529,7 @@ body.page-free-resources .fr-community {
 }
 
 .fr-community__cta.button.primary {
-        background-color: #87a09c !important;
+        background-color: #115f72 !important;
         border: 0 !important;
         border-radius: 0 !important;
         box-shadow: none !important;
@@ -3545,7 +3548,7 @@ body.page-free-resources .fr-community {
 }
 
 .fr-community__cta.button.primary:hover {
-        background-color: #96b0ac !important;
+        background-color: #1c859f !important;
         transform: translateY(-2px);
 }
 
@@ -3564,8 +3567,8 @@ body.page-free-resources .fr-featured {
 
 .fr-featured__card {
         background: #11212f;
-        border: 1px solid rgba(143, 184, 176, 0.28);
-        border-bottom: 1px solid rgba(143, 184, 176, 0.28) !important;
+        border: 1px solid rgba(39, 173, 206, 0.28);
+        border-bottom: 1px solid rgba(39, 173, 206, 0.28) !important;
         box-shadow: 0 24px 60px rgba(0, 0, 0, 0.18);
         color: #f4f1ea;
         display: block;
@@ -3580,7 +3583,7 @@ body.page-free-resources .fr-featured {
 }
 
 .fr-featured__kicker {
-        color: #9fb8b3;
+        color: #27adce;
         display: block;
         font-family: "Jost", "Open Sans", Helvetica, sans-serif;
         font-size: 12px;
@@ -3695,7 +3698,7 @@ body.page-free-resources .fr-grid-section {
 }
 
 .fr-card__kicker {
-        color: #7d938f;
+        color: #115f72;
         font-family: "Jost", "Open Sans", Helvetica, sans-serif;
         font-size: 11px;
         font-weight: 600;
@@ -3764,7 +3767,7 @@ body.page-resource-post #main > header.fr-post__head {
 }
 
 .fr-post__kicker {
-        color: #87a09c;
+        color: #115f72;
         display: block;
         font-family: "Jost", "Open Sans", Helvetica, sans-serif;
         font-size: 12px;
@@ -3858,8 +3861,8 @@ body.page-resource-post .fr-post__body {
 }
 
 .fr-post__body-inner a {
-        border-bottom: 1px solid rgba(92, 122, 116, 0.4);
-        color: #5c7a74;
+        border-bottom: 1px solid rgba(17, 95, 114, 0.4);
+        color: #115f72;
         text-decoration: none;
 }
 
@@ -3869,7 +3872,7 @@ body.page-resource-post .fr-post__body {
 }
 
 .fr-post__body-inner blockquote {
-        border-left: 3px solid #87a09c;
+        border-left: 3px solid #115f72;
         color: rgba(17, 33, 47, 0.75);
         font-style: italic;
         margin: 1.5em 0;
@@ -4067,7 +4070,7 @@ body.page-privacy #header nav > ul > li.nav-link > a,
 body.page-pricing #header nav > ul > li.nav-link > a,
 body.page-free-resources #header nav > ul > li.nav-link > a,
 body.page-resource-post #header nav > ul > li.nav-link > a {
-        background-image: linear-gradient(#96b0ac, #96b0ac);
+        background-image: linear-gradient(#27adce, #27adce);
         background-position: left bottom;
         background-repeat: no-repeat;
         background-size: 0 2px;
@@ -4154,7 +4157,7 @@ body.page-resource-post #header nav > ul > li.nav-link > a[aria-current="page"] 
 /* =========================================================================
    Pricing page (body.page-pricing) — dedicated pricing layout.
    Tokens mirror the services / free-resources system: navy #11212f,
-   cream #f5f2ec / #f4f1ea, sage #87a09c, ink #11212f, body #4a555e.
+   cream #f5f2ec / #f4f1ea, teal #115f72, ink #11212f, body #4a555e.
    ========================================================================= */
 body.page-pricing #main {
         background: #f5f2ec;
@@ -4179,7 +4182,7 @@ body.page-pricing .pr-hero__inner {
 }
 
 body.page-pricing .pr-hero__kicker {
-        color: #7d938f;
+        color: #115f72;
         display: block;
         font-family: "Jost", sans-serif;
         font-size: 12px;
@@ -4241,7 +4244,7 @@ body.page-pricing .pr-kicker {
 }
 
 body.page-pricing .pr-kicker--sage {
-        color: #7d938f;
+        color: #115f72;
 }
 
 body.page-pricing .pr-kicker--light {
@@ -4287,14 +4290,14 @@ body.page-pricing .pr-button {
 }
 
 body.page-pricing .pr-button--primary {
-        background: #87a09c;
-        border-color: #87a09c;
+        background: #115f72;
+        border-color: #115f72;
         color: #ffffff;
 }
 
 body.page-pricing .pr-button--primary:hover {
-        background: #96b0ac;
-        border-color: #96b0ac;
+        background: #1c859f;
+        border-color: #1c859f;
         transform: translateY(-2px);
 }
 
@@ -4321,7 +4324,7 @@ body.page-pricing .pr-button--ghost:hover {
 }
 
 body.page-pricing .pr-button:focus-visible {
-        outline: 2px solid #87a09c;
+        outline: 2px solid #115f72;
         outline-offset: 3px;
 }
 
@@ -4332,8 +4335,8 @@ body.page-pricing .pr-frontdoor {
 
 body.page-pricing .pr-frontdoor__card {
         background: #ffffff;
-        border: 1px solid rgba(135, 160, 156, 0.4);
-        border-left: 4px solid #87a09c;
+        border: 1px solid rgba(17, 95, 114, 0.4);
+        border-left: 4px solid #115f72;
         box-shadow: 0 14px 40px rgba(17, 33, 47, 0.1);
         padding: 2.75em 3.25em;
 }
@@ -4348,7 +4351,7 @@ body.page-pricing .pr-frontdoor__title {
 }
 
 body.page-pricing .pr-frontdoor__price {
-        color: #5c6b66;
+        color: #115f72;
         font-family: "Jost", sans-serif;
         font-size: 18px;
         font-weight: 500;
@@ -4410,7 +4413,7 @@ body.page-pricing .pr-toggle__btn.is-active {
 }
 
 body.page-pricing .pr-toggle__btn:focus-visible {
-        outline: 2px solid #87a09c;
+        outline: 2px solid #115f72;
         outline-offset: 2px;
 }
 
@@ -4447,7 +4450,7 @@ body.page-pricing .pr-cards--two {
 
 body.page-pricing .pr-card {
         background: #ffffff;
-        border: 1px solid rgba(135, 160, 156, 0.4);
+        border: 1px solid rgba(17, 95, 114, 0.4);
         box-shadow: 0 10px 30px rgba(17, 33, 47, 0.07);
         display: flex;
         flex-direction: column;
@@ -4506,7 +4509,7 @@ body.page-pricing .pr-card--featured .pr-card__desc {
 
 body.page-pricing .pr-card__badge {
         align-self: flex-start;
-        background: #87a09c;
+        background: #115f72;
         color: #ffffff;
         font-family: "Jost", sans-serif;
         font-size: 11px;
@@ -4563,7 +4566,7 @@ body.page-pricing .pr-org__title {
 }
 
 body.page-pricing .pr-org__price {
-        color: #aec2bd;
+        color: #27adce;
         font-family: "Jost", sans-serif;
         font-size: 20px;
         font-weight: 500;
@@ -4583,7 +4586,7 @@ body.page-pricing .pr-org__body {
 /* --- A la carte (collapsible) --- */
 body.page-pricing .pr-alacarte {
         background: #ffffff;
-        border: 1px solid rgba(135, 160, 156, 0.4);
+        border: 1px solid rgba(17, 95, 114, 0.4);
 }
 
 body.page-pricing .pr-alacarte__summary {
@@ -4609,8 +4612,8 @@ body.page-pricing .pr-alacarte__summary-title {
 }
 
 body.page-pricing .pr-alacarte__icon {
-        border-bottom: 2px solid #87a09c;
-        border-right: 2px solid #87a09c;
+        border-bottom: 2px solid #115f72;
+        border-right: 2px solid #115f72;
         display: inline-block;
         flex: none;
         height: 10px;
@@ -4653,7 +4656,7 @@ body.page-pricing .pr-alacarte__label {
 }
 
 body.page-pricing .pr-alacarte__value {
-        color: #5c6b66;
+        color: #115f72;
         font-family: "Jost", sans-serif;
         font-size: 16px;
         font-weight: 500;
