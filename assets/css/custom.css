@@ -280,7 +280,7 @@ body.page-project-examples #main > header.svc-hero .svc-hero__cta:hover .svc-her
 
 /* Project examples — ivory card hero with navy text (no photo) */
 body.page-project-examples #main > header.svc-hero {
-        background-color: #f4f1ea !important;
+        background-color: #ffffff !important;
 }
 
 body.page-project-examples #main > header.svc-hero::before {
@@ -322,7 +322,7 @@ body.page-project-examples #main > header.svc-hero .svc-hero__cta {
 
 body.page-project-examples #main > header.svc-hero .svc-hero__cta:hover {
         background: #11212f;
-        color: #f4f1ea;
+        color: #ffffff;
 }
 
 /* Project examples — navy featured-project showcase */
@@ -423,7 +423,7 @@ body.page-project-examples .ba-toggle__btn:first-child {
 body.page-project-examples .ba-toggle__btn.is-active {
         background: #115f72;
         border-color: #115f72;
-        color: #f4f1ea;
+        color: #ffffff;
 }
 
 body.page-project-examples .ba-toggle__btn:not(.is-active):hover {
@@ -437,7 +437,7 @@ body.page-project-examples .pe-feature__text {
 }
 
 body.page-project-examples .pe-feature__kicker {
-        color: rgba(244, 241, 234, 0.7);
+        color: rgba(255, 255, 255, 0.7);
         display: block;
         font-family: "Jost", "Open Sans", Helvetica, sans-serif;
         font-size: 12px;
@@ -447,7 +447,7 @@ body.page-project-examples .pe-feature__kicker {
 }
 
 body.page-project-examples .pe-feature__title {
-        color: #f4f1ea !important;
+        color: #ffffff !important;
         font-family: "Playfair Display", Georgia, "Times New Roman", serif !important;
         font-size: 2.6rem !important;
         font-weight: 500 !important;
@@ -457,7 +457,7 @@ body.page-project-examples .pe-feature__title {
 }
 
 body.page-project-examples .pe-feature__desc {
-        color: rgba(244, 241, 234, 0.82);
+        color: rgba(255, 255, 255, 0.82);
         font-family: "Jost", "Open Sans", Helvetica, sans-serif;
         font-size: 1.15rem;
         font-weight: 300;
@@ -467,7 +467,7 @@ body.page-project-examples .pe-feature__desc {
 
 /* Alternate variant — off-white background, navy frame + text */
 body.page-project-examples #main > .pe-feature--alt {
-        background: #f4f1ea;
+        background: #ffffff;
 }
 
 body.page-project-examples .pe-feature--alt .pe-feature__frame {
@@ -880,7 +880,7 @@ body.landing #cta.wrapper.style4 {
 
 #banner .actions.special .button.primary {
         align-items: center;
-        background-color: #f4f1ea !important;
+        background-color: #ffffff !important;
         border: 0 !important;
         border-radius: 0 !important;
         box-shadow: none !important;
@@ -1484,7 +1484,7 @@ button.primary:active,
 
 /* "Built by a therapist" card — off-white background, navy text */
 #one.wrapper.style1 {
-        background-color: #f4f1ea !important;
+        background-color: #ffffff !important;
         background-image: none !important;
         color: #11212f !important;
         padding: 3.5em 0 2.75em !important;
@@ -1720,7 +1720,7 @@ button.primary:active,
 
 /* Primary — ivory fill, ink text (matches hero button) */
 #cta .inner .actions .button.primary {
-        background-color: #f4f1ea !important;
+        background-color: #ffffff !important;
         border: 0 !important;
         color: #11212f !important;
 }
@@ -1787,7 +1787,7 @@ button.primary:active,
 }
 
 #three .scout-card {
-        background: #f4f1ea;
+        background: #ffffff;
         border: 1px solid rgba(17, 33, 47, 0.08);
         border-radius: 0;
         box-shadow: 0 10px 26px rgba(17, 33, 47, 0.12);
@@ -1821,7 +1821,7 @@ button.primary:active,
 }
 
 #three .scout-icon-chip i {
-        color: #f4f1ea !important;
+        color: #ffffff !important;
         font-family: "Font Awesome 5 Free" !important;
         font-size: 22px !important;
         font-weight: 900 !important;
@@ -1830,7 +1830,7 @@ button.primary:active,
 
 #three .scout-icon-chip svg {
         display: block;
-        fill: #f4f1ea;
+        fill: #ffffff;
         height: 22px;
         width: 22px;
 }
@@ -1919,7 +1919,7 @@ button.primary:active,
    ========================================================= */
 
 body.page-services .svc-body {
-        background: #f5f2ec;
+        background: #ffffff;
         padding: 0 !important;
 }
 
@@ -2269,8 +2269,8 @@ body.page-services .svc-cta__button:hover {
 }
 
 body.page-services .svc-cta__button--primary {
-        background: #f4f1ea;
-        border-color: #f4f1ea;
+        background: #ffffff;
+        border-color: #ffffff;
         color: #11212f;
 }
 
@@ -2386,7 +2386,7 @@ body.page-services .svc-cta a {
 
 /* Work With Us — paper keyline hero */
 body.page-work-with-us #main > .ww {
-        --ww-paper: #f3efe6;
+        --ww-paper: #ffffff;
         --ww-ink: #11212f;
         --ww-muted: #8a9097;
         --ww-line: rgba(17, 33, 47, 0.26);
@@ -2576,12 +2576,12 @@ body.page-work-with-us .ww-photo.g3 {
 /* ===== Work With Us — navy editorial inquiry document ===== */
 body.page-work-with-us #main > .inq {
         --inq-bg: #11212f;
-        --inq-paper: #f4f1ea;
-        --inq-ink: #f4f1ea;
-        --inq-body: rgba(244, 241, 234, 0.72);
-        --inq-muted: rgba(244, 241, 234, 0.5);
-        --inq-line: rgba(244, 241, 234, 0.13);
-        --inq-line-strong: rgba(244, 241, 234, 0.28);
+        --inq-paper: #ffffff;
+        --inq-ink: #ffffff;
+        --inq-body: rgba(255, 255, 255, 0.72);
+        --inq-muted: rgba(255, 255, 255, 0.5);
+        --inq-line: rgba(255, 255, 255, 0.13);
+        --inq-line-strong: rgba(255, 255, 255, 0.28);
         --inq-sage: #27adce;
         --inq-sage-deep: #45d6fc;
         --inq-cta-ink: #11212f;
@@ -2758,7 +2758,7 @@ body.page-work-with-us .inq .defdesc {
 
 /* What not to send — keyline note */
 body.page-work-with-us .inq .note {
-        background: rgba(244, 241, 234, 0.04);
+        background: rgba(255, 255, 255, 0.04);
         border: 1px solid var(--inq-line-strong);
         margin-top: 26px;
         padding: 38px 40px;
@@ -2785,7 +2785,7 @@ body.page-work-with-us .inq .note .tag {
 
 /* Form */
 body.page-work-with-us .inq .formwrap {
-        background: rgba(244, 241, 234, 0.035);
+        background: rgba(255, 255, 255, 0.035);
         border: 1px solid var(--inq-line-strong);
         margin-top: 26px;
         padding: 48px 52px;
@@ -2845,7 +2845,7 @@ body.page-work-with-us .inq .field textarea {
 
 body.page-work-with-us .inq .field input::placeholder,
 body.page-work-with-us .inq .field textarea::placeholder {
-        color: rgba(244, 241, 234, 0.38);
+        color: rgba(255, 255, 255, 0.38);
         opacity: 1;
 }
 
@@ -3044,7 +3044,7 @@ body.page-work-with-us .inq .cta .btn-out:hover {
 
 /* Project examples — off-white CTA section */
 body.page-project-examples .wrapper.style5 {
-        background: #f4f1ea;
+        background: #ffffff;
 }
 
 /* =========================================================================
@@ -3192,7 +3192,7 @@ body.landing #cta.wrapper.style4{background-image:linear-gradient(100deg,rgba(2,
 /* ============================================================
    FREE RESOURCES — hub (body.page-free-resources) + posts (body.page-resource-post)
    Additive, scoped styles built from existing brand tokens
-   (#f4f1ea off-white, #11212f navy, #115f72 sage; Playfair / Jost).
+   (#ffffff off-white, #11212f navy, #115f72 sage; Playfair / Jost).
    ============================================================ */
 
 /* --- Interior navy header. The logo is a <div> here (not <h1>) so the page's
@@ -3321,7 +3321,7 @@ body.page-resource-post #header nav > ul > li > a.menuToggle .menu-hamburger i {
 /* --- Page canvas (avoid the default navy body showing through) --- */
 body.page-free-resources #main,
 body.page-resource-post #main {
-        background: #f4f1ea;
+        background: #ffffff;
 }
 
 /* --- Shared breadcrumb --- */
@@ -3350,7 +3350,7 @@ body.page-resource-post #main {
 
 /* --- Hub hero (editorial, light) --- */
 body.page-free-resources #main > header.fr-hero {
-        background: #f4f1ea;
+        background: #ffffff;
         padding: 0 !important;
         text-align: left;
 }
@@ -3485,7 +3485,7 @@ body.page-resource-post #cta .inner .actions .button:not(.primary):hover {
 
 /* --- Paid to Help community card --- */
 body.page-free-resources .fr-community {
-        background: #f4f1ea;
+        background: #ffffff;
         padding: 0 !important;
 }
 
@@ -3576,7 +3576,7 @@ body.page-free-resources .fr-community {
 
 /* --- Featured card --- */
 body.page-free-resources .fr-featured {
-        background: #f4f1ea;
+        background: #ffffff;
         padding: 0 !important;
 }
 
@@ -3592,7 +3592,7 @@ body.page-free-resources .fr-featured {
         border: 1px solid rgba(39, 173, 206, 0.28);
         border-bottom: 1px solid rgba(39, 173, 206, 0.28) !important;
         box-shadow: 0 24px 60px rgba(0, 0, 0, 0.18);
-        color: #f4f1ea;
+        color: #ffffff;
         display: block;
         padding: 3em 3.25em;
         text-decoration: none !important;
@@ -3626,7 +3626,7 @@ body.page-free-resources .fr-featured {
 }
 
 .fr-featured__excerpt {
-        color: rgba(244, 241, 234, 0.82) !important;
+        color: rgba(255, 255, 255, 0.82) !important;
         font-family: "Jost", "Open Sans", Helvetica, sans-serif !important;
         font-size: 1.1rem !important;
         font-weight: 300 !important;
@@ -3636,7 +3636,7 @@ body.page-free-resources .fr-featured {
 }
 
 .fr-featured__meta {
-        color: rgba(244, 241, 234, 0.6);
+        color: rgba(255, 255, 255, 0.6);
         display: block;
         font-family: "Jost", "Open Sans", Helvetica, sans-serif;
         font-size: 13px;
@@ -3664,7 +3664,7 @@ body.page-free-resources .fr-featured {
 
 /* --- Resource grid --- */
 body.page-free-resources .fr-grid-section {
-        background: #f4f1ea;
+        background: #ffffff;
         padding: 0 !important;
 }
 
@@ -3776,7 +3776,7 @@ body.page-free-resources .fr-grid-section {
 
 /* --- Post page --- */
 body.page-resource-post #main > header.fr-post__head {
-        background: #f4f1ea;
+        background: #ffffff;
         padding: 0 !important;
         text-align: left;
 }
@@ -4179,10 +4179,10 @@ body.page-resource-post #header nav > ul > li.nav-link > a[aria-current="page"] 
 /* =========================================================================
    Pricing page (body.page-pricing) — dedicated pricing layout.
    Tokens mirror the services / free-resources system: navy #11212f,
-   cream #f5f2ec / #f4f1ea, teal #115f72, ink #11212f, body #4a555e.
+   cream #ffffff / #ffffff, teal #115f72, ink #11212f, body #4a555e.
    ========================================================================= */
 body.page-pricing #main {
-        background: #f5f2ec;
+        background: #ffffff;
 }
 
 body.page-pricing #main,
@@ -4192,7 +4192,7 @@ body.page-pricing #main * {
 
 /* --- Hero / intro --- */
 body.page-pricing .pr-hero {
-        background: #f5f2ec;
+        background: #ffffff;
         padding: 0 !important;
 }
 
@@ -4238,7 +4238,7 @@ body.page-pricing .pr-hero__lead {
 
 /* --- Shared layout --- */
 body.page-pricing .pr-body {
-        background: #f5f2ec;
+        background: #ffffff;
 }
 
 body.page-pricing .pr-content {
@@ -4270,7 +4270,7 @@ body.page-pricing .pr-kicker--sage {
 }
 
 body.page-pricing .pr-kicker--light {
-        color: rgba(244, 241, 234, 0.6);
+        color: rgba(255, 255, 255, 0.6);
 }
 
 body.page-pricing .pr-section__title {
@@ -4324,8 +4324,8 @@ body.page-pricing .pr-button--primary:hover {
 }
 
 body.page-pricing .pr-button--light {
-        background: #f4f1ea;
-        border-color: #f4f1ea;
+        background: #ffffff;
+        border-color: #ffffff;
         color: #11212f;
 }
 
@@ -4526,7 +4526,7 @@ body.page-pricing .pr-card--featured .pr-card__price {
 }
 
 body.page-pricing .pr-card--featured .pr-card__desc {
-        color: rgba(244, 241, 234, 0.82);
+        color: rgba(255, 255, 255, 0.82);
 }
 
 body.page-pricing .pr-card__badge {
@@ -4596,7 +4596,7 @@ body.page-pricing .pr-org__price {
 }
 
 body.page-pricing .pr-org__body {
-        color: rgba(244, 241, 234, 0.82);
+        color: rgba(255, 255, 255, 0.82);
         font-family: "Jost", sans-serif;
         font-size: 18px;
         font-weight: 300;
