@@ -4826,3 +4826,94 @@ body.page-pricing .pr-cta a {
                 text-align: center;
         }
 }
+
+/* =========================================================================
+   Mobile hero centering — home page only (<= 736px, Spectral's small break).
+   Everything from the logo down to the scroll arrow shares one vertical
+   center axis. The header's menu control becomes a compact icon-only 44x44
+   target pinned to the right edge and OUT of flow, so the centered logo owns
+   the full row (at 320px the text label would collide with the logo). The
+   "Menu" span stays in the DOM (visually hidden) as the accessible name.
+   Scroll cue centering uses left/right + auto margins because its base rule
+   carries transform: none !important (translateX centering would be void).
+   Tablet (>= 737px) and desktop are untouched; everything is scoped to
+   body.landing / #banner so interior pages never see these rules.
+   ========================================================================= */
+@media screen and (max-width: 736px) {
+        body.landing #header {
+                justify-content: center;
+        }
+
+        body.landing #header nav {
+                align-items: center;
+                bottom: 0;
+                display: flex;
+                margin: 0;
+                position: absolute;
+                right: clamp(10px, 2.5vw, 20px);
+                top: clamp(18px, 2.6vw, 30px);
+        }
+
+        body.landing #header nav > ul > li > a.menuToggle {
+                gap: 0;
+                justify-content: center;
+                min-height: 44px;
+                min-width: 44px;
+                padding: 0;
+        }
+
+        body.landing #header nav > ul > li > a.menuToggle span {
+                clip: rect(0 0 0 0);
+                clip-path: inset(50%);
+                height: 1px;
+                margin: -1px;
+                overflow: hidden;
+                position: absolute;
+                white-space: nowrap;
+                width: 1px;
+        }
+
+        #banner > .banner-hero-inner {
+                text-align: center;
+        }
+
+        #banner .banner-copy {
+                margin-left: auto;
+                margin-right: auto;
+        }
+
+        #banner .banner-headline {
+                margin-left: auto;
+                margin-right: auto;
+                text-align: center;
+        }
+
+        #banner .banner-divider-wide {
+                margin-left: auto;
+                margin-right: auto;
+        }
+
+        #banner .banner-subtext {
+                margin-left: auto;
+                margin-right: auto;
+        }
+
+        #banner .actions.special {
+                justify-content: center;
+        }
+
+        #banner .banner-scroll {
+                align-items: center;
+                left: 0;
+                margin: 0 auto;
+                right: 0;
+        }
+
+        #banner .banner-scroll-text {
+                text-align: center;
+        }
+
+        #banner .banner-scroll-icon {
+                background-position: center center;
+        }
+}
