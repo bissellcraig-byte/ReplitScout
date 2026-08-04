@@ -1232,10 +1232,55 @@ body.landing #header h1.header-brand a {
         line-height: 0;
 }
 
+/* The media box reserves the exact logo footprint up front: the in-flow PNG
+   (min(264px,56vw) wide, 770x293 intrinsic box) defines the layout, so the
+   video / animated-webp layers can never shift it. The video overlays the
+   PNG with object-fit: contain + left center, keeping the full 770x294 VHS
+   render visible (sub-pixel letterbox rather than cropping the bottom). The
+   PNG stays visible until JS confirms the WebM plays WITH alpha; then
+   .video-live hides the picture (visibility keeps the box) and reveals the
+   video. Reduced-motion users never get past the PNG (JS + CSS guard). */
+body.landing #header .header-brand-media {
+        display: block;
+        position: relative;
+        width: min(264px, 56vw);
+}
+
+body.landing #header .header-brand-media picture {
+        display: block;
+}
+
 body.landing #header .header-brand-logo {
         display: block;
         height: auto;
-        width: min(264px, 56vw);
+        width: 100%;
+}
+
+body.landing #header .header-brand-video {
+        display: block;
+        height: 100%;
+        left: 0;
+        object-fit: contain;
+        object-position: left center;
+        opacity: 0;
+        pointer-events: none;
+        position: absolute;
+        top: 0;
+        width: 100%;
+}
+
+body.landing #header .header-brand-media.video-live .header-brand-video {
+        opacity: 1;
+}
+
+body.landing #header .header-brand-media.video-live picture {
+        visibility: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+        body.landing #header .header-brand-video {
+                display: none !important;
+        }
 }
 
 /* Landing menu — brand left, controls right, laid over the hero */
