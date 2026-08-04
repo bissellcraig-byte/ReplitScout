@@ -142,6 +142,16 @@ body.page-project-examples #main > header.svc-hero::before {
         z-index: 0;
 }
 
+/* Services hero — dark studio portrait replaces the ocean photo (services
+   page only; project-examples keeps banner.jpg). The shared ::before keeps
+   its position/size/filter, only the image layer is swapped. */
+body.page-services #main > header.svc-hero::before {
+        background-image: url("../../images/svc-hero.jpg");
+        background-position: center 42%;
+}
+
+body.page-services #main > header.svc-hero::before{background-image:-webkit-image-set(url("../../images/svc-hero.webp") type("image/webp"),url("../../images/svc-hero.jpg") type("image/jpeg"));background-image:image-set(url("../../images/svc-hero.webp") type("image/webp"),url("../../images/svc-hero.jpg") type("image/jpeg"))}
+
 body.page-services #main > header.svc-hero .svc-hero__scrim,
 body.page-project-examples #main > header.svc-hero .svc-hero__scrim {
         background:
