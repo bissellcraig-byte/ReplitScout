@@ -711,6 +711,8 @@ body.is-mobile.landing .wrapper.style4 {
         justify-content: center;
         min-height: 100svh;
         overflow: hidden;
+        /* Top clears the overlaid header; bottom reserves the scroll prompt */
+        padding: 7.5em 0 6.5em;
         position: relative;
 }
 
@@ -742,28 +744,36 @@ body.is-mobile.landing .wrapper.style4 {
         z-index: 1;
 }
 
-/* Contrast scrim — guarantees text legibility over any photo */
+/* Contrast scrim — guarantees text legibility over any photo.
+   Left-weighted: the hero copy sits on the left half of the photo. */
 #banner .hero-scrim {
         background:
-                radial-gradient(78% 62% at 50% 46%, rgba(40, 52, 60, 0.30) 0%, rgba(40, 52, 60, 0.10) 45%, rgba(40, 52, 60, 0) 72%),
-                linear-gradient(180deg, rgba(40, 52, 60, 0.18) 0%, rgba(40, 52, 60, 0) 22%);
+                linear-gradient(90deg, rgba(22, 30, 38, 0.56) 0%, rgba(22, 30, 38, 0.30) 36%, rgba(22, 30, 38, 0) 64%),
+                linear-gradient(180deg, rgba(30, 40, 48, 0.30) 0%, rgba(30, 40, 48, 0) 24%),
+                radial-gradient(78% 62% at 50% 46%, rgba(40, 52, 60, 0.16) 0%, rgba(40, 52, 60, 0.06) 45%, rgba(40, 52, 60, 0) 72%);
         inset: 0;
         pointer-events: none;
         position: absolute;
         z-index: 2;
 }
 
-/* Hero content column */
+/* Hero content — left-aligned column over the photo (padding mirrors the
+   header's so the copy, logo, and scroll prompt share one left edge) */
 #banner > .banner-hero-inner {
         box-sizing: border-box;
         display: block;
-        margin-left: auto;
-        margin-right: auto;
-        max-width: 640px;
-        padding: 0 1.5rem 3rem;
-        position: relative;
-        text-align: center;
+        margin: 0;
+        max-width: none;
+        padding: 0 clamp(20px, 4.5vw, 56px);
+        position: static;
+        text-align: left;
         width: 100%;
+        z-index: 4;
+}
+
+#banner .banner-copy {
+        max-width: 34em;
+        position: relative;
         z-index: 4;
 }
 
@@ -782,28 +792,17 @@ body.is-mobile.landing .wrapper.style4 {
         text-transform: none !important;
 }
 
-/* Logo lockup */
-#banner .banner-brand {
-        display: block;
-        margin: 0 auto;
-        width: fit-content;
-        max-width: min(19.25em, 88vw);
-}
-
-#banner .banner-logo {
-        display: block;
-        height: auto;
-        margin: 0;
-        width: 100%;
-}
-
-#banner .banner-divider-wide {
-        background: rgba(255, 255, 255, 0.5);
-        border: 0;
-        display: block;
-        height: 1px;
-        margin: 40px auto 0;
-        width: 320px;
+/* Eyebrow — small caps line above the headline */
+#banner .banner-copy .banner-eyebrow {
+        color: rgba(255, 255, 255, 0.78);
+        font-family: "Jost", "Open Sans", Helvetica, sans-serif !important;
+        font-size: 12.5px;
+        font-weight: 500 !important;
+        letter-spacing: 0.24em !important;
+        line-height: 1.5;
+        margin: 0 0 20px;
+        text-shadow: 0 1px 18px rgba(30, 40, 48, 0.4);
+        text-transform: uppercase !important;
 }
 
 #banner .banner-headline {
@@ -812,33 +811,26 @@ body.is-mobile.landing .wrapper.style4 {
         color: #ffffff;
         display: block !important;
         font-family: "Playfair Display", Georgia, "Times New Roman", serif !important;
-        font-size: clamp(30px, 4.6vw, 46px);
+        font-size: clamp(30px, 3.4vw, 50px);
         font-weight: 500 !important;
         letter-spacing: 0.005em !important;
-        line-height: 1.16;
-        /* Full-bleed so the headline centers on the viewport, not the 640px column */
-        margin: 42px calc(50% - 50vw) 0;
-        max-width: none;
-        padding: 0 1rem !important;
-        text-align: center;
+        line-height: 1.18;
+        margin: 0;
+        max-width: 10.8em;
+        padding: 0 !important;
+        text-align: left;
         text-shadow: 0 2px 34px rgba(30, 40, 48, 0.3);
-        width: 100vw;
+        text-wrap: pretty;
+        width: auto;
 }
 
-#banner .banner-headline-lines {
+#banner .banner-divider-wide {
+        background: rgba(255, 255, 255, 0.45);
+        border: 0;
         display: block;
-        margin: 0;
-        max-width: none;
-        width: 100%;
-}
-
-#banner .banner-headline-line {
-        display: block;
-        letter-spacing: 0 !important;
-        margin: 0;
-        text-align: center;
-        white-space: nowrap;
-        width: 100%;
+        height: 1px;
+        margin: 32px 0 0;
+        width: min(255px, 62%);
 }
 
 #banner .banner-subtext {
@@ -848,8 +840,8 @@ body.is-mobile.landing .wrapper.style4 {
         font-weight: 300 !important;
         letter-spacing: 0 !important;
         line-height: 1.62;
-        margin: 26px auto 0;
-        max-width: 50ch;
+        margin: 28px 0 0;
+        max-width: 31ch;
         text-shadow: 0 1px 22px rgba(30, 40, 48, 0.34);
         text-transform: none !important;
         text-wrap: pretty;
@@ -857,8 +849,8 @@ body.is-mobile.landing .wrapper.style4 {
 
 #banner .actions.special {
         display: flex;
-        justify-content: center;
-        margin: 44px 0 0;
+        justify-content: flex-start;
+        margin: 34px 0 0;
         padding: 0;
         width: 100%;
 }
@@ -896,23 +888,24 @@ body.is-mobile.landing .wrapper.style4 {
         transform: translateY(-2px);
 }
 
-/* Scroll prompt — pinned to the bottom of the hero */
+/* Scroll prompt — pinned to the bottom-left of the hero, sharing the
+   copy column's left edge */
 #banner .banner-scroll {
-        align-items: center;
+        align-items: flex-start;
         border: none;
         bottom: 34px;
         display: flex;
         flex-direction: column;
         height: auto;
-        justify-content: center;
-        left: 0;
-        margin: 0 auto;
+        justify-content: flex-end;
+        left: clamp(20px, 4.5vw, 56px);
+        margin: 0;
         min-height: 0;
         outline: 0;
         padding: 0;
         padding-left: 0 !important;
         position: absolute;
-        right: 0;
+        right: auto;
         text-decoration: none;
         transform: none !important;
         width: max-content;
@@ -932,21 +925,21 @@ body.is-mobile.landing .wrapper.style4 {
         font-weight: 400;
         letter-spacing: 0.06em;
         line-height: 1;
-        text-align: center;
+        text-align: left;
         text-transform: none !important;
         width: 100%;
 }
 
 #banner .banner-scroll-icon {
         background-image: url("images/arrow.svg");
-        background-position: center;
+        background-position: left center;
         background-repeat: no-repeat;
         background-size: contain;
         display: block;
         flex-shrink: 0;
         filter: none;
         height: 1.35em;
-        margin-top: 24px;
+        margin-top: 18px;
         width: 1.35em;
 }
 
@@ -993,18 +986,18 @@ body.is-preload #banner .banner-headline {
         /* Hold the hero hidden until web fonts are ready, so the Playfair headline
            doesn't reflow mid-rise (which reads as a twitch). JS removes .hero-armed
            and adds the banner's .is-enter once document.fonts.ready resolves. */
-        html.hero-armed #banner .banner-brand,
-        html.hero-armed #banner .banner-divider-wide,
+        html.hero-armed #banner .banner-eyebrow,
         html.hero-armed #banner .banner-headline,
+        html.hero-armed #banner .banner-divider-wide,
         html.hero-armed #banner .banner-subtext,
         html.hero-armed #banner .actions.special,
         html.hero-armed #banner .banner-scroll {
                 opacity: 0;
         }
 
-        #banner.is-enter .banner-brand,
-        #banner.is-enter .banner-divider-wide,
+        #banner.is-enter .banner-eyebrow,
         #banner.is-enter .banner-headline,
+        #banner.is-enter .banner-divider-wide,
         #banner.is-enter .banner-subtext,
         #banner.is-enter .actions.special,
         #banner.is-enter .banner-scroll {
@@ -1014,12 +1007,12 @@ body.is-preload #banner .banner-headline {
                 backface-visibility: hidden;
         }
 
-        #banner.is-enter .banner-brand { animation-delay: 0.2s; }
-        #banner.is-enter .banner-divider-wide { animation-delay: 0.55s; }
-        #banner.is-enter .banner-headline { animation-delay: 0.75s; }
-        #banner.is-enter .banner-subtext { animation-delay: 1s; }
-        #banner.is-enter .actions.special { animation-delay: 1.25s; }
-        #banner.is-enter .banner-scroll { animation-delay: 1.6s; }
+        #banner.is-enter .banner-eyebrow { animation-delay: 0.2s; }
+        #banner.is-enter .banner-headline { animation-delay: 0.4s; }
+        #banner.is-enter .banner-divider-wide { animation-delay: 0.62s; }
+        #banner.is-enter .banner-subtext { animation-delay: 0.78s; }
+        #banner.is-enter .actions.special { animation-delay: 0.98s; }
+        #banner.is-enter .banner-scroll { animation-delay: 1.35s; }
 }
 
 @keyframes heroRise {
@@ -1214,37 +1207,64 @@ body.page-pricing #header .header-scout-logo {
         }
 }
 
-/* Hide redundant top-left site title (logo shown in hero) */
-body.landing #header h1 {
+/* Landing header brand — white logo top-left (moved out of the hero).
+   opacity + pointer-events beat the template's `#header.alt h1` hide;
+   display beats the later `body.landing #header h1 { display: none }`-era
+   rule (now removed) and any residual template state. */
+body.landing #header h1.header-brand {
         border: 0;
-        clip: rect(0, 0, 0, 0);
-        height: 1px;
-        margin: -1px;
-        overflow: hidden;
+        display: block;
+        flex: 0 0 auto;
+        font-size: 1em;
+        height: auto;
+        line-height: 0;
+        margin: 0;
+        opacity: 1 !important;
         padding: 0;
-        position: absolute;
-        white-space: nowrap;
-        width: 1px;
+        pointer-events: auto !important;
+        position: static;
+        width: auto;
 }
 
-/* Landing menu — top right */
+body.landing #header h1.header-brand a {
+        border: 0;
+        display: block;
+        line-height: 0;
+}
+
+body.landing #header .header-brand-logo {
+        display: block;
+        height: auto;
+        width: min(264px, 56vw);
+}
+
+/* Landing menu — brand left, controls right, laid over the hero */
 body.landing #header {
+        align-items: center;
         background: transparent;
         box-sizing: border-box;
+        display: flex;
         height: auto;
+        justify-content: flex-start;
         left: 0;
         line-height: normal;
-        padding-right: 48px;
-        top: 40px;
+        padding: clamp(18px, 2.6vw, 30px) clamp(20px, 4.5vw, 56px) 0;
+        top: 0;
         width: 100%;
 }
 
 body.landing #header nav {
         height: auto;
         line-height: normal;
-        position: absolute;
-        right: 48px;
-        top: 0;
+        margin-left: auto;
+        position: static;
+}
+
+body.landing #header nav > ul {
+        align-items: center;
+        display: flex;
+        margin: 0;
+        padding: 0;
 }
 
 body.landing #header nav > ul > li > a {
@@ -1283,68 +1303,51 @@ body.landing #header nav > ul > li > a.menuToggle:after {
 }
 
 @media screen and (max-width: 640px) {
-        #banner .banner-brand {
-                max-width: min(15.4em, 79.2vw);
-        }
-
-        #banner .banner-divider-wide {
-                margin-top: 28px;
-                width: 80%;
-        }
-
-        #banner .banner-headline {
-                font-size: clamp(22px, 6.6vw, 28px);
-                margin-top: 34px;
-        }
-
-        #banner .banner-headline-lines {
+        #banner .banner-copy {
                 max-width: 100%;
         }
 
-        #banner .banner-headline-line {
-                white-space: normal;
-                text-wrap: balance;
+        #banner .banner-copy .banner-eyebrow {
+                font-size: 11.5px;
+                margin-bottom: 18px;
+        }
+
+        #banner .banner-headline {
+                font-size: clamp(26px, 7.8vw, 31px);
+        }
+
+        #banner .banner-divider-wide {
+                margin-top: 26px;
+                width: min(220px, 70%);
         }
 
         #banner .banner-subtext {
                 font-size: 16px;
-                margin-top: 20px;
+                margin-top: 22px;
         }
 
         #banner .actions.special {
-                margin-top: 31px;
+                margin-top: 30px;
         }
 
         #banner .actions.special .button.primary {
                 box-sizing: border-box;
-                display: block;
-                font-size: 15px;
+                display: inline-flex;
+                font-size: 14px;
                 height: auto;
                 letter-spacing: 0.08em;
                 line-height: 1.2;
-                margin-left: auto;
-                margin-right: auto;
-                max-width: calc(100% - 32px);
+                margin: 0;
+                max-width: 100%;
                 overflow: visible;
-                padding: 16px 20px;
+                padding: 16px 22px;
                 text-overflow: clip;
                 white-space: normal;
-                width: calc(100% - 32px);
-        }
-
-        #banner .banner-scroll {
-                margin-top: 62px;
+                width: auto;
         }
 
         #banner .banner-scroll-icon {
-                margin-top: 17px;
-        }
-}
-
-/* Very narrow phones — let the headline wrap instead of overflowing */
-@media screen and (max-width: 400px) {
-        #banner .banner-headline-line {
-                white-space: normal;
+                margin-top: 15px;
         }
 }
 
@@ -3873,9 +3876,9 @@ body.page-resource-post .fr-post__body {
 /* =========================================================================
    Landing hero — top navigation
    The header scrolls away with the hero (not fixed) and stays transparent over
-   the photo, and the wordmark is hidden (the hero logo stands in for it).
-   Desktop (>= 1025px): the five links show centered across the top of the hero.
-   Tablet / mobile (<= 1024px): the links hide and the hamburger toggle shows.
+   the photo. The white logo sits top-left inside the header (h1.header-brand).
+   Desktop (>= 1025px): links show beside the logo; >=1360px adds the outlined
+   CTA on the right. Tablet / mobile (<= 1024px): links hide, hamburger shows.
    Scoped to body.landing so the inner pages keep their existing header.
    ========================================================================= */
 
@@ -3890,11 +3893,6 @@ body.landing #header {
         z-index: 10000;
 }
 
-/* The hero logo stands in for the wordmark on the landing page. */
-body.landing #header h1 {
-        display: none;
-}
-
 /* Hidden by default (mobile-first); revealed at the desktop breakpoint. */
 body.landing #header nav > ul > li.nav-link {
         display: none;
@@ -3902,7 +3900,7 @@ body.landing #header nav > ul > li.nav-link {
 }
 
 body.landing #header nav > ul > li.nav-link > a {
-        background-image: linear-gradient(#96b0ac, #96b0ac);
+        background-image: linear-gradient(rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.92));
         background-position: left bottom;
         background-repeat: no-repeat;
         background-size: 0 2px;
@@ -3927,44 +3925,23 @@ body.landing #header nav > ul > li.nav-link > a[aria-current="page"] {
         background-size: 100% 2px;
 }
 
-/* Mobile/tablet: give the hamburger breathing room from the very top edge. */
-@media screen and (max-width: 1024px) {
-        body.landing #header {
-                top: 28px;
-        }
-}
-
-/* Desktop only (laptops and up): show the links centered across the hero,
-   set apart from the very top, and hide the hamburger.
-   Phones and tablets (incl. iPad landscape at 1024px) keep the hamburger. */
+/* Desktop only (laptops and up): logo left, links beside it, outlined CTA
+   far right. Phones and tablets (incl. iPad landscape at 1024px) keep the
+   hamburger. */
 @media screen and (min-width: 1025px) {
-        body.landing #header {
-                display: flex;
-                height: auto;
-                justify-content: center;
-                line-height: normal;
-                /* Reset the inherited right padding from the earlier landing
-                   header rule so the flex centering is truly centered. */
-                padding: 2.6em 0 0;
-        }
-
-        /* Push the centered hero content down so it clears the top menu with
-           room to breathe (the scroll prompt stays pinned to the bottom). */
+        /* Push the hero copy down so it clears the header (the scroll prompt
+           stays pinned to the bottom). */
         body.landing #banner {
-                padding-top: 8em;
+                padding-top: 9em;
         }
 
         body.landing #header nav {
-                height: auto;
-                line-height: normal;
-                position: static;
+                margin-left: clamp(2.2em, 3.4vw, 4.2em);
         }
 
         body.landing #header nav > ul {
-                align-items: center;
-                display: flex;
-                gap: 3em;
-                justify-content: center;
+                gap: clamp(1.4em, 2.2vw, 2.6em);
+                justify-content: flex-start;
         }
 
         body.landing #header nav > ul > li.nav-link {
@@ -3973,6 +3950,50 @@ body.landing #header nav > ul > li.nav-link > a[aria-current="page"] {
 
         body.landing #header nav > ul > li.special {
                 display: none;
+        }
+}
+
+/* Landing header CTA — outlined, far right (wide desktops only; the hero's
+   cream button is the primary CTA everywhere else) */
+body.landing #header .landing-header-cta {
+        display: none;
+}
+
+@media screen and (min-width: 1360px) {
+        body.landing #header .landing-header-cta {
+                align-items: center;
+                background: transparent;
+                border: 1px solid rgba(255, 255, 255, 0.75);
+                border-radius: 0;
+                box-shadow: none;
+                color: #ffffff;
+                display: inline-flex;
+                flex: 0 0 auto;
+                font-family: "Jost", "Open Sans", Helvetica, sans-serif !important;
+                font-size: 12.5px;
+                font-weight: 500;
+                height: auto;
+                letter-spacing: 0.14em;
+                line-height: 1;
+                margin-left: auto;
+                padding: 14px 26px;
+                text-decoration: none;
+                text-transform: uppercase !important;
+                transition: background-color 0.24s ease, border-color 0.24s ease;
+                white-space: nowrap;
+        }
+
+        body.landing #header .landing-header-cta:hover,
+        body.landing #header .landing-header-cta:focus-visible {
+                background-color: rgba(255, 255, 255, 0.12);
+                border-color: #ffffff;
+                color: #ffffff;
+        }
+
+        /* When the CTA is visible it owns the right edge; the nav sits beside
+           the logo instead of hugging the right. */
+        body.landing #header nav {
+                margin-right: 0;
         }
 }
 
