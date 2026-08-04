@@ -702,6 +702,24 @@ body.is-mobile.landing .wrapper.style4 {
         background-image: url("../../images/banner.jpg") !important;
 }
 
+/* Closing CTA band — deep-water plate.
+   #cta is transparent in the template, so what shows through it is the
+   landing page-wrapper background above. The band is pinned to its own
+   copy of the image (rather than inheriting a fixed-attachment one) so the
+   framing is predictable, and carries a left-weighted navy scrim: the
+   image's bright plume sits upper-right, exactly where the ghost button
+   lives, so the copy side needs more cover than the button side. */
+body.landing #cta.wrapper.style4 {
+        background-attachment: scroll !important;
+        background-color: #11212f;
+        background-image:
+                linear-gradient(100deg, rgba(2, 27, 35, 0.78) 0%, rgba(2, 27, 35, 0.55) 42%, rgba(2, 27, 35, 0.3) 72%, rgba(2, 27, 35, 0.34) 100%),
+                url("../../images/cta-deep.jpg") !important;
+        background-position: center 62% !important;
+        background-repeat: no-repeat !important;
+        background-size: cover !important;
+}
+
 /* Full-bleed hero — layered photo, grain, scrim */
 #banner {
         align-items: center;
@@ -3098,6 +3116,10 @@ body.page-project-examples .wrapper.style5 {
 
 /* Hero background: WebP with JPEG fallback */
 #banner .hero-bg{background-image:-webkit-image-set(url("../../images/hero-ocean.webp") type("image/webp"),url("../../images/hero-ocean.jpg") type("image/jpeg"));background-image:image-set(url("../../images/hero-ocean.webp") type("image/webp"),url("../../images/hero-ocean.jpg") type("image/jpeg"))}
+
+/* Closing CTA plate: WebP with JPEG fallback (scrim re-declared — the whole
+   background-image list is replaced, not merged) */
+body.landing #cta.wrapper.style4{background-image:linear-gradient(100deg,rgba(2,27,35,.78) 0%,rgba(2,27,35,.55) 42%,rgba(2,27,35,.3) 72%,rgba(2,27,35,.34) 100%),-webkit-image-set(url("../../images/cta-deep.webp") type("image/webp"),url("../../images/cta-deep.jpg") type("image/jpeg")) !important;background-image:linear-gradient(100deg,rgba(2,27,35,.78) 0%,rgba(2,27,35,.55) 42%,rgba(2,27,35,.3) 72%,rgba(2,27,35,.34) 100%),image-set(url("../../images/cta-deep.webp") type("image/webp"),url("../../images/cta-deep.jpg") type("image/jpeg")) !important}
 
 /* Standards cards: centered framed layout (eyebrow + heading + divider + copy) */
 #two.scout-standards-section .scout-standard-card,
