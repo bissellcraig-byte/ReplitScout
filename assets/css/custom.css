@@ -919,7 +919,7 @@ body.landing #cta.wrapper.style4 {
 /* Scroll prompt — pinned to the bottom-left of the hero, sharing the
    copy column's left edge */
 #banner .banner-scroll {
-        align-items: flex-start;
+        align-items: center;
         border: none;
         bottom: 34px;
         display: flex;
@@ -953,14 +953,14 @@ body.landing #cta.wrapper.style4 {
         font-weight: 400;
         letter-spacing: 0.06em;
         line-height: 1;
-        text-align: left;
+        text-align: center;
         text-transform: none !important;
         width: 100%;
 }
 
 #banner .banner-scroll-icon {
         background-image: url("images/arrow.svg");
-        background-position: left center;
+        background-position: center center;
         background-repeat: no-repeat;
         background-size: contain;
         display: block;
@@ -1071,6 +1071,15 @@ body.page-pricing #header {
         height: 74px;
         line-height: normal;
         padding: 0 48px;
+}
+
+/* Services, pricing, project-examples, work-with-us — black top bar
+   (same near-black as the footer) */
+body.page-services #header,
+body.page-pricing #header,
+body.page-project-examples #header,
+body.page-work-with-us #header {
+        background: #020206;
 }
 
 body.page-services #page-wrapper,
@@ -1527,7 +1536,7 @@ button.primary:active,
 
 /* Scout standards — framed alternating cards (section #two only) */
 #two.scout-standards-section.wrapper.style2 {
-        background-color: #11212f !important;
+        background-color: #020206 !important;
         padding: 4.5em 4em 4.25em !important;
 }
 
@@ -1840,9 +1849,15 @@ button.primary:active,
 
 #three .scout-icon-chip svg {
         display: block;
+        fill: none;
+        height: 24px;
+        stroke: #ffffff;
+        width: 24px;
+}
+
+#three .scout-icon-chip svg .solid {
         fill: #ffffff;
-        height: 22px;
-        width: 22px;
+        stroke: none;
 }
 
 #three .scout-card h3 {
@@ -2556,6 +2571,67 @@ body.page-work-with-us .ww-photo.g3 {
         transform: translateY(34px);
 }
 
+/* Scout dedication — memorial plate beneath the team photos */
+body.page-work-with-us .ww-dedication {
+        align-items: center;
+        border-top: 1px solid var(--ww-line);
+        display: flex;
+        flex-direction: column;
+        /* Top margin also clears the g3 photo's translateY(34px) offset */
+        margin-top: 92px;
+        padding-top: 60px;
+        text-align: center;
+}
+
+body.page-work-with-us .ww-dedication-photo {
+        margin: 0 0 34px;
+        width: min(320px, 78vw);
+}
+
+body.page-work-with-us .ww-dedication-photo img {
+        box-shadow: 0 30px 70px rgba(2, 2, 6, 0.3);
+        display: block;
+        height: auto;
+        width: 100%;
+}
+
+body.page-work-with-us .ww-dedication-kicker {
+        color: var(--ww-muted);
+        font-family: "Jost", "Open Sans", Helvetica, sans-serif;
+        font-size: 13px;
+        font-weight: 400;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+}
+
+body.page-work-with-us .ww-dedication-copy {
+        color: rgba(17, 33, 47, 0.8);
+        font-size: 1.05rem;
+        line-height: 1.9;
+        margin: 22px 0 0;
+        max-width: 58ch;
+}
+
+body.page-work-with-us .ww-dedication-close {
+        color: var(--ww-ink);
+        font-family: "Playfair Display", serif;
+        font-size: 1.45rem;
+        font-style: italic;
+        line-height: 1.5;
+        margin: 26px 0 0;
+}
+
+@media screen and (max-width: 760px) {
+        body.page-work-with-us .ww-dedication {
+                margin-top: 48px;
+                padding-top: 40px;
+        }
+
+        body.page-work-with-us .ww-dedication-close {
+                font-size: 1.25rem;
+        }
+}
+
 @media screen and (max-width: 760px) {
         body.page-work-with-us #main > .ww {
                 padding: 16px;
@@ -2585,7 +2661,8 @@ body.page-work-with-us .ww-photo.g3 {
 
 /* ===== Work With Us — navy editorial inquiry document ===== */
 body.page-work-with-us #main > .inq {
-        --inq-bg: #11212f;
+        --inq-bg: #020206;
+        --inq-card: #11212f;
         --inq-paper: #ffffff;
         --inq-ink: #ffffff;
         --inq-body: rgba(255, 255, 255, 0.72);
@@ -2594,8 +2671,8 @@ body.page-work-with-us #main > .inq {
         --inq-line-strong: rgba(255, 255, 255, 0.28);
         --inq-sage: #27adce;
         --inq-sage-deep: #45d6fc;
-        --inq-cta-ink: #11212f;
-        --inq-cta-body: #4a545d;
+        --inq-cta-ink: #ffffff;
+        --inq-cta-body: rgba(255, 255, 255, 0.72);
         background: var(--inq-bg);
         color: var(--inq-body);
         font-family: "Jost", "Open Sans", Helvetica, sans-serif;
@@ -2768,7 +2845,7 @@ body.page-work-with-us .inq .defdesc {
 
 /* What not to send — keyline note */
 body.page-work-with-us .inq .note {
-        background: rgba(255, 255, 255, 0.04);
+        background: var(--inq-card);
         border: 1px solid var(--inq-line-strong);
         margin-top: 26px;
         padding: 38px 40px;
@@ -2795,7 +2872,7 @@ body.page-work-with-us .inq .note .tag {
 
 /* Form */
 body.page-work-with-us .inq .formwrap {
-        background: rgba(255, 255, 255, 0.035);
+        background: var(--inq-card);
         border: 1px solid var(--inq-line-strong);
         margin-top: 26px;
         padding: 48px 52px;
@@ -2947,17 +3024,17 @@ body.page-work-with-us .inq .cta {
 }
 
 body.page-work-with-us .inq .cta-band {
-        background: var(--inq-paper);
+        background: var(--inq-card);
         padding: 30px;
 }
 
 body.page-work-with-us .inq .cta-inner {
-        border: 1px solid rgba(17, 33, 47, 0.22);
+        border: 1px solid var(--inq-line-strong);
         padding: 64px 60px;
 }
 
 body.page-work-with-us .inq .cta-kicker {
-        color: rgba(17, 33, 47, 0.5);
+        color: var(--inq-muted);
         font-size: 12px;
         font-weight: 500;
         letter-spacing: 0.3em;
@@ -2987,12 +3064,12 @@ body.page-work-with-us .inq .cta .actions {
 }
 
 body.page-work-with-us .inq .cta .btn-out {
-        border-color: rgba(17, 33, 47, 0.32);
+        border-color: var(--inq-line-strong);
         color: var(--inq-cta-ink);
 }
 
 body.page-work-with-us .inq .cta .btn-out:hover {
-        background: rgba(17, 33, 47, 0.05);
+        background: rgba(255, 255, 255, 0.06);
         border-color: var(--inq-cta-ink);
 }
 
@@ -3210,7 +3287,7 @@ body.landing #cta.wrapper.style4{background-image:linear-gradient(100deg,rgba(2,
    other interior pages. --- */
 body.page-free-resources #header,
 body.page-resource-post #header {
-        background: #11212f;
+        background: #020206;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -4015,22 +4092,8 @@ body.landing #header nav > ul > li.nav-link > a[aria-current="page"] {
                 padding-top: 9em;
         }
 
-        body.landing #header nav {
-                margin-left: clamp(2.2em, 3.4vw, 4.2em);
-        }
-
-        body.landing #header nav > ul {
-                gap: clamp(1.4em, 2.2vw, 2.6em);
-                justify-content: flex-start;
-        }
-
-        body.landing #header nav > ul > li.nav-link {
-                display: inline-block;
-        }
-
-        body.landing #header nav > ul > li.special {
-                display: none;
-        }
+        /* Keep the hamburger menu on the right at every width — the inline
+           nav links stay hidden and li.special stays visible. */
 }
 
 /* Landing header CTA — outlined, far right (wide desktops only; the hero's
