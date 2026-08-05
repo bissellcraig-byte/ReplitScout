@@ -206,6 +206,19 @@ body.page-project-examples #main > header.svc-hero .svc-hero__headline em {
         font-weight: 400;
 }
 
+body.page-services #main > header.svc-hero .svc-hero__sub {
+        color: rgba(255, 255, 255, 0.78);
+        font-family: "Jost", "Open Sans", Helvetica, sans-serif;
+        font-size: 19px;
+        font-style: normal !important;
+        font-weight: 300;
+        letter-spacing: 0.01em !important;
+        line-height: 1.6;
+        margin: 20px 0 0 0;
+        max-width: 56ch;
+        text-transform: none !important;
+}
+
 body.page-services #main > header.svc-hero .svc-hero__footer,
 body.page-project-examples #main > header.svc-hero .svc-hero__footer {
         align-items: flex-end;
