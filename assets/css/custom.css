@@ -304,52 +304,63 @@ body.page-project-examples #main > header.svc-hero .svc-hero__cta:hover .svc-her
 
 /* Project examples — ivory card hero with navy text (no photo) */
 body.page-project-examples #main > header.svc-hero {
-        background-color: #ffffff !important;
+        background-color: #d4cec8 !important;
 }
 
 body.page-project-examples #main > header.svc-hero::before {
-        display: none !important;
+        background-image: url("../../images/pe-hero.jpg");
+        background-position: center 30%;
+        display: block !important;
+        filter: saturate(0.9) contrast(1.0);
+}
+
+body.page-project-examples #main > header.svc-hero::before {
+        background-image: -webkit-image-set(url("../../images/pe-hero.webp") type("image/webp"), url("../../images/pe-hero.jpg") type("image/jpeg"));
+        background-image: image-set(url("../../images/pe-hero.webp") type("image/webp"), url("../../images/pe-hero.jpg") type("image/jpeg"));
 }
 
 body.page-project-examples #main > header.svc-hero .svc-hero__scrim {
-        display: none !important;
+        background:
+                linear-gradient(180deg, rgba(8, 18, 26, 0.38), rgba(8, 18, 26, 0) 30%),
+                linear-gradient(360deg, rgba(8, 18, 26, 0.78) 0%, rgba(8, 18, 26, 0.28) 44%, rgba(8, 18, 26, 0) 70%);
+        display: block !important;
 }
 
 body.page-project-examples #main > header.svc-hero .svc-hero__frame {
-        border-color: rgba(17, 33, 47, 0.28);
+        border-color: rgba(255, 255, 255, 0.22);
 }
 
 body.page-project-examples #main > header.svc-hero .svc-hero__top {
-        color: rgba(17, 33, 47, 0.72);
+        color: rgba(255, 255, 255, 0.72);
 }
 
 body.page-project-examples #main > header.svc-hero .svc-hero__headline {
-        color: #11212f;
+        color: #ffffff;
 }
 
 body.page-project-examples #main > header.svc-hero .svc-hero__headline em {
-        color: #11212f;
+        color: rgba(255, 255, 255, 0.92);
 }
 
 body.page-project-examples #main > header.svc-hero .svc-hero__sub {
-        color: rgba(17, 33, 47, 0.74);
+        color: rgba(255, 255, 255, 0.80) !important;
 }
 
 body.page-project-examples #main > header.svc-hero .svc-hero__footer {
-        border-top-color: rgba(17, 33, 47, 0.22);
+        border-top-color: rgba(255, 255, 255, 0.22);
 }
 
 body.page-project-examples #main > header.svc-hero .svc-hero__caption {
-        color: rgba(17, 33, 47, 0.82);
+        color: rgba(255, 255, 255, 0.82);
 }
 
 body.page-project-examples #main > header.svc-hero .svc-hero__cta {
-        border-color: rgba(17, 33, 47, 0.55);
-        color: #11212f;
+        border-color: rgba(255, 255, 255, 0.55);
+        color: #ffffff;
 }
 
 body.page-project-examples #main > header.svc-hero .svc-hero__cta:hover {
-        background: #11212f;
+        background: rgba(255, 255, 255, 0.15);
         color: #ffffff;
 }
 
