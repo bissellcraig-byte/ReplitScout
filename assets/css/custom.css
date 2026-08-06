@@ -321,6 +321,18 @@ body.page-project-examples #main > header.svc-hero .svc-hero__cta:hover .svc-her
         body.page-services #main > header.svc-hero::before {
                 background-position: 57% 50%;
         }
+
+        /* Services hero mobile: CTA fits the frame at any width instead of
+           overflowing (desktop keeps its nowrap inline-flex pill) */
+        body.page-services #main > header.svc-hero .svc-hero__cta {
+                font-size: 12px;
+                justify-content: center;
+                letter-spacing: 0.1em;
+                padding: 14px 16px;
+                text-align: center;
+                white-space: normal;
+                width: 100%;
+        }
 }
 
 /* Project examples — ivory card hero with navy text (no photo) */
