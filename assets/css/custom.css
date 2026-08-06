@@ -333,6 +333,24 @@ body.page-project-examples #main > header.svc-hero .svc-hero__cta:hover .svc-her
                 white-space: normal;
                 width: 100%;
         }
+
+        /* Project examples hero mobile: this hero carries a headline, two full
+           paragraphs and a CTA — far more copy than the services hero — so the
+           absolutely-positioned frame inside the fixed-height, overflow:hidden
+           band clipped the tail of the copy. Put the frame back in normal flow
+           on mobile so the band grows to fit. The hero becomes a flex parent so
+           the frame still stretches to the min-height when the copy is shorter.
+           Desktop/tablet keep the absolute inset framing. */
+        body.page-project-examples #main > header.svc-hero {
+                display: flex;
+        }
+
+        body.page-project-examples #main > header.svc-hero .svc-hero__frame {
+                flex: 1 1 auto;
+                inset: auto;
+                margin: 16px;
+                position: relative;
+        }
 }
 
 /* Project examples — ivory card hero with navy text (no photo) */
