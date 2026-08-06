@@ -1799,6 +1799,11 @@ button.primary:active,
 }
 
 @media screen and (max-width: 736px) {
+        #cta .inner header {
+                padding-right: 0;
+                text-align: center;
+        }
+
         #cta header h2 {
                 font-size: 1.5rem !important;
         }
