@@ -4991,6 +4991,14 @@ body.page-pricing .pr-cta a {
                 text-align: left;
         }
 
+        /* Contain the frame's margin so the navy band sits evenly above and
+           below it. Without this the frame's top margin collapses out of the
+           band, jamming its top border against the top edge and pushing the
+           gap up into the white section above. */
+        body.page-pricing .pr-cta {
+                display: flow-root;
+        }
+
         body.page-pricing .pr-cta__frame {
                 margin: 40px auto;
                 padding: 48px 28px;
