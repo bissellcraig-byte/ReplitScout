@@ -2750,6 +2750,37 @@ body.page-work-with-us .ww-dedication-close {
         body.page-work-with-us .ww-photo.g3 {
                 transform: none;
         }
+
+        /* Mobile polish. The desktop tracking is too wide for a phone column:
+           the two eyebrow labels were each breaking mid-phrase ("WORK WITH /
+           US") and the uppercase lead sprawled over four loose lines. Tighten
+           the tracking, keep each eyebrow label whole and let the pair wrap as
+           units, and close up the vertical rhythm. */
+        body.page-work-with-us .ww-eyebrow {
+                flex-wrap: wrap;
+                font-size: 11px;
+                gap: 6px 18px;
+                letter-spacing: 0.16em;
+        }
+
+        body.page-work-with-us .ww-eyebrow span {
+                white-space: nowrap;
+        }
+
+        body.page-work-with-us .ww-col {
+                gap: 22px;
+        }
+
+        body.page-work-with-us .ww-sub {
+                font-size: 12px;
+                letter-spacing: 0.1em;
+                line-height: 1.7;
+        }
+
+        /* The column already supplies the gap above this line */
+        body.page-work-with-us .ww-phone {
+                margin-top: 0;
+        }
 }
 
 @media screen and (max-width: 440px) {
