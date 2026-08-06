@@ -2407,6 +2407,13 @@ body.page-services .svc-cta__button--primary:hover {
                 gap: 12px;
         }
 
+        /* Contain the frame's margin so its translucent-white top border draws
+           on the navy band instead of collapsing out onto the white section
+           above, where it is invisible and the outline looks open at the top */
+        body.page-services .svc-cta {
+                display: flow-root;
+        }
+
         body.page-services .svc-cta__frame {
                 margin: 40px auto;
                 padding: 48px 28px;
@@ -2417,8 +2424,15 @@ body.page-services .svc-cta__button--primary:hover {
                 flex-direction: column;
         }
 
+        /* Buttons fill the frame and wrap rather than overflowing it: nowrap
+           forced a min-width wider than the frame on narrow phones */
         body.page-services .svc-cta__button {
+                font-size: 12px;
+                letter-spacing: 0.1em;
+                padding: 16px 18px;
                 text-align: center;
+                white-space: normal;
+                width: 100%;
         }
 }
 
