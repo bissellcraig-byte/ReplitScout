@@ -206,7 +206,8 @@ body.page-project-examples #main > header.svc-hero .svc-hero__headline em {
         font-weight: 400;
 }
 
-body.page-services #main > header.svc-hero .svc-hero__sub {
+body.page-services #main > header.svc-hero .svc-hero__sub,
+body.page-project-examples #main > header.svc-hero .svc-hero__sub {
         color: rgba(255, 255, 255, 0.78);
         font-family: "Jost", "Open Sans", Helvetica, sans-serif;
         font-size: 19px;
@@ -328,6 +329,10 @@ body.page-project-examples #main > header.svc-hero .svc-hero__headline {
 
 body.page-project-examples #main > header.svc-hero .svc-hero__headline em {
         color: #11212f;
+}
+
+body.page-project-examples #main > header.svc-hero .svc-hero__sub {
+        color: rgba(17, 33, 47, 0.74);
 }
 
 body.page-project-examples #main > header.svc-hero .svc-hero__footer {
