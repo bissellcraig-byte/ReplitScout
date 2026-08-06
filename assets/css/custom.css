@@ -300,6 +300,27 @@ body.page-project-examples #main > header.svc-hero .svc-hero__cta:hover .svc-her
                 font-size: 11px;
                 letter-spacing: 0.24em;
         }
+
+        /* Services hero mobile: smaller type + tighter spacing so the footer
+           caption and CTA don't clip on short devices (overflow:hidden on hero) */
+        body.page-services #main > header.svc-hero .svc-hero__headline {
+                font-size: 33px !important;
+        }
+
+        body.page-services #main > header.svc-hero .svc-hero__sub {
+                font-size: 15px;
+                margin-top: 10px;
+        }
+
+        body.page-services #main > header.svc-hero .svc-hero__footer {
+                margin-top: 14px;
+                padding-top: 14px;
+        }
+
+        /* Services hero mobile: shift image right + down to frame woman + cat */
+        body.page-services #main > header.svc-hero::before {
+                background-position: 57% 50%;
+        }
 }
 
 /* Project examples — ivory card hero with navy text (no photo) */
