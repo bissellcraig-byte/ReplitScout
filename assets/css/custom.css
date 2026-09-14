@@ -4756,6 +4756,171 @@ body.page-pricing .pr-tier-note {
         margin: 1.6em 0 0;
 }
 
+/* --- Inclusion list inside a pricing card (social packages) --- */
+body.page-pricing .pr-card__list {
+        color: #4a555e;
+        font-family: "Jost", sans-serif;
+        font-size: 15px;
+        font-weight: 300;
+        line-height: 1.55;
+        list-style: none;
+        margin: 1.3em 0 0;
+        padding: 0;
+}
+
+body.page-pricing .pr-card__list li {
+        padding: 0 0 0 1.1em;
+        position: relative;
+}
+
+/* li + li, not li:first-child — the template forces margin-top:0 !important
+   on the first child of every list, which would be dropped silently */
+body.page-pricing .pr-card__list li + li {
+        margin-top: 0.5em;
+}
+
+body.page-pricing .pr-card__list li::before {
+        background: #115f72;
+        border-radius: 50%;
+        content: "";
+        height: 4px;
+        left: 0;
+        position: absolute;
+        top: 0.62em;
+        width: 4px;
+}
+
+body.page-pricing .pr-card--featured .pr-card__list {
+        color: rgba(255, 255, 255, 0.82);
+}
+
+body.page-pricing .pr-card--featured .pr-card__list li::before {
+        background: #27adce;
+}
+
+/* --- Add-on rows (name + price, with a line of detail) --- */
+body.page-pricing .pr-addons-block {
+        margin-top: 3.2em;
+}
+
+body.page-pricing .pr-addons__title {
+        color: #11212f;
+        font-family: "Playfair Display", serif;
+        font-size: 23px;
+        font-weight: 500;
+        letter-spacing: 0;
+        line-height: 1.2;
+        margin: 0 0 0.9em;
+}
+
+body.page-pricing .pr-addons {
+        border-top: 1px solid rgba(17, 33, 47, 0.12);
+        list-style: none;
+        margin: 0;
+        /* top padding lives on the list: the template zeroes padding-top on
+           the first li with !important */
+        padding: 1.1em 0 0;
+}
+
+body.page-pricing .pr-addons > li {
+        border-bottom: 1px solid rgba(17, 33, 47, 0.1);
+        padding: 0 0 1.1em;
+}
+
+body.page-pricing .pr-addons > li + li {
+        padding-top: 1.1em;
+}
+
+body.page-pricing .pr-addons > li:last-child {
+        border-bottom: 0;
+        padding-bottom: 0;
+}
+
+body.page-pricing .pr-addons__head {
+        align-items: baseline;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.3em 1.5em;
+        justify-content: space-between;
+}
+
+body.page-pricing .pr-addons__name {
+        color: #11212f;
+        font-family: "Jost", sans-serif;
+        font-size: 17px;
+        font-weight: 500;
+        line-height: 1.4;
+}
+
+body.page-pricing .pr-addons__price {
+        color: #115f72;
+        font-family: "Jost", sans-serif;
+        font-size: 17px;
+        font-weight: 500;
+        line-height: 1.4;
+        text-align: right;
+        white-space: nowrap;
+}
+
+body.page-pricing .pr-addons__desc {
+        color: #4a555e;
+        font-family: "Jost", sans-serif;
+        font-size: 15px;
+        font-weight: 300;
+        line-height: 1.6;
+        margin: 0.4em 0 0;
+        max-width: 70ch;
+}
+
+/* --- Short scope note --- */
+body.page-pricing .pr-note {
+        background: rgba(17, 95, 114, 0.05);
+        border-left: 2px solid #115f72;
+        margin: 2.4em 0 0;
+        padding: 1.5em 1.7em;
+}
+
+body.page-pricing .pr-note__title {
+        color: #11212f;
+        font-family: "Jost", sans-serif;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.16em;
+        margin: 0 0 0.85em;
+        text-transform: uppercase;
+}
+
+body.page-pricing .pr-note__list {
+        color: #4a555e;
+        font-family: "Jost", sans-serif;
+        font-size: 15px;
+        font-weight: 300;
+        line-height: 1.6;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+}
+
+body.page-pricing .pr-note__list li {
+        padding: 0 0 0 1.1em;
+        position: relative;
+}
+
+body.page-pricing .pr-note__list li + li {
+        margin-top: 0.5em;
+}
+
+body.page-pricing .pr-note__list li::before {
+        background: #115f72;
+        border-radius: 50%;
+        content: "";
+        height: 4px;
+        left: 0;
+        position: absolute;
+        top: 0.62em;
+        width: 4px;
+}
+
 /* --- Generic block spacing / dividers --- */
 body.page-pricing .pr-block {
         border-top: 1px solid rgba(17, 33, 47, 0.14);
@@ -4937,6 +5102,7 @@ body.page-pricing .pr-frontdoor__title,
 body.page-pricing .pr-org__title,
 body.page-pricing .pr-cta__heading,
 body.page-pricing .pr-card__name,
+body.page-pricing .pr-addons__title,
 body.page-pricing .pr-alacarte__summary-title {
         font-family: "Playfair Display", Georgia, serif !important;
         font-weight: 500 !important;
@@ -4954,6 +5120,12 @@ body.page-pricing .pr-frontdoor__body,
 body.page-pricing .pr-card__price,
 body.page-pricing .pr-card__desc,
 body.page-pricing .pr-card__badge,
+body.page-pricing .pr-card__list,
+body.page-pricing .pr-addons__name,
+body.page-pricing .pr-addons__price,
+body.page-pricing .pr-addons__desc,
+body.page-pricing .pr-note__title,
+body.page-pricing .pr-note__list,
 body.page-pricing .pr-org__price,
 body.page-pricing .pr-org__body,
 body.page-pricing .pr-cta__text,
@@ -5038,6 +5210,18 @@ body.page-pricing .pr-cta a {
         body.page-pricing .pr-alacarte__value {
                 white-space: normal;
                 text-align: left;
+        }
+
+        /* Add-on name and price stack at this width, so the right-aligned,
+           non-wrapping price of the desktop row would sit oddly and could
+           push the row wider than the frame. */
+        body.page-pricing .pr-addons__price {
+                text-align: left;
+                white-space: normal;
+        }
+
+        body.page-pricing .pr-note {
+                padding: 1.3em 1.3em;
         }
 
         /* Contain the frame's margin so the navy band sits evenly above and
