@@ -30,7 +30,20 @@ const MIME = {
 
 const server = http.createServer((req, res) => {
   try {
-    let urlPath = decodeURIComponent(req.url.split("?")[0]);
+    let urlPath = path.posix.normalize(decodeURIComponent(req.url.split("?")[0]));
+    if (urlPath === "/.archive" || urlPath.startsWith("/.archive/")) {
+      res.writeHead(404);
+      res.end("Not Found");
+      return;
+    }
+    if (["/pricing", "/pricing/", "/pricing.html"].includes(urlPath)) {
+      res.writeHead(302, {
+        Location: "/work-with-us.html",
+        "Cache-Control": "no-store",
+      });
+      res.end();
+      return;
+    }
     if (urlPath === "/") urlPath = "/index.html";
 
     let filePath = path.normalize(path.join(ROOT, urlPath));

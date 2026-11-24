@@ -321,7 +321,6 @@ function headerHtml() {
                     <ul>
                         <li class="nav-link"><a href="/index.html">Home</a></li>
                         <li class="nav-link"><a href="/services.html">More on services</a></li>
-                        <li class="nav-link"><a href="/pricing.html">Pricing</a></li>
                         <li class="nav-link"><a href="/project-examples.html">Project examples</a></li>
                         <li class="nav-link"><a href="/work-with-us.html">Work with us</a></li>
                         <li class="nav-link"><a href="/free-resources/" aria-current="page">Free Resources</a></li>
@@ -331,7 +330,6 @@ function headerHtml() {
                                 <ul>
                                     <li><a href="/index.html">Home</a></li>
                                     <li><a href="/services.html">More on services</a></li>
-                                    <li><a href="/pricing.html">Pricing</a></li>
                                     <li><a href="/project-examples.html">Project examples</a></li>
                                     <li><a href="/work-with-us.html">Work with us</a></li>
                                     <li><a href="/free-resources/">Free Resources</a></li>
@@ -355,7 +353,6 @@ function footerHtml() {
                 <ul class="footer-nav">
                     <li><a href="/index.html">Home</a></li>
                     <li><a href="/services.html">More on services</a></li>
-                    <li><a href="/pricing.html">Pricing</a></li>
                     <li><a href="/project-examples.html">Project examples</a></li>
                     <li><a href="/work-with-us.html">Work with us</a></li>
                     <li><a href="/privacy.html">Privacy policy</a></li>

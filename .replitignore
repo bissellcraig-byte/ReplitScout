@@ -7,6 +7,7 @@
 .upm/
 .local/
 .agents/
+.archive/
 node_modules/
 **/node_modules/
 
